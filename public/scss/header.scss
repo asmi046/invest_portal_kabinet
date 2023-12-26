@@ -1,0 +1,23 @@
+#header{
+    background-color: var(--light);
+    .inner{
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+        padding: 20px 50px;
+        box-sizing: border-box;
+    }
+    .header__notifications{
+        margin-left: auto;
+    }
+    .logo{
+        border-radius: 4px;
+    }
+}
+nav{
+    background-color: var(--active);
+    padding: 150px;
+}
+.main-menu{
+
+}

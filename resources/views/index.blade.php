@@ -7,7 +7,7 @@
 
 @section('title', $title)
 @section('description', $description)
-
-@section('main')
+<x-header></x-header>
+@section('body')
     <h1>Test</h1>
 @endsection

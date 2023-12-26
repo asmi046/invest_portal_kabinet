@@ -1,0 +1,188 @@
+.form-elem{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    .form-elem__caption{
+        display: block;
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+    .form-elem__field{
+        display: block;
+        width: 100%;
+        height: 4.8rem;
+        padding: 0.5rem 1.6rem;
+        border: 1px solid var(--bg);
+        border-radius: 4px;
+        font-size: 1.4rem;
+        line-height: 1;
+        color: var(--color);
+        box-sizing: border-box;
+        box-shadow: 0px 4px 16px 0px rgba(51, 51, 51, 0.08), 0px 4px 4px 0px rgba(51, 51, 51, 0.04);
+        transition: var(--great-transition);
+        &:focus{
+            box-shadow: 0px 4px 16px 0px rgba(51, 51, 51, 0.15), 0px 4px 4px 0px rgba(51, 51, 51, 0.15);
+        }
+        &::-webkit-input-placeholder{opacity: 1; transition: opacity 0.3s ease; color: var(--color-alt-light);}
+        &::-moz-placeholder{opacity: 1; transition: opacity 0.3s ease; color:var(--color-alt-light);}
+        &:-moz-placeholder{opacity: 1; transition: opacity 0.3s ease; color:var(--color-alt-light);}
+        &:-ms-input-placeholder{opacity: 1; transition: opacity 0.3s ease; color:var(--color-alt-light);}
+        &:focus::-webkit-input-placeholder{opacity: 0; transition: opacity 0.3s ease;}
+        &:focus::-moz-placeholder{opacity: 0; transition: opacity 0.3s ease;}
+        &:focus:-moz-placeholder{opacity: 0; transition: opacity 0.3s ease;}
+        &:focus:-ms-input-placeholder{opacity: 0; transition: opacity 0.3s ease;}
+    }
+    .form-elem__error-message{
+        display: none;
+        font-size: 1.4rem;
+        color: var(--alert-color);
+    }
+    &--error{
+        .form-elem__field{
+            border: 1px solid var(--alert-color);
+        }
+        .form-elem__error-message{
+            display: block;
+        }
+    }
+    .form-elem__password-field-box{
+        position: relative;
+        .form-elem__field{
+            padding-right: 5rem;
+        }
+    }
+    .form-elem__btn-show-pass{
+        position: absolute;
+        right: 1.6rem;
+        top: 50%;
+        width: 2.4rem;
+        height: 2rem;
+        background-color: var(--color-alt);
+        -webkit-mask-image: url(../img/eye-icon.svg);
+        mask-image: url(../img/eye-icon.svg);
+        -webkit-mask-size: contain;
+                mask-size: contain;
+        -webkit-mask-position: center center;
+                mask-position: center center;
+        -webkit-mask-repeat: no-repeat;
+                mask-repeat: no-repeat;
+        transform: translateY(-50%);
+        transition: var(--great-transition);
+        &:hover{
+            background-color: var(--active);
+        }
+        &.show{
+            -webkit-mask-image: url(../img/eye-line-icon.svg);
+            mask-image: url(../img/eye-line-icon.svg);
+        }
+    }
+}
+
+.form-checkbox{
+    position: relative;
+    display: flex;
+    gap: 1rem;
+    width: fit-content;
+    input{
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+    i{
+        position: relative;
+        display: block;
+        width: 1.8rem;
+        height: 1.8rem;
+        border: 1px solid var(--border-color);
+        background-color: var(--light);
+        border-radius: 4px;
+        box-sizing: border-box;
+        cursor: pointer;
+        transition: var(--great-transition);
+        &::after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--light);
+            -webkit-mask-image: url(../img/checkbox.svg);
+            mask-image: url(../img/checkbox.svg);
+            -webkit-mask-size: contain;
+                    mask-size: contain;
+            -webkit-mask-position: center center;
+                    mask-position: center center;
+            -webkit-mask-repeat: no-repeat;
+                    mask-repeat: no-repeat;
+            transition: var(--great-transition);
+            opacity: 0;
+        }
+        &:hover{
+            border: 1px solid var(--active);
+        }
+
+    }
+    span{
+        display: block;
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+    input:checked ~ i{
+        background-color: var(--active);
+        border: 1px solid var(--active);
+        &::after{
+            opacity: 1;
+        }
+    }
+
+}
+.esia-enter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+}
+.link-to-reg{
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+}
+// -------------------------------------
+.auth-form{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+    .btn{
+        width: 100%;
+    }
+}
+.registration-form{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+    .btn{
+        width: 100%;
+        max-width: 33rem;
+        margin: 0 auto;
+    }
+}
+.password-recovery-form{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+    .btn{
+        width: 100%;
+        max-width: 33rem;
+        margin: 0 auto;
+    }
+}

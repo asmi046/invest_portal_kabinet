@@ -1,3 +1,6 @@
-h1{
-    color:red;
-}
+@import 'fonts';
+@import 'global';
+@import 'common';
+@import 'header';
+@import './components/form';
+@import 'authreg';

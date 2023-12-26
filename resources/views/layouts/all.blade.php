@@ -33,7 +33,7 @@
 </head>
 <body>
 
-    @yield('main')
+    @yield('body')
 
 </body>
 </html>
