@@ -12,6 +12,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "imask": "^7.3.0"
+        "imask": "^7.3.0",
+        "simplebar": "^6.2.5"
     }
 }

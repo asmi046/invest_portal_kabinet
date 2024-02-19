@@ -1,6 +1,16 @@
 @import 'fonts';
 @import 'global';
+@import 'typography';
+@import './components/icons';
+@import './components/tables';
+
+@import './plagins/vi-tab';
+@import './plagins/simplebar';
+
 @import 'common';
 @import 'header';
 @import './components/form';
+@import './components/sections';
 @import 'authreg';
+
+@import 'media';

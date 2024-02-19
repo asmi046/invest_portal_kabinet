@@ -1,0 +1,37 @@
+.ip-tab{
+    .ip-tab-controller{
+        display: flex;
+        gap: 4rem;
+        margin-bottom: 4rem;
+    }
+    .ip-tab-controller__btn {
+        position: relative;
+        background-color: transparent;
+        line-height: 1.4;
+        font-size: 2rem;
+        text-align: left;
+        &::after{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            border-radius: 3px;
+            background-color: var(--active);
+            transition: var(--great-transition);
+            opacity: 0;
+        }
+        &.active{
+            &::after{
+                opacity: 1;
+            }
+        }
+    }
+    .ip-tab__display{
+        display: none;
+        &.active{
+            display: block;
+        }
+    }
+}

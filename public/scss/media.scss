@@ -1,0 +1,174 @@
+@media screen and (max-width: 1400px){
+    main {
+        padding: 30px 0px 100px 400px;
+    }
+    .inner {
+        padding: 0 30px;
+    }
+    .columns-box{
+        &--two-col {
+            grid-column-gap: 2rem;
+            grid-row-gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+@media screen and (max-width: 1200px){
+    main {
+        padding: 30px 0px 100px 0px;
+    }
+}
+
+@media screen and (max-width: 860px){
+    .columns-box{
+        &--two-col {
+            grid-column-gap: 2rem;
+            grid-row-gap: 2rem;
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+}
+@media screen and (max-width: 750px){
+    .stages {
+        flex-direction: column;
+        .stages-item{
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            padding: 2.5rem 0;
+            .stages-item__marker{
+                margin: 0;
+            }
+            .stages-item__text{
+                margin: 0;
+                text-align: left;
+            }
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 12px;
+                height: 50%;
+                width: 2px;
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 12px;
+                height: 50%;
+                width: 2px;
+            }
+        }
+    }
+}
+// Переход
+@media screen and (max-width: 700px){
+    :root{
+        font-size: 9px;
+    }
+    body{
+        font-size: 1.6rem;
+    }
+    .ip-tab {
+        .ip-tab-controller {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    .btn-link {
+        gap: 1rem;
+        padding: 2rem;
+        .btn-link__text {
+            font-size: 1.8rem;
+        }
+        .btn-link__icon {
+            width: 4rem;
+            height: 4rem;
+        }
+    }
+    .iportal-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 8rem 2rem 2rem;
+        &::before {
+            content: "";
+            top: -9.6rem;
+            right: -9.6rem;
+            width: 20rem;
+            height: 20rem;
+        }
+        .iportal-card__icon {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 4rem;
+            height: 4rem;
+        }
+        .iportal-card__caption {
+            font-size: 1.8rem;
+        }
+        .iportal-card__btn {
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--light);
+            font-size: 1.8rem;
+        }
+        .iportal-card__status-marker {
+            font-size: 1.4rem;
+        }
+    }
+    .video-box .video-box__video-play {
+        width: 5rem;
+        height: 5rem;
+    }
+    .ip-tab {
+        .ip-tab-controller__btn{
+            font-size: 1.6rem;
+        }
+    }
+    .paginations{
+        li{
+            span, a{
+                min-width: 3.5rem;
+                height: 3.5rem;
+            }
+        }
+    }
+    .columns-box{
+        &--two-col {
+            grid-row-gap: 1rem;
+        }
+    }
+}
+
+@media screen and (max-width: 420px){
+    .inner {
+        padding: 0 15px;
+    }
+    .iportal-card {
+        padding: 2rem 6rem 2rem 2rem;
+        .iportal-card__icon {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+        }
+        &::before {
+            content: "";
+            top: -9.6rem;
+            right: -9.6rem;
+            width: 19rem;
+            height: 19rem;
+        }
+    }
+}

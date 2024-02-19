@@ -9,14 +9,17 @@ html{
 
 :root{
     font-size: 10px;
-    line-height: 1.36;
+    line-height: 1.6;
     --bg: #F5F5F5;
+    --bg-light: #EDEDED;
     --light: #ffffff;
     --color: #000000;
     --color-alt: #7B7777;
+    --grey: #737373;
     --color-alt-light: #BFBFBF;
     --border-color: #A3A3A3;
     --active: #16A4A4;
+    --green: #118383;
     --alert-color: #EF4545;
     --great-transition: all 200ms ease;
 
@@ -59,7 +62,11 @@ input, textarea, button, a{
     font-size: 1.11rem;
     line-height: 1;
 }
-
+menu{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
 table{border-spacing:0; border-collapse: collapse; margin: 0; padding: 0;}
 td, th{vertical-align:top; word-wrap:break-word;}
 // ul, ol, nav, dl{margin:0; padding:0; list-style:none;}
@@ -70,7 +77,7 @@ button, .button{ text-decoration:none !important;}
 //button:hover, .button:hover{transition: opacity 1.2s, visibility 0s linear 1.2s; opacity:0.7;}
 address{font-style: normal;}
 
-.inner{position:relative; margin:0 auto; box-sizing: border-box; }
+.inner{position:relative; margin:0 auto; box-sizing: border-box; padding: 0 50px;}
 section{position:relative;}
 main{position:relative; clear:both;   box-sizing: border-box;}
 header, nav, section, article, aside, footer, main{display:block;}

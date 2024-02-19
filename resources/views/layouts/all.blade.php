@@ -32,8 +32,9 @@
     ])
 </head>
 <body>
-
-    @yield('body')
-
+    <x-header></x-header>
+    <main>
+        @yield('body')
+    </main>
 </body>
 </html>
