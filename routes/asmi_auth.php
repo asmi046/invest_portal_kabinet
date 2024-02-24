@@ -2,9 +2,24 @@
     use Illuminate\Support\Facades\Route;
 
     use App\Http\Controllers\Auth\AuthController;
+    use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
     Route::middleware('auth')->group(function () {
         Route::get('/logout', [AuthController::class, "logout"])->name("logout");
+
+        Route::get('/welcom', [AuthController::class, "welcom"])->name("verification.notice");
+        Route::post('/email/verification-notification', function (Request $request) {
+            $request->user()->sendEmailVerificationNotification();
+
+            return back()->with('message', 'Ссылка повторно отправлена!');
+        })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+        Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+            $request->fulfill();
+
+            return redirect()->route('home');
+        })->middleware(['auth', 'signed'])->name('verification.verify');
+
     });
 
     Route::middleware('guest')->group(function () {
