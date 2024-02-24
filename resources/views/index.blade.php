@@ -32,47 +32,33 @@
                 <li>На получение государственной поддержки</li>
                 <li>На получение доступа к ключевым элементам инфраструктуры согласно своду инвестиционных правил</li>
             </ol>
+
             <div class="btn-link-box columns-box columns-box--two-col">
-                <a href="#" class="btn-link">
-                    <span class="btn-link__text">Подать заявление на государственную поддержку</span>
-                    <span class="btn-link__icon building-icon"></span>
-                </a>
-                <a href="#" class="btn-link">
-                    <span class="btn-link__text">Подать заявление на сопровождение проекта по принципу «Одно окно»</span>
-                    <span class="btn-link__icon laptop-icon"></span>
-                </a>
-                <a href="#" class="btn-link">
-                    <span class="btn-link__text">Подать заявление на получение доступа
-                        к ключевым элементам инфраструктуры согласно своду инвестиционных правил</span>
-                    <span class="btn-link__icon tablet-icon"></span>
-                </a>
+                <x-widget-icon-lnk lnk="#" title="Подать заявление на государственную поддержку" icon="building-icon"></x-widget-icon-lnk>
+                <x-widget-icon-lnk lnk="#" title="Подать заявление на сопровождение проекта по принципу «Одно окно»" icon="laptop-icon"></x-widget-icon-lnk>
+                <x-widget-icon-lnk lnk="#" title="Подать заявление на получение доступа к ключевым элементам инфраструктуры согласно своду инвестиционных правил" icon="tablet-icon"></x-widget-icon-lnk>
             </div>
+
+
             <h2 class="h3">Мои заявки и проекты</h2>
             <div class="iportal-card-box columns-box columns-box--two-col">
-                <div class="iportal-card">
-                    <span class="iportal-card__icon check-list-icon"></span>
-                    <span class="iportal-card__status-marker">
-                        Черновик
-                    </span>
-                    <span class="iportal-card__caption">
-                        Инвестиционный проект №1 от 21.11.2023
-                    </span>
-                    <a href="#" class="iportal-card__btn">Подать проект</a>
-                    {{-- <button href="#" class="iportal-card__btn">Подать проект</button> --}}
-                </div>
-                <div class="iportal-card">
-                    <span class="iportal-card__icon check-list-icon"></span>
-                    <span class="iportal-card__status-marker">
-                        Черновик
-                    </span>
-                    <span class="iportal-card__caption">
-                        Заявление ООО “Энергосбыт” на государственную поддержку
-                        от 21.11.2023
-                    </span>
-                    <button  class="iportal-card__btn">Мои заявления</button>
-                    {{-- <a href="#"  class="iportal-card__btn">Мои заявления</a> --}}
-                </div>
+                <x-widget-green
+                    lnk="#"
+                    lnktxt="Подать проект"
+                    status="Черновик"
+                    title="Инвестиционный проект №1 от 21.11.2023"
+                    icon="check-list-icon"
+                ></x-widget-green>
+
+                <x-widget-green
+                    lnk="#"
+                    lnktxt="Мои заявления"
+                    status="Черновик"
+                    title="Заявление ООО “Энергосбыт” на государственную поддержку от 21.11.2023"
+                    icon="check-list-icon"
+                ></x-widget-green>
             </div>
+
             <div class="ip-tab">
                 <div class="ip-tab-controller">
                     <button class="ip-tab-controller__btn active">Видеоинструкции</button>
