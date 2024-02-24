@@ -1,9 +1,9 @@
 
-@extends('layouts.all')
+@extends('layouts.auth')
 
 @php
-    $title = "Заголовок";
-    $description = "Дескрипшен";
+    $title = "Взод - Инвестиционный портал Курской области";
+    $description = "Взод в инвестиционный портал Курской области";
 @endphp
 
 @section('title', $title)
@@ -20,21 +20,19 @@
                 <h1 class="authreg__title alCenter">
                     Авторизация
                 </h1>
-                <ul class="authreg__nav-link-list">
-                    <li>
-                        <span class="active">Вход</span>
-                    </li>
-                    <li>
-                        <a href="{{route('registration')}}">Регистрация</a>
-                    </li>
-                </ul>
-                <form class="auth-form">
+
+                <x-auth.tap-lnk></x-auth.tap-lnk>
+
+                <form action="{{route('login_do')}}" method="post" class="auth-form">
+                    @csrf
                     <label class="form-elem">
                         <span class="form-elem__caption">
                             Адрес электронной почты
                         </span>
-                        <input type="email" name="login" class="form-elem__field" required="required" placeholder="Введите email">
-                        <span class="form-elem__error-message">Текст ошибки</span>
+                        <input type="email" name="email" class="form-elem__field" required="required" placeholder="Введите email">
+                        @error('email')
+                            <span class="form-elem__error-message">{{ $message }}</span>
+                        @enderror
                     </label>
                     <div class="form-elem">
                         <span class="form-elem__caption">
@@ -44,7 +42,10 @@
                             <input type="password" name="password" class="form-elem__field" required="required" placeholder="Введите пароль">
                             <button type="button"  class="form-elem__btn-show-pass"></button>
                         </div>
-                        <span class="form-elem__error-message"></span>
+
+                        @error('email')
+                            <span class="form-elem__error-message">{{ $message }}</span>
+                        @enderror
                     </div>
                     <label class="form-checkbox">
                         <input type="checkbox" name="remember-me">
@@ -54,15 +55,9 @@
                     <span class="form-infotext">
                         Нажимая кнопку "Войти" я выражаю согласие на обработку персональных данных в соответствии с политикой конфиденциальности портала
                     </span>
-                    <button type="submit" class="btn">Отправить</button>
+                    <button type="submit" class="btn">Войти</button>
                 </form>
-                <div class="esia-enter">
-                    Войти через
-                    <a href="#" class="btn-esia">ЕСИА</a>
-                </div>
-                <a href="{{route('passwordRecovery')}}" class="link-to-reg">
-                    Забыли пароль?
-                </a>
+                <x-auth.bottom-lnk></x-auth.tap-lnk>
             </div>
         </div>
     </div>

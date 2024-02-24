@@ -15,11 +15,14 @@ use App\Http\Controllers\IndexController;
 |
 */
 
-Route::get('/', [IndexController::class, "index"])->name('home');
-Route::get('/my-project', [IndexController::class, "myProject"])->name('myProject');
-Route::get('/application-catalog', [IndexController::class, "applicationСatalog"])->name('applicationСatalog');
-Route::get('/statement', [IndexController::class, "statement"])->name('statement');
+Route::middleware('auth')->group(function () {
+    Route::get('/', [IndexController::class, "index"])->name('home');
+    Route::get('/my-project', [IndexController::class, "myProject"])->name('myProject');
+    Route::get('/application-catalog', [IndexController::class, "applicationСatalog"])->name('applicationСatalog');
+    Route::get('/statement', [IndexController::class, "statement"])->name('statement');
 
-Route::get('/auth', [IndexController::class, "auth"])->name('auth');
-Route::get('/registration', [IndexController::class, "registration"])->name('registration');
-Route::get('/password-recovery', [IndexController::class, "passwordRecovery"])->name('passwordRecovery');
+    Route::get('/auth', [IndexController::class, "auth"])->name('auth');
+    Route::get('/registration', [IndexController::class, "registration"])->name('registration');
+    Route::get('/password-recovery', [IndexController::class, "passwordRecovery"])->name('passwordRecovery');
+});
+

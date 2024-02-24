@@ -35,7 +35,7 @@
 
                     <button type="submit" class="btn">Отправить</button>
                 </form>
-                <a href="{{route('auth')}}" class="link-to-reg">
+                <a href="{{route('login')}}" class="link-to-reg">
                     Вспомнили пароль?
                 </a>
             </div>

@@ -88,13 +88,9 @@
                     </span>
                     <button type="submit" class="btn">Зарегистрироваться</button>
                 </form>
-                <div class="esia-enter">
-                    Регистрация через
-                    <a href="#" class="btn-esia">ЕСИА</a>
-                </div>
-                <a href="{{route('passrec')}}" class="link-to-reg">
-                    Забыли пароль?
-                </a>
+
+                <x-auth.bottom-lnk></x-auth.tap-lnk>
+
             </div>
         </div>
 
