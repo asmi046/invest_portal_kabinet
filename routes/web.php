@@ -16,7 +16,6 @@ use App\Http\Controllers\IndexController;
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', [IndexController::class, "index"])->name('home');
     Route::get('/my-project', [IndexController::class, "myProject"])->name('myProject');
     Route::get('/application-catalog', [IndexController::class, "applicationСatalog"])->name('applicationСatalog');
     Route::get('/statement', [IndexController::class, "statement"])->name('statement');
