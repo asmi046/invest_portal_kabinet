@@ -19,6 +19,11 @@ class EsiaServices {
     private string $signer_token;
     private string $signer_url;
 
+    private string $access_token;
+    //OID Пользователя
+    private ?int $oid = null;
+
+
 
     public function __construct() {
         $this->client_id = config('esia.esia_mnimonica');
@@ -56,6 +61,39 @@ class EsiaServices {
         return $link;
     }
 
+    protected function do_query($url) : object {
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer '.$this->access_token,
+        ])->get($url)->body();
+
+        return json_decode($response);
+    }
+
+    public function get_person() : object {
+        if (empty($this->oid))
+            return [];
+
+        return $this->do_query($this->esia_url."/rs/prns/".$this->oid);
+    }
+
+    public function get_contact() : array {
+        if (empty($this->oid))
+            return [];
+
+        $contact_lnk = $this->do_query($this->esia_url."/rs/prns/".$this->oid."/ctts");
+
+        $result = [];
+        foreach ($contact_lnk->elements as $elementUrl) {
+            $elementPayload = $this->do_query($elementUrl);
+
+            if ($elementPayload) {
+                $result[$elementPayload->type] = $elementPayload->value;
+            }
+        }
+
+        return $result;
+    }
+
     public function getToken(string $code, string $state): void {
         $queryParams = [
             'client_id' => $this->client_id,
@@ -70,12 +108,14 @@ class EsiaServices {
             'token_type' => 'Bearer',
         ];
 
-        // dd($queryParams);
-
         $response = Http::asForm()->post($this->esia_url . $this->esia_token_url_sufix, $queryParams)->body();
         $response = json_decode($response);
-        dd($this->jwtDecode($response->access_token));
-        // dd($this->jwtDecode($response->access_token) );
+        $payload = $this->jwtDecode($response->access_token);
+
+        // dd($response, $payload);
+
+        $this->oid = $payload["urn:esia:sbj_id"];
+        $this->access_token = $response->access_token;
     }
 
     private function jwtDecode(string $token)

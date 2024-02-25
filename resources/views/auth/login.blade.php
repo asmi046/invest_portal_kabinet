@@ -43,7 +43,7 @@
                             <button type="button"  class="form-elem__btn-show-pass"></button>
                         </div>
 
-                        @error('email')
+                        @error('password')
                             <span class="form-elem__error-message">{{ $message }}</span>
                         @enderror
                     </div>
@@ -57,7 +57,11 @@
                     </span>
                     <button type="submit" class="btn">Войти</button>
                 </form>
-                <x-auth.bottom-lnk></x-auth.tap-lnk>
+                <x-auth.bottom-lnk :lnk="$esia_lnk"></x-auth.tap-lnk>
+
+                <a href="{{route('passrec')}}" class="link-to-reg">
+                    Забыли пароль?
+                </a>
             </div>
         </div>
     </div>

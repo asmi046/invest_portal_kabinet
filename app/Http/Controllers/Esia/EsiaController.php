@@ -6,28 +6,49 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Services\EsiaServices;
+use App\Models\User;
 
 class EsiaController extends Controller
 {
-    public function esia_get_auth_lnk() {
-
-        $esia = new EsiaServices();
-        // dd($esia->getAuthLink());
-        return view('test', ['lnk' => $esia->getAuthLink()]);
+    public function esia_error(Request $request) {
+        return view('auth.esia-error');
     }
 
-    public function esia_get_token(Request $request) {
+    public function esia_get_auth_info(Request $request) {
 
-        $esia = new EsiaServices();
+        try
+        {
+            $esia = new EsiaServices();
 
-        $code = $request->input('code');
-        $state = $request->input('state');
+            $code = $request->input('code');
+            $state = $request->input('state');
 
-        $esia->getToken($code, $state);
+            $esia->getToken($code, $state);
 
-    }
+            $person_info = $esia->get_person();
+            $contact_info = $esia->get_contact();
 
-    public function esia_callbac() {
-        return "";
+
+            $user = User::firstOrCreate(
+                ['email' => $contact_info["EML"]],
+                [
+                    'name' => $person_info->firstName." ".$person_info->lastName." ".$person_info->middleName,
+                    'email' => $contact_info["EML"],
+                    'phone' => $contact_info["MBT"],
+                    'password' => bcrypt($person_info->rIdDoc),
+                    'email_verified_at' => date("Y-m-d H:i:s"),
+                ]
+            );
+
+            auth('web')->login($user);
+            return redirect()->route('home');
+        }
+        catch(Throwable $ex)
+        {
+            $message = $ex->getMessage();
+            return redirect()->route('esia_error')->withErrors(['esia_error' => $message]);
+        }
+
+
     }
 }

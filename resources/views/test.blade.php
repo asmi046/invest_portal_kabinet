@@ -1,4 +1,4 @@
-@extends('layouts.all')
+@extends('layouts.auth')
 
 @php
     $title = "Тест ЕСИА";
@@ -7,7 +7,6 @@
 
 @section('title', $title)
 @section('description', $description)
-<x-header></x-header>
 @section('body')
     <h1>{{ $title }}</h1>
     <a href="{{$lnk}}">Пробуем войти</a>

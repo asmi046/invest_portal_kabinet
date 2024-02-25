@@ -14,18 +14,22 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PassRecMail;
 
+use App\Services\EsiaServices;
+
 class AuthController extends Controller
 {
     public function show_login_form() {
-        return view('auth.login');
+        $esia = new EsiaServices();
+        return view('auth.login', ['esia_lnk' => $esia->getAuthLink()]);
+    }
+
+    public function show_register_form() {
+        $esia = new EsiaServices();
+        return view('auth.register', ['esia_lnk' => $esia->getAuthLink()]);
     }
 
     public function welcom() {
         return view('auth.welcom');
-    }
-
-    public function show_register_form() {
-        return view('auth.register');
     }
 
     public function show_passrec_form(Request $request) {

@@ -89,8 +89,11 @@
                     <button type="submit" class="btn">Зарегистрироваться</button>
                 </form>
 
-                <x-auth.bottom-lnk></x-auth.tap-lnk>
+                <x-auth.bottom-lnk :lnk="$esia_lnk"></x-auth.tap-lnk>
 
+                <a href="{{route('login')}}" class="link-to-reg">
+                    Уже есть аккаунт?
+                </a>
             </div>
         </div>
 

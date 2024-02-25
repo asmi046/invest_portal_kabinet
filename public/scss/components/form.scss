@@ -34,7 +34,6 @@
         &:focus:-ms-input-placeholder{opacity: 0; transition: opacity 0.3s ease;}
     }
     .form-elem__error-message{
-        display: none;
         font-size: 1.4rem;
         color: var(--alert-color);
     }

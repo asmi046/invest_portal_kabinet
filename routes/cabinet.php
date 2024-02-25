@@ -9,4 +9,8 @@
 
     Route::middleware('auth')->group(function () {
         Route::get('/', [IndexController::class, "index"])->name('home');
+
+        Route::get('/projects', [ProjectController::class, "index"])->name('projects');
+        Route::get('/projects/create', [ProjectController::class, "index"])->name('project_create');
+        Route::get('/projects/edit/{id}', [ProjectController::class, "index"])->name('project_edit');
     });
