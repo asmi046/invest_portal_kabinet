@@ -11,50 +11,36 @@
 @section('body')
     <section class="my-project-section">
         <div class="inner">
-            <ul class="breadcrumbs">
-                <li>
-                    <a href="#">Главная</a>
-                    <i>/</i>
-                </li>
-                <li>
-                    <a href="#">Заявить инвестиционный проект</a>
-                    <i>/</i>
-                </li>
-                <li>
-                    <span>Мои проекты</span>
-                </li>
-            </ul>
+            <x-breadcrumbs title="Мои инвестиционные проекты"></x-breadcrumbs>
             <div class="columns-box columns-box--two-col project-panel">
-                <div class="columns-box__left-col">
-                    <div class="iportal-card">
-                        <span class="iportal-card__icon briefcase-icon"></span>
-                        <span class="iportal-card__status-marker">
-                            Черновик
-                        </span>
-                        <span class="iportal-card__caption">
-                            <span class="iportal-card__big-text">10</span>
-                            Всего проектов
-                        </span>
-                        <a href="#" class="iportal-card__btn">Добавить</a>
-                        {{-- <button href="#" class="iportal-card__btn">Подать проект</button> --}}
-                    </div>
-                </div>
+                <x-widget-green-stat
+                    lnk="#"
+                    lnktxt="Создать проект"
+                    status="Черновик"
+                    value="0"
+                    title="Всего проектов"
+                    icon="briefcase-icon"
+                ></x-widget-green-stat>
+
+
                 <div class="columns-box__right-col">
-                    <div class="btn-link">
-                        <span class="btn-link__number">5</span>
-                        <span class="btn-link__text">проектов в статусе черновик</span>
-                        <span class="btn-link__icon two-docs-icon"></span>
-                    </div>
-                    <div class="btn-link">
-                        <span class="btn-link__number">3</span>
-                        <span class="btn-link__text">проекта на модерации</span>
-                        <span class="btn-link__icon analytics-icon"></span>
-                    </div>
-                    <div class="btn-link">
-                        <span class="btn-link__number">2</span>
-                        <span class="btn-link__text">действующих проекта</span>
-                        <span class="btn-link__icon doccheck-icon"></span>
-                    </div>
+                    <x-widget-stat
+                    value="0"
+                    title="проектов в статусе черновик"
+                    icon="two-docs-icon"
+                    ></x-widget-stat>
+
+                    <x-widget-stat
+                    value="0"
+                    title="проекта на модерации"
+                    icon="analytics-icon"
+                    ></x-widget-stat>
+
+                    <x-widget-stat
+                    value="0"
+                    title="действующих проекта"
+                    icon="doccheck-icon"
+                    ></x-widget-stat>
                 </div>
             </div>
             <div class="table-box">
@@ -71,28 +57,28 @@
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td><a href="{{route('statement')}}">Заявление на технологическое присоединение</a></td>
+                            <td><a href="{{route('project_status')}}">Заявление на технологическое присоединение</a></td>
                             <td>50 млн. руб.</td>
                             <td>Курская область</td>
                             <td>На модерации</td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td><a href="{{route('statement')}}">Заявление на технологическое присоединение</a></td>
+                            <td><a href="{{route('project_status')}}">Заявление на технологическое присоединение</a></td>
                             <td>50 млн. руб.</td>
                             <td>Курская область</td>
                             <td>Черновик</td>
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td><a href="{{route('statement')}}">Заявление на технологическое присоединение</a></td>
+                            <td><a href="{{route('project_status')}}">Заявление на технологическое присоединение</a></td>
                             <td>50 млн. руб.</td>
                             <td>Курская область</td>
                             <td>Черновик</td>
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td><a href="{{route('statement')}}">Заявление на подачу заявления на государственную поддержку</a></td>
+                            <td><a href="{{route('project_status')}}">Заявление на подачу заявления на государственную поддержку</a></td>
                             <td>50 млн. руб.</td>
                             <td>Курская область</td>
                             <td>Черновик</td>

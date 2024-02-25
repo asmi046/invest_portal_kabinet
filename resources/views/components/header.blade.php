@@ -13,52 +13,52 @@
         <menu class="main-menu ">
             <li>
                 <div class="main-menu__parent-panel">
-                    <a href="#">Заявить инвестиционный проект</a>
+                    <a href="#">Мои инвестиционные проект</a>
                     <button class="main-menu__arrow"></button>
                 </div>
                 <ul>
                     <li class="doc-icon">
-                        <a href="{{route('myProject')}}">Мои проекты</a>
+                        <a href="{{route('projects')}}">Все проекты</a>
                     </li>
                     <li class="pencil-icon">
-                        <a href="#">Подать проект</a>
+                        <a href="{{route('project_create')}}">Подать проект</a>
                     </li>
                 </ul>
             </li>
             <li>
                 <div class="main-menu__parent-panel">
-                    <a href="{{route('applicationСatalog')}}">Подать заявление на государственную поддержку</a>
+                    <a href="{{route('applicationСatalog')}}">Мои заявления на государственную поддержку</a>
                     <button class="main-menu__arrow"></button>
                 </div>
                 <ul>
                     <li class="doc-icon">
-                        <a href="#" class="active">Мои заявления</a>
+                        <a href="{{ route('support') }}" class="active">Все заявления</a>
                     </li>
                     <li class="pencil-icon">
-                        <a href="#">Подать заявление</a>
+                        <a href="{{ route('support_select') }}">Подать заявление</a>
                     </li>
                     <li class="handshake-icon">
-                        <a href="#">Меры поддержки</a>
+                        <a href="https://navigator-mp.kursk.ru/">Меры поддержки</a>
                     </li>
                 </ul>
             </li>
             <li>
                 <div class="main-menu__parent-panel">
-                    <a href="#">Заявление на технологическое присоединение</a>
+                    <a href="#">Заявления на технологическое присоединение</a>
                     <button class="main-menu__arrow"></button>
                 </div>
                 <ul>
                     <li class="doc-icon">
-                        <a href="#">Мои заявления</a>
+                        <a href="{{ route('technical_connect') }}">Все заявления</a>
                     </li>
                     <li class="pencil-icon">
-                        <a href="#">Подать заявку на технологическое присоединение</a>
+                        <a href="{{ route('technical_connect_create') }}">Подать заявку на технологическое присоединение</a>
                     </li>
                     <li class="list-icon">
-                        <a href="#">Алгоритмы действий инвестора по технологическому присоединению</a>
+                        <a href="{{ route('technical_connect_algoritm') }}">Алгоритмы действий инвестора по технологическому присоединению</a>
                     </li>
                     <li class="bagdoc-icon">
-                        <a href="#">Список ресурсоснабжающих организаций</a>
+                        <a href="{{ route('technical_connect_org_list') }}">Список ресурсоснабжающих организаций</a>
                     </li>
                 </ul>
             </li>

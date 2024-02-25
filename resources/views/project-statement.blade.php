@@ -11,19 +11,12 @@
 @section('body')
      <section class="statement-section">
         <div class="inner">
-            <ul class="breadcrumbs">
-                <li>
-                    <a href="#">Главная</a>
-                    <i>/</i>
-                </li>
-                <li>
-                    <a href="#">Подать заявление на государственную поддержку</a>
-                    <i>/</i>
-                </li>
-                <li>
-                    <span>Мои заявления</span>
-                </li>
-            </ul>
+            <x-breadcrumbs
+                sub="{{route('projects')}}"
+                subtitle="Мои инвестиционные проекты"
+                title="Статус проекта"
+            ></x-breadcrumbs>
+
             <h1>Заявление № 1</h1>
             <p>
                 Заявка/заявление на рассмотрении в ПАО РОССЕТИ, тел.: 8 (471) 255-73-59
