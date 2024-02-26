@@ -136,20 +136,24 @@ class EsiaServices {
 
     private function signer(string $pacedge): string
     {
+        try {
+            $http = [
+                'method' => 'POST',
+                'header' => [
+                    'Authorization: Bearer ' . $this->signer_token,
+                    'Content-Type: application/octet-stream',
+                    'Accept: application/pkcs7-signature',
+                ],
+                'content' => $pacedge,
+            ];
+            // dd($this->signer_url, $this->signer_token, $pacedge);
+            $signature = file_get_contents($this->signer_url, false, stream_context_create(['http' => $http]));
 
-        $http = [
-            'method' => 'POST',
-            'header' => [
-                'Authorization: Bearer ' . $this->signer_token,
-                'Content-Type: application/octet-stream',
-                'Accept: application/pkcs7-signature',
-            ],
-            'content' => $pacedge,
-        ];
-        // dd($this->signer_url, $this->signer_token, $pacedge);
-        $signature = file_get_contents($this->signer_url, false, stream_context_create(['http' => $http]));
+            return $this->url_safe_base64_encode($signature);
+        } catch (\Throwable $e) {
+            return "sory";
+        }
 
-        return $this->url_safe_base64_encode($signature);
     }
 
     private function seedState(): string

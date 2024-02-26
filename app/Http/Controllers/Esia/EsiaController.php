@@ -43,7 +43,7 @@ class EsiaController extends Controller
             auth('web')->login($user);
             return redirect()->route('home');
         }
-        catch(Throwable $ex)
+        catch(\Throwable $ex)
         {
             $message = $ex->getMessage();
             return redirect()->route('esia_error')->withErrors(['esia_error' => $message]);
