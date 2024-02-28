@@ -28,7 +28,10 @@ class IndexController extends Controller
 
         $fn = $document->create_tmp_document(
             public_path('documents_template/gos_support_template.docx'),
-            $options
+            $options,
+            11,
+            "Тип1",
+            "Имя документа"
         );
 
 

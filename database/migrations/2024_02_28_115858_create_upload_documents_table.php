@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('url', 700)->comment('url');
             $table->string('name', 500)->comment('Имя файла');
             $table->integer('user_id')->comment('Пользователь');
-            $table->string('model')->comment('Модель');
+            $table->string('document')->comment('Докумен');
+            $table->string('document_type')->nullable()->comment('Тип документа');
             $table->integer('model_id')->comment('id документа');
             $table->string('staus')->default('temp')->comment('Статус');
         });

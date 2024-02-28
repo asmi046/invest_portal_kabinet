@@ -13,7 +13,7 @@ class UploadDocument extends Model
         'url',
         'name',
         'user_id',
-        'model',
+        'document',
         'model_id',
         'staus'
     ];
