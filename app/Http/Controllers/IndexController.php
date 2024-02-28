@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\CreateDocServices;
 
 class IndexController extends Controller
 {
@@ -15,16 +16,23 @@ class IndexController extends Controller
     public function applicationСatalog() {
         return view('applicationСatalog');
     }
+
     public function statement() {
         return view('statement');
     }
-    public function auth() {
-        return view('auth');
+
+    public function test(CreateDocServices $document) {
+        $options = [
+            'organization' => '777org!!!!'
+        ];
+
+        $fn = $document->create_tmp_document(
+            public_path('documents_template/gos_support_template.docx'),
+            $options
+        );
+
+
+        return response()->download($fn);
     }
-    public function registration() {
-        return view('registration');
-    }
-    public function passwordRecovery() {
-        return view('passwordRecovery');
-    }
+
 }
