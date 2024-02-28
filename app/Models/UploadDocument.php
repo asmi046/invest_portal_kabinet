@@ -11,9 +11,11 @@ class UploadDocument extends Model
 
     protected $fillable = [
         'url',
+        'sign',
         'name',
         'user_id',
         'document',
+        'document_type',
         'model_id',
         'staus'
     ];

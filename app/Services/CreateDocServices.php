@@ -1,12 +1,13 @@
 <?php
 namespace App\Services;
 
+use Illuminate\Http\Request;
 use App\Models\UploadDocument;
 use PhpOffice\PhpWord\Settings;
+
 use PhpOffice\PhpWord\IOFactory;
 
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpWord\TemplateProcessor;
 
@@ -41,7 +42,7 @@ class CreateDocServices {
 
             UploadDocument::create(
                 [
-                    'url' => $file_pdf,
+                    'url' => config('app.url')."/".'tmp_docs/'.$filename.".pdf",
                     'name' => $filename.".pdf",
                     'user_id' => Auth::user()['id'],
                     'document'=>$document,

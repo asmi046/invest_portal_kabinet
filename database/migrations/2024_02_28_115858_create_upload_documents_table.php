@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('url', 700)->comment('url');
+            $table->string('sign', 700)->nullable()->comment('Открепленный файл подписи');
             $table->string('name', 500)->comment('Имя файла');
             $table->integer('user_id')->comment('Пользователь');
             $table->string('document')->comment('Докумен');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\CreateDocServices;
+use App\Models\UploadDocument;
 
 class IndexController extends Controller
 {
@@ -19,6 +20,13 @@ class IndexController extends Controller
 
     public function statement() {
         return view('statement');
+    }
+
+    public function signe($file_id) {
+        $file = UploadDocument::where('id', $file_id)->first();
+        if (!$file) abort(404);
+
+        return view("signe", ['file' => $file]);
     }
 
     public function test(CreateDocServices $document) {
