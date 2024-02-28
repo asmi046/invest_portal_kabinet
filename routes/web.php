@@ -23,5 +23,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/auth', [IndexController::class, "auth"])->name('auth');
     Route::get('/registration', [IndexController::class, "registration"])->name('registration');
     Route::get('/password-recovery', [IndexController::class, "passwordRecovery"])->name('passwordRecovery');
+    Route::get('/test', [IndexController::class, "test"])->name('test');
 });
 
