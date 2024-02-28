@@ -3,7 +3,8 @@
 /public/build
 /public/hot
 /public/storage
-/public/tmp_docs/*.*
+/public/tmp_docs/*.docx
+/public/tmp_docs/*.pdf
 /storage/*.key
 /vendor
 .env

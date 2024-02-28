@@ -5,7 +5,7 @@ use PhpOffice\PhpWord\Settings;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\TemplateProcessor;
 
-
+use Illuminate\Support\Facades\Storage;
 
 class CreateDocServices {
 
