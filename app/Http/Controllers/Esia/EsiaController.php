@@ -25,6 +25,8 @@ class EsiaController extends Controller
 
             $esia->getToken($code, $state);
 
+            dd($request->all());
+
             $person_info = $esia->get_person();
             $contact_info = $esia->get_contact();
 
