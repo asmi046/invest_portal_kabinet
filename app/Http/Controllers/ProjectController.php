@@ -25,8 +25,19 @@ class ProjectController extends Controller
         return view('projects.all-project', ['projects' => $all, "state"=>$state]);
     }
 
-    public function status() {
-        return view('projects.statement-project');
+    public function status(int $id) {
+        $project = Project::where('id', $id)->first();
+
+        if($project == null) abort('404');
+
+        $statuses = [
+            "Черновик",
+            "Отправлен",
+            "В обработке",
+            "Предоставлен ответ"
+        ];
+
+        return view('projects.statement-project', ['project' => $project, "statuses"=>$statuses, "time" => 10]);
     }
 
     public function create() {

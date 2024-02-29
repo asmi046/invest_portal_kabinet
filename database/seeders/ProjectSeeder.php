@@ -16,6 +16,7 @@ class ProjectSeeder extends Seeder
     {
         $state = [
             "Черновик",
+            "Отправлен",
             "В обработке",
             "Предоставлен ответ"
         ];
@@ -24,7 +25,7 @@ class ProjectSeeder extends Seeder
             DB::table("projects")->insertGetId(
                 [
                     'user_id' => rand(1,3),
-                    'state'=> $state[rand(0,2)],
+                    'state'=> $state[rand(0,3)],
                     'name' => "Тестовый проект ".$i,
                     'target' => "Сделать лучьше",
                     'time_relis'=> rand(1,5),

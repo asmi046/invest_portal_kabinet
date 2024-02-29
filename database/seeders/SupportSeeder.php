@@ -16,6 +16,7 @@ class SupportSeeder extends Seeder
     {
         $state = [
             "Черновик",
+            "Отправлен",
             "В обработке",
             "Предоставлен ответ"
         ];
@@ -33,7 +34,7 @@ class SupportSeeder extends Seeder
             DB::table("supports")->insertGetId(
                 [
                     'user_id' => rand(1,3),
-                    'state'=> $state[rand(0,2)],
+                    'state'=> $state[rand(0,3)],
                     'organization' => "Тестовая организация ".$i,
                     'name' => $names[rand(0,5)],
                     'invest_volume'=>rand(1,15),
