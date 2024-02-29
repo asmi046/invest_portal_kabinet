@@ -13,7 +13,7 @@ use PhpOffice\PhpWord\TemplateProcessor;
 
 class CreateDocServices {
 
-    public function create_tmp_document(string $template_patch, array $options, int $model_id, string $document_type, string $document) {
+    public function create_tmp_document(string $template_patch, array $options, int $model_id, string $document_type, string $document, $status = "temp") {
         try{
 
             $template = new TemplateProcessor($template_patch);
@@ -40,18 +40,23 @@ class CreateDocServices {
 
             unlink($file_docx);
 
-            UploadDocument::create(
+            $document = UploadDocument::create(
                 [
                     'url' => config('app.url')."/".'tmp_docs/'.$filename.".pdf",
                     'name' => $filename.".pdf",
                     'user_id' => Auth::user()['id'],
                     'document'=>$document,
                     'document_type'=>$document_type,
+                    'status' => $status,
                     'model_id' => $model_id,
                 ]
             );
 
-            return $file_pdf;
+            return [
+                'url' => $file_pdf,
+                'file_id' => $document->id,
+            ];
+
 
         } catch (\Throwable $e) {
             return $e->getMessage();

@@ -17,7 +17,7 @@ class SupportSeeder extends Seeder
         $state = [
             "Черновик",
             "В обработке",
-            "Предоставление ответа"
+            "Предоставлен ответ"
         ];
 
         $names = [

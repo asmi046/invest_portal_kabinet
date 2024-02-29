@@ -464,7 +464,6 @@ a.btn-link, button.btn-link{
     margin: 0;
     margin-top: 6rem;
     list-style-type: none;
-    li{
         span, a{
             display: flex;
             justify-content: center;
@@ -493,7 +492,7 @@ a.btn-link, button.btn-link{
             }
         }
 
-    }
+
     .paginations-arrow {
         &::before{
             content: '';
