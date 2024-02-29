@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('user_id')->comment("Название проэкта")
+                                        ->constrained()
+                                        ->onUpdate('cascade')
+                                        ->onDelete('cascade');
+            $table->string('state')->comment("Статус документа");
             $table->string('name')->comment("Название проэкта");
             $table->string('target', 500)->comment("Цель проекта");
             $table->integer('time_relis')->comment("Срок реализации");

@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('supports', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('user_id')->comment("Название проэкта")
+                                        ->constrained()
+                                        ->onUpdate('cascade')
+                                        ->onDelete('cascade');
+            $table->string('state')->comment("Статус документа");
             $table->string("organization")->comment('Наименование организации');
             $table->string("name")->comment('Название инвестиционного проекта');
             $table->integer("invest_volume")->comment('Объем инвестиций в основной капитал по проекту (с учетом налога на добавленную стоимость), млн. рублей');
@@ -25,7 +30,7 @@ return new class extends Migration
             $table->integer('time_prib')->comment("Простой срок окупаемости инвестиционного проекта");
             $table->integer('worck_place_coun')->comment("Количество создаваемых рабочих мест");
             $table->integer('zp')->comment("Средняя заработная плата по проекту");
-            $table->integer('okved')->comment("Средняя заработная плата по проекту");
+            $table->string('okved')->comment("Средняя заработная плата по проекту");
             $table->text('description')->nullable()->comment("Комментарии к проекту");
 
         });

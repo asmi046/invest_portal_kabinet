@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             InvestDocumentSeeder::class,
+            ProjectSeeder::class,
+            SupportSeeder::class,
+            TechnicalConnectsSeeder::class,
         ]);
 
         // \App\Models\User::factory(10)->create();
