@@ -21,7 +21,7 @@
             <br>
             Документ: <strong>{{ $file->document }}</strong>
             <br>
-            Статус: <strong>{{ $file->staus }}</strong>
+            Статус: <strong>{{ $file->state }}</strong>
         </div>
         <div class="sert_list">
 

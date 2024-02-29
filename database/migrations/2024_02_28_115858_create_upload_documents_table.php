@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('document')->comment('Докумен');
             $table->string('document_type')->nullable()->comment('Тип документа');
             $table->integer('model_id')->comment('id документа');
-            $table->string('staus')->default('temp')->comment('Статус');
+            $table->string('state')->default('temp')->comment('Статус');
         });
     }
 

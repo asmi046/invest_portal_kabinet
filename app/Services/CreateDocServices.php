@@ -13,7 +13,7 @@ use PhpOffice\PhpWord\TemplateProcessor;
 
 class CreateDocServices {
 
-    public function create_tmp_document(string $template_patch, array $options, int $model_id, string $document_type, string $document, $status = "temp") {
+    public function create_tmp_document(string $template_patch, array $options, int $model_id, string $document_type, string $document, $state = "temp") {
         try{
 
             $template = new TemplateProcessor($template_patch);
@@ -47,7 +47,7 @@ class CreateDocServices {
                     'user_id' => Auth::user()['id'],
                     'document'=>$document,
                     'document_type'=>$document_type,
-                    'status' => $status,
+                    'state' => $state,
                     'model_id' => $model_id,
                 ]
             );

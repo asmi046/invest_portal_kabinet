@@ -17,6 +17,6 @@ class UploadDocument extends Model
         'document',
         'document_type',
         'model_id',
-        'staus'
+        'state'
     ];
 }
