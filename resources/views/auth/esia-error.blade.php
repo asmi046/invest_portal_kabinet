@@ -16,6 +16,11 @@
             {{ $message }}
         </pre>
     @enderror
+    @error('in')
+        <pre>
+            {{ $message }}
+        </pre>
+    @enderror
 
 @endsection
 
