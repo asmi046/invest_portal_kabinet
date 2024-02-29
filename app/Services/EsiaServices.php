@@ -56,8 +56,6 @@ class EsiaServices {
             'access_type' => $this->access_type,
         ];
 
-        dd($queryParams);
-
         $link = $this->esia_url . $this->esia_auth_url_sufix ."?". http_build_query($queryParams);
 
         return $link;
