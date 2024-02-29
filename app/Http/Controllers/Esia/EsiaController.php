@@ -46,7 +46,7 @@ class EsiaController extends Controller
         catch(\Throwable $ex)
         {
             $message = $ex->getMessage();
-            return redirect()->route('esia_error')->withErrors(['esia_error' => $message]);
+            return redirect()->route('esia_error')->withErrors(['esia_error' => $message, 'in' => $request->all()]);
         }
 
 

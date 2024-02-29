@@ -151,7 +151,7 @@ class EsiaServices {
 
             return $this->url_safe_base64_encode($signature);
         } catch (\Throwable $e) {
-            return "sory";
+            return "sory ".$e->getMessage();
         }
 
     }
