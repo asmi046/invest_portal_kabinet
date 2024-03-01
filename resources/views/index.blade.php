@@ -42,13 +42,23 @@
 
             <h2 class="h3">Мои заявки и проекты</h2>
             <div class="iportal-card-box columns-box columns-box--two-col">
+                @if ($last_project)
+                    <x-widget-green
+                        lnk="{{ route('project_status', $last_project->id) }}"
+                        lnktxt="Просмотреть статус"
+                        status="{{$last_project->state}}"
+                        title="{{$last_project->name}}"
+                        icon="check-list-icon"
+                    ></x-widget-green>
+                @else
                 <x-widget-green
-                    lnk="{{ route('project_status', $last_project->id) }}"
-                    lnktxt="Просмотреть статус"
-                    status="{{$last_project->state}}"
-                    title="{{$last_project->name}}"
+                    lnk="{{ route('project_create') }}"
+                    lnktxt="Создать проект"
+                    status="Новый проект"
+                    title="Создайте новый инвестиционный проект и отправьте его на рассмотрение"
                     icon="check-list-icon"
                 ></x-widget-green>
+                @endif
 
                 @if ($last_ts)
                     <x-widget-green
@@ -59,13 +69,15 @@
                         icon="check-list-icon"
                     ></x-widget-green>
                 @else
-                    <x-widget-green
-                        lnk="{{ route('support_status', $last_support->id) }}"
-                        lnktxt="Просмотреть статус"
-                        status="{{$last_support->state}}"
-                        title="{{$last_support->name}}"
-                        icon="check-list-icon"
-                    ></x-widget-green>
+                    @if ($last_support)
+                        <x-widget-green
+                            lnk="{{ route('support_status', $last_support->id) }}"
+                            lnktxt="Просмотреть статус"
+                            status="{{$last_support->state}}"
+                            title="{{$last_support->name}}"
+                            icon="check-list-icon"
+                        ></x-widget-green>
+                    @endif
                 @endif
 
             </div>
