@@ -11,7 +11,7 @@
 @section('body')
     <section class="my-project-section">
         <div class="inner">
-            <x-breadcrumbs title="Мои инвестиционные проекты"></x-breadcrumbs>
+            <x-breadcrumbs title="Мои заявления на техническое присоединение"></x-breadcrumbs>
             <div class="columns-box columns-box--two-col project-panel">
                 <x-widget-green-stat
                     lnk="{{ route('project_create') }}"
