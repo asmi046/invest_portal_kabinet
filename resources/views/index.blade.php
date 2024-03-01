@@ -36,27 +36,38 @@
             <div class="btn-link-box columns-box columns-box--two-col">
                 <x-widget-icon-lnk lnk="{{ route('project_create') }}" title="Подать заявление на государственную поддержку" icon="building-icon"></x-widget-icon-lnk>
                 <x-widget-icon-lnk lnk="{{ route('support_select') }}" title="Подать заявление на сопровождение проекта по принципу «Одно окно»" icon="laptop-icon"></x-widget-icon-lnk>
-                <x-widget-icon-lnk lnk="{{ route('technical_connect') }}" title="Подать заявление на получение доступа к ключевым элементам инфраструктуры согласно своду инвестиционных правил" icon="tablet-icon"></x-widget-icon-lnk>
+                <x-widget-icon-lnk lnk="{{ route('technical_connect_create') }}" title="Подать заявление на получение доступа к ключевым элементам инфраструктуры согласно своду инвестиционных правил" icon="tablet-icon"></x-widget-icon-lnk>
             </div>
 
 
             <h2 class="h3">Мои заявки и проекты</h2>
             <div class="iportal-card-box columns-box columns-box--two-col">
                 <x-widget-green
-                    lnk="#"
-                    lnktxt="Подать проект"
-                    status="Черновик"
-                    title="Инвестиционный проект №1 от 21.11.2023"
+                    lnk="{{ route('project_status', $last_project->id) }}"
+                    lnktxt="Просмотреть статус"
+                    status="{{$last_project->state}}"
+                    title="{{$last_project->name}}"
                     icon="check-list-icon"
                 ></x-widget-green>
 
-                <x-widget-green
-                    lnk="#"
-                    lnktxt="Мои заявления"
-                    status="Черновик"
-                    title="Заявление ООО “Энергосбыт” на государственную поддержку от 21.11.2023"
-                    icon="check-list-icon"
-                ></x-widget-green>
+                @if ($last_ts)
+                    <x-widget-green
+                        lnk="{{ route('technical_connect_status', $last_ts->id) }}"
+                        lnktxt="Просмотреть статус"
+                        status="{{$last_ts->state}}"
+                        title="{{$last_ts->name}}"
+                        icon="check-list-icon"
+                    ></x-widget-green>
+                @else
+                    <x-widget-green
+                        lnk="{{ route('support_status', $last_support->id) }}"
+                        lnktxt="Просмотреть статус"
+                        status="{{$last_support->state}}"
+                        title="{{$last_support->name}}"
+                        icon="check-list-icon"
+                    ></x-widget-green>
+                @endif
+
             </div>
 
             <div class="ip-tab">
