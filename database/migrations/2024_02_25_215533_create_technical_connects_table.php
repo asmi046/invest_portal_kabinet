@@ -14,6 +14,12 @@ return new class extends Migration
         Schema::create('technical_connects', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('user_id')->comment("Название проэкта")
+                                        ->constrained()
+                                        ->onUpdate('cascade')
+                                        ->onDelete('cascade');
+            $table->string('state')->comment("Статус документа");
+            $table->string("organization")->comment('Наименование организации');
         });
     }
 

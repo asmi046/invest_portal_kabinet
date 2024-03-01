@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-                @if ($projects->count() > 0)
+                @if ($tc->count() > 0)
                     <div class="table-box">
                         <table class="w-table applications-table">
                             <thead>
@@ -58,7 +58,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($projects as $item)
+                                @foreach ($tc as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td>
@@ -84,8 +84,8 @@
                 @endif
 
 
-            @if ($projects->count() > 0)
-                <x-pagination :tovars="$projects"></x-pagination>
+            @if ($tc->count() > 0)
+                <x-pagination :tovars="$tc"></x-pagination>
             @endif
 
 
