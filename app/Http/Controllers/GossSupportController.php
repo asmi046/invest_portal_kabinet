@@ -16,7 +16,7 @@ class GossSupportController extends Controller
         $state = [
             "Всего" => $to_stat->count(),
             "Черновик" => 0,
-            "Отправлен",
+            "Отправлен" => 0,
             "В обработке" => 0,
             "Предоставлен ответ" => 0
         ];

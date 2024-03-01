@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\Auth;
 class ProjectController extends Controller
 {
     public function index() {
+
         $all = Project::where("user_id", Auth::user()["id"] )->paginate(15);
         $to_stat = Project::where("user_id", Auth::user()["id"] )->get();
         $state = [
             "Всего" => $to_stat->count(),
             "Черновик" => 0,
-            "Отправлен",
+            "Отправлен" => 0,
             "В обработке" => 0,
             "Предоставлен ответ" => 0
         ];
