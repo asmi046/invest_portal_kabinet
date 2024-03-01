@@ -2,7 +2,7 @@
     <div class="inner">
         <a href="{{route('home')}}" class="logo">
             <img src="{{asset('img/logo.svg')}}" alt="">
-            <a href="#" class="header-icon-btn header-icon-btn--bell header__notifications header__notifications--active">Уведомления</a>
+            <a href="{{ route('events') }}" class="header-icon-btn header-icon-btn--bell header__notifications header__notifications--active">Уведомления</a>
             <div class="user-menu">
                 <button class="header-icon-btn header-icon-btn--user"></button>
             </div>
@@ -38,7 +38,7 @@
                         <a href="{{ route('support_select') }}">Подать заявление</a>
                     </li>
                     <li class="handshake-icon">
-                        <a href="https://navigator-mp.kursk.ru/">Меры поддержки</a>
+                        <a target="_blank" href="https://navigator-mp.kursk.ru/">Меры поддержки</a>
                     </li>
                 </ul>
             </li>
