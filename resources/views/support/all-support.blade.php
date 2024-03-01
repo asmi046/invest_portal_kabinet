@@ -1,8 +1,8 @@
 @extends('layouts.all')
 
 @php
-    $title = "Мои инвестиционные проекты";
-    $description = "Мои инвестиционные проекты дашборд";
+    $title = "Мои заявления на государственную поддержку";
+    $description = "Мои заявления на государственную поддержку дашборд";
 @endphp
 
 @section('title', $title)
@@ -11,14 +11,14 @@
 @section('body')
     <section class="my-project-section">
         <div class="inner">
-            <x-breadcrumbs title="Мои инвестиционные проекты"></x-breadcrumbs>
+            <x-breadcrumbs title="Мои заявления на государственную поддержку"></x-breadcrumbs>
             <div class="columns-box columns-box--two-col project-panel">
                 <x-widget-green-stat
                     lnk="{{ route('project_create') }}"
-                    lnktxt="Создать проект"
-                    status="Проекты"
+                    lnktxt="Создать заявление"
+                    status="Заявления"
                     :value="$state['Всего']"
-                    title="Всего проектов"
+                    title="Всего заявлений"
                     icon="briefcase-icon"
                 ></x-widget-green-stat>
 
@@ -26,25 +26,25 @@
                 <div class="columns-box__right-col">
                     <x-widget-stat
                     :value="$state['Черновик']"
-                    title="проектов в статусе черновик"
+                    title="заявлений в статусе черновик"
                     icon="two-docs-icon"
                     ></x-widget-stat>
 
                     <x-widget-stat
                     :value="$state['В обработке']"
-                    title="проекта в обрабботке"
+                    title="заявления в обрабботке"
                     icon="analytics-icon"
                     ></x-widget-stat>
 
                     <x-widget-stat
                     :value="$state['Предоставлен ответ']"
-                    title="проекта с полученным ответом"
+                    title="заявления с полученным ответом"
                     icon="doccheck-icon"
                     ></x-widget-stat>
                 </div>
             </div>
 
-                @if ($projects->count() > 0)
+                @if ($supports->count() > 0)
                     <div class="table-box">
                         <table class="w-table applications-table">
                             <thead>
@@ -58,7 +58,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($projects as $item)
+                                @foreach ($supports as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td>
@@ -66,10 +66,10 @@
                                         <td>{{ $item->relis_area}}</td>
                                         <td>{{ $item->state }}</td>
                                         <td>
-                                            <a href="{{route('project_print', $item->id)}}">Печатная форма</a>
-                                            <a href="{{route('project_signe', $item->id)}}">Подписать</a>
-                                            <a href="{{route('project_edit', $item->id)}}">Редактировать</a>
-                                            <a href="{{route('project_status', $item->id)}}">Статус</a>
+                                            <a href="{{route('support_print', $item->id)}}">Печатная форма</a>
+                                            <a href="{{route('support_signe', $item->id)}}">Подписать</a>
+                                            <a href="{{route('support_edit', $item->id)}}">Редактировать</a>
+                                            <a href="{{route('support_status', $item->id)}}">Статус</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -84,8 +84,8 @@
                 @endif
 
 
-            @if ($projects->count() > 0)
-                <x-pagination :tovars="$projects"></x-pagination>
+            @if ($supports->count() > 0)
+                <x-pagination :tovars="$supports"></x-pagination>
             @endif
 
 
