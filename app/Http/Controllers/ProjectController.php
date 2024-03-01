@@ -15,6 +15,7 @@ class ProjectController extends Controller
         $state = [
             "Всего" => $to_stat->count(),
             "Черновик" => 0,
+            "Отправлен",
             "В обработке" => 0,
             "Предоставлен ответ" => 0
         ];
