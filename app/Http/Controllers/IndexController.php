@@ -32,4 +32,11 @@ class IndexController extends Controller
         ]);
     }
 
+    public function signe($file_id) {
+        $file = UploadDocument::where('id', $file_id)->first();
+        if (!$file) abort(404);
+
+        return view("signe", ['file' => $file]);
+    }
+
 }
