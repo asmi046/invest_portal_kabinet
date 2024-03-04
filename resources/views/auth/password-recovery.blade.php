@@ -32,7 +32,6 @@
                             <span class="form-elem__error-message">{{ $message }}</span>
                         @enderror
                     </label>
-
                     <button type="submit" class="btn">Отправить</button>
                 </form>
                 <a href="{{route('login')}}" class="link-to-reg">

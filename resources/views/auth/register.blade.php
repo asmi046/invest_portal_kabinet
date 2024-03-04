@@ -27,6 +27,23 @@
                 <form  action="{{route('register_do')}}" method="post" class="registration-form">
                     @csrf
                     <div class="columns-box columns-box--two-col">
+
+                        <label class="form-elem">
+                            <span class="form-elem__caption">Фамилия</span>
+                            <input type="text" name="surname" class="form-elem__field" required="required" placeholder="Фамилия">
+                            {{-- <span class="form-elem__error-message">Ошибка</span> --}}
+                        </label>
+                        <label class="form-elem">
+                            <span class="form-elem__caption">Имя</span>
+                            <input type="text" name="name" class="form-elem__field" required="required" placeholder="Имя">
+                            {{-- <span class="form-elem__error-message">Ошибка</span> --}}
+                        </label>
+                        <label class="form-elem">
+                            <span class="form-elem__caption">Отчество</span>
+                            <input type="text" name="father-name" class="form-elem__field" required="required" placeholder="Отчество">
+                            {{-- <span class="form-elem__error-message">Ошибка</span> --}}
+                        </label>
+
                         <label class="form-elem">
                             <span class="form-elem__caption">Адрес электронной почты</span>
                             <input type="email" name="email" class="form-elem__field" required="required" placeholder="Введите email">

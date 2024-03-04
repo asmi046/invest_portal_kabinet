@@ -9,6 +9,14 @@
 @section('description', $description)
 
 @section('body')
-    <h1>404</h1>
+<div class="full-space">
+    <div class="authreg-box">
+        <h1 class="title-404 alCenter">404</h1>
+        <p class="alCenter">Страница не найдена</p>
+        <a href="{{route('home')}}" class="btn m0a">На главную</a>
+    </div>
+
+</div>
+
 @endsection
 

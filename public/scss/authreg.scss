@@ -15,6 +15,29 @@
 .authreg-box{
     margin-top: auto;
     margin-bottom: auto;
+    .form-elem{
+        .form-elem__caption{
+            font-size: 1.6rem;
+        }
+        .form-elem__field{
+            height: 4.8rem;
+            font-size: 1.4rem;
+        }
+    }
+    .form-checkbox{
+        i{
+            width: 1.8rem;
+            height: 1.8rem;
+            border: 2px solid var(--border-color);
+            &:hover{
+                border: 2px solid var(--green);
+            }
+        }
+        span{
+            font-size: 1.5rem;
+            line-height: 1.2;
+        }
+    }
 }
 .authreg{
     margin-top: auto;

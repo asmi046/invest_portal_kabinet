@@ -83,6 +83,9 @@
 }
 
 @media screen and (max-width: 600px){
+    .inner {
+        padding: 0 20px;
+    }
     .btn-link {
         gap: 1rem;
         padding: 2rem;
@@ -149,7 +152,11 @@
         }
     }
 }
-
+@media screen and (max-width: 550px){
+    .title-404 {
+        font-size: 18rem;
+    }
+}
 @media screen and (max-width: 420px){
     .inner {
         padding: 0 15px;
@@ -170,5 +177,11 @@
             width: 19rem;
             height: 19rem;
         }
+    }
+}
+
+@media screen and (max-width: 370px){
+    .title-404 {
+        font-size: 15rem;
     }
 }

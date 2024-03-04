@@ -3,8 +3,18 @@
         <a href="{{route('home')}}" class="logo">
             <img src="{{asset('img/logo.svg')}}" alt="">
             <a href="{{ route('events') }}" class="header-icon-btn header-icon-btn--bell header__notifications header__notifications--active">Уведомления</a>
-            <div class="user-menu">
+            <div class="user-menu-box">
                 <button class="header-icon-btn header-icon-btn--user"></button>
+                <ul class="user-menu">
+                    <li>
+                        <span class="chel-icon"></span>
+                        <a href="#">Личный кабинет</a>
+                    </li>
+                    <li>
+                        <span class="exit-icon"></span>
+                        <a href="{{route('logout')}}">Выход</a>
+                    </li>
+                </ul>
             </div>
             <button class="header-icon-btn burger-btn"><span></span></button>
         </a>
@@ -13,11 +23,11 @@
         <menu class="main-menu ">
             <li>
                 <div class="main-menu__parent-panel">
-                    <a href="#">Мои инвестиционные проект</a>
+                    <span>Мои инвестиционные проект</span>
                     <button class="main-menu__arrow"></button>
                 </div>
                 <ul>
-                    <li class="doc-icon">
+                    <li class="doc-icon active" >
                         <a href="{{route('projects')}}">Все проекты</a>
                     </li>
                     <li class="pencil-icon">
@@ -32,7 +42,7 @@
                 </div>
                 <ul>
                     <li class="doc-icon">
-                        <a href="{{ route('support') }}" class="active">Все заявления</a>
+                        <a href="{{ route('support') }}">Все заявления</a>
                     </li>
                     <li class="pencil-icon">
                         <a href="{{ route('support_select') }}">Подать заявление</a>
@@ -44,7 +54,7 @@
             </li>
             <li>
                 <div class="main-menu__parent-panel">
-                    <a href="#">Заявления на технологическое присоединение</a>
+                    <span>Заявления на технологическое присоединение</span>
                     <button class="main-menu__arrow"></button>
                 </div>
                 <ul>
