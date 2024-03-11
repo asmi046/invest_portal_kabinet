@@ -5,16 +5,16 @@ use MoonShine\Forms\LoginForm;
 use MoonShine\Http\Middleware\Authenticate;
 use MoonShine\Http\Middleware\SecurityHeadersMiddleware;
 use MoonShine\Models\MoonshineUser;
-use MoonShine\MoonShineLayout;
+use App\MoonShine\MoonShineLayout;
 use MoonShine\Pages\ProfilePage;
 
 return [
     'dir' => 'app/MoonShine',
     'namespace' => 'App\MoonShine',
 
-    'title' => env('MOONSHINE_TITLE', 'MoonShine'),
-    'logo' => env('MOONSHINE_LOGO'),
-    'logo_small' => env('MOONSHINE_LOGO_SMALL'),
+    'title' => env('MOONSHINE_TITLE', 'ИнвестПортал'),
+    'logo' => env('MOONSHINE_LOGO','img/admin_icon/inv_portal_logo.svg'),
+    'logo_small' => env('MOONSHINE_LOGO_SMALL', 'img/admin_icon/inv_portal_logo_mini.svg'),
 
     'route' => [
         'domain' => env('MOONSHINE_URL', ''),

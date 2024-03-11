@@ -28,4 +28,9 @@ class Project extends Model
         'gos_support_direction',
         'description'
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class,'id', 'user_id');
+    }
 }

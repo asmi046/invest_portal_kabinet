@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use MoonShine\Providers\MoonShineApplicationServiceProvider;
 use MoonShine\MoonShine;
-use MoonShine\Menu\MenuGroup;
 use MoonShine\Menu\MenuItem;
+use MoonShine\Menu\MenuGroup;
+use App\MoonShine\Resources\ProjectResource;
 use MoonShine\Resources\MoonShineUserResource;
 use MoonShine\Resources\MoonShineUserRoleResource;
+use MoonShine\Providers\MoonShineApplicationServiceProvider;
 
 class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
 {
@@ -37,8 +38,11 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                ),
             ]),
 
-            MenuItem::make('Documentation', 'https://moonshine-laravel.com')
-               ->badge(fn() => 'Check'),
+            MenuItem::make(
+                "Проекты",
+                new ProjectResource()
+            ),
+
         ];
     }
 
@@ -47,10 +51,6 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
      */
     protected function theme(): array
     {
-        return [
-            'colors' => [
-                'body' => "#16A4A4"
-            ],
-        ];
+        return [];
     }
 }
