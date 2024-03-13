@@ -9,6 +9,7 @@
         "composer_install": "ssh asmi04s9_all@asmi04s9.beget.tech \"cd investlk.rkursk.ru/public_html && php8.1 composer.phar install\"",
         "composer_update": "ssh asmi04s9_all@asmi04s9.beget.tech \"cd investlk.rkursk.ru/public_html && php8.1 composer.phar update\"",
         "pull_rep": "ssh asmi04s9_all@asmi04s9.beget.tech \"cd investlk.rkursk.ru/public_html && git pull\"",
+        "marge_rep": "ssh asmi04s9_all@asmi04s9.beget.tech \"cd investlk.rkursk.ru/public_html && git config pull.rebase false\"",
         "clean_rep": "ssh asmi04s9_all@asmi04s9.beget.tech \"cd investlk.rkursk.ru/public_html && git clean -f\"",
         "stash": "ssh asmi04s9_all@asmi04s9.beget.tech \"cd investlk.rkursk.ru/public_html && git stash\"",
         "reset_rep": "ssh asmi04s9_all@asmi04s9.beget.tech \"cd investlk.rkursk.ru/public_html && git reset --hard\"",
