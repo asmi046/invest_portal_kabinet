@@ -2,8 +2,8 @@
     <div class="inner">
         <a href="{{route('home')}}" class="logo">
             <img src="{{asset('img/logo.svg')}}" alt="">
-            <a href="{{ route('events') }}" class="header-icon-btn header-icon-btn--bell header__notifications header__notifications--active">Уведомления</a>
-            <div class="user-menu-box">
+            {{-- <a href="{{ route('events') }}" class="header-icon-btn header-icon-btn--bell header__notifications header__notifications--active">Уведомления</a> --}}
+            <div class="user-menu-box header__notifications">
                 <button class="header-icon-btn header-icon-btn--user"></button>
                 <ul class="user-menu">
                     <li>

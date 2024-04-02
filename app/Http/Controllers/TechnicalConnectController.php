@@ -46,7 +46,11 @@ class TechnicalConnectController extends Controller
     }
 
     public function edit($id) {
-        return view('tc.edit-tc');
+        $tc = TechnicalConnects::where('id', $id)->first();
+
+        if (!$tc) abort('404');
+
+        return view('tc.edit-tc', ['item' => $tc]);
     }
 
     public function algoritm() {

@@ -14,7 +14,7 @@
             <x-breadcrumbs title="Мои заявления на техническое присоединение"></x-breadcrumbs>
             <div class="columns-box columns-box--two-col project-panel">
                 <x-widget-green-stat
-                    lnk="{{ route('project_create') }}"
+                    lnk="{{ route('technical_connect_create') }}"
                     lnktxt="Создать проект"
                     status="Проекты"
                     :value="$state['Всего']"
@@ -52,8 +52,8 @@
                                     <th>№</th>
                                     <th>Название проекта</th>
                                     <th>Объем инвестиций</th>
-                                    <th>Территория реализации</th>
-                                    <th>Статус</th>
+                                    <th>Требуемая мощьность</th>
+                                    <th>Поставщик</th>
                                     <th>Управление</th>
                                 </tr>
                             </thead>
@@ -62,13 +62,13 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $item->invest_volume }} млн. руб.</td>
-                                        <td>{{ $item->relis_area}}</td>
+                                        <td>{{ $item->pover_pris_devices }}</td>
+                                        <td>{{ $item->gen_postavhik}}</td>
                                         <td>{{ $item->state }}</td>
                                         <td>
                                             <a href="{{route('project_print', $item->id)}}">Печатная форма</a>
                                             <a href="{{route('project_signe', $item->id)}}">Подписать</a>
-                                            <a href="{{route('project_edit', $item->id)}}">Редактировать</a>
+                                            <a href="{{route('technical_connect_edit', $item->id)}}">Редактировать</a>
                                             <a href="{{route('project_status', $item->id)}}">Статус</a>
                                         </td>
                                     </tr>
