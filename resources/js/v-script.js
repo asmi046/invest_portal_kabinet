@@ -138,9 +138,11 @@ document.addEventListener('DOMContentLoaded', function(){
      }
 
      let userMenuBtn = document.querySelector('.header-icon-btn--user');
+     let userMenuList = document.querySelector('ul.user-menu');
      if(userMenuBtn){
-        userMenuBtn.addEventListener('click', function(){
-            this.nextElementSibling.classList.toggle('user-menu--show');
+        userMenuBtn.addEventListener('click', function(e){
+            e.preventDefault();
+            userMenuList.classList.toggle('user-menu--show');
         });
      }
 

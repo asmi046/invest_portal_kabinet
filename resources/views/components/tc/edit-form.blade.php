@@ -1,11 +1,17 @@
-<form class="form-project-submission flex-form" action="">
+<form class="form-project-submission flex-form" method="POST" action="{{ ( isset($action) )?$action:"#"  }}">
     @csrf
+    @if (session('drafr_save'))
+        <p class="success">{{ session('drafr_save') }}</p>
+    @endif
+
+    <input type="hidden" name="item_id" value="{{ $item->id ?? 0 }}">
+
     <div class="columns-box columns-box--two-col">
         <label class="form-elem">
             <span class="form-elem__caption">
                 Ф.И.О. заявителя<span class="required">*</span>
             </span>
-            <input type="text" name="name" class="form-elem__field" required="required" value="{{ $item->name ?? '' }}">
+            <input type="text" name="name" class="form-elem__field"  value="{{ $item->name ?? '' }}">
             @error('name')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -15,7 +21,7 @@
             <span class="form-elem__caption">
                 Организация<span class="required">*</span>
             </span>
-            <input type="text" name="organization" class="form-elem__field" required="required" value="{{ $item->organization ?? '' }}">
+            <input type="text" name="organization" class="form-elem__field"  value="{{ $item->organization ?? '' }}">
             @error('organization')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -25,7 +31,7 @@
             <span class="form-elem__caption">
                 Должность<span class="required">*</span>
             </span>
-            <input type="text" name="dolgnost" class="form-elem__field" required="required" value="{{ $item->dolgnost ?? '' }}">
+            <input type="text" name="dolgnost" class="form-elem__field"  value="{{ $item->dolgnost ?? '' }}">
             @error('dolgnost')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -35,7 +41,7 @@
             <span class="form-elem__caption">
                 Телефон<span class="required">*</span>
             </span>
-            <input type="text" name="phone" class="form-elem__field" required="required" value="{{ $item->phone ?? '' }}">
+            <input type="text" name="phone" class="form-elem__field"  value="{{ $item->phone ?? '' }}">
             @error('phone')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -46,7 +52,7 @@
         <span class="form-elem__caption">
             ЕГРЮЛ/ЕГРИП заявителя<span class="required">*</span>
         </span>
-        <input type="text" name="egrul" class="form-elem__field" required="required" value="{{ $item->egrul ?? '' }}">
+        <input type="text" name="egrul" class="form-elem__field"  value="{{ $item->egrul ?? '' }}">
         @error('egrul')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -69,7 +75,7 @@
             <span class="form-elem__caption">
                 Серия<span class="required">*</span>
             </span>
-            <input type="text" name="pasport_seria" class="form-elem__field" required="required" placeholder="Заявитель" value="{{ $item->pasport_seria ?? '' }}">
+            <input type="text" name="pasport_seria" class="form-elem__field"  placeholder="Заявитель" value="{{ $item->pasport_seria ?? '' }}">
             @error('pasport_seria')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -79,7 +85,7 @@
             <span class="form-elem__caption">
                 Номер<span class="required">*</span>
             </span>
-            <input type="text" name="pasport_number" class="form-elem__field" required="required" placeholder="Заявитель" value="{{ $item->pasport_number ?? '' }}">
+            <input type="text" name="pasport_number" class="form-elem__field"  placeholder="Заявитель" value="{{ $item->pasport_number ?? '' }}">
             @error('pasport_number')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -91,7 +97,7 @@
         <span class="form-elem__caption">
             Выдан<span class="required">*</span>
         </span>
-        <input type="text" name="pasport_vidan" class="form-elem__field" required="required" value="{{ $item->pasport_vidan ?? '' }}">
+        <input type="text" name="pasport_vidan" class="form-elem__field"  value="{{ $item->pasport_vidan ?? '' }}">
         @error('pasport_vidan')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -103,7 +109,7 @@
         <span class="form-elem__caption">
             Основание для присоединения<span class="required">*</span>
         </span>
-        <input type="text" name="osnovanie" class="form-elem__field" required="required" value="{{ $item->osnovanie ?? '' }}">
+        <input type="text" name="osnovanie" class="form-elem__field"  value="{{ $item->osnovanie ?? '' }}">
         @error('osnovanie')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -113,7 +119,7 @@
         <span class="form-elem__caption">
             Наименование энергопринимающих устройств<span class="required">*</span>
         </span>
-        <input type="text" name="ustroistvo" class="form-elem__field" required="required" value="{{ $item->ustroistvo ?? '' }}">
+        <input type="text" name="ustroistvo" class="form-elem__field"  value="{{ $item->ustroistvo ?? '' }}">
         @error('ustroistvo')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -123,7 +129,7 @@
         <span class="form-elem__caption">
             Место нахождения энергопринимающих устройств<span class="required">*</span>
         </span>
-        <input type="text" name="raspologeie" class="form-elem__field" required="required" value="{{ $item->raspologeie ?? '' }}">
+        <input type="text" name="raspologeie" class="form-elem__field"  value="{{ $item->raspologeie ?? '' }}">
         @error('raspologeie')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -135,7 +141,7 @@
             <span class="form-elem__caption">
                 Мощьность (кВт)<span class="required">*</span>
             </span>
-            <input type="text" name="pover_prin_devices" class="form-elem__field" required="required" value="{{ $item->pover_prin_devices ?? '' }}">
+            <input type="text" name="pover_prin_devices" class="form-elem__field"  value="{{ $item->pover_prin_devices ?? '' }}">
             @error('pover_prin_devices')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -144,7 +150,7 @@
             <span class="form-elem__caption">
                 При напряжении (кВ)<span class="required">*</span>
             </span>
-            <input type="text" name="napr_prin_devices" class="form-elem__field" required="required" value="{{ $item->napr_prin_devices ?? '' }}">
+            <input type="text" name="napr_prin_devices" class="form-elem__field"  value="{{ $item->napr_prin_devices ?? '' }}">
             @error('napr_prin_devices')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -157,7 +163,7 @@
             <span class="form-elem__caption">
                 Мощьность (кВт)<span class="required">*</span>
             </span>
-            <input type="text" name="pover_pris_devices" class="form-elem__field" required="required" value="{{ $item->pover_pris_devices ?? '' }}">
+            <input type="text" name="pover_pris_devices" class="form-elem__field"  value="{{ $item->pover_pris_devices ?? '' }}">
             @error('pover_pris_devices')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -166,7 +172,7 @@
             <span class="form-elem__caption">
                 При напряжении (кВ)<span class="required">*</span>
             </span>
-            <input type="text" name="napr_pris_devices" class="form-elem__field" required="required" value="{{ $item->napr_pris_devices ?? '' }}">
+            <input type="text" name="napr_pris_devices" class="form-elem__field"  value="{{ $item->napr_pris_devices ?? '' }}">
             @error('napr_pris_devices')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -179,7 +185,7 @@
             <span class="form-elem__caption">
                 Мощьность (кВт)
             </span>
-            <input type="text" name="pover_pris_r_devices" class="form-elem__field" required="required" value="{{ $item->pover_pris_r_devices ?? '' }}">
+            <input type="text" name="pover_pris_r_devices" class="form-elem__field"  value="{{ $item->pover_pris_r_devices ?? '' }}">
             @error('pover_pris_r_devices')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -188,7 +194,7 @@
             <span class="form-elem__caption">
                 При напряжении (кВ)
             </span>
-            <input type="text" name="napr_pris_r_devices" class="form-elem__field" required="required" value="{{ $item->napr_pris_r_devices ?? '' }}">
+            <input type="text" name="napr_pris_r_devices" class="form-elem__field"  value="{{ $item->napr_pris_r_devices ?? '' }}">
             @error('napr_pris_devices')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -202,8 +208,8 @@
             Порядок расчета и условия рассрочки внесения платы<span class="required">*</span>
         </span>
         <select name="rashet_plati" class="form-elem__field" id="">
-            <option @selected((request('rashet_plati') === 'Вариант 1') || empty(request('rashet_plati'))) value="Вариант 1">Вариант 1</option>
-            <option @selected((request('rashet_plati') === 'Вариант 2')) value="Вариант 2">Вариант 2</option>
+            <option @selected(isset($item->rashet_plati) && ($item->rashet_plati === 'Вариант 1')) value="Вариант 1">Вариант 1</option>
+            <option @selected(isset($item->rashet_plati) && ($item->rashet_plati === 'Вариант 2')) value="Вариант 2">Вариант 2</option>
         </select>
         @error('rashet_plati')
             <span class="form-elem__error-message">{{ $message }}</span>
@@ -214,7 +220,7 @@
         <span class="form-elem__caption">
             Гарантирующий поставщик<span class="required">*</span>
         </span>
-        <input type="text" name="gen_postavhik" class="form-elem__field" required="required" value="{{ $item->gen_postavhik ?? '' }}">
+        <input type="text" name="gen_postavhik" class="form-elem__field"  value="{{ $item->gen_postavhik ?? '' }}">
         @error('gen_postavhik')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -232,8 +238,20 @@
         @enderror
     </label>
 
+
     <div class="form-control-panel">
-        <button type="button" class="btn" title="Сохранить"> <span class="save-icon"></span> Сохранить</button>
+        @if ($format == "create")
+            <button type="submit" class="btn" title="Сохранить черновик" name="action" value="create_draft"> <span class="save-icon"></span>Сохранить черновик</button>
+        @else
+            <button type="submit" class="btn" title="Сохранить черновик" name="action" value="save_draft"> <span class="save-icon"></span>Сохранить черновик</button>
+            <button type="submit" class="btn" title="Проверить и подписать" name="action" value="validate_signe"> <span class="save-icon"></span>Проверить и подписать</button>
+            <a
+            class="btn"
+            onclick="if (!confirm('Черновик будет удален навсегда! Вы уверенны?')) return false;"
+            href="{{ route('technical_connect_delete', $item->id) }}"
+            >Удалить</a>
+        @endif
+
     </div>
 
 </form>

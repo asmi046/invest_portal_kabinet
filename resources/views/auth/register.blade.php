@@ -29,23 +29,29 @@
                     <div class="columns-box columns-box--two-col">
 
                         <label class="form-elem">
-                            <span class="form-elem__caption">Фамилия</span>
-                            <input type="text" name="surname" class="form-elem__field" required="required" placeholder="Фамилия">
-                            {{-- <span class="form-elem__error-message">Ошибка</span> --}}
+                            <span class="form-elem__caption">Фамилия<span class="required">*</span></span>
+                            <input type="text" name="lastname" class="form-elem__field" placeholder="Фамилия">
+                            @error('lastname')
+                                <span class="form-elem__error-message">{{ $message }}</span>
+                            @enderror
                         </label>
                         <label class="form-elem">
-                            <span class="form-elem__caption">Имя</span>
-                            <input type="text" name="name" class="form-elem__field" required="required" placeholder="Имя">
-                            {{-- <span class="form-elem__error-message">Ошибка</span> --}}
+                            <span class="form-elem__caption">Имя<span class="required">*</span></span>
+                            <input type="text" name="name" class="form-elem__field" placeholder="Имя">
+                            @error('name')
+                                <span class="form-elem__error-message">{{ $message }}</span>
+                            @enderror
                         </label>
                         <label class="form-elem">
-                            <span class="form-elem__caption">Отчество</span>
-                            <input type="text" name="father-name" class="form-elem__field" required="required" placeholder="Отчество">
-                            {{-- <span class="form-elem__error-message">Ошибка</span> --}}
+                            <span class="form-elem__caption">Отчество<span class="required">*</span></span>
+                            <input type="text" name="fathername" class="form-elem__field" placeholder="Отчество">
+                            @error('fathername')
+                                <span class="form-elem__error-message">{{ $message }}</span>
+                            @enderror
                         </label>
 
                         <label class="form-elem">
-                            <span class="form-elem__caption">Адрес электронной почты</span>
+                            <span class="form-elem__caption">Адрес электронной почты<span class="required">*</span></span>
                             <input type="email" name="email" class="form-elem__field" required="required" placeholder="Введите email">
 
                             @error('email')
@@ -54,7 +60,7 @@
                         </label>
 
                         <label class="form-elem">
-                            <span class="form-elem__caption">Телефон</span>
+                            <span class="form-elem__caption">Телефон<span class="required">*</span></span>
 
                             <input type="text" name="phone" class="form-elem__field tel-mask" required="required" placeholder="Введите номер телефона">
                             @error('phone')
@@ -62,16 +68,10 @@
                             @enderror
                         </label>
 
-                        <label class="form-elem">
-                            <span class="form-elem__caption">Имя</span>
 
-                            <input type="text" name="name" class="form-elem__field" required="required" placeholder="Введите ФИО">
+                    </div>
 
-                            @error('name')
-                                <span class="form-elem__error-message">{{ $message }}</span>
-                            @enderror
-                        </label>
-
+                    <div class="columns-box columns-box--two-col">
                         <div class="form-elem">
                             <span class="form-elem__caption">Пароль</span>
 
@@ -97,8 +97,6 @@
                                 <span class="form-elem__error-message">{{ $message }}</span>
                             @enderror
                         </div>
-
-
                     </div>
                     <span class="form-infotext">
                         Нажимая кнопку "Зарегистрироваться" я выражаю согласие на обработку персональных данных в соответствии с политикой конфиденциальности портала

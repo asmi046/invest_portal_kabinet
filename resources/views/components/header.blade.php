@@ -23,7 +23,7 @@
         <menu class="main-menu ">
             <li>
                 <div class="main-menu__parent-panel">
-                    <span>Мои инвестиционные проект</span>
+                    <span>Мои инвестиционные проекты</span>
                     <button class="main-menu__arrow"></button>
                 </div>
                 <ul>

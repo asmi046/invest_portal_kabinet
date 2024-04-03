@@ -18,7 +18,7 @@
             ></x-breadcrumbs>
             <h1>{{ $title }}</h1>
 
-            <x-tc.edit-form format="create"></x-tc.edit-form>
+            <x-tc.edit-form format="create" :action="route('technical_connect_save')"></x-tc.edit-form>
 
         </div>
     </section>

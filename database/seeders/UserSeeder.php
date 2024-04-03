@@ -19,7 +19,23 @@ class UserSeeder extends Seeder
 
         $userID = DB::table("users")->insertGetId(
             [
-                    'name' => "Супер Админ",
+                    'name' => "Супер",
+                    'lastname' => "Админ",
+                    'fathername' => "Иванович",
+
+                    'phone' => "+7 (903) 633 08 01",
+                    'email' => "asmi046@gmail.com",
+                    'password' => Hash::make("123"),
+                    'email_verified_at' => date("Y-m-d H:i:s")
+            ]
+        );
+
+        $userID = DB::table("users")->insertGetId(
+            [
+                    'name' => "Супер",
+                    'lastname' => "Админ",
+                    'fathername' => "Петрович",
+
                     'phone' => "+7 (903) 633 08 01",
                     'email' => "asmi046_1@gmail.com",
                     'password' => Hash::make("123"),
@@ -29,7 +45,10 @@ class UserSeeder extends Seeder
 
         $userID = DB::table("users")->insertGetId(
             [
-                    'name' => "Иванов Иван",
+                    'name' => "Иванов",
+                    'lastname' => "Иван",
+                    'fathername' => "Иванович",
+
                     'phone' => "+7 (904) 634 02 01",
                     'email' => "guest1@email.ru",
                     'password' => Hash::make("123"),
@@ -40,7 +59,10 @@ class UserSeeder extends Seeder
 
         $userID = DB::table("users")->insertGetId(
             [
-                    'name' => "Сидоров Иван",
+                    'name' => "Сидоров",
+                    'lastname' => "Сидор",
+                    'fathername' => "Сидорович",
+
                     'phone' => "+7 (908) 624 04 22",
                     'email' => "gues2@email.ru",
                     'password' => Hash::make("123"),

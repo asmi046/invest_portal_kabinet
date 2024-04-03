@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\TechnicalConnect;
 
 use Illuminate\Http\Request;
 
 use App\Models\TechnicalConnects;
 use App\Services\CreateDocServices;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class TechnicalConnectController extends Controller
@@ -65,10 +66,10 @@ class TechnicalConnectController extends Controller
 
         $tc = TechnicalConnects::where('id', $id)->first();
 
-        $options = $project->getOriginal();
+        $options = $tc->getOriginal();
 
         $fn = $document->create_tmp_document(
-            public_path('documents_template/invest_project_template.docx'),
+            public_path('documents_template/tc_150.docx'),
             $options,
             $id,
             "Заявка на технологическое подключение",
@@ -82,10 +83,10 @@ class TechnicalConnectController extends Controller
 
         $tc = TechnicalConnects::where('id', $id)->first();
 
-        $options = $project->getOriginal();
+        $options = $tc->getOriginal();
 
         $fn = $document->create_tmp_document(
-            public_path('documents_template/invest_project_template.docx'),
+            public_path('documents_template/tc_150.docx'),
             $options,
             $id,
             "Заявка на технологическое подключение",

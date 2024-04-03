@@ -8,4 +8,33 @@ use Illuminate\Database\Eloquent\Model;
 class TechnicalConnects extends Model
 {
     use HasFactory;
+
+    public $fillable = [
+        "user_id",
+        "state",
+        "name",
+        "dolgnost",
+        "phone",
+        "organization",
+        "egrul",
+        "adress",
+
+        "pasport_seria",
+        "pasport_number",
+        "pasport_vidan",
+
+        "osnovanie",
+        "ustroistvo",
+        "raspologeie",
+
+        "pover_prin_devices",
+        "napr_prin_devices",
+        "pover_pris_devices",
+        "napr_pris_devices",
+        "pover_pris_r_devices",
+        "napr_pris_r_devices",
+        "rashet_plati",
+        "gen_postavhik",
+        "prilogenie",
+    ];
 }

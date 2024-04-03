@@ -11,6 +11,9 @@
 @section('body')
     <section class="my-project-section">
         <div class="inner">
+            @if (session('deleted'))
+                <p class="success">{{ session('deleted') }}</p>
+            @endif
             <x-breadcrumbs title="Мои заявления на техническое присоединение"></x-breadcrumbs>
             <div class="columns-box columns-box--two-col project-panel">
                 <x-widget-green-stat
@@ -51,9 +54,9 @@
                                 <tr>
                                     <th>№</th>
                                     <th>Название проекта</th>
-                                    <th>Объем инвестиций</th>
-                                    <th>Требуемая мощьность</th>
+                                    <th>Требуемая мощьность (кВт)</th>
                                     <th>Поставщик</th>
+                                    <th>Статус</th>
                                     <th>Управление</th>
                                 </tr>
                             </thead>
@@ -66,10 +69,10 @@
                                         <td>{{ $item->gen_postavhik}}</td>
                                         <td>{{ $item->state }}</td>
                                         <td>
-                                            <a href="{{route('project_print', $item->id)}}">Печатная форма</a>
-                                            <a href="{{route('project_signe', $item->id)}}">Подписать</a>
+                                            <a href="{{route('technical_connect_print', $item->id)}}">Печатная форма</a>
+                                            <a href="{{route('technical_connect_signe', $item->id)}}">Подписать</a>
                                             <a href="{{route('technical_connect_edit', $item->id)}}">Редактировать</a>
-                                            <a href="{{route('project_status', $item->id)}}">Статус</a>
+                                            <a href="{{route('technical_connect_status', $item->id)}}">Статус</a>
                                         </td>
                                     </tr>
                                 @endforeach
