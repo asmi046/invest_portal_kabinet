@@ -8,4 +8,5 @@
     Route::middleware('auth')->group(function () {
         Route::get('/', [IndexController::class, "index"])->name('home');
         Route::get('/events', [EventController::class, "index"])->name('events');
+        Route::get('/events', [EventController::class, "index"])->name('events');
     });

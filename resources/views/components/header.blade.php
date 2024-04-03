@@ -8,7 +8,7 @@
                 <ul class="user-menu">
                     <li>
                         <span class="chel-icon"></span>
-                        <a href="#">Личный кабинет</a>
+                        <a href="{{route('user-data')}}">Мои данные</a>
                     </li>
                     <li>
                         <span class="exit-icon"></span>
@@ -23,7 +23,7 @@
         <menu class="main-menu ">
             <li>
                 <div class="main-menu__parent-panel">
-                    <span>Мои инвестиционные проекты</span>
+                    <span>Инвестиционные проекты</span>
                     <button class="main-menu__arrow"></button>
                 </div>
                 <ul>
@@ -37,7 +37,7 @@
             </li>
             <li>
                 <div class="main-menu__parent-panel">
-                    <a href="{{route('applicationСatalog')}}">Мои заявления на государственную поддержку</a>
+                    <a href="{{route('applicationСatalog')}}">Заявления на государственную поддержку</a>
                     <button class="main-menu__arrow"></button>
                 </div>
                 <ul>
@@ -49,6 +49,20 @@
                     </li>
                     <li class="handshake-icon">
                         <a target="_blank" href="https://navigator-mp.kursk.ru/">Меры поддержки</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <div class="main-menu__parent-panel">
+                    <span>Заявления на предоставление земельного участка</span>
+                    <button class="main-menu__arrow"></button>
+                </div>
+                <ul>
+                    <li class="doc-icon" >
+                        <a href="{{route('area_get')}}">Все заявления</a>
+                    </li>
+                    <li class="pencil-icon">
+                        <a href="{{route('area_get_create')}}">Подать заявление</a>
                     </li>
                 </ul>
             </li>
