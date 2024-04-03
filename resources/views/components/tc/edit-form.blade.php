@@ -41,7 +41,7 @@
             <span class="form-elem__caption">
                 Телефон<span class="required">*</span>
             </span>
-            <input type="text" name="phone" class="form-elem__field"  value="{{ $item->phone ?? '' }}">
+            <input type="text" name="phone" class="form-elem__field tel-mask"  value="{{ $item->phone ?? '' }}">
             @error('phone')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror

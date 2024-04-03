@@ -23,11 +23,13 @@ class RegisterFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Поле Имя должно быть заполнено',
-            'phone.required' => 'Поле Телефон должно быть заполнено',
-            'email.required' => 'Поле Email должно быть заполнено',
+            'name.required' => 'Поле "Имя" должно быть заполнено',
+            'fathername.required' => 'Поле "Отчество" должно быть заполнено',
+            'lastname.required' => 'Поле "Фамилия" должно быть заполнено',
+            'phone.required' => 'Поле "Телефон" должно быть заполнено',
+            'email.required' => 'Поле "Email" должно быть заполнено',
             'email.unique' => 'Пользователь с таким Email уже зарегистрирован',
-            'password.required' => 'Поле Пароль должно быть заполнено',
+            'password.required' => 'Поле "Пароль" должно быть заполнено',
             'password.confirmed' => 'Парольи не совпадают',
         ];
     }
@@ -41,6 +43,8 @@ class RegisterFormRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
+            'lastname' => ['required', 'string'],
+            'fathername' => ['required', 'string'],
             'phone' => ['required'],
             'email' => ['required', 'email', 'string', 'unique:users,email'],
             'password' => ['required','confirmed'],
