@@ -52,8 +52,8 @@ class AuthController extends Controller
         $user->password = bcrypt($new_password);
         $user->save();
 
-        Mail::to($user)->send(new PassRecMail($new_password));
-        return redirect(route('passrec',['confirm' => 1]));
+        Mail::to($user)->send(new PassRecMail($new_password, $user->email, $user->name." ".$user->lastname));
+        return redirect()->back()->with('pass_req', "Новый пароль отправлен на e-mail указанный при регистрации аккаунта");
     }
 
     public function login(LoginFormRequest $request) {

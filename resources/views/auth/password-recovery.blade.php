@@ -23,7 +23,14 @@
                 <span class="form-infotext">
                     Для восстановления доступа укажите e-mail который использовался при регистрации аккаунта.
                 </span>
-                <form class="password-recovery-form">
+
+                @if (session('pass_req'))
+                    <p class="success">{{ session('pass_req') }}</p>
+                @endif
+
+
+                <form action="{{ route('pass_rec_do')}}" method="POST" class="password-recovery-form">
+                    @csrf
                     <label class="form-elem">
                         <span class="form-elem__caption">Адрес электронной почты</span>
                         <input type="email" name="email" class="form-elem__field" required="required" placeholder="Введите email">
