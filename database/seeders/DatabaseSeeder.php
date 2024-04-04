@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
-
             UserSeeder::class,
             InvestDocumentSeeder::class,
             AlgorithmSeeder::class,
@@ -22,6 +21,7 @@ class DatabaseSeeder extends Seeder
             SupportSeeder::class,
             TechnicalConnectsSeeder::class,
             AreaGetSeeder::class,
+            OrganizationContactSeeder::class,
         ]);
 
         // \App\Models\User::factory(10)->create();

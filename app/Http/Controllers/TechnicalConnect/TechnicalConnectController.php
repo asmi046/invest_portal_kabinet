@@ -54,14 +54,6 @@ class TechnicalConnectController extends Controller
         return view('tc.edit-tc', ['item' => $tc]);
     }
 
-    public function algoritm() {
-        return view('tc.algoritm-tc');
-    }
-
-    public function org_list() {
-        return view('tc.org_list-tc');
-    }
-
     public function print(CreateDocServices $document, int $id) {
 
         $tc = TechnicalConnects::where('id', $id)->first();
