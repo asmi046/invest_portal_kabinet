@@ -22,7 +22,7 @@ class InvestDocumentSeeder extends Seeder
                 'subtype' => "Законы Курской области",
                 'file' => '1.-Zakon-Kurskoj-oblasti-ot-12.08.2004-N-37-ZKO-red.-ot-19.12..pdf'
             ],
-            
+
             [
                 'title' => "Закон Курской области от 22.06.2015 № 58-ЗКО «Об установлении критериев, которым должны соответствовать объекты социально-культурного и коммунально-бытового назначения, масштабные инвестиционные проекты, для размещения (реализации) которых допускается предоставление земельных участков в аренду без проведения торгов»",
                 'subtype' => "Законы Курской области",
@@ -185,15 +185,11 @@ class InvestDocumentSeeder extends Seeder
             Storage::disk('public')->put("portal_documents/".$item['file'], file_get_contents(public_path('tmp/zakon_document/'.$item['file'])), 'public');
 
             DB::table("invest_documents")->insert(
-                [
-                        'title' => $item['title'],
-                        'subtype' => $item['subtype'],
-                        'file' => Storage::url("portal_documents/".$item['file']),
-                ]
-                
+                $item
+
             );
         }
-        
+
 
     }
 }

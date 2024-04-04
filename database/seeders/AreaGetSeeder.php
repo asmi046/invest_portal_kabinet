@@ -25,6 +25,7 @@ class AreaGetSeeder extends Seeder
         DB::table("area_gets")->insert(
             [
                 [
+                    'created_at' => date("Y-m-d H:i:s"),
                     'user_id' => 1,
                     'state'=> "Черновик",
                     "name" => "Иванов Иван Иванович",
@@ -36,6 +37,7 @@ class AreaGetSeeder extends Seeder
                     "prilogenie_list_count" => rand(3, 7)
                 ],
                 [
+                    'created_at' => date("Y-m-d H:i:s"),
                     'user_id' => 1,
                     'state'=> "Черновик",
                     "name" => "Петров Иван Федорович",
@@ -47,6 +49,7 @@ class AreaGetSeeder extends Seeder
                     "prilogenie_list_count" => rand(3, 7)
                 ],
                 [
+                    'created_at' => date("Y-m-d H:i:s"),
                     'user_id' => 2,
                     'state'=> "Черновик",
                     "name" => "Климов Иван Иванович",
@@ -58,6 +61,7 @@ class AreaGetSeeder extends Seeder
                     "prilogenie_list_count" => rand(3, 7)
                 ],
                 [
+                    'created_at' => date("Y-m-d H:i:s"),
                     'user_id' => 2,
                     'state'=> "Черновик",
                     "name" => "Краков Иван Степанович",

@@ -10,6 +10,7 @@ class AreaGet extends Model
     use HasFactory;
 
     public $fillable = [
+        "created_at",
         "user_id",
         "state",
         "name",
@@ -20,4 +21,17 @@ class AreaGet extends Model
         "object_type",
         "prilogenie_list_count",
     ];
+
+
+    /**
+     * user
+     *
+     * @return void
+     */
+    public function user()
+    {
+        return $this->hasOne(User::class, "id", "user_id");
+    }
+
+
 }

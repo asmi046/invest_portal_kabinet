@@ -7,6 +7,7 @@ namespace App\Providers;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuItem;
 use MoonShine\Menu\MenuGroup;
+use App\MoonShine\Resources\AreaGetResource;
 use App\MoonShine\Resources\ProjectResource;
 use MoonShine\Resources\MoonShineUserResource;
 use MoonShine\Resources\MoonShineUserRoleResource;
@@ -37,6 +38,14 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                    new MoonShineUserRoleResource()
                ),
             ]),
+
+            MenuGroup::make(static fn() => __('Заявления на предоставление земельного участка'), [
+                MenuItem::make(
+                    "Все заявления",
+                    new AreaGetResource()
+                )->icon('heroicons.outline.clipboard-document-list'),
+            ]),
+
 
             MenuItem::make(
                 "Проекты",

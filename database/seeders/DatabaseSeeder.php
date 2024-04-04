@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
 
             UserSeeder::class,
             InvestDocumentSeeder::class,
+            AlgorithmSeeder::class,
             ProjectSeeder::class,
             SupportSeeder::class,
             TechnicalConnectsSeeder::class,
