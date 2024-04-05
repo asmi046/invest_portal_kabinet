@@ -9,8 +9,11 @@ use MoonShine\Menu\MenuItem;
 use MoonShine\Menu\MenuGroup;
 use App\MoonShine\Resources\AreaGetResource;
 use App\MoonShine\Resources\ProjectResource;
+use App\MoonShine\Resources\AlgorithmResource;
 use MoonShine\Resources\MoonShineUserResource;
 use MoonShine\Resources\MoonShineUserRoleResource;
+use App\MoonShine\Resources\InvestDocumentResource;
+use App\MoonShine\Resources\OrganizationContactResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 
 class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
@@ -44,6 +47,23 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                     "Все заявления",
                     new AreaGetResource()
                 )->icon('heroicons.outline.clipboard-document-list'),
+            ]),
+
+            MenuGroup::make(static fn() => __('Дополнительно'), [
+                MenuItem::make(
+                    "Ресурсоснабжающие организации",
+                    new OrganizationContactResource()
+                )->icon('heroicons.outline.building-office'),
+
+                MenuItem::make(
+                    "Алгоритмы действий",
+                    new AlgorithmResource()
+                )->icon('heroicons.outline.cog-6-tooth'),
+
+                MenuItem::make(
+                    "Нормативная база",
+                    new InvestDocumentResource()
+                )->icon('heroicons.outline.building-library'),
             ]),
 
 
