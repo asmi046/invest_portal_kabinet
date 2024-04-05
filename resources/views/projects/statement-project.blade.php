@@ -16,7 +16,6 @@
                 subtitle="Мои инвестиционные проекты"
                 title="Статус проекта"
             ></x-breadcrumbs>
-
             <h1>Проект: {{ $project->name }}</h1>
             <p>
                 Статус: <strong>{{ $project->state }}</strong>

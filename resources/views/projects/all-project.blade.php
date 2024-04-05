@@ -66,10 +66,20 @@
                                         <td>{{ $item->relis_area}}</td>
                                         <td>{{ $item->state }}</td>
                                         <td>
-                                            <a href="{{route('project_print', $item->id)}}">Печатная форма</a>
-                                            <a href="{{route('project_signe', $item->id)}}">Подписать</a>
-                                            <a href="{{route('project_edit', $item->id)}}">Редактировать</a>
-                                            <a href="{{route('project_status', $item->id)}}">Статус</a>
+                                            <div class="project-control-btn-box">
+                                                <a href="{{route('project_print', $item->id)}}" class="project-control-btn print-form-icon" title="Печатная форма">
+                                                    Печатная форма
+                                                </a>
+                                                <a href="{{route('project_signe', $item->id)}}" class="project-control-btn sing-icon" title="Подписать">
+                                                    Подписать
+                                                </a>
+                                                <a href="{{route('project_edit', $item->id)}}" class="project-control-btn edit-icon" title="Редактировать">
+                                                    Редактировать
+                                                </a>
+                                                <a href="{{route('project_status', $item->id)}}" class="project-control-btn status-icon" title="Статус">
+                                                    Статус
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

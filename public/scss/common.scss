@@ -636,3 +636,15 @@ a.btn-link, button.btn-link{
     }
 }
 
+.project-control-btn-box{
+    display: flex;
+    gap: 5px;
+}
+.project-control-btn{
+    display: block;
+    width: 2.2rem;
+    height: 2.2rem;
+    background-color: var(--active);
+    font-size: 0;
+
+}

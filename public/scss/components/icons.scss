@@ -230,3 +230,44 @@
     -webkit-mask-image: url(../img/sign2-icon.svg);
     mask-image: url(../img/sign2-icon.svg);
 }
+
+.print-form-icon{
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center center;
+    mask-position: center center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url(../img/doc-icon.svg);
+    mask-image: url(../img/doc-icon.svg);
+}
+.edit-icon{
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center center;
+    mask-position: center center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url(../img/pencil-icon.svg);
+    mask-image: url(../img/pencil-icon.svg);
+}
+.sing-icon{
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center center;
+    mask-position: center center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url(../img/sing-icon.svg);
+    mask-image: url(../img/sing-icon.svg);
+}
+.status-icon{
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center center;
+    mask-position: center center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url(../img/status-icon.svg);
+    mask-image: url(../img/status-icon.svg);
+}

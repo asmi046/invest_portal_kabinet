@@ -20,8 +20,8 @@
         </a>
     </div>
     <nav>
-        <menu class="main-menu ">
-            <li>
+        <menu class="main-menu">
+            <li class="active-parent">
                 <div class="main-menu__parent-panel">
                     <span>Инвестиционные проекты</span>
                     <button class="main-menu__arrow"></button>

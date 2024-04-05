@@ -2,6 +2,7 @@
 import IMask from 'imask';
 import ViTab from './TabClass.js';
 import FileFunnel from './FileFunnel.js';
+import Choices from 'choices.js';
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -106,6 +107,11 @@ document.addEventListener('DOMContentLoaded', function(){
         nlMainMenuArrowBtn.forEach(arrow=>{
             arrow.addEventListener('click', function(e){
                 e.preventDefault();
+                let activeParent = arrow.closest('.active-parent');
+                if(activeParent){
+                    activeParent.classList.remove('active-parent');
+                    return;
+                }
                 let submenu = arrow.parentElement.nextElementSibling;
                 arrow.classList.toggle('active');
                 toggleSlider(submenu);
@@ -180,6 +186,83 @@ document.addEventListener('DOMContentLoaded', function(){
             reciever: '.file-funnel__receiver',
             accept: ['.pdf', '.jpg', '.png', 'doc', 'docx'],
             docsBox: '.file-funnel__docs'
+        });
+    }
+
+
+    let nlNpaChoices = document.querySelectorAll('.select-ch');
+    let arNpaChoices = [];
+    if(nlNpaChoices.length > 0){
+        nlNpaChoices.forEach(item=>{
+            let choicesItem = {};
+            if(item.classList.contains('select-ch--no-search')){
+                if(item.getAttribute('multiple')){
+                    choicesItem = new Choices(item, {
+                        searchEnabled: false,
+                        searchChoices: false,
+                        placeholderValue: null,
+                        placeholder: true,
+                        itemSelectText: '',
+                        loadingText: 'Загрузка...',
+                        noResultsText: 'Результатов не найдено',
+                        noChoicesText: 'Выбирать больше нечего',
+                        shouldSort: false,
+                        position: 'auto',
+                        allowHTML: true,
+                        removeItemButton: true,
+                    });
+                }else{
+                     choicesItem = new Choices(item, {
+                        searchEnabled: false,
+                        searchChoices: false,
+                        placeholderValue: null,
+                        placeholder: true,
+                        removeItemButton: false,
+                        itemSelectText: '',
+                        loadingText: 'Загрузка...',
+                        noResultsText: 'Результатов не найдено',
+                        noChoicesText: 'Выбирать больше нечего',
+                        shouldSort: false,
+                        position: 'auto',
+                        allowHTML: true,
+                    });
+                }
+
+                arNpaChoices.push(choicesItem);
+            }else{
+                if(item.getAttribute('multiple')){
+                    choicesItem = new Choices(item, {
+                        placeholderValue: null,
+                        placeholder: true,
+                        loadingText: 'Загрузка...',
+                        itemSelectText: '',
+                        noResultsText: 'Результатов не найдено',
+                        noChoicesText: 'Выбирать больше нечего',
+                        shouldSort: false,
+                        position: 'auto',
+                        allowHTML: true,
+                        removeItemButton: true,
+                        classNames: {
+                            containerOuter: 'choices choices-dvfu',
+                        }
+                    });
+                }else{
+                    choicesItem = new Choices(item, {
+                        placeholderValue: null,
+                        placeholder: true,
+                        removeItemButton: false,
+                        loadingText: 'Загрузка...',
+                        itemSelectText: '',
+                        noResultsText: 'Результатов не найдено',
+                        noChoicesText: 'Выбирать больше нечего',
+                        shouldSort: false,
+                        position: 'auto',
+                        allowHTML: true,
+                    });
+                }
+
+                arNpaChoices.push(choicesItem);
+            }
         });
     }
 });
