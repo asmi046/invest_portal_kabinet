@@ -118,7 +118,19 @@ function get_binary_file_and_signe(url, cert) {
         linkNode.setAttribute('href', URL.createObjectURL(signatureFile));
 	    linkNode.download = signatureFile.name;
         linkNode.innerHTML = "Скачать подпись"
-      }
+
+        const formData = new FormData()
+        formData.append('signature', signatureFile);
+        formData.append('signe_id', signe_id.value);
+
+        const config = { 'content-type': 'multipart/form-data' }
+        axios.post('/load_signed_file', formData, config)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch(error => {});
+        }
+
     };
 
     oReq.send(null);
@@ -156,10 +168,11 @@ document.addEventListener('DOMContentLoaded',  () => {
             alert("Выберите сертификат");
             return;
         }
+        console.log(file_lnk.value)
         console.log(cert_select.value)
         console.log(cert_select.itemMap)
         console.log(cert_select.itemMap.get(cert_select.value).cert)
-        get_binary_file_and_signe(file_lnk.value,cert_select.itemMap.get(cert_select.value).cert)
+        get_binary_file_and_signe(file_lnk.value, cert_select.itemMap.get(cert_select.value).cert)
     })
 
 

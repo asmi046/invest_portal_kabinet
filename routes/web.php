@@ -24,6 +24,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/registration', [IndexController::class, "registration"])->name('registration');
     Route::get('/password-recovery', [IndexController::class, "passwordRecovery"])->name('passwordRecovery');
     Route::get('/test', [IndexController::class, "test"])->name('test');
+
     Route::get('/signe/{file_id}', [IndexController::class, "signe"])->name('signe');
+    Route::post('/load_signed_file', [IndexController::class, "load_signed_file"])->name('load_signed_file');
+
 });
 

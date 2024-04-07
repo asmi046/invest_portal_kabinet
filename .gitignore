@@ -5,6 +5,8 @@
 /public/storage
 /public/tmp_docs/*.docx
 /public/tmp_docs/*.pdf
+/public/signed_docs/*.docx
+/public/signed_docs/*.pdf
 /storage/*.key
 /vendor
 .env

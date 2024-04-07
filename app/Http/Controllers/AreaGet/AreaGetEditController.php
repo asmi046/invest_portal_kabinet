@@ -65,9 +65,10 @@ class AreaGetEditController extends Controller
 
             case 'validate_signe':
                 $s_request = new AreaGetSigneRequest();
+
                 $data = $request->validate($s_request->rules(), $s_request->messages());
 
-                $item = AreaGet::where('id', $id)->first();
+                $item = AreaGet::where('id', $data['item_id'])->first();
 
                 if(!$item) abort('404');
 

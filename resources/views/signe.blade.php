@@ -17,18 +17,16 @@
 
             <div class="columns-box columns-box--two-col">
                 <div class="file_info">
-                    Имя файла: <strong><a href="{{ $file->url }}">{{ $file->name }}</a></strong>
+                    Имя файла: <strong><a href="{{ config('app.url')."/".$file->storage_patch."/".$file->file }}">{{ $file->file_real }}</a></strong>
                     <br>
-                    Тип документа: <strong>{{ $file->document_type }}</strong>
-                    <br>
-                    Документ: <strong>{{ $file->document }}</strong>
-                    <br>
-                    Статус: <strong>{{ $file->state }}</strong>
+                    Тип документа: <strong>{{ $file->inner_document_type }}</strong>
                 </div>
                 <div class="sert_list">
 
                     <form id="cert_form" action="">
-                        <input type="hidden" id="file_lnk" name="file_lnk" value="{{ $file->url }}">
+                        <input type="hidden" id="file_lnk" name="file_lnk" value="{{ config('app.url')."/".$file->storage_patch."/".$file->file }}">
+                        <input type="hidden" id="signe_id" name="signe_id" value="{{ $file->id }}">
+
                         <select size="6" name="cert_id" id="cert_list">
 
                         </select>

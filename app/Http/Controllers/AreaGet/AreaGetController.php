@@ -81,14 +81,16 @@ class AreaGetController extends Controller
         $area_get = AreaGet::where('id', $id)->first();
 
         $options = $area_get->getOriginal();
+        $options['dey'] = date('d');
+        $options['month'] = date('m');
+        $options['year'] = date('Y');
 
-        $fn = $document->create_tmp_document(
+
+        $fn = $document->create_signed_document(
             public_path('documents_template/area_get.docx'),
             $options,
             $id,
             "Заявление на предоставление земельного участка",
-            "Заявление на предоставление участка: ".$area_get->object_name,
-            "to_signe"
         );
 
         return redirect()->route("signe", $fn['file_id']);
