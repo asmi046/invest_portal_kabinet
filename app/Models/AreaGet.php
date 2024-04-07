@@ -22,6 +22,9 @@ class AreaGet extends Model
         "prilogenie_list_count",
     ];
 
+    public $with = [
+        'attachment'
+    ];
 
     /**
      * user
@@ -33,5 +36,9 @@ class AreaGet extends Model
         return $this->hasOne(User::class, "id", "user_id");
     }
 
+    public function attachment() {
+        return $this->hasMany(Attachment::class, 'document_id', 'id')
+        ->where('inner_document_type', 'Заявление на получение земельного участка');
+    }
 
 }

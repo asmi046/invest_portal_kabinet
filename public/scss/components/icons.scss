@@ -271,3 +271,13 @@
     -webkit-mask-image: url(../img/status-icon.svg);
     mask-image: url(../img/status-icon.svg);
 }
+.close-icon{
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center center;
+    mask-position: center center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url(../img/close-icon.svg);
+    mask-image: url(../img/close-icon.svg);
+}

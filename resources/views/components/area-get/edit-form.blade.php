@@ -1,4 +1,4 @@
-<form class="form-project-submission flex-form" method="POST" action="{{ ( isset($action) )?$action:"#"  }}">
+<form enctype='multipart/form-data' class="form-project-submission flex-form" method="POST" action="{{ ( isset($action) )?$action:"#"  }}">
     @csrf
     @if (session('drafr_save'))
         <p class="success">{{ session('drafr_save') }}</p>
@@ -76,7 +76,37 @@
         @enderror
     </label>
 
-    <h3>Приложения</h3>
+
+
+    @if ($format !== "create" )
+        <h3>Приложения</h3>
+
+        @foreach ($item->attachment as $file)
+            <div class="attachment_wrapper">
+                <button class="project-control-btn close-icon" type="submit" title="Удалить вложение" name="att_delete" value="{{ $file->id }}"> </button>
+                <a href="{{ Storage::url($file->storage_patch."/".$file->file)}}"> {{ $file->file_real }}</a>
+            </div>
+        @endforeach
+
+        <div class="file-funnel">
+            <input type="file" name="attachment[]" class="file-funnel__file-input" multiple="multiple">
+            <div class="file-funnel__text">
+                <span class="file-funnel__caption">
+                    Загрузить файлы
+                </span>
+                <span class="file-funnel__direction">
+                    В форматах doc, docx, pdf, jpg, png
+                </span>
+            </div>
+            <div class="file-funnel__receiver">
+                +
+            </div>
+            <div class="file-funnel__docs">
+                <button type="button" class="file-funnel-btn file-funnel-btn--reset">Очистить</button>
+            </div>
+        </div>
+    @endif
+
 
     <label class="form-elem">
         <span class="form-elem__caption">
@@ -98,7 +128,7 @@
             <a
             class="btn"
             onclick="if (!confirm('Черновик будет удален навсегда! Вы уверенны?')) return false;"
-            href="{{ route('technical_connect_delete', $item->id) }}"
+            href="{{ route('area_get_delete', $item->id) }}"
             >Удалить</a>
         @endif
 

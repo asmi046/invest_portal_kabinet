@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function(){
         let ffElem = new FileFunnel(fileFunnel,{
             deskBox: '.file-funnel__text',
             reciever: '.file-funnel__receiver',
-            accept: ['.pdf', '.jpg', '.png', 'doc', 'docx'],
+            accept: ['.pdf', '.jpg', '.png', '.doc', '.docx'],
             docsBox: '.file-funnel__docs'
         });
     }

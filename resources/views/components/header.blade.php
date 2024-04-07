@@ -19,73 +19,7 @@
             <button class="header-icon-btn burger-btn"><span></span></button>
         </a>
     </div>
-    <nav>
-        <menu class="main-menu">
-            <li class="active-parent">
-                <div class="main-menu__parent-panel">
-                    <span>Инвестиционные проекты</span>
-                    <button class="main-menu__arrow"></button>
-                </div>
-                <ul>
-                    <li class="doc-icon active" >
-                        <a href="{{route('projects')}}">Все проекты</a>
-                    </li>
-                    <li class="pencil-icon">
-                        <a href="{{route('project_create')}}">Подать проект</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <div class="main-menu__parent-panel">
-                    <a href="{{route('applicationСatalog')}}">Заявления на государственную поддержку</a>
-                    <button class="main-menu__arrow"></button>
-                </div>
-                <ul>
-                    <li class="doc-icon">
-                        <a href="{{ route('support') }}">Все заявления</a>
-                    </li>
-                    <li class="pencil-icon">
-                        <a href="{{ route('support_select') }}">Подать заявление</a>
-                    </li>
-                    <li class="handshake-icon">
-                        <a target="_blank" href="https://navigator-mp.kursk.ru/">Меры поддержки</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <div class="main-menu__parent-panel">
-                    <span>Заявления на предоставление земельного участка</span>
-                    <button class="main-menu__arrow"></button>
-                </div>
-                <ul>
-                    <li class="doc-icon" >
-                        <a href="{{route('area_get')}}">Все заявления</a>
-                    </li>
-                    <li class="pencil-icon">
-                        <a href="{{route('area_get_create')}}">Подать заявление</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <div class="main-menu__parent-panel">
-                    <span>Заявления на технологическое присоединение</span>
-                    <button class="main-menu__arrow"></button>
-                </div>
-                <ul>
-                    <li class="doc-icon">
-                        <a href="{{ route('technical_connect') }}">Все заявления</a>
-                    </li>
-                    <li class="pencil-icon">
-                        <a href="{{ route('technical_connect_create') }}">Подать заявку на технологическое присоединение</a>
-                    </li>
-                    <li class="list-icon">
-                        <a href="{{ route('technical_connect_algoritm') }}">Алгоритмы действий инвестора по технологическому присоединению</a>
-                    </li>
-                    <li class="bagdoc-icon">
-                        <a href="{{ route('technical_connect_org_list') }}">Список ресурсоснабжающих организаций</a>
-                    </li>
-                </ul>
-            </li>
-        </menu>
-    </nav>
+
+    <x-side-menu.main-menu></x-side-menu.main-menu>
+
 </header>

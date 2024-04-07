@@ -58,6 +58,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/tc.php'));
 
             Route::middleware('web')
+                ->group(base_path('routes/information.php'));
+
+            Route::middleware('web')
                 ->group(base_path('routes/cabinet.php'));
         });
     }

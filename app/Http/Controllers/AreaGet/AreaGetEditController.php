@@ -3,17 +3,28 @@
 namespace App\Http\Controllers\AreaGet;
 
 use App\Models\AreaGet;
+use App\Models\Attachment;
 use Illuminate\Http\Request;
 use App\Services\CreateDocServices;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Services\AttachmentCreateServices;
 use App\Http\Requests\AreaGet\AreaGetDraftRequest;
 use App\Http\Requests\AreaGet\AreaGetSigneRequest;
 
 class AreaGetEditController extends Controller
 {
     public function save(Request $request) {
+        $att_delete = $request->input('att_delete');
+        if ($att_delete)
+        {
+            $at = Attachment::where('id', $att_delete)->first();
+            $at->delete();
+            return redirect()->back()->with('drafr_save', "Вложение удалено");
+        }
+
         switch ($request->input('action')) {
+
             case 'create_draft':
                 $d_request = new AreaGetDraftRequest();
                 $data = $request->validate($d_request->rules(), $d_request->messages());
@@ -40,6 +51,15 @@ class AreaGetEditController extends Controller
 
                 $item->update($data);
 
+                $attachment = new AttachmentCreateServices();
+
+                $files = $attachment->create_attachment(
+                    $request->file('attachment'),
+                    "Заявление на получение земельного участка",
+                    $item->id
+                );
+
+
                 return redirect()->back()->with('drafr_save', "Черновик сохранен");
             break;
 
@@ -60,7 +80,9 @@ class AreaGetEditController extends Controller
     }
 
     public function delete($id) {
+
         $item = AreaGet::where('id', $id)->first();
+        $item->attachment()->delete();
         $item->delete();
 
         return redirect()->route('area_get')->with('deleted', "Запись была успешно удалена");
