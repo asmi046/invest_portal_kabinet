@@ -59,6 +59,9 @@ class TechnicalConnectController extends Controller
         $tc = TechnicalConnects::where('id', $id)->first();
 
         $options = $tc->getOriginal();
+        $options['dey'] = date('d');
+        $options['month'] = get_month(date('m'));
+        $options['year'] = date('Y');
 
         $fn = $document->create_tmp_document(
             public_path('documents_template/tc_150.docx'),
@@ -76,6 +79,9 @@ class TechnicalConnectController extends Controller
         $tc = TechnicalConnects::where('id', $id)->first();
 
         $options = $tc->getOriginal();
+        $options['dey'] = date('d');
+        $options['month'] = get_month(date('m'));
+        $options['year'] = date('Y');
 
         $fn = $document->create_tmp_document(
             public_path('documents_template/tc_150.docx'),
