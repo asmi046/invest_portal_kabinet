@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string("dolgnost")->nullable()->comment("Должность заявителя");
             $table->string("phone")->nullable()->comment("Телефон заявителя");
             $table->string("organization")->nullable()->comment('Наименование организации');
+            $table->string("zayavitel_adress")->nullable()->comment('Адрес организации');
 
             $table->string("object_name")->comment("Наименование объекта");
             $table->string("object_type")->default('Масштабный инвестиционный проект')->comment("Тип объекта");

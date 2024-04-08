@@ -24,8 +24,9 @@ class AreaGetSigneRequest extends FormRequest
         return [
             'name.required' => 'Поле "ФИО" должно быть заполнено',
             'dolgnost.required' => 'Поле "Должность" должно быть заполнено',
-            "phone" => 'Поле "Телефон" должно быть заполнено',
-            "organization" => 'Поле "Организация" должно быть заполнено',
+            "phone.required" => 'Поле "Телефон" должно быть заполнено',
+            "organization.required" => 'Поле "Организация" должно быть заполнено',
+            "zayavitel_adress.required" => 'Поле "Адрес заявителя" должно быть заполнено',
             'object_name.required' => 'Поле "Наименование объекта" должно быть заполнено',
             'object_type.required' => 'Поле "Тип объекта" должно быть заполнено',
         ];
@@ -43,6 +44,7 @@ class AreaGetSigneRequest extends FormRequest
             "dolgnost" => ['required', 'string'],
             "phone" => ['required', 'string'],
             "organization" => ['required', 'string'],
+            "zayavitel_adress" => ['required', 'string'],
             "object_name" => ['required', 'string'],
             "object_type" => ['required', 'string'],
             "prilogenie_list_count" => [],

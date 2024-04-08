@@ -12,6 +12,7 @@
     <section class="my-project-section">
         <div class="inner">
             <x-breadcrumbs title="Мои инвестиционные проекты"></x-breadcrumbs>
+            <h1>Инвестиционные проекты</h1>
             <div class="columns-box columns-box--two-col project-panel">
                 <x-widget-green-stat
                     lnk="{{ route('project_create') }}"

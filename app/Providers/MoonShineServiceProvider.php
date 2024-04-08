@@ -11,8 +11,10 @@ use App\MoonShine\Resources\AreaGetResource;
 use App\MoonShine\Resources\ProjectResource;
 use App\MoonShine\Resources\AlgorithmResource;
 use MoonShine\Resources\MoonShineUserResource;
+use App\MoonShine\Resources\AttachmentResource;
 use MoonShine\Resources\MoonShineUserRoleResource;
 use App\MoonShine\Resources\InvestDocumentResource;
+use App\MoonShine\Resources\SignedDocumentResource;
 use App\MoonShine\Resources\OrganizationContactResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 
@@ -20,7 +22,10 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
 {
     protected function resources(): array
     {
-        return [];
+        return [
+            new SignedDocumentResource(),
+            new AttachmentResource(),
+        ];
     }
 
     protected function pages(): array

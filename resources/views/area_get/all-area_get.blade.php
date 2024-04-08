@@ -12,6 +12,7 @@
     <section class="my-project-section">
         <div class="inner">
             <x-breadcrumbs title="Мои заявления на предоставление земельного участка"></x-breadcrumbs>
+            <h1>Заявления на предоставление земельного участка</h1>
             <div class="columns-box columns-box--two-col project-panel">
                 <x-widget-green-stat
                     lnk="{{ route('area_get_create') }}"
@@ -65,8 +66,12 @@
                                         <td>{{ $item->state }}</td>
                                         <td>
                                             <a href="{{route('area_get_print', $item->id)}}">Печатная форма</a>
-                                            <a href="{{route('area_get_signe', $item->id)}}">Подписать</a>
-                                            <a href="{{route('area_get_edit', $item->id)}}">Редактировать</a>
+                                            @if (!in_array($item->state, config('documents')['area_get']['statuses_noedit']))
+                                                <a href="{{route('area_get_signe', $item->id)}}">Подписать</a>
+                                                <a href="{{route('area_get_edit', $item->id)}}">Редактировать</a>
+                                            @else
+                                                <a href="{{route('area_get_edit', $item->id)}}">Посмотреть</a>
+                                            @endif
                                             <a href="{{route('area_get_status', $item->id)}}">Статус</a>
                                         </td>
                                     </tr>

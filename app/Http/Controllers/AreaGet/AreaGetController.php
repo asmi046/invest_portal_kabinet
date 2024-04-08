@@ -14,13 +14,10 @@ class AreaGetController extends Controller
 
         $all = AreaGet::where("user_id", Auth::user()["id"] )->paginate(15);
         $to_stat = AreaGet::where("user_id", Auth::user()["id"] )->get();
-        $state = [
-            "Всего" => $to_stat->count(),
-            "Черновик" => 0,
-            "Отправлен" => 0,
-            "В обработке" => 0,
-            "Предоставлен ответ" => 0
-        ];
+
+        $state = config('documents')['area_get']['statuses_counter'];
+        $state["Всего"] = $to_stat->count();
+
         foreach ($to_stat as $item) {
             $state[$item->state] += 1;
         }
@@ -33,12 +30,7 @@ class AreaGetController extends Controller
 
         if($project == null) abort('404');
 
-        $statuses = [
-            "Черновик",
-            "Отправлен",
-            "В обработке",
-            "Предоставлен ответ"
-        ];
+        $statuses = config('documents')['area_get']['statuses'];
 
         return view('area_get.statement-area_get', ['project' => $project, "statuses"=>$statuses, "time" => 10]);
     }
@@ -69,7 +61,7 @@ class AreaGetController extends Controller
             public_path('documents_template/area_get.docx'),
             $options,
             $id,
-            "Заявление на предоставление земельного участка",
+            'area_get',
             "Заявление на предоставление участка: ".$area_get->object_name
         );
 
@@ -90,7 +82,7 @@ class AreaGetController extends Controller
             public_path('documents_template/area_get.docx'),
             $options,
             $id,
-            "Заявление на предоставление земельного участка",
+            'area_get',
         );
 
         return redirect()->route("signe", $fn['file_id']);

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('file', 1500)->comment('Файл');
             $table->string('storage_patch')->comment('Директория в хранилище');
             $table->string('signature', 1500)->nullable()->comment('Файл подписи');
-            $table->integer('file_hash')->comment('Уникализирующий хеш');
             $table->string('inner_document_type')->comment('Тип документа для которого вложение');
             $table->integer("document_id")->comment('ID документа к которому вложение');
         });

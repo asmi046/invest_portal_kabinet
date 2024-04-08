@@ -13,7 +13,7 @@
 
         <li @class(['active-parent' => stripos(Route::currentRouteName(), "support") !== false])>
             <div class="main-menu__parent-panel">
-                <a href="{{route('applicationСatalog')}}">Заявления на государственную поддержку</a>
+                <span>Заявления на государственную поддержку</span>
                 <button class="main-menu__arrow"></button>
             </div>
             <ul>
@@ -29,7 +29,7 @@
                 <button class="main-menu__arrow"></button>
             </div>
             <ul>
-                <x-side-menu.li-item :find="['area_get', 'area_get_edit']" icon="doc-icon" :route="route('area_get')" title="Все заявления"></x-side-menu.li-item>
+                <x-side-menu.li-item :find="['area_get', 'area_get_edit', 'area_get_status']" icon="doc-icon" :route="route('area_get')" title="Все заявления"></x-side-menu.li-item>
                 <x-side-menu.li-item :find="['area_get_create']" icon="pencil-icon" :route="route('area_get_create')" title="Подать заявление"></x-side-menu.li-item-one>
             </ul>
         </li>

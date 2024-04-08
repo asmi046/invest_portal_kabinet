@@ -19,13 +19,14 @@
                 <div class="file_info">
                     Имя файла: <strong><a href="{{ config('app.url')."/".$file->storage_patch."/".$file->file }}">{{ $file->file_real }}</a></strong>
                     <br>
-                    Тип документа: <strong>{{ $file->inner_document_type }}</strong>
+                    Тип документа: <strong>{{ config('documents')[$file->inner_document_type]['name']  }}</strong>
                 </div>
                 <div class="sert_list">
 
                     <form id="cert_form" action="">
                         <input type="hidden" id="file_lnk" name="file_lnk" value="{{ config('app.url')."/".$file->storage_patch."/".$file->file }}">
                         <input type="hidden" id="signe_id" name="signe_id" value="{{ $file->id }}">
+                        <input type="hidden" id="return_lnk" name="return_lnk" value="{{ route(config('documents')[$file->inner_document_type]['edit_route'], $file->document_id) }}">
 
                         <select size="6" name="cert_id" id="cert_list">
 

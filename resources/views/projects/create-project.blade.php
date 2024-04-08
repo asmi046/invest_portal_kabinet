@@ -9,7 +9,18 @@
 @section('description', $description)
 
 @section('body')
-    <h1>{{ $title }}</h1>
+    <section class="my-project-section">
+        <div class="inner">
+            <x-breadcrumbs
+                title="Инвестиционный проект"
+                sub="{{ route('projects') }}"
+                subtitle="Мои проекты"
+            ></x-breadcrumbs>
+            <h1>{{ $title }}</h1>
+
+            <p>Страница в разработке</p>
+        </div>
+    </section>
 
 
 @endsection

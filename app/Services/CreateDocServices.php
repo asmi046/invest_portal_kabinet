@@ -15,6 +15,8 @@ use PhpOffice\PhpWord\TemplateProcessor;
 
 class CreateDocServices {
 
+
+
     public function create_tmp_document(string $template_patch, array $options, int $model_id, string $document_type, string $document, $state = "temp", $directory = "tmp_docs") {
         try{
 
@@ -54,6 +56,8 @@ class CreateDocServices {
                 ]
             );
 
+
+
             return [
                 'url' => $file_pdf,
                 'file_id' => $document->id,
@@ -76,8 +80,7 @@ class CreateDocServices {
                 $template->setValue($key, $value);
             }
 
-            $file_hash = rand(1000, 9999);
-            $filename =  Str::slug($file_hash."_".$model_id."_".$document_type);
+            $filename =  Str::slug($model_id."_".$document_type);
             $filepatch =  public_path($directory);
             $file_pdf = $filepatch.'/'.$filename.".pdf";
             $file_docx = $filepatch.'/'.$filename.".docx";
@@ -94,15 +97,18 @@ class CreateDocServices {
 
             unlink($file_docx);
 
-            $document = SignedDocument::create(
+            $document = SignedDocument::firstOrCreate(
+                [
+                    'inner_document_type' => $document_type,
+                    'document_id' => $model_id
+                ],
                 [
                     'file_real' => $filename.".pdf",
                     'file' => $filename.".pdf",
                     'storage_patch' => $directory,
-                    'file_hash' => $file_hash,
                     'inner_document_type' => $document_type,
                     'document_id' => $model_id
-                ]
+                ],
             );
 
             return [

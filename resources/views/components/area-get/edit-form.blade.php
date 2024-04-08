@@ -1,4 +1,9 @@
-<form enctype='multipart/form-data' class="form-project-submission flex-form" method="POST" action="{{ ( isset($action) )?$action:"#"  }}">
+<form enctype='multipart/form-data'
+    @class(['form-project-submission', 'flex-form', 'form_disabled' => isset($item->state) && in_array($item->state,
+    config('documents')["area_get"]['statuses_noedit'])])
+    method="POST"
+    action="{{ ( isset($action) )?$action:"#"  }}">
+
     @csrf
     @if (session('drafr_save'))
         <p class="success">{{ session('drafr_save') }}</p>
@@ -47,6 +52,16 @@
             @enderror
         </label>
     </div>
+
+    <label class="form-elem">
+        <span class="form-elem__caption">
+            Адрес заявителя<span class="required">*</span>
+        </span>
+        <input type="text" name="phone" class="form-elem__field"  value="{{ $item->zayavitel_adress ?? '' }}">
+        @error('zayavitel_adress')
+            <span class="form-elem__error-message">{{ $message }}</span>
+        @enderror
+    </label>
 
     <h3>Информациф об объекте</h3>
 
@@ -119,19 +134,25 @@
     </label>
 
 
-    <div class="form-control-panel">
-        @if ($format == "create")
-            <button type="submit" class="btn" title="Сохранить черновик" name="action" value="create_draft"> <span class="save-icon"></span>Сохранить черновик</button>
-        @else
-            <button type="submit" class="btn" title="Сохранить черновик" name="action" value="save_draft"> <span class="save-icon"></span>Сохранить черновик</button>
-            <button type="submit" class="btn" title="Проверить и подписать" name="action" value="validate_signe"> <span class="save-icon"></span>Проверить и подписать</button>
-            <a
-            class="btn"
-            onclick="if (!confirm('Черновик будет удален навсегда! Вы уверенны?')) return false;"
-            href="{{ route('area_get_delete', $item->id) }}"
-            >Удалить</a>
-        @endif
 
-    </div>
+        <div class="form-control-panel">
+            @if ($format == "create")
+                <button type="submit" class="btn" title="Сохранить черновик" name="action" value="create_draft"> <span class="save-icon"></span>Сохранить черновик</button>
+            @else
+                @if (!in_array($item->state, config('documents')["area_get"]['statuses_noedit']))
+                    <button type="submit" class="btn" title="Сохранить черновик" name="action" value="save_draft"> <span class="save-icon"></span>Сохранить черновик</button>
+                    <button type="submit" class="btn" title="Проверить и подписать" name="action" value="validate_signe"> <span class="save-icon"></span>Проверить и подписать</button>
+                    <a href="{{route('area_get_print', $item->id)}}" class="btn" title="Сохранить черновик"> <span class="save-icon"></span>Печатная форма</a>
+                    <a
+                    class="btn"
+                    onclick="if (!confirm('Черновик будет удален навсегда! Вы уверенны?')) return false;"
+                    href="{{ route('area_get_delete', $item->id) }}"
+                    >Удалить</a>
+                @else
+                    <a href="{{route('area_get_print', $item->id)}}" class="btn" title="Сохранить черновик"> <span class="save-icon"></span>Печатная форма</a>
+                @endif
+            @endif
+
+        </div>
 
 </form>

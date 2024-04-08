@@ -6,7 +6,7 @@ use App\Models\Project;
 use App\Models\Support;
 use Illuminate\Http\Request;
 use App\Models\InvestDocument;
-use App\Models\SignedDocument;
+
 use App\Models\UploadDocument;
 use App\Models\TechnicalConnects;
 use App\Services\CreateDocServices;
@@ -32,26 +32,5 @@ class IndexController extends Controller
             'last_support' => $last_support
         ]);
     }
-
-    public function signe($file_id) {
-        $file = SignedDocument::where('id', $file_id)->first();
-        if (!$file) abort(404);
-
-        return view("signe", ['file' => $file]);
-    }
-
-    public function load_signed_file(Request $request) {
-        $signe_id = $request->input('signe_id');
-        $signe = SignedDocument::where('id', $signe_id)->first();
-
-        $sig_file = $signe->storage_patch."/".$signe->file.".sig";
-
-        file_put_contents(public_path($sig_file), file_get_contents($request->file('signature')));
-        $signe->fill(['signature' => $sig_file]);
-        $signe->save();
-
-        return $sig_file;
-    }
-
 
 }

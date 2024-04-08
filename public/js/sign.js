@@ -115,9 +115,9 @@ function get_binary_file_and_signe(url, cert) {
             { type: 'application/pkcs7-signature', }
         );
 
-        linkNode.setAttribute('href', URL.createObjectURL(signatureFile));
-	    linkNode.download = signatureFile.name;
-        linkNode.innerHTML = "Скачать подпись"
+        // linkNode.setAttribute('href', URL.createObjectURL(signatureFile));
+	    // linkNode.download = signatureFile.name;
+        // linkNode.innerHTML = "Скачать подпись"
 
         const formData = new FormData()
         formData.append('signature', signatureFile);
@@ -126,9 +126,11 @@ function get_binary_file_and_signe(url, cert) {
         const config = { 'content-type': 'multipart/form-data' }
         axios.post('/load_signed_file', formData, config)
             .then((response) => {
-                console.log(response.data);
+                document.location.href = return_lnk.value
             })
-            .catch(error => {});
+            .catch(error => {
+                console.log(error)
+            });
         }
 
     };

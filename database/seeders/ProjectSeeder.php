@@ -21,7 +21,7 @@ class ProjectSeeder extends Seeder
             "Предоставлен ответ"
         ];
 
-        for ($i=0; $i<300; $i++){
+        for ($i=0; $i<0; $i++){
             DB::table("projects")->insertGetId(
                 [
                     'user_id' => rand(1,3),

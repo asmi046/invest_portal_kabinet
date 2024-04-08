@@ -30,7 +30,7 @@ class SupportSeeder extends Seeder
             "Субсидии инвесторам"
         ];
 
-        for ($i=0; $i<300; $i++){
+        for ($i=0; $i<0; $i++){
             DB::table("supports")->insertGetId(
                 [
                     'user_id' => rand(1,3),

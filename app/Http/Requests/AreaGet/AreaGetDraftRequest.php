@@ -40,6 +40,7 @@ class AreaGetDraftRequest extends FormRequest
             "dolgnost" => [],
             "phone" => [],
             "organization" => [],
+            "zayavitel_adress" => [],
             "object_name" => ['required', 'string'],
             "object_type" => ['required', 'string'],
             "prilogenie_list_count" => [],

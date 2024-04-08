@@ -32,8 +32,6 @@ class AreaGetEditController extends Controller
                 $data["user_id"] = auth()->user()->id;
                 $data["state"] = "Черновик";
 
-                // dd($data);
-
                 $tc = AreaGet::create($data);
 
                 return redirect()->route('area_get_edit', $tc->id);
@@ -55,10 +53,9 @@ class AreaGetEditController extends Controller
 
                 $files = $attachment->create_attachment(
                     $request->file('attachment'),
-                    "Заявление на получение земельного участка",
+                    'area_get',
                     $item->id
                 );
-
 
                 return redirect()->back()->with('drafr_save', "Черновик сохранен");
             break;

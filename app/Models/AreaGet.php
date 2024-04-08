@@ -16,6 +16,7 @@ class AreaGet extends Model
         "name",
         "dolgnost",
         "phone",
+        "zayavitel_adress",
         "organization",
         "object_name",
         "object_type",
@@ -23,7 +24,8 @@ class AreaGet extends Model
     ];
 
     public $with = [
-        'attachment'
+        'attachment',
+        'signature'
     ];
 
     /**
@@ -38,7 +40,12 @@ class AreaGet extends Model
 
     public function attachment() {
         return $this->hasMany(Attachment::class, 'document_id', 'id')
-        ->where('inner_document_type', 'Заявление на получение земельного участка');
+        ->where('inner_document_type', 'area_get');
+    }
+
+    public function signature() {
+        return $this->hasOne(SignedDocument::class, 'document_id', 'id')
+        ->where('inner_document_type', 'area_get');
     }
 
 }

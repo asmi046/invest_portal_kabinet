@@ -21,6 +21,11 @@ class ProjectResource extends ModelResource
 
     protected string $title = 'Инвестиционные проекты';
 
+    protected array $with = [
+        'attachment',
+        'signature'
+    ];
+
     public function pages(): array
     {
         return [

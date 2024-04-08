@@ -9,17 +9,14 @@
 @section('description', $description)
 
 @section('body')
-    <div class="inner">
-        <ul class="breadcrumbs">
-            <li>
-                <a href="#">Главная</a>
-                <i>/</i>
-            </li>
-            <li>
-                <span>Подать заявление на государственную поддержку</span>
-            </li>
-        </ul>
+        <div class="inner">
+            <x-breadcrumbs
+            title="Инвестиционный проект"
+            sub="{{ route('projects') }}"
+            subtitle="Мои проекты"
+        ></x-breadcrumbs>
         <h1>{{ $title }}</h1>
+
         <div class="columns-box columns-box--two-col">
 
         </div>

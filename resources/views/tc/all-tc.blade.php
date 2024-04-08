@@ -1,8 +1,8 @@
 @extends('layouts.all')
 
 @php
-    $title = "Мои инвестиционные проекты";
-    $description = "Мои инвестиционные проекты дашборд";
+    $title = "Мои заявления технологическое присоединение";
+    $description = "Заявления технологическое присоединение";
 @endphp
 
 @section('title', $title)
@@ -15,13 +15,14 @@
                 <p class="success">{{ session('deleted') }}</p>
             @endif
             <x-breadcrumbs title="Мои заявления на техническое присоединение"></x-breadcrumbs>
+            <h1>Заявления технологическое присоединение</h1>
             <div class="columns-box columns-box--two-col project-panel">
                 <x-widget-green-stat
                     lnk="{{ route('technical_connect_create') }}"
-                    lnktxt="Создать проект"
-                    status="Проекты"
+                    lnktxt="Создать заявление"
+                    status="Заявления"
                     :value="$state['Всего']"
-                    title="Всего проектов"
+                    title="Всего заявлений"
                     icon="briefcase-icon"
                 ></x-widget-green-stat>
 
@@ -29,19 +30,19 @@
                 <div class="columns-box__right-col">
                     <x-widget-stat
                     :value="$state['Черновик']"
-                    title="проектов в статусе черновик"
+                    title="заявлений в статусе черновик"
                     icon="two-docs-icon"
                     ></x-widget-stat>
 
                     <x-widget-stat
                     :value="$state['В обработке']"
-                    title="проекта в обрабботке"
+                    title="заявлений в обрабботке"
                     icon="analytics-icon"
                     ></x-widget-stat>
 
                     <x-widget-stat
                     :value="$state['Предоставлен ответ']"
-                    title="проекта с полученным ответом"
+                    title="заявлений с полученным ответом"
                     icon="doccheck-icon"
                     ></x-widget-stat>
                 </div>
@@ -53,7 +54,7 @@
                             <thead>
                                 <tr>
                                     <th>№</th>
-                                    <th>Название проекта</th>
+                                    <th>Заявитель</th>
                                     <th>Требуемая мощьность (кВт)</th>
                                     <th>Поставщик</th>
                                     <th>Статус</th>
@@ -83,7 +84,7 @@
                     </div>
                 @else
                     <h2>У вас еще нет заявлений</h2>
-                    <a href="{{ route('project_create') }}" class="button">Создать заявление</a>
+                    <a href="{{ route('technical_connect_create') }}" class="button">Создать заявление</a>
                 @endif
 
 

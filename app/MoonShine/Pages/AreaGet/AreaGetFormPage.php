@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\AreaGet;
 
+use MoonShine\Fields\Url;
 use MoonShine\Fields\Date;
+use MoonShine\Fields\File;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Phone;
 use MoonShine\Fields\Select;
@@ -14,6 +16,10 @@ use MoonShine\Decorations\Block;
 use MoonShine\Decorations\Column;
 use MoonShine\Pages\Crud\FormPage;
 use MoonShine\Decorations\LineBreak;
+use MoonShine\Fields\Relationships\HasOne;
+use MoonShine\Fields\Relationships\HasMany;
+use App\MoonShine\Resources\AttachmentResource;
+use App\MoonShine\Resources\SignedDocumentResource;
 
 class AreaGetFormPage extends FormPage
 {
@@ -56,13 +62,19 @@ class AreaGetFormPage extends FormPage
                         ->options([
                             "Черновик" => "Черновик",
                             "Отправлен" => "Отправлен",
+                            "Подписан и отправлен" => "Подписан и отправлен",
                             "В обработке" => "В обработке",
                             "Предоставлен ответ" => "Предоставлен ответ"
                         ])
                     ])
                 ])->columnSpan(6)
-            ])
+            ]),
 
+            LineBreak::make(),
+
+
+            HasMany::make("Вложения", "attachment", resource: new AttachmentResource()),
+            HasOne::make("Подпись", "signature", resource: new SignedDocumentResource())
 
 
 
