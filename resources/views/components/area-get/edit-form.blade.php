@@ -57,7 +57,7 @@
         <span class="form-elem__caption">
             Адрес заявителя<span class="required">*</span>
         </span>
-        <input type="text" name="phone" class="form-elem__field"  value="{{ $item->zayavitel_adress ?? '' }}">
+        <input type="text" name="zayavitel_adress" class="form-elem__field"  value="{{ $item->zayavitel_adress ?? '' }}">
         @error('zayavitel_adress')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror

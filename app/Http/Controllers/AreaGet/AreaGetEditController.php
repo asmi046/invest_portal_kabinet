@@ -51,11 +51,12 @@ class AreaGetEditController extends Controller
 
                 $attachment = new AttachmentCreateServices();
 
-                $files = $attachment->create_attachment(
-                    $request->file('attachment'),
-                    'area_get',
-                    $item->id
-                );
+                if ($request->hasFile('attachment'))
+                    $files = $attachment->create_attachment(
+                        $request->file('attachment'),
+                        'area_get',
+                        $item->id
+                    );
 
                 return redirect()->back()->with('drafr_save', "Черновик сохранен");
             break;
