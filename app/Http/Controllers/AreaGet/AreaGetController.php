@@ -54,7 +54,7 @@ class AreaGetController extends Controller
         $options = $area_get->getOriginal();
 
         $options['dey'] = date('d');
-        $options['month'] = date('m');
+        $options['month'] = get_month(date('m'));
         $options['year'] = date('Y');
 
         $fn = $document->create_tmp_document(
@@ -74,7 +74,7 @@ class AreaGetController extends Controller
 
         $options = $area_get->getOriginal();
         $options['dey'] = date('d');
-        $options['month'] = date('m');
+        $options['month'] = get_month(date('m'));
         $options['year'] = date('Y');
 
 

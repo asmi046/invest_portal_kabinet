@@ -16,6 +16,6 @@ class AlgorithmController extends Controller
         }
 
         // dd($struct_algoritms);
-        return view('tc.algoritm-tc', ["algorithms" => $struct_algoritms]);
+        return view('information.algoritm-info', ["algorithms" => $struct_algoritms]);
     }
 }

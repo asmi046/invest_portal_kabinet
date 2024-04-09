@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string("organization")->nullable()->comment('Наименование организации');
             $table->string("egrul")->nullable()->comment("ЕГРИП/ЕГРЮЛ заявителя");
             $table->string("adress")->nullable()->comment("Адрес заявителя");
+            $table->string("okved")->nullable()->comment("Вид экономической деятельности заявителя");
 
             $table->string("pasport_seria")->nullable()->comment("Серия паспорта");
             $table->string("pasport_number")->nullable()->comment("Номер паспорта");

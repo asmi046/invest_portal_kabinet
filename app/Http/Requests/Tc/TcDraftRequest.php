@@ -42,6 +42,7 @@ class TcDraftRequest extends FormRequest
             "organization" => [],
             "egrul" => [],
             "adress" => [],
+            "okved" => [],
 
             "pasport_seria" => [],
             "pasport_number" => [],

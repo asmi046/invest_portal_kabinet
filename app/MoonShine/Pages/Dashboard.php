@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages;
 
+use App\Models\AreaGet;
 use App\Models\Project;
 use App\Models\Support;
 use MoonShine\Pages\Page;
@@ -39,18 +40,22 @@ class Dashboard extends Page
                     ->values([
                         'Инвестиционные проекты' => Project::count(),
                         'Заявления на господдержку' => Support::count(),
+                        'Заявления на предоставление земельного участка' => AreaGet::count(),
                         'Заявления на технологическое присоединение' => TechnicalConnects::count()
                     ])->columnSpan(12),
 
                 ValueMetric::make("Инвестиционные проекты")
                     ->value(Project::count())
-                    ->columnSpan(4),
+                    ->columnSpan(3),
                 ValueMetric::make("Заявления на господдержку")
                     ->value(Support::count())
-                    ->columnSpan(4),
+                    ->columnSpan(3),
+                ValueMetric::make("Заявления на предоставление земельного участка")
+                    ->value(AreaGet::count())
+                    ->columnSpan(3),
                 ValueMetric::make("Заявления на технологическое присоединение")
                     ->value(TechnicalConnects::count())
-                    ->columnSpan(4),
+                    ->columnSpan(3),
             ]),
         ];
 	}

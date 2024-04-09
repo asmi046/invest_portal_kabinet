@@ -18,6 +18,7 @@ class TechnicalConnects extends Model
         "organization",
         "egrul",
         "adress",
+        "okved",
 
         "pasport_seria",
         "pasport_number",
@@ -37,4 +38,30 @@ class TechnicalConnects extends Model
         "gen_postavhik",
         "prilogenie",
     ];
+
+
+    public $with = [
+        'attachment',
+        'signature'
+    ];
+
+    /**
+     * user
+     *
+     * @return void
+     */
+    public function user()
+    {
+        return $this->hasOne(User::class, "id", "user_id");
+    }
+
+    public function attachment() {
+        return $this->hasMany(Attachment::class, 'document_id', 'id')
+        ->where('inner_document_type', 'area_get');
+    }
+
+    public function signature() {
+        return $this->hasOne(SignedDocument::class, 'document_id', 'id')
+        ->where('inner_document_type', 'area_get');
+    }
 }

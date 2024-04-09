@@ -11,6 +11,14 @@ use App\Http\Requests\Tc\TcSigneRequest;
 class TechnicalConnectEditController extends Controller
 {
     public function save(Request $request) {
+        $att_delete = $request->input('att_delete');
+        if ($att_delete)
+        {
+            $at = Attachment::where('id', $att_delete)->first();
+            $at->delete();
+            return redirect()->back()->with('drafr_save', "Вложение удалено");
+        }
+
         switch ($request->input('action')) {
             case 'create_draft':
                 $d_request = new TcDraftRequest();
@@ -53,7 +61,6 @@ class TechnicalConnectEditController extends Controller
             break;
 
         }
-
 
     }
 

@@ -17,6 +17,21 @@ class UserSeeder extends Seeder
     public function run(): void
     {
 
+
+        DB::table("moonshine_user_roles")->insert(
+            [
+                [
+                    'name' => "Просмотр показателей",
+                ],
+                [
+                    'name' => "Ресурсные организации",
+                ],
+            ]
+
+        );
+
+        //-----------------------------------------------
+
         $userID = DB::table("users")->insertGetId(
             [
                     'name' => "Супер",
@@ -76,6 +91,39 @@ class UserSeeder extends Seeder
                     'email' => "asmi046@gmail.com",
                     'password' => Hash::make("123"),
                     'moonshine_user_role_id' => 1,
+                    'created_at' => date("Y-m-d H:i:s"),
+                    'updated_at' => date("Y-m-d H:i:s")
+            ]
+        );
+
+        $userID = DB::table("moonshine_users")->insertGetId(
+            [
+                    'name' => "Мин. Экономики",
+                    'email' => "econ@mail.ru",
+                    'password' => Hash::make("123"),
+                    'moonshine_user_role_id' => 2,
+                    'created_at' => date("Y-m-d H:i:s"),
+                    'updated_at' => date("Y-m-d H:i:s")
+            ]
+        );
+
+        $userID = DB::table("moonshine_users")->insertGetId(
+            [
+                    'name' => "Корп. Развитие",
+                    'email' => "progres@mail.ru",
+                    'password' => Hash::make("123"),
+                    'moonshine_user_role_id' => 2,
+                    'created_at' => date("Y-m-d H:i:s"),
+                    'updated_at' => date("Y-m-d H:i:s")
+            ]
+        );
+
+        $userID = DB::table("moonshine_users")->insertGetId(
+            [
+                    'name' => "Ресурсные организации",
+                    'email' => "resurs@mail.ru",
+                    'password' => Hash::make("123"),
+                    'moonshine_user_role_id' => 3,
                     'created_at' => date("Y-m-d H:i:s"),
                     'updated_at' => date("Y-m-d H:i:s")
             ]

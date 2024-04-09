@@ -10,11 +10,12 @@ use MoonShine\Menu\MenuGroup;
 use App\MoonShine\Resources\AreaGetResource;
 use App\MoonShine\Resources\ProjectResource;
 use App\MoonShine\Resources\AlgorithmResource;
-use MoonShine\Resources\MoonShineUserResource;
 use App\MoonShine\Resources\AttachmentResource;
-use MoonShine\Resources\MoonShineUserRoleResource;
+use App\MoonShine\Resources\MoonShineUserResource;
 use App\MoonShine\Resources\InvestDocumentResource;
 use App\MoonShine\Resources\SignedDocumentResource;
+use App\MoonShine\Resources\MoonShineUserRoleResource;
+use App\MoonShine\Resources\TechnicalConnectsResource;
 use App\MoonShine\Resources\OrganizationContactResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 
@@ -45,14 +46,27 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                    static fn() => __('moonshine::ui.resource.role_title'),
                    new MoonShineUserRoleResource()
                ),
-            ]),
+            ])
+            ->icon('heroicons.outline.users')
+            ->canSee(fn() => auth()->user()->moonshineUserRole->name === "Admin"),
 
-            MenuGroup::make(static fn() => __('Заявления на предоставление земельного участка'), [
+            MenuGroup::make(static fn() => __('Заявление на земельного участка'), [
                 MenuItem::make(
                     "Все заявления",
                     new AreaGetResource()
                 )->icon('heroicons.outline.clipboard-document-list'),
-            ]),
+            ])
+            ->icon('heroicons.outline.globe-europe-africa')
+            ->canSee(fn() => in_array(auth()->user()->moonshineUserRole->name, ["Admin", "Просмотр показателей"])),
+
+            MenuGroup::make(static fn() => __('Техническое присоединение'), [
+                MenuItem::make(
+                    "Все заявления",
+                    new TechnicalConnectsResource()
+                )->icon('heroicons.outline.clipboard-document-list'),
+            ])
+            ->icon('heroicons.outline.power')
+            ->canSee(fn() => in_array(auth()->user()->moonshineUserRole->name, ["Admin", "Ресурсные организации"])),
 
             MenuGroup::make(static fn() => __('Дополнительно'), [
                 MenuItem::make(
@@ -69,13 +83,15 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                     "Нормативная база",
                     new InvestDocumentResource()
                 )->icon('heroicons.outline.building-library'),
-            ]),
+            ])
+            ->icon('heroicons.outline.cog-6-tooth')
+            ->canSee(fn() => in_array(auth()->user()->moonshineUserRole->name, ["Admin", "Просмотр показателей"])),
 
 
-            MenuItem::make(
-                "Проекты",
-                new ProjectResource()
-            ),
+            // MenuItem::make(
+            //     "Проекты",
+            //     new ProjectResource()
+            // ),
 
         ];
     }

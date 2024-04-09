@@ -9,6 +9,6 @@ class OrganizationContactController extends Controller
 {
     public function index() {
         $organization = OrganizationContact::all();
-        return view('tc.org_list-tc', ['organization' => $organization]);
+        return view('information.org_list-info', ['organization' => $organization]);
     }
 }

@@ -14,12 +14,10 @@ class TechnicalConnectController extends Controller
     public function index() {
         $all = TechnicalConnects::where("user_id", Auth::user()["id"] )->paginate(15);
         $to_stat = TechnicalConnects::where("user_id", Auth::user()["id"] )->get();
-        $state = [
-            "Всего" => $to_stat->count(),
-            "Черновик" => 0,
-            "В обработке" => 0,
-            "Предоставлен ответ" => 0
-        ];
+
+        $state = config('documents')['tc']['statuses_counter'];
+        $state["Всего"] = $to_stat->count();
+
         foreach ($to_stat as $item) {
             $state[$item->state] += 1;
         }
@@ -32,12 +30,7 @@ class TechnicalConnectController extends Controller
 
         if($tc == null) abort('404');
 
-        $statuses = [
-            "Черновик",
-            "Отправлен",
-            "В обработке",
-            "Предоставлен ответ"
-        ];
+        $statuses = config('documents')['tc']['statuses'];
 
         return view('tc.statement-tc', ['tc' => $tc, "statuses"=>$statuses, "time" => 10]);
     }
@@ -67,7 +60,7 @@ class TechnicalConnectController extends Controller
             public_path('documents_template/tc_150.docx'),
             $options,
             $id,
-            "Заявка на технологическое подключение",
+            "tc",
             $tc->name
         );
 
@@ -83,13 +76,11 @@ class TechnicalConnectController extends Controller
         $options['month'] = get_month(date('m'));
         $options['year'] = date('Y');
 
-        $fn = $document->create_tmp_document(
+        $fn = $document->create_signed_document(
             public_path('documents_template/tc_150.docx'),
             $options,
             $id,
-            "Заявка на технологическое подключение",
-            $tc->name,
-            "to_signe"
+            "tc"
         );
 
         return redirect()->route("signe", $fn['file_id']);

@@ -1,4 +1,9 @@
-<form class="form-project-submission flex-form" method="POST" action="{{ ( isset($action) )?$action:"#"  }}">
+<form
+    enctype='multipart/form-data'
+    @class(['form-project-submission', 'flex-form', 'form_disabled' => isset($item->state) && in_array($item->state,
+    config('documents')["tc"]['statuses_noedit'])])
+    method="POST"
+    action="{{ ( isset($action) )?$action:"#"  }}">
     @csrf
     @if (session('drafr_save'))
         <p class="success">{{ session('drafr_save') }}</p>
@@ -46,17 +51,27 @@
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
         </label>
-    </div>
 
-    <label class="form-elem">
-        <span class="form-elem__caption">
-            ЕГРЮЛ/ЕГРИП заявителя<span class="required">*</span>
-        </span>
-        <input type="text" name="egrul" class="form-elem__field"  value="{{ $item->egrul ?? '' }}">
-        @error('egrul')
-            <span class="form-elem__error-message">{{ $message }}</span>
-        @enderror
-    </label>
+        <label class="form-elem">
+            <span class="form-elem__caption">
+                ЕГРЮЛ/ЕГРИП заявителя<span class="required">*</span>
+            </span>
+            <input type="text" name="egrul" class="form-elem__field"  value="{{ $item->egrul ?? '' }}">
+            @error('egrul')
+                <span class="form-elem__error-message">{{ $message }}</span>
+            @enderror
+        </label>
+
+        <label class="form-elem">
+            <span class="form-elem__caption">
+                Вид экономической деятельности заявителя<span class="required">*</span>
+            </span>
+            <input type="text" name="okved" class="form-elem__field"  value="{{ $item->okved ?? '' }}">
+            @error('okved')
+                <span class="form-elem__error-message">{{ $message }}</span>
+            @enderror
+        </label>
+    </div>
 
     <label class="form-elem">
         <span class="form-elem__caption">
@@ -203,8 +218,8 @@
 
     <h3>Информация об оплате</h3>
     <div class="form-elem">
-        <span class="form-elem__caption">Выпадающий список с одиночным выбором <sup>*</sup></span>
-        <select name="gender" class="select-ch select-ch--no-search">
+        <span class="form-elem__caption">Порядок расчета и условия рассрочки внесения платы <sup>*</sup></span>
+        <select name="rashet_plati" class="select-ch select-ch--no-search">
             <option value="">Не выбрано</option>
             <option @selected(isset($item->rashet_plati) && ($item->rashet_plati === 'Вариант 1')) value="Вариант 1">Вариант 1</option>
             <option @selected(isset($item->rashet_plati) && ($item->rashet_plati === 'Вариант 2')) value="Вариант 2">Вариант 2</option>
@@ -213,46 +228,6 @@
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
     </div>
-    <div class="form-elem form-elem-choices--no-placeholder">
-        <span class="form-elem__caption">Выпадающий список с одиночным выбором с полем поиска</span>
-        <select name="gender" class="select-ch" >
-            <option value="">Не выбрано</option>
-            <option @selected(isset($item->rashet_plati) && ($item->rashet_plati === 'Вариант 1')) value="Вариант 1">Вариант 1</option>
-            <option @selected(isset($item->rashet_plati) && ($item->rashet_plati === 'Вариант 2')) value="Вариант 2">Вариант 2</option>
-        </select>
-        @error('rashet_plati')
-            <span class="form-elem__error-message">{{ $message }}</span>
-        @enderror
-    </div>
-    <div class="form-elem">
-        <span class="form-elem__caption">Выпадающий список с множественным выбором без плейсхолдера да еще и с полем поиска</span>
-        <select name="gender" class="select-ch" multiple="multiple">
-            <option value="">Не выбрано</option>
-            <option value="1">Субсидии на возмещение части затрат на уплату процентов по кредитам, привлекаемым инвесторами в кредитных организациях, а также субсидии по лизинговым платежам</option>
-            <option value="2">Государственные гарантии по инвестиционным проектам за счет средств областного бюджета</option>
-            <option value="3">Обеспечение обязательств инвесторов перед кредитными организациями в форме предоставления в залог имущества и имущественных прав Курской области по привлекаемым кредитам на реализацию инвестиционных проектов, в том числе на осуществление лизинговых платежей за оборудование, приобретаемое по лизингу на условиях последующего выкупа данного оборудования для реализации инвестиционных проектов</option>
-            <option value="4">Инвестиционный налоговый кредит</option>
-            <option value="5">Снижение налоговой ставки налога на прибыль организаций, подлежащего зачислению в областной бюджет, с 18 до 13,5 процентов (при реализации инвестиционного проекта с суммой инвестиций в основной капитал более 100 млн. руб. с НДС)</option>
-            <option value="5">Освобождение от уплаты налога на имущество организаций (при реализации инвестиционного проекта с суммой инвестиций в основной капитал более 100 млн. руб. с НДС)</option>
-        </select>
-        @error('rashet_plati')
-            <span class="form-elem__error-message">{{ $message }}</span>
-        @enderror
-    </div>
-
-
-    <label class="form-elem">
-        <span class="form-elem__caption">
-            Порядок расчета и условия рассрочки внесения платы<span class="required">*</span>
-        </span>
-        <select name="rashet_plati" class="form-elem__field" id="">
-            <option @selected(isset($item->rashet_plati) && ($item->rashet_plati === 'Вариант 1')) value="Вариант 1">Вариант 1</option>
-            <option @selected(isset($item->rashet_plati) && ($item->rashet_plati === 'Вариант 2')) value="Вариант 2">Вариант 2</option>
-        </select>
-        @error('rashet_plati')
-            <span class="form-elem__error-message">{{ $message }}</span>
-        @enderror
-    </label>
 
     <div class="form-element">
         <div class="columns-box columns-box--two-col">
