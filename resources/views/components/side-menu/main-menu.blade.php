@@ -40,7 +40,7 @@
                 <button class="main-menu__arrow"></button>
             </div>
             <ul >
-                <x-side-menu.li-item icon="doc-icon" :find="['technical_connect']" :route="route('technical_connect')" title="Все заявления"></x-side-menu.li-item>
+                <x-side-menu.li-item icon="doc-icon" :find="['technical_connect', 'technical_connect_edit', 'technical_connect_status']" :route="route('technical_connect')" title="Все заявления"></x-side-menu.li-item>
                 <x-side-menu.li-item icon="pencil-icon" :find="['technical_connect_create']"  :route="route('technical_connect_create')" title="Подать заявку на технологическое присоединение"></x-side-menu.li-item>
             </ul>
         </li>

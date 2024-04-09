@@ -144,7 +144,7 @@
                     <button type="submit" class="btn" title="Проверить и подписать" name="action" value="validate_signe"> <span class="save-icon"></span>Проверить и подписать</button>
                     <a href="{{route('area_get_print', $item->id)}}" class="btn" title="Сохранить черновик"> <span class="save-icon"></span>Печатная форма</a>
                     <a
-                    class="btn"
+                    class="btn mlAuto"
                     onclick="if (!confirm('Черновик будет удален навсегда! Вы уверенны?')) return false;"
                     href="{{ route('area_get_delete', $item->id) }}"
                     >Удалить</a>

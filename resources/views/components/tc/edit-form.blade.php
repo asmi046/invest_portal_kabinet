@@ -280,7 +280,7 @@
             <button type="submit" class="btn" title="Сохранить черновик" name="action" value="save_draft"> <span class="save-icon"></span>Сохранить черновик</button>
             <button type="submit" class="btn" title="Проверить и подписать" name="action" value="validate_signe"> <span class="save-icon"></span>Проверить и подписать</button>
             <a
-            class="btn"
+            class="btn mlAuto"
             onclick="if (!confirm('Черновик будет удален навсегда! Вы уверенны?')) return false;"
             href="{{ route('technical_connect_delete', $item->id) }}"
             >Удалить</a>

@@ -1,8 +1,8 @@
 @extends('layouts.all')
 
 @php
-    $title = "Заголовок";
-    $description = "Дескрипшен";
+    $title = "Личный кабинет - Инвестиционный портал Курской Области";
+    $description = "Личный кабинет - Инвестиционный портал Курской Области";
 @endphp
 
 @section('title', $title)

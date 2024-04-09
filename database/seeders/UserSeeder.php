@@ -18,16 +18,19 @@ class UserSeeder extends Seeder
     {
 
 
-        DB::table("moonshine_user_roles")->insert(
-            [
+        DB::table("moonshine_user_roles")->insertGetId(
+
                 [
+                    'id' => 2,
                     'name' => "Просмотр показателей",
                 ],
+        );
+
+        DB::table("moonshine_user_roles")->insertGetId(
                 [
+                    'id' => 3,
                     'name' => "Ресурсные организации",
                 ],
-            ]
-
         );
 
         //-----------------------------------------------
