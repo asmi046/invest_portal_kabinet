@@ -43,6 +43,7 @@ return new class extends Migration
             $table->string("napr_pris_r_devices")->nullable()->nullable()->comment("При напряжении");
             $table->string("rashet_plati")->nullable()->default('Вариант 1')->comment("Порядок расчета и условия рассрочки внесения платы");
             $table->string("gen_postavhik")->comment("Гарантирующий поставщик");
+            $table->json("etaps")->nullable()->comment("Этапы строительство");
             $table->text("prilogenie")->nullable()->comment("Приложения к заявлению");
 
         });

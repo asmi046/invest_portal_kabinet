@@ -36,7 +36,12 @@ class TechnicalConnects extends Model
         "napr_pris_r_devices",
         "rashet_plati",
         "gen_postavhik",
+        'etaps',
         "prilogenie",
+    ];
+
+    protected $casts = [
+        'etaps' => 'array',
     ];
 
 
