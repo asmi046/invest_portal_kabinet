@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\TechnicalConnect;
 
+use App\Models\Attachment;
 use Illuminate\Http\Request;
 use App\Models\TechnicalConnects;
 use App\Services\GetJsonServices;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tc\TcDraftRequest;
 use App\Http\Requests\Tc\TcSigneRequest;
+use App\Services\AttachmentCreateServices;
 
 class TechnicalConnectEditController extends Controller
 {
@@ -51,6 +53,15 @@ class TechnicalConnectEditController extends Controller
                 if(!$item) abort('404');
 
                 $item->update($data);
+
+                $attachment = new AttachmentCreateServices();
+
+                if ($request->hasFile('attachment'))
+                    $files = $attachment->create_attachment(
+                        $request->file('attachment'),
+                        'tc',
+                        $item->id
+                    );
 
                 return redirect()->back()->with('drafr_save', "Черновик сохранен");
             break;

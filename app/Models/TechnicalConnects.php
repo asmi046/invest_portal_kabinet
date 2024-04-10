@@ -62,11 +62,11 @@ class TechnicalConnects extends Model
 
     public function attachment() {
         return $this->hasMany(Attachment::class, 'document_id', 'id')
-        ->where('inner_document_type', 'area_get');
+        ->where('inner_document_type', 'tc');
     }
 
     public function signature() {
         return $this->hasOne(SignedDocument::class, 'document_id', 'id')
-        ->where('inner_document_type', 'area_get');
+        ->where('inner_document_type', 'tc');
     }
 }

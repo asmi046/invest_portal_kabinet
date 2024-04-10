@@ -267,17 +267,44 @@
         @enderror
     </label>
 
-    <h3>Приложения</h3>
+    @if ($format !== "create" )
+        <h3>Приложения</h3>
 
-    <label class="form-elem">
-        <span class="form-elem__caption">
-            Приложения к заявлению
-        </span>
-        <textarea class="form-elem__textarea form-elem__textarea-autoheigth" name="prilogenie" placeholder="Опишите все приложенныедокументы в свободной форме"  value="{{ $item->prilogenie ?? '' }}"></textarea>
-        @error('prilogenie')
-            <span class="form-elem__error-message">{{ $message }}</span>
-        @enderror
-    </label>
+        @foreach ($item->attachment as $file)
+            <div class="attachment_wrapper">
+                <button class="project-control-btn close-icon" type="submit" title="Удалить вложение" name="att_delete" value="{{ $file->id }}"> </button>
+                <a href="{{ Storage::url($file->storage_patch."/".$file->file)}}"> {{ $file->file_real }}</a>
+            </div>
+        @endforeach
+
+        <div class="file-funnel">
+            <input type="file" name="attachment[]" class="file-funnel__file-input" multiple="multiple">
+            <div class="file-funnel__text">
+                <span class="file-funnel__caption">
+                    Загрузить файлы
+                </span>
+                <span class="file-funnel__direction">
+                    В форматах doc, docx, pdf, jpg, png
+                </span>
+            </div>
+            <div class="file-funnel__receiver">
+                +
+            </div>
+            <div class="file-funnel__docs">
+                <button type="button" class="file-funnel-btn file-funnel-btn--reset">Очистить</button>
+            </div>
+        </div>
+
+        <label class="form-elem">
+            <span class="form-elem__caption">
+                Приложения к заявлению
+            </span>
+            <textarea class="form-elem__textarea form-elem__textarea-autoheigth" name="prilogenie" placeholder="Опишите все приложенныедокументы в свободной форме"  value="{{ $item->prilogenie ?? '' }}"></textarea>
+            @error('prilogenie')
+                <span class="form-elem__error-message">{{ $message }}</span>
+            @enderror
+        </label>
+    @endif
 
 
     <div class="form-control-panel">
