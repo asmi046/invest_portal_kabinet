@@ -33,7 +33,7 @@ return new class extends Migration
 
             $table->string("osnovanie")->nullable()->comment("Основание для присоединения");
             $table->string("ustroistvo")->nullable()->comment("Наименование энергопринимающих устройств");
-            $table->string("raspologeie")->nullable()->comment("место нахождения энергопринимающих устройств");
+            $table->string("raspologeie")->nullable()->comment("Место нахождения энергопринимающих устройств");
 
             $table->string("pover_prin_devices")->nullable()->comment("Максимальная мощность энергопринимающих устройств");
             $table->string("napr_prin_devices")->nullable()->comment("При напряжении");
@@ -43,8 +43,9 @@ return new class extends Migration
             $table->string("napr_pris_r_devices")->nullable()->nullable()->comment("При напряжении");
             $table->string("rashet_plati")->nullable()->default('Вариант 1')->comment("Порядок расчета и условия рассрочки внесения платы");
             $table->string("gen_postavhik")->comment("Гарантирующий поставщик");
-            $table->json("etaps")->nullable()->comment("Этапы строительство");
+            $table->json("etaps")->nullable()->comment("Этапы строительства");
             $table->text("prilogenie")->nullable()->comment("Приложения к заявлению");
+            $table->text("report")->nullable()->comment("Отчет о рассмотрении документа");
 
         });
     }

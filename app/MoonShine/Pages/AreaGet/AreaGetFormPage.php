@@ -10,6 +10,7 @@ use MoonShine\Fields\File;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Phone;
 use MoonShine\Fields\Select;
+use MoonShine\Fields\TinyMce;
 use MoonShine\Decorations\Flex;
 use MoonShine\Decorations\Grid;
 use MoonShine\Decorations\Block;
@@ -58,16 +59,23 @@ class AreaGetFormPage extends FormPage
                 Column::make([
                     Block::make('Заявление', [
                         Date::make('Создано', 'created_at')->disabled()->withTime()->format('d.m.Y'),
-                        Select::make('Статус', 'state')
+
+                    ])
+                ])->columnSpan(6)
+            ]),
+
+            LineBreak::make(),
+
+            Block::make('Официальный ответ', [
+                Select::make('Статус', 'state')
                         ->options([
                             "Черновик" => "Черновик",
                             "Отправлен" => "Отправлен",
                             "Подписан и отправлен" => "Подписан и отправлен",
                             "В обработке" => "В обработке",
                             "Предоставлен ответ" => "Предоставлен ответ"
-                        ])
-                    ])
-                ])->columnSpan(6)
+                        ]),
+                TinyMce::make('Напишите сообщение полльзователю', 'report')
             ]),
 
             LineBreak::make(),

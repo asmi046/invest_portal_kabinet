@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string("object_name")->comment("Наименование объекта");
             $table->string("object_type")->default('Масштабный инвестиционный проект')->comment("Тип объекта");
             $table->integer("prilogenie_list_count")->nullable()->comment("Приложения к заявлению (количество листов)");
+            $table->text("report")->nullable()->comment("Отчет о рассмотрении документа");
 
         });
     }

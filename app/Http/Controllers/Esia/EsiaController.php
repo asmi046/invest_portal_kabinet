@@ -32,7 +32,9 @@ class EsiaController extends Controller
             $user = User::firstOrCreate(
                 ['email' => $contact_info["EML"]],
                 [
-                    'name' => $person_info->firstName." ".$person_info->lastName." ".$person_info->middleName,
+                    'name' => $person_info->firstName,
+                    'lastname' => $person_info->lastName,
+                    'fathername' => $person_info->middleName,
                     'email' => $contact_info["EML"],
                     'phone' => $contact_info["MBT"],
                     'password' => bcrypt($person_info->rIdDoc),
