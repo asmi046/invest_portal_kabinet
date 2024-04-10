@@ -216,6 +216,8 @@
         </label>
     </div>
 
+    <x-tc.time-table></x-tc.time-table>
+
     <h3>Информация об оплате</h3>
     <div class="form-elem">
         <span class="form-elem__caption">Порядок расчета и условия рассрочки внесения платы <sup>*</sup></span>
