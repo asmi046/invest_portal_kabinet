@@ -71,8 +71,11 @@
                                         <td>{{ $item->state }}</td>
                                         <td>
                                             <a href="{{route('technical_connect_print', $item->id)}}">Печатная форма</a>
-                                            <a href="{{route('technical_connect_signe', $item->id)}}">Подписать</a>
-                                            <a href="{{route('technical_connect_edit', $item->id)}}">Редактировать</a>
+                                            @if (!in_array($item->state, config('documents')['tc']['statuses_noedit']))
+                                                <a href="{{route('technical_connect_edit', $item->id)}}">Редактировать</a>
+                                            @else
+                                                <a href="{{route('technical_connect_edit', $item->id)}}">Посмотреть</a>
+                                            @endif
                                             <a href="{{route('technical_connect_status', $item->id)}}">Статус</a>
                                         </td>
                                     </tr>

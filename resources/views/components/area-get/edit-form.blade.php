@@ -9,6 +9,10 @@
         <p class="success">{{ session('drafr_save') }}</p>
     @endif
 
+    @foreach ($errors->all() as $error)
+        <p class="error">{{ $error }}</p>
+    @endforeach
+
     <input type="hidden" name="item_id" value="{{ $item->id ?? 0 }}">
 
     <div class="columns-box columns-box--two-col">
@@ -142,7 +146,7 @@
                 @if (!in_array($item->state, config('documents')["area_get"]['statuses_noedit']))
                     <button type="submit" class="btn" title="Сохранить черновик" name="action" value="save_draft"> <span class="save-icon"></span>Сохранить черновик</button>
                     <button type="submit" class="btn" title="Проверить и подписать" name="action" value="validate_signe"> <span class="save-icon"></span>Проверить и подписать</button>
-                    <a href="{{route('area_get_print', $item->id)}}" class="btn" title="Сохранить черновик"> <span class="save-icon"></span>Печатная форма</a>
+                    <a href="{{route('area_get_print', $item->id)}}" class="btn" title="Печатная форма"> <span class="save-icon"></span>Печатная форма</a>
                     <a
                     class="btn mlAuto"
                     onclick="if (!confirm('Черновик будет удален навсегда! Вы уверенны?')) return false;"

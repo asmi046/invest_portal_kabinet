@@ -4,13 +4,14 @@ namespace App\Http\Controllers\TechnicalConnect;
 
 use Illuminate\Http\Request;
 use App\Models\TechnicalConnects;
+use App\Services\GetJsonServices;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tc\TcDraftRequest;
 use App\Http\Requests\Tc\TcSigneRequest;
 
 class TechnicalConnectEditController extends Controller
 {
-    public function save(Request $request) {
+    public function save(Request $request, GetJsonServices $js_service) {
         $att_delete = $request->input('att_delete');
         if ($att_delete)
         {
@@ -27,7 +28,9 @@ class TechnicalConnectEditController extends Controller
                 $data["user_id"] = auth()->user()->id;
                 $data["state"] = "Черновик";
 
-                // dd($data);
+                $json_data = $js_service->get_periods_json($request);
+                $data["etaps"] = $json_data;
+
 
                 $tc = TechnicalConnects::create($data);
 
@@ -40,6 +43,9 @@ class TechnicalConnectEditController extends Controller
 
                 $data["user_id"] = auth()->user()->id;
                 $data["state"] = "Черновик";
+
+                $json_data = $js_service->get_periods_json($request);
+                $data["etaps"] = $json_data;
 
                 $item = TechnicalConnects::where('id', $request->input('item_id'))->first();
                 if(!$item) abort('404');

@@ -5,9 +5,14 @@
     method="POST"
     action="{{ ( isset($action) )?$action:"#"  }}">
     @csrf
+
     @if (session('drafr_save'))
         <p class="success">{{ session('drafr_save') }}</p>
     @endif
+
+    @foreach ($errors->all() as $error)
+        <p class="error">{{ $error }}</p>
+    @endforeach
 
     <input type="hidden" name="item_id" value="{{ $item->id ?? 0 }}">
 
@@ -216,7 +221,7 @@
         </label>
     </div>
 
-    <x-tc.time-table></x-tc.time-table>
+    <x-tc.time-table :item="$item ?? null"></x-tc.time-table>
 
     <h3>Информация об оплате</h3>
     <div class="form-elem">
@@ -279,13 +284,18 @@
         @if ($format == "create")
             <button type="submit" class="btn" title="Сохранить черновик" name="action" value="create_draft"> <span class="save-icon"></span>Сохранить черновик</button>
         @else
-            <button type="submit" class="btn" title="Сохранить черновик" name="action" value="save_draft"> <span class="save-icon"></span>Сохранить черновик</button>
-            <button type="submit" class="btn" title="Проверить и подписать" name="action" value="validate_signe"> <span class="save-icon"></span>Проверить и подписать</button>
-            <a
-            class="btn mlAuto"
-            onclick="if (!confirm('Черновик будет удален навсегда! Вы уверенны?')) return false;"
-            href="{{ route('technical_connect_delete', $item->id) }}"
-            >Удалить</a>
+            @if (!in_array($item->state, config('documents')["area_get"]['statuses_noedit']))
+                <button type="submit" class="btn" title="Сохранить черновик" name="action" value="save_draft"> <span class="save-icon"></span>Сохранить черновик</button>
+                <button type="submit" class="btn" title="Проверить и подписать" name="action" value="validate_signe"> <span class="save-icon"></span>Проверить и подписать</button>
+                <a href="{{route('technical_connect_print', $item->id)}}" class="btn" title="Печатная форма"> <span class="save-icon"></span>Печатная форма</a>
+                <a
+                class="btn mlAuto"
+                onclick="if (!confirm('Черновик будет удален навсегда! Вы уверенны?')) return false;"
+                href="{{ route('technical_connect_delete', $item->id) }}"
+                >Удалить</a>
+            @else
+                <a href="{{route('technical_connect_print', $item->id)}}" class="btn" title="Печатная форма"> <span class="save-icon"></span>Печатная форма</a>
+            @endif
         @endif
 
     </div>

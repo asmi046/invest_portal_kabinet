@@ -44,6 +44,8 @@ class TechnicalConnectController extends Controller
 
         if (!$tc) abort('404');
 
+        // dd($tc->etaps);
+
         return view('tc.edit-tc', ['item' => $tc]);
     }
 
@@ -63,6 +65,8 @@ class TechnicalConnectController extends Controller
             "tc",
             $tc->name
         );
+
+
 
         return response()->download($fn["url"]);
     }

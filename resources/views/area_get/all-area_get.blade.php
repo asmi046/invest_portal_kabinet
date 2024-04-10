@@ -67,7 +67,6 @@
                                         <td>
                                             <a href="{{route('area_get_print', $item->id)}}">Печатная форма</a>
                                             @if (!in_array($item->state, config('documents')['area_get']['statuses_noedit']))
-                                                <a href="{{route('area_get_signe', $item->id)}}">Подписать</a>
                                                 <a href="{{route('area_get_edit', $item->id)}}">Редактировать</a>
                                             @else
                                                 <a href="{{route('area_get_edit', $item->id)}}">Посмотреть</a>
