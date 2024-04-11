@@ -44,6 +44,8 @@ class AreaGetController extends Controller
 
         if (!$ag) abort('404');
 
+        // dd($ag->signature);
+
         return view('area_get.edit-area_get', ['item' => $ag]);
     }
 

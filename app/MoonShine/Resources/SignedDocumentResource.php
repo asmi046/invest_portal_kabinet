@@ -10,6 +10,7 @@ use MoonShine\Fields\Url;
 use MoonShine\Fields\Text;
 use App\Models\SignedDocument;
 use MoonShine\Decorations\Block;
+use App\MoonShine\Fields\MainLnk;
 use App\MoonShine\Components\MainLink;
 use MoonShine\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
@@ -34,13 +35,8 @@ class SignedDocumentResource extends ModelResource
         return [
             Block::make([
                 ID::make()->sortable(),
-                MainLink::make('Ссылка на подпись',
-                    ($this->getItem())?$this->getItem()->storage_patch."/".$this->getItem()?->signature:"",
-                    ($this->getItem())?$this->getItem()?->signature:""),
-
-                MainLink::make('Ссылка на файл',
-                    ($this->getItem())?$this->getItem()->storage_patch."/".$this->getItem()->file:"",
-                    ($this->getItem())?$this->getItem()->file_real:""),
+                MainLnk::make('Ссылка на подпись','signature'),
+                MainLnk::make('Ссылка на файл','file'),
             ]),
         ];
     }
