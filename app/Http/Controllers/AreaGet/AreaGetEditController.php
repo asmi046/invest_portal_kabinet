@@ -70,6 +70,17 @@ class AreaGetEditController extends Controller
 
                 if(!$item) abort('404');
 
+                $item->update($data);
+
+                $attachment = new AttachmentCreateServices();
+
+                if ($request->hasFile('attachment'))
+                    $files = $attachment->create_attachment(
+                        $request->file('attachment'),
+                        'area_get',
+                        $item->id
+                    );
+
                 return redirect()->route('area_get_signe', $item->id);
             break;
 

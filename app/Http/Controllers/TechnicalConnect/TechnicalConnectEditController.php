@@ -74,6 +74,17 @@ class TechnicalConnectEditController extends Controller
 
                 if(!$item) abort('404');
 
+                $item->update($data);
+
+                $attachment = new AttachmentCreateServices();
+
+                if ($request->hasFile('attachment'))
+                    $files = $attachment->create_attachment(
+                        $request->file('attachment'),
+                        'tc',
+                        $item->id
+                    );
+
                 return redirect()->route('technical_connect_signe', $item->id);
             break;
 

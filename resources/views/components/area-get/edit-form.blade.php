@@ -83,7 +83,7 @@
         <span class="form-elem__caption">
             Тип объекта<span class="required">*</span>
         </span>
-        <select name="object_type" class="form-elem__field" id="">
+        <select name="object_type" class="select-ch select-ch--no-search" id="">
             <option value="" disabled selected>Выберите тип проекта</option>
             <option @selected(isset($item->object_type) && ($item->object_type === 'Масштабный инвестиционный проект')) value="Масштабный инвестиционный проект">Масштабный инвестиционный проект</option>
             <option @selected(isset($item->object_type) && ($item->object_type === 'Социально-культурного назначения')) value="Социально-культурного назначения">Социально-культурного назначения</option>

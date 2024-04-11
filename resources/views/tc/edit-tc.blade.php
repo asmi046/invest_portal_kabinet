@@ -18,6 +18,8 @@
             ></x-breadcrumbs>
             <h1>Редактирование заявления на техническое присоединение №{{ $item->id }}</h1>
 
+            <x-organization-report :item="$item"></x-organization-report>
+
             <x-tc.edit-form :item="$item" format="edit" :action="route('technical_connect_save')"></x-tc.edit-form>
         </div>
     </section>
