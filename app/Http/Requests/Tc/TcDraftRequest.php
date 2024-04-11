@@ -24,6 +24,7 @@ class TcDraftRequest extends FormRequest
         return [
             'name.required' => 'Для сохраниения черновика поле "ФИО" должно быть заполнено',
             'pover_pris_devices.required' => 'Для сохраниения черновика поле "Максимальная мощность энергопринимающих устройств" должно быть заполнено',
+            'pover_pris_devices.integer' => 'Поле "Максимальная мощность энергопринимающих устройств" должно быть целым числом',
             'gen_postavhik.required' => 'Для сохраниения черновика поле "Генеральный поставщик" должно быть заполнено',
         ];
     }
@@ -54,7 +55,7 @@ class TcDraftRequest extends FormRequest
 
             "pover_prin_devices"=> [],
             "napr_prin_devices" => [],
-            "pover_pris_devices"=> ['required', 'string'],
+            "pover_pris_devices"=> ['required', 'integer'],
             "napr_pris_devices" => [],
             "pover_pris_r_devices" => [],
             "napr_pris_r_devices" => [],

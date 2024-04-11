@@ -39,10 +39,15 @@ class TcSigneRequest extends FormRequest
             "ustroistvo.required" => 'Поле "Наименование энергопринимающих устройств" должно быть заполнено',
             "raspologeie.required" => 'Поле "Место нахождения энергопринимающих устройств" должно быть заполнено',
 
-            "pover_prin_devices.required" => 'Полея в разделе "Максимальная мощность присоединяемых энергопринимающих устройств" должно быть заполнено',
-            "napr_prin_devices.required" => 'Полея в разделе "Максимальная мощность присоединяемых энергопринимающих устройств" должно быть заполнено',
+            "pover_prin_devices.required" => 'Полея "Максимальная мощность присоединяемых энергопринимающих устройств" должно быть заполнено',
+            "napr_prin_devices.required" => 'Полея "Максимальная мощность присоединяемых энергопринимающих устройств" должно быть заполнено',
             "pover_pris_devices.required" => 'Поле "Максимальная мощность ранее присоединенных в данной точке" должно быть заполнено',
             "napr_pris_devices.required" => 'Поле "Максимальная мощность ранее присоединенных в данной точке" должно быть заполнено',
+
+            "pover_prin_devices.integer" => 'Полея "Максимальная мощность присоединяемых энергопринимающих устройств" должно быть целым числом',
+            "napr_prin_devices.integer" => 'Полея "Максимальная мощность присоединяемых энергопринимающих устройств" должно быть целым числом',
+            "pover_pris_devices.integer" => 'Поле "Максимальная мощность ранее присоединенных в данной точке" должно быть целым числом',
+            "napr_pris_devices.integer" => 'Поле "Максимальная мощность ранее присоединенных в данной точке" должно быть целым числом',
 
             "rashet_plati.required" => 'Поле "Порядок расчета и условия рассрочки внесения платы" должно быть заполнено',
             "gen_postavhik.required" => 'Поле "Гарантирующий поставщик" должно быть заполнено',
@@ -73,10 +78,10 @@ class TcSigneRequest extends FormRequest
             "ustroistvo" => ['required', 'string'],
             "raspologeie" => ['required', 'string'],
 
-            "pover_prin_devices"=> ['required', 'string'],
-            "napr_prin_devices" => ['required', 'string'],
-            "pover_pris_devices"=> ['required', 'string'],
-            "napr_pris_devices" => ['required', 'string'],
+            "pover_prin_devices"=> ['required', 'integer'],
+            "napr_prin_devices" => ['required', 'integer'],
+            "pover_pris_devices"=> ['required', 'integer'],
+            "napr_pris_devices" => ['required', 'integer'],
             "pover_pris_r_devices" => [],
             "napr_pris_r_devices" => [],
             "rashet_plati" => ['required', 'string'],
