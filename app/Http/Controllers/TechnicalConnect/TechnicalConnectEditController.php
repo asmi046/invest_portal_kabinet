@@ -70,7 +70,8 @@ class TechnicalConnectEditController extends Controller
                 $s_request = new TcSigneRequest();
                 $data = $request->validate($s_request->rules(), $s_request->messages());
 
-                $item = TechnicalConnects::where('id', $id)->first();
+
+                $item = TechnicalConnects::where('id', $data['item_id'])->first();
 
                 if(!$item) abort('404');
 
