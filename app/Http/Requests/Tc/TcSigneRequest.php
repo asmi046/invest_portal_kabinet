@@ -87,6 +87,7 @@ class TcSigneRequest extends FormRequest
             "rashet_plati" => ['required', 'string'],
             "gen_postavhik" => ['required', 'string'],
             "prilogenie" => [],
+            "item_id" => []
         ];
     }
 }
