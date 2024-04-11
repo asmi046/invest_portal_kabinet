@@ -36,7 +36,7 @@ class SignatureController extends Controller
 
         $sig_file = $signe->file.".sig";
 
-        file_put_contents(public_path($sig_file), file_get_contents($request->file('signature')));
+        file_put_contents(public_path($signe->storage_patch."/".$sig_file), file_get_contents($request->file('signature')));
         $signe->fill(['signature' => $sig_file]);
         $signe->save();
 
