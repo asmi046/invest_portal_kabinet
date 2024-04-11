@@ -21,7 +21,7 @@
             <span class="form-elem__caption">
                 Ф.И.О. заявителя<span class="required">*</span>
             </span>
-            <input type="text" name="name" class="form-elem__field"  value="{{ $item->name ?? '' }}">
+            <input type="text" name="name" class="form-elem__field"  value="{{ $item->name ?? old('name') ?? '' }}">
             @error('name')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -31,7 +31,7 @@
             <span class="form-elem__caption">
                 Организация<span class="required">*</span>
             </span>
-            <input type="text" name="organization" class="form-elem__field"  value="{{ $item->organization ?? '' }}">
+            <input type="text" name="organization" class="form-elem__field"  value="{{ $item->organization ?? old('organization') ?? '' }}">
             @error('organization')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -41,7 +41,7 @@
             <span class="form-elem__caption">
                 Должность<span class="required">*</span>
             </span>
-            <input type="text" name="dolgnost" class="form-elem__field"  value="{{ $item->dolgnost ?? '' }}">
+            <input type="text" name="dolgnost" class="form-elem__field"  value="{{ $item->dolgnost ?? old('dolgnost') ?? '' }}">
             @error('dolgnost')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -51,7 +51,7 @@
             <span class="form-elem__caption">
                 Телефон<span class="required">*</span>
             </span>
-            <input type="text" name="phone" class="form-elem__field tel-mask"  value="{{ $item->phone ?? '' }}">
+            <input type="text" name="phone" class="form-elem__field tel-mask"  value="{{ $item->phone ?? old('phone') ?? '' }}">
             @error('phone')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -61,7 +61,7 @@
             <span class="form-elem__caption">
                 ЕГРЮЛ/ЕГРИП заявителя<span class="required">*</span>
             </span>
-            <input type="text" name="egrul" class="form-elem__field"  value="{{ $item->egrul ?? '' }}">
+            <input type="text" name="egrul" class="form-elem__field"  value="{{ $item->egrul ?? old('egrul') ?? '' }}">
             @error('egrul')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -71,7 +71,7 @@
             <span class="form-elem__caption">
                 Вид экономической деятельности заявителя<span class="required">*</span>
             </span>
-            <input type="text" name="okved" class="form-elem__field"  value="{{ $item->okved ?? '' }}">
+            <input type="text" name="okved" class="form-elem__field"  value="{{ $item->okved ?? old('okved') ?? '' }}">
             @error('okved')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -82,7 +82,7 @@
         <span class="form-elem__caption">
             Адрес заявителя<span class="required">*</span>
         </span>
-        <textarea class="form-elem__textarea form-elem__textarea-autoheigth" name="adress">{{ $item->adress ?? '' }}</textarea>
+        <textarea class="form-elem__textarea form-elem__textarea-autoheigth" name="adress">{{ $item->adress ?? old('adress') ?? '' }}</textarea>
         @error('adress')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -95,7 +95,7 @@
             <span class="form-elem__caption">
                 Серия<span class="required">*</span>
             </span>
-            <input type="text" name="pasport_seria" class="form-elem__field"  placeholder="Заявитель" value="{{ $item->pasport_seria ?? '' }}">
+            <input type="text" name="pasport_seria" class="form-elem__field"  placeholder="Заявитель" value="{{ $item->pasport_seria ?? old('pasport_seria') ?? '' }}">
             @error('pasport_seria')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -105,7 +105,7 @@
             <span class="form-elem__caption">
                 Номер<span class="required">*</span>
             </span>
-            <input type="text" name="pasport_number" class="form-elem__field"  placeholder="Заявитель" value="{{ $item->pasport_number ?? '' }}">
+            <input type="text" name="pasport_number" class="form-elem__field"  placeholder="Заявитель" value="{{ $item->pasport_number ?? old('pasport_number') ?? '' }}">
             @error('pasport_number')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -117,7 +117,7 @@
         <span class="form-elem__caption">
             Выдан<span class="required">*</span>
         </span>
-        <input type="text" name="pasport_vidan" class="form-elem__field"  value="{{ $item->pasport_vidan ?? '' }}">
+        <input type="text" name="pasport_vidan" class="form-elem__field"  value="{{ $item->pasport_vidan ?? old('pasport_vidan') ?? '' }}">
         @error('pasport_vidan')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -129,7 +129,7 @@
         <span class="form-elem__caption">
             Основание для присоединения<span class="required">*</span>
         </span>
-        <input type="text" name="osnovanie" class="form-elem__field"  value="{{ $item->osnovanie ?? '' }}">
+        <input type="text" name="osnovanie" class="form-elem__field"  value="{{ $item->osnovanie ?? old('osnovanie') ?? '' }}">
         @error('osnovanie')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -139,7 +139,7 @@
         <span class="form-elem__caption">
             Наименование энергопринимающих устройств<span class="required">*</span>
         </span>
-        <input type="text" name="ustroistvo" class="form-elem__field"  value="{{ $item->ustroistvo ?? '' }}">
+        <input type="text" name="ustroistvo" class="form-elem__field"  value="{{ $item->ustroistvo ?? old('ustroistvo') ?? '' }}">
         @error('ustroistvo')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -149,7 +149,7 @@
         <span class="form-elem__caption">
             Место нахождения энергопринимающих устройств<span class="required">*</span>
         </span>
-        <input type="text" name="raspologeie" class="form-elem__field"  value="{{ $item->raspologeie ?? '' }}">
+        <input type="text" name="raspologeie" class="form-elem__field"  value="{{ $item->raspologeie ?? old('raspologeie') ?? '' }}">
         @error('raspologeie')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -161,7 +161,7 @@
             <span class="form-elem__caption">
                 Мощьность (кВт)<span class="required">*</span>
             </span>
-            <input type="text" name="pover_prin_devices" class="form-elem__field"  value="{{ $item->pover_prin_devices ?? '' }}">
+            <input type="text" name="pover_prin_devices" class="form-elem__field"  value="{{ $item->pover_prin_devices ?? old('pover_prin_devices') ?? '' }}">
             @error('pover_prin_devices')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -170,7 +170,7 @@
             <span class="form-elem__caption">
                 При напряжении (кВ)<span class="required">*</span>
             </span>
-            <input type="text" name="napr_prin_devices" class="form-elem__field"  value="{{ $item->napr_prin_devices ?? '' }}">
+            <input type="text" name="napr_prin_devices" class="form-elem__field"  value="{{ $item->napr_prin_devices ?? old('napr_prin_devices') ?? '' }}">
             @error('napr_prin_devices')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -183,7 +183,7 @@
             <span class="form-elem__caption">
                 Мощьность (кВт)<span class="required">*</span>
             </span>
-            <input type="text" name="pover_pris_devices" class="form-elem__field"  value="{{ $item->pover_pris_devices ?? '' }}">
+            <input type="text" name="pover_pris_devices" class="form-elem__field"  value="{{ $item->pover_pris_devices ?? old('pover_pris_devices') ?? '' }}">
             @error('pover_pris_devices')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -192,7 +192,7 @@
             <span class="form-elem__caption">
                 При напряжении (кВ)<span class="required">*</span>
             </span>
-            <input type="text" name="napr_pris_devices" class="form-elem__field"  value="{{ $item->napr_pris_devices ?? '' }}">
+            <input type="text" name="napr_pris_devices" class="form-elem__field"  value="{{ $item->napr_pris_devices ?? old('napr_pris_devices') ?? '' }}">
             @error('napr_pris_devices')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -205,7 +205,7 @@
             <span class="form-elem__caption">
                 Мощьность (кВт)
             </span>
-            <input type="text" name="pover_pris_r_devices" class="form-elem__field"  value="{{ $item->pover_pris_r_devices ?? '' }}">
+            <input type="text" name="pover_pris_r_devices" class="form-elem__field"  value="{{ $item->pover_pris_r_devices ?? old('pover_pris_r_devices') ?? '' }}">
             @error('pover_pris_r_devices')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -214,7 +214,7 @@
             <span class="form-elem__caption">
                 При напряжении (кВ)
             </span>
-            <input type="text" name="napr_pris_r_devices" class="form-elem__field"  value="{{ $item->napr_pris_r_devices ?? '' }}">
+            <input type="text" name="napr_pris_r_devices" class="form-elem__field"  value="{{ $item->napr_pris_r_devices ?? old('napr_pris_r_devices') ?? '' }}">
             @error('napr_pris_devices')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -261,7 +261,7 @@
         <span class="form-elem__caption">
             Гарантирующий поставщик<span class="required">*</span>
         </span>
-        <input type="text" name="gen_postavhik" class="form-elem__field"  value="{{ $item->gen_postavhik ?? '' }}">
+        <input type="text" name="gen_postavhik" class="form-elem__field"  value="{{ $item->gen_postavhik ?? old('gen_postavhik') ?? '' }}">
         @error('gen_postavhik')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -299,7 +299,7 @@
             <span class="form-elem__caption">
                 Приложения к заявлению
             </span>
-            <textarea class="form-elem__textarea form-elem__textarea-autoheigth" name="prilogenie" placeholder="Опишите все приложенныедокументы в свободной форме"  value="{{ $item->prilogenie ?? '' }}"></textarea>
+            <textarea class="form-elem__textarea form-elem__textarea-autoheigth" name="prilogenie" placeholder="Опишите все приложенныедокументы в свободной форме"  value="{{ $item->prilogenie ?? old('prilogenie') ?? '' }}"></textarea>
             @error('prilogenie')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror

@@ -20,7 +20,7 @@
             <span class="form-elem__caption">
                 Ф.И.О. заявителя<span class="required">*</span>
             </span>
-            <input type="text" name="name" class="form-elem__field"  value="{{ $item->name ?? '' }}">
+            <input type="text" name="name" class="form-elem__field"  value="{{ $item->name ?? old('name') ?? '' }}">
             @error('name')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -30,7 +30,7 @@
             <span class="form-elem__caption">
                 Организация<span class="required">*</span>
             </span>
-            <input type="text" name="organization" class="form-elem__field"  value="{{ $item->organization ?? '' }}">
+            <input type="text" name="organization" class="form-elem__field"  value="{{ $item->organization ?? old('organization') ?? '' }}">
             @error('organization')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -40,7 +40,7 @@
             <span class="form-elem__caption">
                 Должность<span class="required">*</span>
             </span>
-            <input type="text" name="dolgnost" class="form-elem__field"  value="{{ $item->dolgnost ?? '' }}">
+            <input type="text" name="dolgnost" class="form-elem__field"  value="{{ $item->dolgnost ?? old('dolgnost') ?? '' }}">
             @error('dolgnost')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -50,7 +50,7 @@
             <span class="form-elem__caption">
                 Телефон<span class="required">*</span>
             </span>
-            <input type="text" name="phone" class="form-elem__field tel-mask"  value="{{ $item->phone ?? '' }}">
+            <input type="text" name="phone" class="form-elem__field tel-mask"  value="{{ $item->phone ?? old('phone') ?? '' }}">
             @error('phone')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -61,7 +61,7 @@
         <span class="form-elem__caption">
             Адрес заявителя<span class="required">*</span>
         </span>
-        <input type="text" name="zayavitel_adress" class="form-elem__field"  value="{{ $item->zayavitel_adress ?? '' }}">
+        <input type="text" name="zayavitel_adress" class="form-elem__field"  value="{{ $item->zayavitel_adress ?? old('zayavitel_adress') ?? '' }}">
         @error('zayavitel_adress')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -73,7 +73,7 @@
         <span class="form-elem__caption">
             Наименование объекта<span class="required">*</span>
         </span>
-        <input type="text" name="object_name" class="form-elem__field"  value="{{ $item->object_name ?? '' }}">
+        <input type="text" name="object_name" class="form-elem__field"  value="{{ $item->object_name ?? old('object_name') ?? '' }}">
         @error('object_name')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -129,9 +129,9 @@
 
     <label class="form-elem">
         <span class="form-elem__caption">
-            Страниц в приложении<span class="required">*</span>
+            Страниц в приложении
         </span>
-        <input type="number" name="prilogenie_list_count" class="form-elem__field"  value="{{ $item->prilogenie_list_count ?? '' }}">
+        <input type="number" name="prilogenie_list_count" class="form-elem__field"  value="{{ $item->prilogenie_list_count ?? old('prilogenie_list_count') ?? '' }}">
         @error('prilogenie_list_count')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror

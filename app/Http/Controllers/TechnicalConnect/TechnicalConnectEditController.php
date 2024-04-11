@@ -36,7 +36,7 @@ class TechnicalConnectEditController extends Controller
 
                 $tc = TechnicalConnects::create($data);
 
-                return redirect()->route('technical_connect_edit', $tc->id);
+                return redirect()->route('technical_connect_edit', $tc->id)->with('drafr_save', "Черновик сохранен");;
             break;
 
             case 'save_draft':

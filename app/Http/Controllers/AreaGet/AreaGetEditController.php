@@ -34,7 +34,7 @@ class AreaGetEditController extends Controller
 
                 $tc = AreaGet::create($data);
 
-                return redirect()->route('area_get_edit', $tc->id);
+                return redirect()->route('area_get_edit', $tc->id)->with('drafr_save', "Черновик сохранен");;
             break;
 
             case 'save_draft':
