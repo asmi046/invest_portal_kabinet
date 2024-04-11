@@ -7,6 +7,7 @@
 /public/tmp_docs/*.pdf
 /public/signed_docs/*.docx
 /public/signed_docs/*.pdf
+/public/signed_docs/*.sig
 /storage/*.key
 /vendor
 .env
