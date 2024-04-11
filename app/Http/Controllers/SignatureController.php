@@ -34,7 +34,7 @@ class SignatureController extends Controller
         $signe_id = $request->input('signe_id');
         $signe = SignedDocument::where('id', $signe_id)->first();
 
-        $sig_file = $signe->file.".sig";
+        $sig_file = str_replace([".pdf", ".docx"], "", $signe->file).".sig";
 
         file_put_contents(public_path($signe->storage_patch."/".$sig_file), file_get_contents($request->file('signature')));
         $signe->fill(['signature' => $sig_file]);
