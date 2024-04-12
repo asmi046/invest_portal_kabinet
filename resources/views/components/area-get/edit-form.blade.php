@@ -6,12 +6,19 @@
 
     @csrf
     @if (session('drafr_save'))
-        <p class="success">{{ session('drafr_save') }}</p>
+        <div class="form-status form-status--success">
+            {{ session('drafr_save') }}
+        </div>
     @endif
 
     @foreach ($errors->all() as $error)
-        <p class="error">{{ $error }}</p>
+        <div class="form-status form-status--error">
+            {{ $error }}
+        </div>
     @endforeach
+
+
+
 
     <input type="hidden" name="item_id" value="{{ $item->id ?? 0 }}">
 
@@ -151,7 +158,7 @@
                     class="btn mlAuto"
                     onclick="if (!confirm('Черновик будет удален навсегда! Вы уверенны?')) return false;"
                     href="{{ route('area_get_delete', $item->id) }}"
-                    >Удалить</a>
+                    ><span class="delete-icon"></span>Удалить</a>
                 @else
                     <a href="{{route('area_get_print', $item->id)}}" class="btn" title="Сохранить черновик"> <span class="save-icon"></span>Печатная форма</a>
                 @endif

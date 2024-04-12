@@ -1,0 +1,28 @@
+.attachment-files-box{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+.attachment-file{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background-color: var(--light);
+    border: 1px solid var(--active);
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    box-sizing: border-box;
+    .attachment-file__name{
+
+    }
+    .attachment-file__btn{
+        width: 2rem;
+        height: 2rem;
+        background-color: var(--active);
+        transition: var(--great-transition);
+        &:hover{
+            background-color: var(--alert-color);
+        }
+    }
+}

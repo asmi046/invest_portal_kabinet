@@ -3,7 +3,7 @@
     @class(['form-project-submission', 'flex-form', 'form_disabled' => isset($item->state) && in_array($item->state,
     config('documents')["tc"]['statuses_noedit'])])
     method="POST"
-    action="{{ ( isset($action) )?$action:"#"  }}">
+    action="{{ ( isset($action) )?$action:"#"  }}" >
     @csrf
 
     @if (session('drafr_save'))
@@ -269,13 +269,17 @@
 
     @if ($format !== "create" )
         <h3>Приложения</h3>
-
-        @foreach ($item->attachment as $file)
-            <div class="attachment_wrapper">
-                <button class="project-control-btn close-icon" type="submit" title="Удалить вложение" name="att_delete" value="{{ $file->id }}"> </button>
-                <a href="{{ Storage::url($file->storage_patch."/".$file->file)}}"> {{ $file->file_real }}</a>
+        @if ($item->attachment)
+            <div class="attachment-files-box">
+                @foreach ($item->attachment as $file)
+                    <div class="attachment-file">
+                            <a href="{{ Storage::url($file->storage_patch."/".$file->file)}}" class="attachment-file__name"> {{ $file->file_real }}</a>
+                            <button class="attachment-file__btn close-icon" type="submit" title="Удалить вложение" name="att_delete" value="{{ $file->id }}"> </button>
+                    </div>
+                @endforeach
             </div>
-        @endforeach
+        @endif
+
 
         <div class="file-funnel">
             <input type="file" name="attachment[]" class="file-funnel__file-input" multiple="multiple">
