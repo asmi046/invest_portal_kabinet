@@ -2,6 +2,9 @@
     @class(['form-project-submission', 'flex-form', 'form_disabled' => isset($item->state) && in_array($item->state,
     config('documents')["area_get"]['statuses_noedit'])])
     method="POST"
+    @if (isset($item->state) && in_array($item->state, config('documents')["area_get"]['statuses_noedit']))
+        inert="inert"
+    @endif
     action="{{ ( isset($action) )?$action:"#"  }}">
 
     @csrf
@@ -25,7 +28,7 @@
     <div class="columns-box columns-box--two-col">
         <label class="form-elem">
             <span class="form-elem__caption">
-                Ф.И.О. заявителя<span class="required">*</span>
+                Ф.И.О. заявителя<sup>*</sup>
             </span>
             <input type="text" name="name" class="form-elem__field"  value="{{ $item->name ?? old('name') ?? '' }}">
             @error('name')
@@ -35,7 +38,7 @@
 
         <label class="form-elem">
             <span class="form-elem__caption">
-                Организация<span class="required">*</span>
+                Организация<sup>*</sup>
             </span>
             <input type="text" name="organization" class="form-elem__field"  value="{{ $item->organization ?? old('organization') ?? '' }}">
             @error('organization')
@@ -45,7 +48,7 @@
 
         <label class="form-elem">
             <span class="form-elem__caption">
-                Должность<span class="required">*</span>
+                Должность<sup>*</sup>
             </span>
             <input type="text" name="dolgnost" class="form-elem__field"  value="{{ $item->dolgnost ?? old('dolgnost') ?? '' }}">
             @error('dolgnost')
@@ -55,7 +58,7 @@
 
         <label class="form-elem">
             <span class="form-elem__caption">
-                Телефон<span class="required">*</span>
+                Телефон<sup>*</sup>
             </span>
             <input type="text" name="phone" class="form-elem__field tel-mask"  value="{{ $item->phone ?? old('phone') ?? '' }}">
             @error('phone')
@@ -66,7 +69,7 @@
 
     <label class="form-elem">
         <span class="form-elem__caption">
-            Адрес заявителя<span class="required">*</span>
+            Адрес заявителя<sup>*</sup>
         </span>
         <input type="text" name="zayavitel_adress" class="form-elem__field"  value="{{ $item->zayavitel_adress ?? old('zayavitel_adress') ?? '' }}">
         @error('zayavitel_adress')
@@ -78,7 +81,7 @@
 
     <label class="form-elem">
         <span class="form-elem__caption">
-            Наименование объекта<span class="required">*</span>
+            Наименование объекта<sup>*</sup>
         </span>
         <input type="text" name="object_name" class="form-elem__field"  value="{{ $item->object_name ?? old('object_name') ?? '' }}">
         @error('object_name')
@@ -88,7 +91,7 @@
 
     <label class="form-elem">
         <span class="form-elem__caption">
-            Тип объекта<span class="required">*</span>
+            Тип объекта<sup>*</sup>
         </span>
         <select name="object_type" class="select-ch select-ch--no-search" id="">
             <option value="" disabled selected>Выберите тип проекта</option>
@@ -107,12 +110,15 @@
     @if ($format !== "create" )
         <h3>Приложения</h3>
 
-        @foreach ($item->attachment as $file)
-            <div class="attachment_wrapper">
-                <button class="project-control-btn close-icon" type="submit" title="Удалить вложение" name="att_delete" value="{{ $file->id }}"> </button>
-                <a href="{{ Storage::url($file->storage_patch."/".$file->file)}}"> {{ $file->file_real }}</a>
+            <div class="attachment-files-box">
+                @foreach ($item->attachment as $file)
+                    <div class="attachment-file">
+                        <a href="{{ Storage::url($file->storage_patch."/".$file->file)}}"> {{ $file->file_real }}</a>
+                        <button class="attachment-file__btn close-icon" type="submit" title="Удалить вложение" name="att_delete" value="{{ $file->id }}"> </button>
+                    </div>
+                @endforeach
             </div>
-        @endforeach
+
 
         <div class="file-funnel">
             <input type="file" name="attachment[]" class="file-funnel__file-input" multiple="multiple">
@@ -146,24 +152,12 @@
 
 
 
-        <div class="form-control-panel">
-            @if ($format == "create")
-                <button type="submit" class="btn" title="Сохранить черновик" name="action" value="create_draft"> <span class="save-icon"></span>Сохранить черновик</button>
-            @else
-                @if (!in_array($item->state, config('documents')["area_get"]['statuses_noedit']))
-                    <button type="submit" class="btn" title="Сохранить черновик" name="action" value="save_draft"> <span class="save-icon"></span>Сохранить черновик</button>
-                    <button type="submit" class="btn" title="Проверить и подписать" name="action" value="validate_signe"> <span class="save-icon"></span>Проверить и подписать</button>
-                    <a href="{{route('area_get_print', $item->id)}}" class="btn" title="Печатная форма"> <span class="save-icon"></span>Печатная форма</a>
-                    <a
-                    class="btn mlAuto"
-                    onclick="if (!confirm('Черновик будет удален навсегда! Вы уверенны?')) return false;"
-                    href="{{ route('area_get_delete', $item->id) }}"
-                    ><span class="delete-icon"></span>Удалить</a>
-                @else
-                    <a href="{{route('area_get_print', $item->id)}}" class="btn" title="Сохранить черновик"> <span class="save-icon"></span>Печатная форма</a>
-                @endif
-            @endif
 
-        </div>
+     <x-edit-form-elements.main-control :format="$format" :item="$item ?? null" doct="area_get" deleteroat="area_get_delete" ></x-edit-form-elements.main-control>
+
+
 
 </form>
+
+<x-edit-form-elements.blocked-control :format="$format" :item="$item ?? null" doct="area_get" printroute="area_get_print" ></x-edit-form-elements.blocked-control>
+

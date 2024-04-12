@@ -1,6 +1,6 @@
 <header id="header">
     <div class="inner">
-        <a href="{{route('home')}}" class="logo">
+        <a href="{{route('home')}}">
             <img src="{{asset('img/logo.svg')}}" alt="">
             {{-- <a href="{{ route('events') }}" class="header-icon-btn header-icon-btn--bell header__notifications header__notifications--active">Уведомления</a> --}}
             <div class="user-menu-box header__notifications">

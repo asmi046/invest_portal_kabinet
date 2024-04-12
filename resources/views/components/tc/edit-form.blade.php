@@ -3,15 +3,21 @@
     @class(['form-project-submission', 'flex-form', 'form_disabled' => isset($item->state) && in_array($item->state,
     config('documents')["tc"]['statuses_noedit'])])
     method="POST"
+    @if (isset($item->state) && in_array($item->state, config('documents')["area_get"]['statuses_noedit']))
+        inert="inert"
+    @endif
     action="{{ ( isset($action) )?$action:"#"  }}" >
     @csrf
-
     @if (session('drafr_save'))
-        <p class="success">{{ session('drafr_save') }}</p>
+        <div class="form-status form-status--success">
+            {{ session('drafr_save') }}
+        </div>
     @endif
 
     @foreach ($errors->all() as $error)
-        <p class="error">{{ $error }}</p>
+        <div class="form-status form-status--error">
+            {{ $error }}
+        </div>
     @endforeach
 
     <input type="hidden" name="item_id" value="{{ $item->id ?? 0 }}">
@@ -19,7 +25,7 @@
     <div class="columns-box columns-box--two-col">
         <label class="form-elem">
             <span class="form-elem__caption">
-                Ф.И.О. заявителя<span class="required">*</span>
+                Ф.И.О. заявителя<sup>*</sup>
             </span>
             <input type="text" name="name" class="form-elem__field"  value="{{ $item->name ?? old('name') ?? '' }}">
             @error('name')
@@ -29,7 +35,7 @@
 
         <label class="form-elem">
             <span class="form-elem__caption">
-                Организация<span class="required">*</span>
+                Организация<sup>*</sup>
             </span>
             <input type="text" name="organization" class="form-elem__field"  value="{{ $item->organization ?? old('organization') ?? '' }}">
             @error('organization')
@@ -39,7 +45,7 @@
 
         <label class="form-elem">
             <span class="form-elem__caption">
-                Должность<span class="required">*</span>
+                Должность<sup>*</sup>
             </span>
             <input type="text" name="dolgnost" class="form-elem__field"  value="{{ $item->dolgnost ?? old('dolgnost') ?? '' }}">
             @error('dolgnost')
@@ -49,7 +55,7 @@
 
         <label class="form-elem">
             <span class="form-elem__caption">
-                Телефон<span class="required">*</span>
+                Телефон<sup>*</sup>
             </span>
             <input type="text" name="phone" class="form-elem__field tel-mask"  value="{{ $item->phone ?? old('phone') ?? '' }}">
             @error('phone')
@@ -59,7 +65,7 @@
 
         <label class="form-elem">
             <span class="form-elem__caption">
-                ЕГРЮЛ/ЕГРИП заявителя<span class="required">*</span>
+                ЕГРЮЛ/ЕГРИП заявителя<sup>*</sup>
             </span>
             <input type="text" name="egrul" class="form-elem__field"  value="{{ $item->egrul ?? old('egrul') ?? '' }}">
             @error('egrul')
@@ -69,7 +75,7 @@
 
         <label class="form-elem">
             <span class="form-elem__caption">
-                Вид экономической деятельности заявителя<span class="required">*</span>
+                Вид экономической деятельности заявителя<sup>*</sup>
             </span>
             <input type="text" name="okved" class="form-elem__field"  value="{{ $item->okved ?? old('okved') ?? '' }}">
             @error('okved')
@@ -80,7 +86,7 @@
 
     <label class="form-elem">
         <span class="form-elem__caption">
-            Адрес заявителя<span class="required">*</span>
+            Адрес заявителя<sup>*</sup>
         </span>
         <textarea class="form-elem__textarea form-elem__textarea-autoheigth" name="adress">{{ $item->adress ?? old('adress') ?? '' }}</textarea>
         @error('adress')
@@ -93,7 +99,7 @@
     <div class="columns-box columns-box--two-col">
         <label class="form-elem">
             <span class="form-elem__caption">
-                Серия<span class="required">*</span>
+                Серия<sup>*</sup>
             </span>
             <input type="text" name="pasport_seria" class="form-elem__field"  placeholder="Заявитель" value="{{ $item->pasport_seria ?? old('pasport_seria') ?? '' }}">
             @error('pasport_seria')
@@ -103,7 +109,7 @@
 
         <label class="form-elem">
             <span class="form-elem__caption">
-                Номер<span class="required">*</span>
+                Номер<sup>*</sup>
             </span>
             <input type="text" name="pasport_number" class="form-elem__field"  placeholder="Заявитель" value="{{ $item->pasport_number ?? old('pasport_number') ?? '' }}">
             @error('pasport_number')
@@ -115,7 +121,7 @@
 
     <label class="form-elem">
         <span class="form-elem__caption">
-            Выдан<span class="required">*</span>
+            Выдан<sup>*</sup>
         </span>
         <input type="text" name="pasport_vidan" class="form-elem__field"  value="{{ $item->pasport_vidan ?? old('pasport_vidan') ?? '' }}">
         @error('pasport_vidan')
@@ -127,7 +133,7 @@
 
     <label class="form-elem">
         <span class="form-elem__caption">
-            Основание для присоединения<span class="required">*</span>
+            Основание для присоединения<sup>*</sup>
         </span>
         <input type="text" name="osnovanie" class="form-elem__field"  value="{{ $item->osnovanie ?? old('osnovanie') ?? '' }}">
         @error('osnovanie')
@@ -137,7 +143,7 @@
 
     <label class="form-elem">
         <span class="form-elem__caption">
-            Наименование энергопринимающих устройств<span class="required">*</span>
+            Наименование энергопринимающих устройств<sup>*</sup>
         </span>
         <input type="text" name="ustroistvo" class="form-elem__field"  value="{{ $item->ustroistvo ?? old('ustroistvo') ?? '' }}">
         @error('ustroistvo')
@@ -147,7 +153,7 @@
 
     <label class="form-elem">
         <span class="form-elem__caption">
-            Место нахождения энергопринимающих устройств<span class="required">*</span>
+            Место нахождения энергопринимающих устройств<sup>*</sup>
         </span>
         <input type="text" name="raspologeie" class="form-elem__field"  value="{{ $item->raspologeie ?? old('raspologeie') ?? '' }}">
         @error('raspologeie')
@@ -159,7 +165,7 @@
     <div class="columns-box columns-box--two-col">
         <label class="form-elem">
             <span class="form-elem__caption">
-                Мощьность (кВт)<span class="required">*</span>
+                Мощьность (кВт)<sup>*</sup>
             </span>
             <input type="text" name="pover_prin_devices" class="form-elem__field"  value="{{ $item->pover_prin_devices ?? old('pover_prin_devices') ?? '' }}">
             @error('pover_prin_devices')
@@ -168,7 +174,7 @@
         </label>
         <label class="form-elem">
             <span class="form-elem__caption">
-                При напряжении (кВ)<span class="required">*</span>
+                При напряжении (кВ)<sup>*</sup>
             </span>
             <input type="text" name="napr_prin_devices" class="form-elem__field"  value="{{ $item->napr_prin_devices ?? old('napr_prin_devices') ?? '' }}">
             @error('napr_prin_devices')
@@ -181,7 +187,7 @@
     <div class="columns-box columns-box--two-col">
         <label class="form-elem">
             <span class="form-elem__caption">
-                Мощьность (кВт)<span class="required">*</span>
+                Мощьность (кВт)<sup>*</sup>
             </span>
             <input type="text" name="pover_pris_devices" class="form-elem__field"  value="{{ $item->pover_pris_devices ?? old('pover_pris_devices') ?? '' }}">
             @error('pover_pris_devices')
@@ -190,7 +196,7 @@
         </label>
         <label class="form-elem">
             <span class="form-elem__caption">
-                При напряжении (кВ)<span class="required">*</span>
+                При напряжении (кВ)<sup>*</sup>
             </span>
             <input type="text" name="napr_pris_devices" class="form-elem__field"  value="{{ $item->napr_pris_devices ?? old('napr_pris_devices') ?? '' }}">
             @error('napr_pris_devices')
@@ -259,7 +265,7 @@
 
     <label class="form-elem">
         <span class="form-elem__caption">
-            Гарантирующий поставщик<span class="required">*</span>
+            Гарантирующий поставщик<sup>*</sup>
         </span>
         <input type="text" name="gen_postavhik" class="form-elem__field"  value="{{ $item->gen_postavhik ?? old('gen_postavhik') ?? '' }}">
         @error('gen_postavhik')
@@ -311,24 +317,8 @@
     @endif
 
 
-    <div class="form-control-panel">
-        @if ($format == "create")
-            <button type="submit" class="btn" title="Сохранить черновик" name="action" value="create_draft"> <span class="save-icon"></span>Сохранить черновик</button>
-        @else
-            @if (!in_array($item->state, config('documents')["area_get"]['statuses_noedit']))
-                <button type="submit" class="btn" title="Сохранить черновик" name="action" value="save_draft"> <span class="save-icon"></span>Сохранить черновик</button>
-                <button type="submit" class="btn" title="Проверить и подписать" name="action" value="validate_signe"> <span class="save-icon"></span>Проверить и подписать</button>
-                <a href="{{route('technical_connect_print', $item->id)}}" class="btn" title="Печатная форма"> <span class="save-icon"></span>Печатная форма</a>
-                <a
-                class="btn mlAuto"
-                onclick="if (!confirm('Черновик будет удален навсегда! Вы уверенны?')) return false;"
-                href="{{ route('technical_connect_delete', $item->id) }}"
-                >Удалить</a>
-            @else
-                <a href="{{route('technical_connect_print', $item->id)}}" class="btn" title="Печатная форма"> <span class="save-icon"></span>Печатная форма</a>
-            @endif
-        @endif
-
-    </div>
+    <x-edit-form-elements.main-control :format="$format" :item="$item ?? null" doct="tc" deleteroat="technical_connect_delete" ></x-edit-form-elements.main-control>
 
 </form>
+
+<x-edit-form-elements.blocked-control :format="$format" :item="$item ?? null"  doct="tc" printroute="technical_connect_print" ></x-edit-form-elements.blocked-control>

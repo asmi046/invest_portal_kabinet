@@ -10,181 +10,27 @@
         </div>
     </div>
     <div class="pseudotable__body">
-        <div class="pseudotable__tr">
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Этап
-                    </span>
-                    <input type="text"  class="form-elem__field" name="et1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Планируемый срок проектирования
-                    </span>
-                    <input type="text" class="form-elem__field" name="pproject_1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Планируемый срок введения в эксплуатацию
-                    </span>
-                    <input type="text" class="form-elem__field" name="pexpl_1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Максимальная мощьность устройств
-                    </span>
-                    <input type="text" class="form-elem__field" name="maxp_1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Категория надежности устройств
-                    </span>
-                    <input type="text" class="form-elem__field" name="cat_1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-        </div>
-        <div class="pseudotable__tr">
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Этап
-                    </span>
-                    <input type="text"  class="form-elem__field" name="et1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Планируемый срок проектирования
-                    </span>
-                    <input type="text" class="form-elem__field" name="pproject_1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Планируемый срок введения в эксплуатацию
-                    </span>
-                    <input type="text" class="form-elem__field" name="pexpl_1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Максимальная мощьность устройств
-                    </span>
-                    <input type="text" class="form-elem__field" name="maxp_1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Категория надежности устройств
-                    </span>
-                    <input type="text" class="form-elem__field" name="cat_1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-        </div>
-        <div class="pseudotable__tr">
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Этап
-                    </span>
-                    <input type="text"  class="form-elem__field" name="et1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Планируемый срок проектирования
-                    </span>
-                    <input type="text" class="form-elem__field" name="pproject_1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Планируемый срок введения в эксплуатацию
-                    </span>
-                    <input type="text" class="form-elem__field" name="pexpl_1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Максимальная мощьность устройств
-                    </span>
-                    <input type="text" class="form-elem__field" name="maxp_1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-            <div class="pseudotable-td">
-                <label class="form-elem">
-                    <span class="form-elem__caption">
-                        Категория надежности устройств
-                    </span>
-                    <input type="text" class="form-elem__field" name="cat_1" value="">
-                    {{-- @error('email')
-                        <span class="form-elem__error-message">{{ $message }}</span>
-                    @enderror --}}
-                </label>
-            </div>
-        </div>
+        @if (!empty($item->etaps))
+            @php
+                $i = 0;
+            @endphp
+            @foreach ($item->etaps as $fields)
+                <x-tc.time-table-row :index="$i" :fields="$fields" ></x-tc.time-table-row>
+
+                @php
+                    $i++;
+                @endphp
+            @endforeach
+
+        @else
+            <x-tc.time-table-row index="0" :fields="null" ></x-tc.time-table-row>
+            <x-tc.time-table-row index="1" :fields="null" ></x-tc.time-table-row>
+            <x-tc.time-table-row index="2" :fields="null" ></x-tc.time-table-row>
+        @endif
     </div>
 </div>
 
-<button class="btn btn--add"><span>+</span>Добавить срок</button>
+<button disabled class="btn btn--add"><span>+</span>Добавить срок</button>
 
 {{--
 <table class="table">

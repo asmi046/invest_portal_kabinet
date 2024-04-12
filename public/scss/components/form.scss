@@ -37,25 +37,25 @@
         &::-webkit-input-placeholder {
             opacity: 1;
             transition: opacity 0.3s ease;
-            color: var(--color-alt-light);
+            color: var(--border-color);
         }
 
         &::-moz-placeholder {
             opacity: 1;
             transition: opacity 0.3s ease;
-            color: var(--color-alt-light);
+            color: var(--border-color);
         }
 
         &:-moz-placeholder {
             opacity: 1;
             transition: opacity 0.3s ease;
-            color: var(--color-alt-light);
+            color: var(--border-color);
         }
 
         &:-ms-input-placeholder {
             opacity: 1;
             transition: opacity 0.3s ease;
-            color: var(--color-alt-light);
+            color: var(--border-color);
         }
 
         &:focus::-webkit-input-placeholder {
@@ -468,7 +468,7 @@ form {
     background-color: var(--light);
     padding: 10px;
     box-shadow: 0 0px 16px 0px rgba(51, 51, 51, 0.08), 0px 4px 4px 0px rgba(51, 51, 51, 0.04);
-
+    z-index: 1000;
     .btn {
         display: flex;
         align-items: center;

@@ -153,12 +153,16 @@ export default class FileFunnel {
     }
     // очистка
     reset(){
+        console.log(this.funnel.value)
+
         this.fileStorage = [];
         let nlVizFiles = this.docsBox.querySelectorAll('.file-funnel-doc');
         if(nlVizFiles.length > 0){
             nlVizFiles.forEach(item=>{
                 item.remove();
             });
+
+            console.log(this.funnel.files)
         }
         this.docsBox.classList.remove('file-funnel__docs--show');
     }
