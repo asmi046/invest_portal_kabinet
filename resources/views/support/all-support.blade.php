@@ -33,7 +33,7 @@
 
                     <x-widget-stat
                     :value="$state['В обработке']"
-                    title="заявления в обрабботке"
+                    title="заявления в обработке"
                     icon="analytics-icon"
                     ></x-widget-stat>
 
