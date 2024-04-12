@@ -18,7 +18,9 @@
             @csrf
 
             @if (session('success_user_data'))
-                <p class="success">{{ session('success_user_data') }}</p>
+                <div class="form-status form-status--success">
+                    {{ session('success_user_data') }}
+                </div>
             @endif
 
             <label class="form-elem">
