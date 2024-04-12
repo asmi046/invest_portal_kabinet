@@ -303,7 +303,7 @@
             <span class="form-elem__caption">
                 Приложения к заявлению
             </span>
-            <textarea class="form-elem__textarea form-elem__textarea-autoheigth" name="prilogenie" placeholder="Опишите все приложенныедокументы в свободной форме"  value="{{ $item->prilogenie ?? old('prilogenie') ?? '' }}"></textarea>
+            <textarea class="form-elem__textarea form-elem__textarea-autoheigth" name="prilogenie" placeholder="Опишите все приложенные документы в свободной форме"  value="{{ $item->prilogenie ?? old('prilogenie') ?? '' }}"></textarea>
             @error('prilogenie')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
