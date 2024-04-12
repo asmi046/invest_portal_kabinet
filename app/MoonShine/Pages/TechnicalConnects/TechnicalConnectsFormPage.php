@@ -99,7 +99,7 @@ class TechnicalConnectsFormPage extends FormPage
             ]),
 
             Block::make('Этапы строительства', [
-                Json::make('Описание этапы строительства', 'report')->fields([
+                Json::make('Описание этапы строительства', 'etaps')->fields([
                     Position::make(),
                     Text::make('Этап (очередь) строительства', 'et'),
                     Text::make('Планируемый срок проектирования энергопринимающих устройств (месяц, год)', 'pproject'),
