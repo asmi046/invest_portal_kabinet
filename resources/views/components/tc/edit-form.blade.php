@@ -221,7 +221,7 @@
                 При напряжении (кВ)
             </span>
             <input type="text" name="napr_pris_r_devices" class="form-elem__field"  value="{{ $item->napr_pris_r_devices ?? old('napr_pris_r_devices') ?? '' }}">
-            @error('napr_pris_devices')
+            @error('napr_pris_r_devices')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
         </label>
