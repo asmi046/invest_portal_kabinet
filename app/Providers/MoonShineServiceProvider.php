@@ -11,10 +11,10 @@ use App\MoonShine\Resources\AreaGetResource;
 use App\MoonShine\Resources\ProjectResource;
 use App\MoonShine\Resources\AlgorithmResource;
 use App\MoonShine\Resources\AttachmentResource;
-use App\MoonShine\Resources\MoonShineUserResource;
+use MoonShine\Resources\MoonShineUserResource;
 use App\MoonShine\Resources\InvestDocumentResource;
 use App\MoonShine\Resources\SignedDocumentResource;
-use App\MoonShine\Resources\MoonShineUserRoleResource;
+use MoonShine\Resources\MoonShineUserRoleResource;
 use App\MoonShine\Resources\TechnicalConnectsResource;
 use App\MoonShine\Resources\OrganizationContactResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
@@ -66,7 +66,7 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                 )->icon('heroicons.outline.clipboard-document-list'),
             ])
             ->icon('heroicons.outline.power')
-            ->canSee(fn() => in_array(auth()->user()->moonshineUserRole->name, ["Admin", "Ресурсные организации"])),
+            ->canSee(fn() => in_array(auth()->user()->moonshineUserRole->name, ["Admin", "Ресурсные организации", "Просмотр показателей"])),
 
             MenuGroup::make(static fn() => __('Дополнительно'), [
                 MenuItem::make(

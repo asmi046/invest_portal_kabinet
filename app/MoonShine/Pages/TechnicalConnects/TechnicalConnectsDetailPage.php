@@ -102,7 +102,7 @@ class TechnicalConnectsDetailPage extends DetailPage
             ]),
 
             Block::make('Этапы строительства', [
-                Json::make('Описание этапы строительства', 'report')->fields([
+                Json::make('Описание этапы строительства', 'etaps')->fields([
                     Position::make(),
                     Text::make('Этап (очередь) строительства', 'et'),
                     Text::make('Планируемый срок проектирования энергопринимающих устройств (месяц, год)', 'pproject'),
@@ -121,7 +121,7 @@ class TechnicalConnectsDetailPage extends DetailPage
                             "В обработке" => "В обработке",
                             "Предоставлен ответ" => "Предоставлен ответ"
                         ]),
-                TinyMce::make('Напишите сообщение полльзователю', 'report')
+                TinyMce::make('Официальный ответ', 'report')
             ]),
 
             LineBreak::make(),

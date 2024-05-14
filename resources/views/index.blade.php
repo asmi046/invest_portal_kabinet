@@ -32,8 +32,8 @@
 
             <div class="btn-link-box columns-box columns-box--two-col">
                 <x-widget-icon-lnk lnk="{{ route('project_create') }}" title="Подать заявление на государственную поддержку" icon="building-icon"></x-widget-icon-lnk>
-                <x-widget-icon-lnk lnk="{{ route('support_select') }}" title="Подать заявление на сопровождение проекта по принципу «Одно окно»" icon="laptop-icon"></x-widget-icon-lnk>
-                <x-widget-icon-lnk lnk="{{ route('technical_connect_create') }}" title="Подать заявление на получение доступа к ключевым элементам инфраструктуры согласно своду инвестиционных правил" icon="tablet-icon"></x-widget-icon-lnk>
+                <x-widget-icon-lnk lnk="{{ route('support_select') }}" title="Заявления на государственную поддержку" icon="laptop-icon"></x-widget-icon-lnk>
+                <x-widget-icon-lnk lnk="{{ route('technical_connect_create') }}" title="Заявления на технологическое присоединение" icon="tablet-icon"></x-widget-icon-lnk>
             </div>
 
 

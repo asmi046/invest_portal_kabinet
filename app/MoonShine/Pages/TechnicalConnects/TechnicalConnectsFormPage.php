@@ -118,7 +118,7 @@ class TechnicalConnectsFormPage extends FormPage
                             "В обработке" => "В обработке",
                             "Предоставлен ответ" => "Предоставлен ответ"
                         ]),
-                TinyMce::make('Напишите сообщение полльзователю', 'report')
+                TinyMce::make('Официальный ответ', 'report')
             ]),
 
             LineBreak::make(),
