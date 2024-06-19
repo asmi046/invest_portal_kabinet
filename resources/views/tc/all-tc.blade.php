@@ -56,7 +56,7 @@
                                     <th>№</th>
                                     <th>Заявитель</th>
                                     <th>Требуемая мощьность (кВт)</th>
-                                    <th>Поставщик</th>
+                                    <th>Телефон</th>
                                     <th>Статус</th>
                                     <th>Управление</th>
                                 </tr>
@@ -67,10 +67,10 @@
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->pover_pris_devices }}</td>
-                                        <td>{{ $item->gen_postavhik}}</td>
+                                        <td>{{ $item->phone}}</td>
                                         <td>{{ $item->state }}</td>
                                         <td>
-                                            <a href="{{route('technical_connect_print', $item->id)}}">Печатная форма</a>
+                                            {{-- <a href="{{route('technical_connect_print', $item->id)}}">Печатная форма</a> --}}
                                             @if (!in_array($item->state, config('documents')['tc']['statuses_noedit']))
                                                 <a href="{{route('technical_connect_edit', $item->id)}}">Редактировать</a>
                                             @else

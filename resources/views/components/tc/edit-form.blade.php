@@ -27,7 +27,7 @@
             <span class="form-elem__caption">
                 Ф.И.О. заявителя<sup>*</sup>
             </span>
-            <input type="text" name="name" class="form-elem__field"  value="{{ $item->name ?? old('name') ?? '' }}">
+            <input type="text" name="name" class="form-elem__field"  value="{{ $item->name ?? old('name') ?? get_fio_str() }}">
             @error('name')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -57,7 +57,7 @@
             <span class="form-elem__caption">
                 Телефон<sup>*</sup>
             </span>
-            <input type="text" name="phone" class="form-elem__field tel-mask"  value="{{ $item->phone ?? old('phone') ?? '' }}">
+            <input type="text" name="phone" class="form-elem__field tel-mask"  value="{{ $item->phone ?? old('phone') ?? auth()->user()->phone }}">
             @error('phone')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -94,40 +94,49 @@
         @enderror
     </label>
 
-    <h3>Паспортные данные</h3>
-
+    <h3>Информация о проекте</h3>
     <div class="columns-box columns-box--two-col">
         <label class="form-elem">
             <span class="form-elem__caption">
-                Серия<sup>*</sup>
+                Наименование проекта
             </span>
-            <input type="text" name="pasport_seria" class="form-elem__field"  placeholder="Заявитель" value="{{ $item->pasport_seria ?? old('pasport_seria') ?? '' }}">
-            @error('pasport_seria')
+            <input type="text" name="project_name" class="form-elem__field"  value="{{ $item->project_name ?? old('project_name') ?? '' }}">
+            @error('project_name')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
         </label>
 
         <label class="form-elem">
             <span class="form-elem__caption">
-                Номер<sup>*</sup>
+                Кадастровый номер
             </span>
-            <input type="text" name="pasport_number" class="form-elem__field"  placeholder="Заявитель" value="{{ $item->pasport_number ?? old('pasport_number') ?? '' }}">
-            @error('pasport_number')
+            <input type="text" name="cadastr_number" class="form-elem__field"  value="{{ $item->cadastr_number ?? old('cadastr_number') ?? '' }}">
+            @error('cadastr_number')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
         </label>
 
+        <label class="form-elem">
+            <span class="form-elem__caption">
+                Координаты объекта
+            </span>
+            <input type="text" name="geo" class="form-elem__field"  value="{{ $item->geo ?? old('geo') ?? '' }}">
+            @error('geo')
+                <span class="form-elem__error-message">{{ $message }}</span>
+            @enderror
+        </label>
+
+        <label class="form-elem">
+            <span class="form-elem__caption">
+                Место нахождения объекта
+            </span>
+            <input type="text" name="object_place_name" class="form-elem__field"  value="{{ $item->object_place_name ?? old('object_place_name') ?? '' }}">
+            @error('object_place_name')
+                <span class="form-elem__error-message">{{ $message }}</span>
+            @enderror
+        </label>
     </div>
 
-    <label class="form-elem">
-        <span class="form-elem__caption">
-            Выдан<sup>*</sup>
-        </span>
-        <input type="text" name="pasport_vidan" class="form-elem__field"  value="{{ $item->pasport_vidan ?? old('pasport_vidan') ?? '' }}">
-        @error('pasport_vidan')
-            <span class="form-elem__error-message">{{ $message }}</span>
-        @enderror
-    </label>
 
     <h3>Информация о подключении</h3>
 
@@ -140,6 +149,7 @@
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
     </label>
+
 
     <label class="form-elem">
         <span class="form-elem__caption">
@@ -161,6 +171,39 @@
         @enderror
     </label>
 
+    <label class="form-elem">
+        <span class="form-elem__caption">
+            Количество точек подключения<sup>*</sup>
+        </span>
+        <input type="number" name="point_count" class="form-elem__field"  value="{{ $item->point_count ?? old('point_count') ?? 1 }}">
+        @error('point_count')
+            <span class="form-elem__error-message">{{ $message }}</span>
+        @enderror
+    </label>
+
+    <div class="form-elem">
+        <span class="form-elem__caption">Категория надежности <sup>*</sup></span>
+
+        <select name="safety_category" class="select-ch select-ch--no-search">
+            @foreach (config('resource_data.safety_categoryes') as $key => $value)
+                <option @selected(isset($item->safety_category) && ($item->safety_category === $key)) value="{{ $key }}">{{ $key }}</option>
+            @endforeach
+        </select>
+
+        @error('safety_category')
+            <span class="form-elem__error-message">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <div class="form-elem">
+        <h4>Расшифровка</h4>
+        <ul>
+            @foreach (config('resource_data.safety_categoryes') as $key => $value)
+                <li><strong>{{ $key}}</strong> - {{ $value }}</li>
+            @endforeach
+        </ul>
+    </div>
+
     <h3>Максимальная мощность энергопринимающих устройств</h3>
     <div class="columns-box columns-box--two-col">
         <label class="form-elem">
@@ -172,6 +215,7 @@
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
         </label>
+
         <label class="form-elem">
             <span class="form-elem__caption">
                 При напряжении (кВ)<sup>*</sup>
@@ -227,51 +271,7 @@
         </label>
     </div>
 
-    <x-tc.time-table :item="$item ?? null"></x-tc.time-table>
-
-    <h3>Информация об оплате</h3>
-    <div class="form-elem">
-        <span class="form-elem__caption">Порядок расчета и условия рассрочки внесения платы <sup>*</sup></span>
-        <select name="rashet_plati" class="select-ch select-ch--no-search">
-            <option value="">Не выбрано</option>
-            <option @selected(isset($item->rashet_plati) && ($item->rashet_plati === 'Вариант 1')) value="Вариант 1">Вариант 1</option>
-            <option @selected(isset($item->rashet_plati) && ($item->rashet_plati === 'Вариант 2')) value="Вариант 2">Вариант 2</option>
-        </select>
-        @error('rashet_plati')
-            <span class="form-elem__error-message">{{ $message }}</span>
-        @enderror
-    </div>
-
-    <div class="form-element">
-        <div class="columns-box columns-box--two-col">
-            <div class="variant_1">
-                <h4>Вариант 1</h4>
-                <ul>
-                    <li>15 процентов платы за технологическое присоединение вносятся в течение 15 дней со дня заключения договора;</li>
-                    <li>30 процентов платы за технологическое присоединение вносятся в течение 60 дней со дня заключения договора, но не позже дня фактического присоединения;</li>
-                    <li>45 процентов платы за технологическое присоединение вносятся в течение 15 дней со дня фактического присоединения;</li>
-                    <li>10 процентов платы за технологическое присоединение вносятся в течение 15 дней со дня подписания акта об осуществлении технологического присоединения;</li>
-                </ul>
-            </div>
-            <div class="variant_2">
-                <h4>Вариант 2</h4>
-                <ul>
-                    <li>авансовый платеж вносится в размере 5 процентов размера платы за технологическое присоединение;</li>
-                    <li>осуществляется беспроцентная рассрочка платежа в размере 95 процентов платы за технологическое присоединение с условием ежеквартального внесения платы равными долями от общей суммы рассрочки на период до 3 лет со дня подписания сторонами акта об осуществлении технологического присоединения.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <label class="form-elem">
-        <span class="form-elem__caption">
-            Гарантирующий поставщик<sup>*</sup>
-        </span>
-        <input type="text" name="gen_postavhik" class="form-elem__field"  value="{{ $item->gen_postavhik ?? old('gen_postavhik') ?? '' }}">
-        @error('gen_postavhik')
-            <span class="form-elem__error-message">{{ $message }}</span>
-        @enderror
-    </label>
+    {{-- <x-tc.time-table :item="$item ?? null"></x-tc.time-table> --}}
 
     @if ($format !== "create" )
         <h3>Приложения</h3>
@@ -285,7 +285,6 @@
                 @endforeach
             </div>
         @endif
-
 
         <div class="file-funnel">
             <input type="file" name="attachment[]" class="file-funnel__file-input" multiple="multiple">
@@ -309,7 +308,7 @@
             <span class="form-elem__caption">
                 Приложения к заявлению
             </span>
-            <textarea class="form-elem__textarea form-elem__textarea-autoheigth" name="prilogenie" placeholder="Опишите все приложенные документы в свободной форме"  value="{{ $item->prilogenie ?? old('prilogenie') ?? '' }}"></textarea>
+            <textarea class="form-elem__textarea form-elem__textarea-autoheigth" name="prilogenie" placeholder="Опишите все приложенные документы в свободной форме">{{ $item->prilogenie ?? old('prilogenie') ?? '' }}</textarea>
             @error('prilogenie')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -321,4 +320,4 @@
 
 </form>
 
-<x-edit-form-elements.blocked-control :format="$format" :item="$item ?? null"  doct="tc" printroute="technical_connect_print" ></x-edit-form-elements.blocked-control>
+{{-- <x-edit-form-elements.blocked-control :format="$format" :item="$item ?? null"  doct="tc" printroute="technical_connect_print" ></x-edit-form-elements.blocked-control> --}}

@@ -34,9 +34,13 @@ class TechnicalConnectsSeeder extends Seeder
                     "egrul" => "770300584079",
                     "adress" => "г. Курск, ул. Орловская д. 5",
 
-                    "pasport_seria" => "3804",
-                    "pasport_number" => "000000",
-                    "pasport_vidan"=> "ОМ №5 УВД г. КУРСКА",
+                    "project_name" => "Тестовый проект 0",
+                    "cadastr_number" => "31:16:0123029:163",
+                    "geo" => "51.730846, 36.193015",
+                    "object_place_name" => "город Крачев д. 15",
+
+                    "safety_category" => "Третья",
+                    "point_count" => 1,
 
                     "osnovanie" => "увеличение максимальной мощьности",
                     "ustroistvo" => "Трансформатор",
@@ -48,8 +52,7 @@ class TechnicalConnectsSeeder extends Seeder
                     "napr_pris_devices" => "220",
                     "pover_pris_r_devices"=>"",
                     "napr_pris_r_devices"=>"",
-                    "rashet_plati"=>"Вариант 1",
-                    "gen_postavhik" => "КурскЭнерго",
+
                     "prilogenie" => "",
                 ],
                 [
@@ -62,9 +65,13 @@ class TechnicalConnectsSeeder extends Seeder
                     "egrul" => "880300584079",
                     "adress" => "г. Курск, ул. Казацкая д. 5",
 
-                    "pasport_seria" => "3805",
-                    "pasport_number" => "111000",
-                    "pasport_vidan"=> "ОМ №7 УВД г. КУРСКА",
+                    "project_name" => "Тестовый проект 1",
+                    "cadastr_number" => "31:16:0123029:163",
+                    "geo" => "51.730846, 36.193015",
+                    "object_place_name" => "Село Червоное д. 10",
+
+                    "safety_category" => "Третья",
+                    "point_count" => 1,
 
                     "osnovanie" => "увеличение максимальной мощьности",
                     "ustroistvo" => "Трансформатор",
@@ -76,8 +83,7 @@ class TechnicalConnectsSeeder extends Seeder
                     "napr_pris_devices" => "820",
                     "pover_pris_r_devices"=>"500",
                     "napr_pris_r_devices"=>"220",
-                    "rashet_plati"=>"Вариант 2",
-                    "gen_postavhik" => "Россети",
+
                     "prilogenie" => "",
                 ],
                 [
@@ -90,9 +96,14 @@ class TechnicalConnectsSeeder extends Seeder
                     "egrul" => "880300584079",
                     "adress" => "г. Курск, ул. Казацкая д. 5",
 
-                    "pasport_seria" => "3805",
-                    "pasport_number" => "111000",
-                    "pasport_vidan"=> "ОМ №7 УВД г. КУРСКА",
+
+                    "project_name" => "Тестовый проект 2",
+                    "cadastr_number" => "31:16:0123029:163",
+                    "geo" => "51.730846, 36.193015",
+                    "object_place_name" => "Село Верхние лихоборы д. 13",
+
+                    "safety_category" => "Третья",
+                    "point_count" => 2,
 
                     "osnovanie" => "увеличение максимальной мощьности",
                     "ustroistvo" => "Трансформатор",
@@ -104,8 +115,7 @@ class TechnicalConnectsSeeder extends Seeder
                     "napr_pris_devices" => "820",
                     "pover_pris_r_devices"=>"500",
                     "napr_pris_r_devices"=>"220",
-                    "rashet_plati"=>"Вариант 2",
-                    "gen_postavhik" => "Россети",
+
                     "prilogenie" => "",
                 ],
 
@@ -119,9 +129,13 @@ class TechnicalConnectsSeeder extends Seeder
                     "egrul" => "880300584079",
                     "adress" => "г. Курск, ул. Казацкая д. 5",
 
-                    "pasport_seria" => "3805",
-                    "pasport_number" => "111000",
-                    "pasport_vidan"=> "ОМ №7 УВД г. КУРСКА",
+                    "project_name" => "Тестовый проект 3",
+                    "cadastr_number" => "31:16:0123029:163",
+                    "geo" => "51.730846, 36.193015",
+                    "object_place_name" => "город Павловск д. 1",
+
+                    "safety_category" => "Третья",
+                    "point_count" => 1,
 
                     "osnovanie" => "увеличение максимальной мощьности",
                     "ustroistvo" => "Трансформатор",
@@ -133,8 +147,7 @@ class TechnicalConnectsSeeder extends Seeder
                     "napr_pris_devices" => "820",
                     "pover_pris_r_devices"=>"500",
                     "napr_pris_r_devices"=>"220",
-                    "rashet_plati"=>"Вариант 2",
-                    "gen_postavhik" => "Россети",
+
                     "prilogenie" => "",
                 ],
             ]

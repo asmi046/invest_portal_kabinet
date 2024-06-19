@@ -31,9 +31,8 @@ class TcSigneRequest extends FormRequest
             "adress.required" => 'Поле "Адрес заявителя" должно быть заполнено',
             "okved.required" => 'Поле "Вид экономической деятельности" должно быть заполнено',
 
-            "pasport_seria.required" => 'Поле "Серия" должно быть заполнено',
-            "pasport_number.required" => 'Поле "Номер" должно быть заполнено',
-            "pasport_vidan.required" => 'Поле "Выдан" должно быть заполнено',
+            "safety_category.required" => 'Поле "Категория надежности" должно быть заполнено',
+            "point_count.required" => 'Поле "Количество точек подключения" должно быть заполнено',
 
             "osnovanie.required" => 'Поле "Основание для присоединения" должно быть заполнено',
             "ustroistvo.required" => 'Поле "Наименование энергопринимающих устройств" должно быть заполнено',
@@ -49,8 +48,6 @@ class TcSigneRequest extends FormRequest
             "pover_pris_devices.integer" => 'Поле "Максимальная мощность ранее присоединенных в данной точке" должно быть целым числом',
             "napr_pris_devices.integer" => 'Поле "Максимальная мощность ранее присоединенных в данной точке" должно быть целым числом',
 
-            "rashet_plati.required" => 'Поле "Порядок расчета и условия рассрочки внесения платы" должно быть заполнено',
-            "gen_postavhik.required" => 'Поле "Гарантирующий поставщик" должно быть заполнено',
         ];
     }
 
@@ -70,9 +67,19 @@ class TcSigneRequest extends FormRequest
             "adress" => ['required', 'string'],
             "okved" => ['required', 'string'],
 
-            "pasport_seria" => ['required', 'string'],
-            "pasport_number" => ['required', 'string'],
-            "pasport_vidan" => ['required', 'string'],
+            // "pasport_seria" => ['required', 'string'],
+            // "pasport_number" => ['required', 'string'],
+            // "pasport_vidan" => ['required', 'string'],
+
+            "project_name" => [],
+            "cadastr_number" => [],
+            "geo" => [],
+            "object_place_name" => [],
+
+            "safety_category" => ['required', 'string'],
+            "point_count" => ['required', 'integer'],
+            "corporation_check" => [],
+            "resource_check" => [],
 
             "osnovanie" => ['required', 'string'],
             "ustroistvo" => ['required', 'string'],
@@ -84,8 +91,10 @@ class TcSigneRequest extends FormRequest
             "napr_pris_devices" => ['required', 'integer'],
             "pover_pris_r_devices" => [],
             "napr_pris_r_devices" => [],
-            "rashet_plati" => ['required', 'string'],
-            "gen_postavhik" => ['required', 'string'],
+
+            // "rashet_plati" => ['required', 'string'],
+            // "gen_postavhik" => ['required', 'string'],
+
             "prilogenie" => [],
             "item_id" => []
         ];

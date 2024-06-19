@@ -34,6 +34,15 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
         return [];
     }
 
+    public function boot(): void
+    {
+        parent::boot();
+
+        moonShineAssets()->add([
+            '/moonshine_css/main.css',
+        ]);
+    }
+
     protected function menu(): array
     {
         return [

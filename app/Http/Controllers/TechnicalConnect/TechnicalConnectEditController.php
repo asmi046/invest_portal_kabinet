@@ -66,15 +66,15 @@ class TechnicalConnectEditController extends Controller
                 return redirect()->back()->with('drafr_save', "Черновик сохранен");
             break;
 
-            case 'validate_signe':
+            case 'send_to_corp':
                 $s_request = new TcSigneRequest();
                 $data = $request->validate($s_request->rules(), $s_request->messages());
-
 
                 $item = TechnicalConnects::where('id', $data['item_id'])->first();
 
                 if(!$item) abort('404');
 
+                $data['state'] = "Отправлен";
                 $item->update($data);
 
                 $attachment = new AttachmentCreateServices();
@@ -86,8 +86,33 @@ class TechnicalConnectEditController extends Controller
                         $item->id
                     );
 
-                return redirect()->route('technical_connect_signe', $item->id);
+                return redirect()->back()->with('drafr_save', "Заявление отправлено в корпорацию роазвития на проверку");
             break;
+
+            // case 'validate_signe':
+            //     $s_request = new TcSigneRequest();
+            //     $data = $request->validate($s_request->rules(), $s_request->messages());
+
+
+            //     $item = TechnicalConnects::where('id', $data['item_id'])->first();
+
+            //     if(!$item) abort('404');
+
+            //     $item->update($data);
+
+            //     $attachment = new AttachmentCreateServices();
+
+            //     if ($request->hasFile('attachment'))
+            //         $files = $attachment->create_attachment(
+            //             $request->file('attachment'),
+            //             'tc',
+            //             $item->id
+            //         );
+
+            //     return redirect()->route('technical_connect_signe', $item->id);
+            // break;
+
+
 
         }
 

@@ -6,10 +6,12 @@ namespace App\MoonShine\Resources;
 
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Phone;
+use MoonShine\Fields\Select;
 use App\Models\TechnicalConnects;
 use MoonShine\Handlers\ExportHandler;
-use MoonShine\Handlers\ImportHandler;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
+use MoonShine\Handlers\ImportHandler;
 use MoonShine\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
 use App\MoonShine\Pages\TechnicalConnects\TechnicalConnectsFormPage;
@@ -51,6 +53,22 @@ class TechnicalConnectsResource extends ModelResource
 
             Text::make("Статус", "state")->showOnExport(),
         ];
+    }
+
+    public function filters(): array
+    {
+        return [
+            Select::make("Статус", "state")
+            ->options(config('documents')['tc']['statuses_select_options'])
+        ];
+    }
+
+    public function query(): Builder
+    {
+        if (auth()->user()->moonshine_user_role_id == 3)
+            return parent::query()->where('corporation_check', 1);
+        else
+            return parent::query();
     }
 
     public function rules(Model $item): array

@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\MoonShine\Pages\TechnicalConnects;
 
 use MoonShine\Fields\Text;
+use MoonShine\Fields\Field;
 use MoonShine\Fields\Phone;
+use MoonShine\Fields\Preview;
 use MoonShine\Pages\Crud\IndexPage;
 
 class TechnicalConnectsIndexPage extends IndexPage
@@ -13,7 +15,7 @@ class TechnicalConnectsIndexPage extends IndexPage
     public function fields(): array
     {
         return [
-            Text::make("Пользователь", 'User.name', fn($item) => $item->user->name." ".$item->user->lastname ." ". $item->user->fathername),
+            // Text::make("Пользователь", 'User.name', fn($item) => $item->user->name." ".$item->user->lastname ." ". $item->user->fathername),
             Text::make("Заявитель", "name"),
             Text::make("Организация", "organization"),
             Phone::make("Телефон", "phone"),
@@ -21,7 +23,16 @@ class TechnicalConnectsIndexPage extends IndexPage
             Text::make("Мощьность прис. устройств", "pover_pris_devices"),
             Text::make("Устройства", "ustroistvo"),
 
-            Text::make("Статус", "state"),
+
+            Preview::make("Проверено корпорацией развитие", "corporation_check")->boolean(),
+            Preview::make("Проверено ресурсной организацией", "resource_check")->boolean(),
+            Preview::make("Статус", "state")->badge(
+                function ($state, Field $field) {
+                    if ($state === "Черновик") return 'gray';
+                    if ($state === "Отправлен") return 'yellow';
+                    if ($state === "В обработке") return 'blue';
+                    if ($state === "Предоставлен ответ") return 'green';
+                })
         ];
     }
 

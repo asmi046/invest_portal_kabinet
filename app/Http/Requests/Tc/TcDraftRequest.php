@@ -25,7 +25,7 @@ class TcDraftRequest extends FormRequest
             'name.required' => 'Для сохраниения черновика поле "ФИО" должно быть заполнено',
             'pover_pris_devices.required' => 'Для сохраниения черновика поле "Максимальная мощность энергопринимающих устройств" должно быть заполнено',
             'pover_pris_devices.integer' => 'Поле "Максимальная мощность энергопринимающих устройств" должно быть целым числом',
-            'gen_postavhik.required' => 'Для сохраниения черновика поле "Генеральный поставщик" должно быть заполнено',
+            'phone.required' => 'Для сохраниения черновика поле "Телефон" должно быть заполнено',
         ];
     }
 
@@ -39,15 +39,21 @@ class TcDraftRequest extends FormRequest
         return [
             "name" => ['required', 'string'],
             "dolgnost" => [],
-            "phone" => [],
+            "phone" => ['required', 'string'],
             "organization" => [],
             "egrul" => [],
             "adress" => [],
             "okved" => [],
 
-            "pasport_seria" => [],
-            "pasport_number" => [],
-            "pasport_vidan" => [],
+            "project_name" => [],
+            "cadastr_number" => [],
+            "geo" => [],
+            "object_place_name" => [],
+
+            "safety_category" => [],
+            "point_count" => [],
+            "corporation_check" => [],
+            "resource_check" => [],
 
             "osnovanie" => [],
             "ustroistvo" => [],
@@ -59,8 +65,7 @@ class TcDraftRequest extends FormRequest
             "napr_pris_devices" => [],
             "pover_pris_r_devices" => [],
             "napr_pris_r_devices" => [],
-            "rashet_plati" => [],
-            "gen_postavhik" => ['required', 'string'],
+
             "prilogenie" => [],
         ];
     }

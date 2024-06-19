@@ -1,5 +1,11 @@
 <?php
 
+if (!function_exists("get_fio_str")) {
+    function get_fio_str() {
+        return auth()->user()->lastname." ".auth()->user()->name." ".auth()->user()->fathername;
+    }
+}
+
 if (!function_exists("get_month")) {
     function get_month($date) {
         $monthes = array(

@@ -27,9 +27,21 @@ return new class extends Migration
             $table->string("adress")->nullable()->comment("Адрес заявителя");
             $table->string("okved")->nullable()->comment("Вид экономической деятельности заявителя");
 
-            $table->string("pasport_seria")->nullable()->comment("Серия паспорта");
-            $table->string("pasport_number")->nullable()->comment("Номер паспорта");
-            $table->string("pasport_vidan")->nullable()->comment("Кем выдан паспорт");
+            // $table->string("pasport_seria")->nullable()->comment("Серия паспорта");
+            // $table->string("pasport_number")->nullable()->comment("Номер паспорта");
+            // $table->string("pasport_vidan")->nullable()->comment("Кем выдан паспорт");
+
+            // ----- Новые поля
+            $table->string("project_name")->nullable()->comment("Наименование проекта");
+            $table->string("cadastr_number")->nullable()->comment("Кадастровый номер");
+            $table->string("geo")->nullable()->comment("Координаты объекта");
+            $table->string("object_place_name")->nullable()->comment("Место нахождения объекта");
+
+            $table->string("safety_category")->default('Третья')->comment("Категория надежности");
+            $table->integer("point_count")->default(1)->comment("Количество точек подключения");
+            $table->boolean("corporation_check")->default(false)->comment("Проверено корпорацией развитие");
+            $table->boolean("resource_check")->default(false)->comment("Проверено ресурсной организацией");
+            // -----
 
             $table->string("osnovanie")->nullable()->comment("Основание для присоединения");
             $table->string("ustroistvo")->nullable()->comment("Наименование энергопринимающих устройств");
@@ -41,9 +53,11 @@ return new class extends Migration
             $table->string("napr_pris_devices")->nullable()->comment("При напряжении");
             $table->string("pover_pris_r_devices")->nullable()->nullable()->comment("Максимальная мощность ранее присоединенных в данной точке");
             $table->string("napr_pris_r_devices")->nullable()->nullable()->comment("При напряжении");
-            $table->string("rashet_plati")->nullable()->default('Вариант 1')->comment("Порядок расчета и условия рассрочки внесения платы");
-            $table->string("gen_postavhik")->comment("Гарантирующий поставщик");
-            $table->json("etaps")->nullable()->comment("Этапы строительства");
+
+            // $table->string("rashet_plati")->nullable()->default('Вариант 1')->comment("Порядок расчета и условия рассрочки внесения платы");
+            // $table->string("gen_postavhik")->comment("Гарантирующий поставщик");
+            // $table->json("etaps")->nullable()->comment("Этапы строительства");
+
             $table->text("prilogenie")->nullable()->comment("Приложения к заявлению");
             $table->text("report")->nullable()->comment("Отчет о рассмотрении документа");
 

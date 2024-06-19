@@ -8,12 +8,16 @@ use MoonShine\Fields\Json;
 use MoonShine\Fields\Text;
 
 use MoonShine\Fields\Phone;
+use MoonShine\Fields\Number;
 use MoonShine\Fields\Select;
 use MoonShine\Fields\TinyMce;
+use MoonShine\Decorations\Tab;
 use MoonShine\Fields\Position;
+use MoonShine\Fields\Switcher;
 use MoonShine\Fields\Textarea;
 use MoonShine\Decorations\Flex;
 use MoonShine\Decorations\Grid;
+use MoonShine\Decorations\Tabs;
 use MoonShine\Decorations\Block;
 use MoonShine\Decorations\Column;
 use MoonShine\Pages\Crud\FormPage;
@@ -28,105 +32,97 @@ class TechnicalConnectsFormPage extends FormPage
     public function fields(): array
     {
         return [
-            Grid::make([
-                Column::make([
-                    Block::make('Пользователь оформивший заявление', [
-                        Text::make("Фамилия", 'User.lastname')->disabled(),
-                        Text::make("Имя", 'User.name')->disabled(),
-                        Text::make("Отчество", 'User.fathername')->disabled(),
-                    ]),
 
-                    Block::make('Паспортные данные заявителя', [
-                        Text::make("Серия паспорта", 'pasport_seria'),
-                        Text::make("Номер паспорта", 'pasport_number'),
-                        Text::make("Кем выдан паспорт", 'pasport_vidan'),
-                    ]),
-                ])->columnSpan(6),
-
-                Column::make([
-                    Block::make('Данные заявителя', [
-                        Text::make("Заявитель", "name"),
-                        Text::make("Организация", "organization"),
-                        Text::make("Должность", "dolgnost"),
-                        Text::make("Адрес", "adress"),
-                        Phone::make("Телефон", "phone"),
-                        Text::make("Вид экономической деятельности", "okved"),
-                    ]),
-                ])->columnSpan(6)
-            ]),
-
-            LineBreak::make(),
-
-            Grid::make([
-                Column::make([
-                    Block::make('Основные данные по заявлению', [
-                        Text::make("Основание для присоединения", "osnovanie"),
-                        Text::make("Гарантирующий поставщик", "gen_postavhik"),
-                        Text::make("Порядок расчета и условия рассрочки внесения платы", "rashet_plati"),
-                        Textarea::make('Описание вложений', 'prilogenie'),
-                    ]),
-
-
-                ])->columnSpan(6),
-
-                Column::make([
-                    Block::make('Устройство', [
-                        Text::make("Наименование энергопринимающих устройств", "ustroistvo"),
-                        Text::make("Место нахождения энергопринимающих устройств", "raspologeie"),
-                    ]),
-                    LineBreak::make(),
-
-                ])->columnSpan(6)
-            ]),
-
-            LineBreak::make(),
-
-            Block::make('Показатели мощьности', [
-                Flex::make([
-                    Text::make("Максимальная мощность энергопринимающих устройств", "pover_prin_devices"),
-                    Text::make("При напряжении", "napr_prin_devices"),
+            Tabs::make([
+                Tab::make('Данные заявителя', [
+                    Text::make("Заявитель", "name")->required(),
+                    Text::make("Организация", "organization")->required(),
+                    Text::make("Должность", "dolgnost")->required(),
+                    Text::make("Адрес", "adress")->required(),
+                    Phone::make("Телефон", "phone")->required(),
+                    Text::make("Вид экономической деятельности", "okved")->required(),
                 ]),
 
-                Flex::make([
-                    Text::make("Максимальная мощность присоединяемых энергопринимающих устройств", "pover_pris_devices"),
-                    Text::make("При напряжении", "napr_pris_devices"),
+                Tab::make('Описание проекта', [
+                    Text::make("Наименование проекта", "project_name"),
+                    Text::make("Кадастровый номер", "cadastr_number"),
+                    Text::make("Координаты объекта", "geo"),
+                    Text::make("Место нахождения объекта", "object_place_name"),
+
+                    Select::make('Категория надежности', 'safety_category')
+                    ->options([
+                        "Первая" => "Первая",
+                        "Вторая" => "Вторая",
+                        "Третья" => "Третья",
+
+                    ])->required(),
+                    Number::make("Количество точек подключения", "point_count")->required(),
+
+                    Text::make("Основание для присоединения", "osnovanie")->required(),
                 ]),
 
-                Flex::make([
-                    Text::make("Максимальная мощность ранее присоединенных в данной точке", "pover_pris_r_devices"),
-                    Text::make("При напряжении", "napr_pris_r_devices"),
-                ]),
-            ]),
 
-            Block::make('Этапы строительства', [
-                Json::make('Описание этапы строительства', 'etaps')->fields([
-                    Position::make(),
-                    Text::make('Этап (очередь) строительства', 'et'),
-                    Text::make('Планируемый срок проектирования энергопринимающих устройств (месяц, год)', 'pproject'),
-                    Text::make('Планируемый срок введения энергопринимающих устройств в эксплуатацию (месяц, год)', 'pexpl'),
-                    Text::make('Максимальная мощность энергопринимающих устройств (кВт)', 'maxp'),
-                    Text::make('Категория надежности энергопринимающих устройств', 'cat'),
-                ])
-            ]),
 
-            Block::make('Официальный ответ', [
-                Select::make('Статус', 'state')
-                        ->options([
-                            "Черновик" => "Черновик",
-                            "Отправлен" => "Отправлен",
-                            "Подписан и отправлен" => "Подписан и отправлен",
-                            "В обработке" => "В обработке",
-                            "Предоставлен ответ" => "Предоставлен ответ"
+                Tab::make('Устройства и мощьности', [
+                    Text::make("Наименование энергопринимающих устройств", "ustroistvo")->required(),
+                    Text::make("Место нахождения энергопринимающих устройств", "raspologeie")->required(),
+
+                    Block::make('Показатели мощьности', [
+                        Flex::make([
+                            Text::make("Максимальная мощность энергопринимающих устройств", "pover_prin_devices")->required(),
+                            Text::make("При напряжении", "napr_prin_devices")->required(),
                         ]),
-                TinyMce::make('Официальный ответ', 'report')
+
+                        Flex::make([
+                            Text::make("Максимальная мощность присоединяемых энергопринимающих устройств", "pover_pris_devices")->required(),
+                            Text::make("При напряжении", "napr_pris_devices")->required(),
+                        ]),
+
+                        Flex::make([
+                            Text::make("Максимальная мощность ранее присоединенных в данной точке", "pover_pris_r_devices"),
+                            Text::make("При напряжении", "napr_pris_r_devices"),
+                        ]),
+                    ]),
+                ]),
+
+                Tab::make('Проверка и статусы', [
+                    Switcher::make('Проверено корпорацией развитие', 'corporation_check')->disabled(fn() => auth()->user()->moonshine_user_role_id == 3),
+                    Switcher::make('Проверено ресурсной организацией', 'resource_check'),
+                    Select::make('Статус', 'state')
+                    ->options([
+                        "Черновик" => "Черновик",
+                        "Отправлен" => "Отправлен",
+                        "В обработке" => "В обработке",
+                        "Предоставлен ответ" => "Предоставлен ответ"
+                    ])->disabled(fn() => auth()->user()->moonshine_user_role_id == 3),
+                    TinyMce::make('Официальный ответ', 'report')->disabled(fn() => auth()->user()->moonshine_user_role_id == 3)
+                ]),
+
+                Tab::make('Пользователь в системе', [
+                    Text::make("Фамилия", 'User.lastname')->disabled(),
+                    Text::make("Имя", 'User.name')->disabled(),
+                    Text::make("Отчество", 'User.fathername')->disabled(),
+                ]),
             ]),
 
-            LineBreak::make(),
+            // Block::make('Этапы строительства', [
+            //     Json::make('Описание этапы строительства', 'etaps')->fields([
+            //         Position::make(),
+            //         Text::make('Этап (очередь) строительства', 'et'),
+            //         Text::make('Планируемый срок проектирования энергопринимающих устройств (месяц, год)', 'pproject'),
+            //         Text::make('Планируемый срок введения энергопринимающих устройств в эксплуатацию (месяц, год)', 'pexpl'),
+            //         Text::make('Максимальная мощность энергопринимающих устройств (кВт)', 'maxp'),
+            //         Text::make('Категория надежности энергопринимающих устройств', 'cat'),
+            //     ])
+            // ]),
 
 
-            HasMany::make("Вложения", "attachment", resource: new AttachmentResource()),
+            Block::make('Приложения к заявлению', [
+                Textarea::make('Описание вложений', 'prilogenie'),
+                HasMany::make("Вложения", "attachment", resource: new AttachmentResource()),
+            ])
 
-            HasOne::make("Подпись", "signature", resource: new SignedDocumentResource())
+            // HasOne::make("Подпись", "signature", resource: new SignedDocumentResource())
         ];
     }
 

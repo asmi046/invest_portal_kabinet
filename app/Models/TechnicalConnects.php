@@ -20,9 +20,15 @@ class TechnicalConnects extends Model
         "adress",
         "okved",
 
-        "pasport_seria",
-        "pasport_number",
-        "pasport_vidan",
+        "project_name",
+        "cadastr_number",
+        "geo",
+        "object_place_name",
+
+        "safety_category",
+        "point_count",
+        "corporation_check",
+        "resource_check",
 
         "osnovanie",
         "ustroistvo",
@@ -34,9 +40,7 @@ class TechnicalConnects extends Model
         "napr_pris_devices",
         "pover_pris_r_devices",
         "napr_pris_r_devices",
-        "rashet_plati",
-        "gen_postavhik",
-        'etaps',
+
         "prilogenie",
     ];
 
