@@ -95,7 +95,7 @@ class TechnicalConnectsFormPage extends FormPage
                         "В обработке" => "В обработке",
                         "Предоставлен ответ" => "Предоставлен ответ"
                     ])->disabled(fn() => auth()->user()->moonshine_user_role_id == 3),
-                    TinyMce::make('Официальный ответ', 'report')->disabled(fn() => auth()->user()->moonshine_user_role_id == 3)
+                    TinyMce::make('Официальный ответ', 'report')->when(fn() => auth()->user()->moonshine_user_role_id == 3)
                 ]),
 
                 Tab::make('Пользователь в системе', [

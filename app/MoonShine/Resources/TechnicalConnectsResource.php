@@ -7,13 +7,14 @@ namespace App\MoonShine\Resources;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Phone;
 use MoonShine\Fields\Select;
+use MoonShine\Fields\Switcher;
 use App\Models\TechnicalConnects;
 use MoonShine\Handlers\ExportHandler;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 
 use MoonShine\Handlers\ImportHandler;
 use MoonShine\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use App\MoonShine\Pages\TechnicalConnects\TechnicalConnectsFormPage;
 use App\MoonShine\Pages\TechnicalConnects\TechnicalConnectsIndexPage;
 use App\MoonShine\Pages\TechnicalConnects\TechnicalConnectsDetailPage;
@@ -58,8 +59,12 @@ class TechnicalConnectsResource extends ModelResource
     public function filters(): array
     {
         return [
+            Text::make("Заявитель", "name"),
+            Phone::make("Телефон", "phone"),
+            Switcher::make('Проверено корпорацией развитие', 'corporation_check'),
+            Switcher::make('Проверено ресурсной организацией', 'resource_check'),
             Select::make("Статус", "state")
-            ->options(config('documents')['tc']['statuses_select_options'])
+            ->options(config('documents')['tc']['statuses_select_options'])->nullable()
         ];
     }
 
