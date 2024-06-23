@@ -20,7 +20,7 @@ class TechnicalConnectsIndexPage extends IndexPage
             Text::make("Организация", "organization"),
             Phone::make("Телефон", "phone"),
 
-            Text::make("Мощьность прис. устройств", "pover_pris_devices"),
+            Text::make("Мощность прис. устройств", "pover_pris_devices"),
             Text::make("Устройства", "ustroistvo"),
 
 

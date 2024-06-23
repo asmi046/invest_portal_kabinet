@@ -86,7 +86,7 @@ class TechnicalConnectEditController extends Controller
                         $item->id
                     );
 
-                return redirect()->back()->with('drafr_save', "Заявление отправлено в корпорацию роазвития на проверку");
+                return redirect()->back()->with('drafr_save', "Заявление отправлено в корпорацию развития на проверку");
             break;
 
             // case 'validate_signe':

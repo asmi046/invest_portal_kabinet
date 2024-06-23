@@ -27,7 +27,7 @@
     <div class="pseudotable-td">
         <label class="form-elem">
             <span class="form-elem__caption">
-                Максимальная мощьность устройств
+                Максимальная мощность устройств
             </span>
             <input type="text" class="form-elem__field" name="maxp_{{$index}}" value="{{ $fields['maxp'] ?? old('maxp_'.$index) ?? '' }}">
         </label>

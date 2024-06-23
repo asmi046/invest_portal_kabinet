@@ -42,7 +42,7 @@ class TechnicalConnectsSeeder extends Seeder
                     "safety_category" => "Третья",
                     "point_count" => 1,
 
-                    "osnovanie" => "увеличение максимальной мощьности",
+                    "osnovanie" => "увеличение максимальной мощности",
                     "ustroistvo" => "Трансформатор",
                     "raspologeie" => "г. Курск, ул. Орловская д. 7",
 
@@ -73,7 +73,7 @@ class TechnicalConnectsSeeder extends Seeder
                     "safety_category" => "Третья",
                     "point_count" => 1,
 
-                    "osnovanie" => "увеличение максимальной мощьности",
+                    "osnovanie" => "увеличение максимальной мощности",
                     "ustroistvo" => "Трансформатор",
                     "raspologeie" => "г. Курск, ул. Гайдара д. 7",
 
@@ -105,7 +105,7 @@ class TechnicalConnectsSeeder extends Seeder
                     "safety_category" => "Третья",
                     "point_count" => 2,
 
-                    "osnovanie" => "увеличение максимальной мощьности",
+                    "osnovanie" => "увеличение максимальной мощности",
                     "ustroistvo" => "Трансформатор",
                     "raspologeie" => "г. Курск, ул. Гайдара д. 7",
 
@@ -137,7 +137,7 @@ class TechnicalConnectsSeeder extends Seeder
                     "safety_category" => "Третья",
                     "point_count" => 1,
 
-                    "osnovanie" => "увеличение максимальной мощьности",
+                    "osnovanie" => "увеличение максимальной мощности",
                     "ustroistvo" => "Трансформатор",
                     "raspologeie" => "г. Курск, ул. Гайдара д. 7",
 

@@ -49,7 +49,7 @@ class TechnicalConnectsResource extends ModelResource
             Text::make("Организация", "organization")->showOnExport(),
             Phone::make("Телефон", "phone")->showOnExport(),
 
-            Text::make("Мощьность прис. устройств", "pover_pris_devices")->showOnExport(),
+            Text::make("Мощность прис. устройств", "pover_pris_devices")->showOnExport(),
             Text::make("Устройства", "ustroistvo")->showOnExport(),
 
             Text::make("Статус", "state")->showOnExport(),

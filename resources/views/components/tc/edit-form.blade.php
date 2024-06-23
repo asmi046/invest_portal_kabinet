@@ -208,7 +208,7 @@
     <div class="columns-box columns-box--two-col">
         <label class="form-elem">
             <span class="form-elem__caption">
-                Мощьность (кВт)<sup>*</sup>
+                Мощность (кВт)<sup>*</sup>
             </span>
             <input type="text" name="pover_prin_devices" class="form-elem__field"  value="{{ $item->pover_prin_devices ?? old('pover_prin_devices') ?? '' }}">
             @error('pover_prin_devices')
@@ -231,7 +231,7 @@
     <div class="columns-box columns-box--two-col">
         <label class="form-elem">
             <span class="form-elem__caption">
-                Мощьность (кВт)<sup>*</sup>
+                Мощность (кВт)<sup>*</sup>
             </span>
             <input type="text" name="pover_pris_devices" class="form-elem__field"  value="{{ $item->pover_pris_devices ?? old('pover_pris_devices') ?? '' }}">
             @error('pover_pris_devices')
@@ -253,7 +253,7 @@
     <div class="columns-box columns-box--two-col">
         <label class="form-elem">
             <span class="form-elem__caption">
-                Мощьность (кВт)
+                Мощность (кВт)
             </span>
             <input type="text" name="pover_pris_r_devices" class="form-elem__field"  value="{{ $item->pover_pris_r_devices ?? old('pover_pris_r_devices') ?? '' }}">
             @error('pover_pris_r_devices')

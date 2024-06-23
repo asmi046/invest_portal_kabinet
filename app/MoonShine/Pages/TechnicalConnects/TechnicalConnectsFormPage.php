@@ -63,11 +63,11 @@ class TechnicalConnectsFormPage extends FormPage
 
 
 
-                Tab::make('Устройства и мощьности', [
+                Tab::make('Устройства и мощности', [
                     Text::make("Наименование энергопринимающих устройств", "ustroistvo")->required(),
                     Text::make("Место нахождения энергопринимающих устройств", "raspologeie")->required(),
 
-                    Block::make('Показатели мощьности', [
+                    Block::make('Показатели мощности', [
                         Flex::make([
                             Text::make("Максимальная мощность энергопринимающих устройств", "pover_prin_devices")->required(),
                             Text::make("При напряжении", "napr_prin_devices")->required(),

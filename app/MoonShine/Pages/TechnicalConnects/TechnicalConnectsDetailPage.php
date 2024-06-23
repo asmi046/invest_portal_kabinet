@@ -84,7 +84,7 @@ class TechnicalConnectsDetailPage extends DetailPage
 
             LineBreak::make(),
 
-            Block::make('Показатели мощьности', [
+            Block::make('Показатели мощности', [
                 Flex::make([
                     Text::make("Максимальная мощность энергопринимающих устройств", "pover_prin_devices"),
                     Text::make("При напряжении", "napr_prin_devices"),
