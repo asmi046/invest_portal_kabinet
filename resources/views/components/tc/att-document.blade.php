@@ -1,5 +1,6 @@
 @if ($item && $item[$param])
         <p><strong>{{$name}}:</strong></p>
+        <input type="hidden" name="{{$param}}" value="{{ $item[$param] }}">
         <div class="attachment-files-box">
                 <div class="attachment-file">
                         <a href="{{ Storage::url("tc_doc/".$item[$param])}}" class="attachment-file__name"> {{ $item[$param] }}</a>
