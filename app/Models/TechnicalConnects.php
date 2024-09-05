@@ -41,7 +41,9 @@ class TechnicalConnects extends Model
         "pover_pris_r_devices",
         "napr_pris_r_devices",
 
-        "prilogenie",
+        "plan_raspologenia",
+        "pravo_sobstv",
+        "perechen",
     ];
 
     protected $casts = [

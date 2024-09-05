@@ -142,9 +142,16 @@
 
     <label class="form-elem">
         <span class="form-elem__caption">
-            Основание для присоединения<sup>*</sup>
+            Всвязи с:<sup>*</sup>
         </span>
-        <input type="text" name="osnovanie" class="form-elem__field"  value="{{ $item->osnovanie ?? old('osnovanie') ?? '' }}">
+        {{-- <input type="text" name="osnovanie" class="form-elem__field"  value="{{ $item->osnovanie ?? old('osnovanie') ?? '' }}"> --}}
+
+        <select name="osnovanie" class="select-ch select-ch--no-search">
+            <option @selected(isset($item->osnovanie) && ($item->osnovanie === "Изменением текущей мощьности и схем подключения")) value="Изменением текущей мощьности и схем подключения">Изменением текущей мощьности и схем подключения</option>
+            <option @selected(isset($item->osnovanie) && ($item->osnovanie === "Увеличение присоединенной мощьности")) value="Увеличение присоединенной мощьности">Увеличение присоединенной мощьности</option>
+            <option @selected(isset($item->osnovanie) && ($item->osnovanie === "Новым присоединением")) value="Новым присоединением">Новым присоединением</option>
+        </select>
+
         @error('osnovanie')
             <span class="form-elem__error-message">{{ $message }}</span>
         @enderror
@@ -272,6 +279,14 @@
     </div>
 
     {{-- <x-tc.time-table :item="$item ?? null"></x-tc.time-table> --}}
+
+    <h3>Необходимые документы</h3>
+
+    <x-tc.att-document :item="$item ?? NULL" param="plan_raspologenia" name="План расположения энергопринимающих устройств"></x-tc.att-document>
+    <x-tc.att-document :item="$item ?? NULL" param="pravo_sobstv" name="Документ подтверждающий право собственности на объект или иное предусмотренное законом основание"></x-tc.att-document>
+    <x-tc.att-document :item="$item ?? NULL" param="perechen" name="Перечень и мощьность энерго принимающих устройств присоединенных к устройствам противоаварийной автоматики"></x-tc.att-document>
+
+
 
     @if ($format !== "create" )
         <h3>Приложения</h3>

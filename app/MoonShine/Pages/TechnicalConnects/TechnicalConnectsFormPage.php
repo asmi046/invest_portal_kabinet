@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\TechnicalConnects;
 
+use MoonShine\Fields\File;
 use MoonShine\Fields\Json;
-use MoonShine\Fields\Text;
 
+use MoonShine\Fields\Text;
 use MoonShine\Fields\Phone;
 use MoonShine\Fields\Number;
 use MoonShine\Fields\Select;
@@ -86,8 +87,8 @@ class TechnicalConnectsFormPage extends FormPage
                 ]),
 
                 Tab::make('Проверка и статусы', [
-                    Switcher::make('Проверено корпорацией развитие', 'corporation_check')->disabled(fn() => auth()->user()->moonshine_user_role_id == 3),
-                    Switcher::make('Проверено ресурсной организацией', 'resource_check'),
+                    Switcher::make('Проверено АО «Корпорацией развития Курской области»', 'corporation_check')->disabled(fn() => auth()->user()->moonshine_user_role_id == 3),
+                    Switcher::make('Проверено «Россети - Центр» - «Курскэнерго»', 'resource_check'),
                     Select::make('Статус', 'state')
                     ->options([
                         "Черновик" => "Черновик",
@@ -102,6 +103,17 @@ class TechnicalConnectsFormPage extends FormPage
                     Text::make("Фамилия", 'User.lastname')->disabled(),
                     Text::make("Имя", 'User.name')->disabled(),
                     Text::make("Отчество", 'User.fathername')->disabled(),
+                ]),
+
+                Tab::make('Прикрепленные файлы', [
+                    File::make('План расположения энергопринимающих устройств', 'plan_raspologenia')
+                        ->dir('tc_doc')->disk('public'),
+
+                    File::make('Документ подтверждающий право собственности на объект или иное предусмотренное законом основание', 'pravo_sobstv')
+                        ->dir('tc_doc')->disk('public'),
+
+                    File::make('Перечень и мощьность энерго принимающих устройств присоединенных к устройствам противоаварийной автоматики', 'perechen')
+                        ->dir('tc_doc')->disk('public'),
                 ]),
             ]),
 

@@ -53,7 +53,6 @@ class TechnicalConnectsSeeder extends Seeder
                     "pover_pris_r_devices"=>"",
                     "napr_pris_r_devices"=>"",
 
-                    "prilogenie" => "",
                 ],
                 [
                     'user_id' => 1,
@@ -84,7 +83,6 @@ class TechnicalConnectsSeeder extends Seeder
                     "pover_pris_r_devices"=>"500",
                     "napr_pris_r_devices"=>"220",
 
-                    "prilogenie" => "",
                 ],
                 [
                     'user_id' => 2,
@@ -116,7 +114,7 @@ class TechnicalConnectsSeeder extends Seeder
                     "pover_pris_r_devices"=>"500",
                     "napr_pris_r_devices"=>"220",
 
-                    "prilogenie" => "",
+
                 ],
 
                 [
@@ -148,7 +146,7 @@ class TechnicalConnectsSeeder extends Seeder
                     "pover_pris_r_devices"=>"500",
                     "napr_pris_r_devices"=>"220",
 
-                    "prilogenie" => "",
+
                 ],
             ]
 

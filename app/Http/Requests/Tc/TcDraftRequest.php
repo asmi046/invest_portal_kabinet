@@ -26,6 +26,10 @@ class TcDraftRequest extends FormRequest
             'pover_pris_devices.required' => 'Для сохраниения черновика поле "Максимальная мощность энергопринимающих устройств" должно быть заполнено',
             'pover_pris_devices.integer' => 'Поле "Максимальная мощность энергопринимающих устройств" должно быть целым числом',
             'phone.required' => 'Для сохраниения черновика поле "Телефон" должно быть заполнено',
+
+            "napr_prin_devices.decimal" => 'Поле "Максимальная мощность энергопринимающих устройств - При напряжении" должно иметь формат 0.1',
+            "napr_pris_devices.decimal" => 'Поле "Максимальная мощность присоединяемых энергопринимающих устройств - При напряжении" должно иметь формат 0.1',
+            "napr_pris_r_devices.decimal" => 'Поле "Максимальная мощность ранее присоединенных в данной точке - При напряжении" должно иметь формат 0.1',
         ];
     }
 
@@ -60,11 +64,11 @@ class TcDraftRequest extends FormRequest
             "raspologeie" => [],
 
             "pover_prin_devices"=> [],
-            "napr_prin_devices" => [],
+            "napr_prin_devices" => ['sometimes', 'nullable', 'decimal:0,5'],
             "pover_pris_devices"=> ['required', 'integer'],
-            "napr_pris_devices" => [],
+            "napr_pris_devices" => ['sometimes', 'nullable', 'decimal:0,5'],
             "pover_pris_r_devices" => [],
-            "napr_pris_r_devices" => [],
+            "napr_pris_r_devices" => ['sometimes', 'nullable', 'decimal:0,5'],
 
             "prilogenie" => [],
         ];

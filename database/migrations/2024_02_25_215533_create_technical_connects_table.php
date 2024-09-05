@@ -58,7 +58,10 @@ return new class extends Migration
             // $table->string("gen_postavhik")->comment("Гарантирующий поставщик");
             // $table->json("etaps")->nullable()->comment("Этапы строительства");
 
-            $table->text("prilogenie")->nullable()->comment("Приложения к заявлению");
+            $table->string("plan_raspologenia",1000)->nullable()->comment("План расположения энергопринимающих устройств");
+            $table->string("pravo_sobstv",1000)->nullable()->comment("Документ подтверждающий право собственности на объект или иное предусмотренное законом основание");
+            $table->string("perechen",1000)->nullable()->comment("Перечень и мощьность энерго принимающих устройств присоединенных к устройствам противоаварийной автоматики");
+
             $table->text("report")->nullable()->comment("Отчет о рассмотрении документа");
 
         });

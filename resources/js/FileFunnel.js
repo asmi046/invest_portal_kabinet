@@ -25,18 +25,18 @@ export default class FileFunnel {
         docsBox: '.file-funnel__docs'
     }){
         this.funnel = elem; //основной контейнер
-        this.description = document.querySelector(option.deskBox); //блок с текстом
-        this.reveiver = document.querySelector(option.reciever); //блок в который загружаются файлы
+        this.description = elem.querySelector(option.deskBox); //блок с текстом
+        this.reveiver = elem.querySelector(option.reciever); //блок в который загружаются файлы
         this.fileInput = ''; //инпут для файлов
         this.accept = option.accept; //массив с разрешенными расширениями
-        this.docsBox = document.querySelector(option.docsBox);
+        this.docsBox = elem.querySelector(option.docsBox);
         this.fileStorage = [];
         this.init();
 
     }
     init() {
         if (typeof this.funnel == 'string') {
-            this.funnel = document.querySelector(this.funnel);
+            this.funnel = elem.querySelector(this.funnel);
         } else if (typeof this.funnel == 'object') {
 
         } else {

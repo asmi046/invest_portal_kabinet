@@ -179,9 +179,20 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     // input file
-    let fileFunnel = document.querySelector('.file-funnel');
-    if(fileFunnel){
-        let ffElem = new FileFunnel(fileFunnel,{
+    // let fileFunnel = document.querySelector('.file-funnel');
+    // if(fileFunnel){
+    //     let ffElem = new FileFunnel(fileFunnel,{
+    //         deskBox: '.file-funnel__text',
+    //         reciever: '.file-funnel__receiver',
+    //         accept: ['.pdf', '.jpg', '.png', '.doc', '.docx'],
+    //         docsBox: '.file-funnel__docs'
+    //     });
+    // }
+
+    let fileFunnel = document.querySelectorAll('.file-funnel');
+
+    for (let i = 0; i<fileFunnel.length; i++) {
+        let ffElem = new FileFunnel(fileFunnel[i], {
             deskBox: '.file-funnel__text',
             reciever: '.file-funnel__receiver',
             accept: ['.pdf', '.jpg', '.png', '.doc', '.docx'],

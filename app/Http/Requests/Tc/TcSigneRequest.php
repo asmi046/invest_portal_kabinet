@@ -44,10 +44,14 @@ class TcSigneRequest extends FormRequest
             "napr_pris_devices.required" => 'Поле "Максимальная мощность ранее присоединенных в данной точке" должно быть заполнено',
 
             "pover_prin_devices.integer" => 'Поле "Максимальная мощность присоединяемых энергопринимающих устройств" должно быть целым числом',
-            "napr_prin_devices.integer" => 'Поле "Максимальная мощность присоединяемых энергопринимающих устройств" должно быть целым числом',
+            "napr_prin_devices.decimal" => 'Поле "Максимальная мощность присоединяемых энергопринимающих устройств - При напряжении" должно быть целым числом',
             "pover_pris_devices.integer" => 'Поле "Максимальная мощность ранее присоединенных в данной точке" должно быть целым числом',
-            "napr_pris_devices.integer" => 'Поле "Максимальная мощность ранее присоединенных в данной точке" должно быть целым числом',
+            "napr_pris_devices.decimal" => 'Поле "Максимальная мощность ранее присоединенных в данной точке - При напряжении" должно быть целым числом',
+            "napr_pris_r_devices.decimal" => 'Поле "Максимальная мощность ранее присоединенных в данной точке - При напряжении" должно иметь формат 0.1',
 
+            "plan_raspologenia.required" => 'Прикрепите файл в поле "План расположения энергопринимающих устройств"',
+            "pravo_sobstv.required" => 'Прикрепите файл в поле "Документ подтверждающий право собственности на объект или иное предусмотренное законом основание"',
+            "perechen.required" => 'Прикрепите файл в поле "Перечень и мощьность энерго принимающих устройств присоединенных к устройствам противоаварийной автоматики"',
         ];
     }
 
@@ -86,14 +90,18 @@ class TcSigneRequest extends FormRequest
             "raspologeie" => ['required', 'string'],
 
             "pover_prin_devices"=> ['required', 'integer'],
-            "napr_prin_devices" => ['required', 'integer'],
+            "napr_prin_devices" => ['required', 'decimal:0,5'],
             "pover_pris_devices"=> ['required', 'integer'],
-            "napr_pris_devices" => ['required', 'integer'],
+            "napr_pris_devices" => ['required', 'decimal:0,5'],
             "pover_pris_r_devices" => [],
-            "napr_pris_r_devices" => [],
+            "napr_pris_r_devices" => ['sometimes', 'nullable', 'decimal:0,5'],
 
             // "rashet_plati" => ['required', 'string'],
             // "gen_postavhik" => ['required', 'string'],
+
+            "plan_raspologenia" => ['required'],
+            "pravo_sobstv" => ['required'],
+            "perechen" => ['required'],
 
             "prilogenie" => [],
             "item_id" => []
