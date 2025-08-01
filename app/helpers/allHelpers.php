@@ -47,3 +47,25 @@ if (!function_exists("phone_format")) {
         return $res;
     }
 }
+
+// Конвертация массивов в объекты для SOAP
+if (!function_exists("array_to_object")) {
+    /**
+     * Конвертирует ассоциативный массив в объект stdClass рекурсивно
+     * Полезно для SOAP клиентов, которые ожидают объекты, а не массивы
+     *
+     * @param mixed $array
+     * @return mixed
+     */
+    function array_to_object($array)
+    {
+        if (is_array($array)) {
+            $obj = new \stdClass();
+            foreach ($array as $key => $value) {
+                $obj->$key = array_to_object($value);
+            }
+            return $obj;
+        }
+        return $array;
+    }
+}

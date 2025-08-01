@@ -30,3 +30,4 @@ Route::middleware('auth')->group(function () {
 
 });
 
+Route::get('/to_local', [IndexController::class, "to_local"])->name('to_local');

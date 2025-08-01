@@ -1,0 +1,2 @@
+[01-Jul-2025 23:01:12 UTC] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\app\Console\Commands\SendRequestTest.php on line 4
+[01-Jul-2025 23:01:12 UTC] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\app\Console\Commands\SendRequestTest.php on line 4

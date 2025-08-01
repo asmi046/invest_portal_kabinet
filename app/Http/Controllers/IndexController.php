@@ -33,4 +33,11 @@ class IndexController extends Controller
         ]);
     }
 
+
+    public function to_local(Request $request) {
+        $full_url = $request->fullUrl();
+        $rezUrl = str_replace('https://investlk.rkursk.ru/to_local','http://127.0.0.1:8000/esia_get_auth_info', $full_url);
+        return redirect($rezUrl);
+    }
+
 }
