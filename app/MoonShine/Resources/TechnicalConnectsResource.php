@@ -12,7 +12,7 @@ use App\Models\TechnicalConnects;
 use MoonShine\Handlers\ExportHandler;
 
 use MoonShine\Handlers\ImportHandler;
-use MoonShine\Resources\ModelResource;
+use MoonShine\Laravel\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use App\MoonShine\Pages\TechnicalConnects\TechnicalConnectsFormPage;
@@ -31,13 +31,9 @@ class TechnicalConnectsResource extends ModelResource
     public function pages(): array
     {
         return [
-            TechnicalConnectsIndexPage::make($this->title()),
-            TechnicalConnectsFormPage::make(
-                $this->getItemID()
-                    ? __('moonshine::ui.edit')
-                    : __('moonshine::ui.add')
-            ),
-            TechnicalConnectsDetailPage::make(__('moonshine::ui.show')),
+            TechnicalConnectsIndexPage::class,
+            TechnicalConnectsFormPage::class,
+            TechnicalConnectsDetailPage::class,
         ];
     }
 
@@ -75,12 +71,6 @@ class TechnicalConnectsResource extends ModelResource
         else
             return parent::query();
     }
-
-    public function rules(Model $item): array
-    {
-        return [];
-    }
-
 
     public function import(): ?ImportHandler
     {

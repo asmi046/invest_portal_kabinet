@@ -8,7 +8,7 @@ use MoonShine\Fields\Text;
 use MoonShine\Fields\Field;
 use MoonShine\Fields\Phone;
 use MoonShine\Fields\Preview;
-use MoonShine\Pages\Crud\IndexPage;
+use MoonShine\Laravel\Pages\Crud\IndexPage;
 
 class TechnicalConnectsIndexPage extends IndexPage
 {

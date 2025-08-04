@@ -21,7 +21,7 @@ use MoonShine\Decorations\Grid;
 use MoonShine\Decorations\Tabs;
 use MoonShine\Decorations\Block;
 use MoonShine\Decorations\Column;
-use MoonShine\Pages\Crud\FormPage;
+use MoonShine\Laravel\Pages\Crud\FormPage;
 use MoonShine\Decorations\LineBreak;
 use MoonShine\Fields\Relationships\HasOne;
 use MoonShine\Fields\Relationships\HasMany;

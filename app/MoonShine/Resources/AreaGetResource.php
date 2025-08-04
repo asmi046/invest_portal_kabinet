@@ -11,7 +11,7 @@ use MoonShine\Fields\Phone;
 use MoonShine\Handlers\ExportHandler;
 
 use MoonShine\Handlers\ImportHandler;
-use MoonShine\Resources\ModelResource;
+use MoonShine\Laravel\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\ActionButtons\ActionButton;
 use App\MoonShine\Pages\AreaGet\AreaGetFormPage;
@@ -29,44 +29,15 @@ class AreaGetResource extends ModelResource
 
     protected string $column = 'id';
 
-    public function pages(): array
+    protected function pages(): array
     {
         return [
-            AreaGetIndexPage::make($this->title()),
-            AreaGetFormPage::make(
-                $this->getItemID()
-                    ? __('moonshine::ui.edit')
-                    : __('moonshine::ui.add')
-            ),
-            AreaGetDetailPage::make(__('moonshine::ui.show')),
+            AreaGetIndexPage::class,
+            AreaGetFormPage::class,
+            AreaGetDetailPage::class,
         ];
     }
 
-    public function fields(): array
-    {
-        return [
-            ID::make()->showOnExport(),
-            Text::make("Пользователь", 'User.name', fn($item) => $item->user->name." ".$item->user->lastname ." ". $item->user->fathername)->showOnExport(),
-            Text::make("Заявитель", "name")->showOnExport(),
-            Text::make("Организация", "organization")->showOnExport(),
-            Phone::make("Телефон", "phone")->showOnExport(),
-            Text::make("Участок", "object_name")->showOnExport(),
-            Text::make("Тип участка", "object_type")->showOnExport(),
-            Text::make("Статус", "state")->showOnExport(),
-        ];
-    }
-
-    public function indexButtons(): array
-    {
-        return [
-
-        ];
-    }
-
-    public function rules(Model $item): array
-    {
-        return [];
-    }
 
     public function import(): ?ImportHandler
     {

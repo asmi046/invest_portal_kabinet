@@ -29,12 +29,15 @@ class EsiaController extends Controller
             $contact_info = $esia->get_contact();
 
 
-            $user = User::firstOrCreate(
+            $user = User::updateOrCreate(
                 ['email' => $contact_info["EML"]],
                 [
                     'name' => $person_info->firstName,
                     'lastname' => $person_info->lastName,
                     'fathername' => $person_info->middleName,
+                    // 'snils' => $person_info->snils,
+                    'oid'  => $esia->oid,
+                    'reg_type' => 'esia',
                     'email' => $contact_info["EML"],
                     'phone' => $contact_info["MBT"],
                     'password' => bcrypt($person_info->rIdDoc),
@@ -48,7 +51,12 @@ class EsiaController extends Controller
         catch(\Throwable $ex)
         {
             $message = $ex->getMessage();
-            return redirect()->route('esia_error')->withErrors(['esia_error' => $message, 'in' => $request->all()]);
+            return redirect()->route('esia_error')->withErrors([
+                'esia_error' => $message,
+                'error' => $request->input('error'),
+                'error_description' => $request->input('error_description'),
+                'state' => $request->input('state'),
+            ]);
         }
 
 

@@ -6,7 +6,7 @@ namespace App\MoonShine\Pages\Project;
 
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Select;
-use MoonShine\Pages\Crud\IndexPage;
+use MoonShine\Laravel\Pages\Crud\IndexPage;
 
 class ProjectIndexPage extends IndexPage
 {

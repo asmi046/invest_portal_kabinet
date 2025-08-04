@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\AreaGet;
 
-use MoonShine\Fields\Date;
-use MoonShine\Fields\Text;
-use MoonShine\Fields\Phone;
-use MoonShine\Fields\Select;
-use MoonShine\Decorations\Grid;
-use MoonShine\Decorations\Block;
-use MoonShine\Decorations\Column;
-use MoonShine\Decorations\LineBreak;
-use MoonShine\Pages\Crud\DetailPage;
+use MoonShine\UI\Fields\Date;
+use MoonShine\UI\Fields\Text;
+use MoonShine\UI\Fields\Phone;
+use MoonShine\UI\Fields\Select;
+use MoonShine\UI\Decorations\Grid;
+use MoonShine\UI\Decorations\Block;
+use MoonShine\UI\Decorations\Column;
+use MoonShine\UI\Decorations\LineBreak;
+use MoonShine\Laravel\Pages\Crud\DetailPage;
 
 class AreaGetDetailPage extends DetailPage
 {

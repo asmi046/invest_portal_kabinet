@@ -10,7 +10,7 @@ use App\MoonShine\Pages\Project\ProjectIndexPage;
 use App\MoonShine\Pages\Project\ProjectFormPage;
 use App\MoonShine\Pages\Project\ProjectDetailPage;
 
-use MoonShine\Resources\ModelResource;
+use MoonShine\Laravel\Resources\ModelResource;
 
 /**
  * @extends ModelResource<Project>
@@ -29,17 +29,13 @@ class ProjectResource extends ModelResource
     public function pages(): array
     {
         return [
-            ProjectIndexPage::make($this->title()),
-            ProjectFormPage::make(
-                $this->getItemID()
-                    ? __('moonshine::ui.edit')
-                    : __('moonshine::ui.add')
-            ),
-            ProjectDetailPage::make(__('moonshine::ui.show')),
+            ProjectIndexPage::class,
+            ProjectFormPage::class,
+            ProjectDetailPage::class,
         ];
     }
 
-    public function rules(Model $item): array
+     protected function rules($item): array
     {
         return [];
     }

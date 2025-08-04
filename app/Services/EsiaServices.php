@@ -24,6 +24,18 @@ class EsiaServices {
     private ?int $oid = null;
 
 
+    public function __get($name)
+    {
+        if ($name === 'oid') {
+            return $this->oid;
+        }
+
+        if ($name === 'access_token') {
+            return $this->access_token;
+        }
+
+        throw new \Exception("Property {$name} does not exist.");
+    }
 
     public function __construct() {
         $this->client_id = config('esia.esia_mnimonica');

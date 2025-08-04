@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\Project;
 
-use MoonShine\Pages\Crud\FormPage;
+use MoonShine\Laravel\Pages\Crud\FormPage;
 
 class ProjectFormPage extends FormPage
 {

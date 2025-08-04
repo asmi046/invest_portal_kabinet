@@ -30,7 +30,7 @@
             <span class="form-elem__caption">
                 Ф.И.О. заявителя<sup>*</sup>
             </span>
-            <input type="text" name="name" class="form-elem__field"  value="{{ $item->name ?? old('name') ?? '' }}">
+            <input type="text" name="name" class="form-elem__field"  value="{{ $item->name ?? old('name') ?? get_fio_str() }}">
             @error('name')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror
@@ -60,7 +60,7 @@
             <span class="form-elem__caption">
                 Телефон<sup>*</sup>
             </span>
-            <input type="text" name="phone" class="form-elem__field tel-mask"  value="{{ $item->phone ?? old('phone') ?? '' }}">
+            <input type="text" name="phone" class="form-elem__field tel-mask"  value="{{ $item->phone ?? old('phone') ??  auth()->user()->phone }}">
             @error('phone')
                 <span class="form-elem__error-message">{{ $message }}</span>
             @enderror

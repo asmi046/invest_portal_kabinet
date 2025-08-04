@@ -12,7 +12,7 @@ use App\Models\SignedDocument;
 use MoonShine\Decorations\Block;
 use App\MoonShine\Fields\MainLnk;
 use App\MoonShine\Components\MainLink;
-use MoonShine\Resources\ModelResource;
+use MoonShine\Laravel\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -41,7 +41,7 @@ class SignedDocumentResource extends ModelResource
         ];
     }
 
-    public function rules(Model $item): array
+     protected function rules($item): array
     {
         return [];
     }

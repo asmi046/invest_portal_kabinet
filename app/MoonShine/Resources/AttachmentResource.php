@@ -9,7 +9,7 @@ use App\Models\Attachment;
 
 use MoonShine\Fields\Text;
 use MoonShine\Decorations\Block;
-use MoonShine\Resources\ModelResource;
+use MoonShine\Laravel\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -31,7 +31,7 @@ class AttachmentResource extends ModelResource
         ];
     }
 
-    public function rules(Model $item): array
+     protected function rules($item): array
     {
         return [];
     }

@@ -11,7 +11,7 @@ use MoonShine\Fields\Email;
 use MoonShine\Fields\Phone;
 use MoonShine\Decorations\Block;
 use App\Models\OrganizationContact;
-use MoonShine\Resources\ModelResource;
+use MoonShine\Laravel\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -39,7 +39,7 @@ class OrganizationContactResource extends ModelResource
         ];
     }
 
-    public function rules(Model $item): array
+    protected function rules($item): array
     {
         return [];
     }

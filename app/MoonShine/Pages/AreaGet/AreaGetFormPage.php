@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\AreaGet;
 
-use MoonShine\Fields\Url;
-use MoonShine\Fields\Date;
-use MoonShine\Fields\File;
-use MoonShine\Fields\Text;
-use MoonShine\Fields\Phone;
-use MoonShine\Fields\Select;
-use MoonShine\Fields\TinyMce;
-use MoonShine\Decorations\Flex;
-use MoonShine\Decorations\Grid;
-use MoonShine\Decorations\Block;
-use MoonShine\Decorations\Column;
-use MoonShine\Pages\Crud\FormPage;
-use MoonShine\Decorations\LineBreak;
-use MoonShine\Fields\Relationships\HasOne;
-use MoonShine\Fields\Relationships\HasMany;
+use MoonShine\UI\Fields\Url;
+use MoonShine\UI\Fields\Date;
+use MoonShine\UI\Fields\File;
+use MoonShine\UI\Fields\Text;
+use MoonShine\UI\Fields\Phone;
+use MoonShine\UI\Fields\Select;
+use MoonShine\TinyMce\Fields\TinyMce;
+use MoonShine\UI\Components\Layout\Flex;
+use MoonShine\UI\Components\Layout\Grid;
+use MoonShine\UI\Components\Layout\Box;
+use MoonShine\UI\Components\Layout\Column;
+use MoonShine\Laravel\Pages\Crud\FormPage;
+use MoonShine\UI\Components\Layout\LineBreak;
+use MoonShine\Laravel\Fields\Relationships\HasOne;
+use MoonShine\Laravel\Fields\Relationships\HasMany;
 use App\MoonShine\Resources\AttachmentResource;
 use App\MoonShine\Resources\SignedDocumentResource;
 
@@ -29,7 +29,7 @@ class AreaGetFormPage extends FormPage
         return [
             Grid::make([
                 Column::make([
-                    Block::make('Пользователь оформивший заявление', [
+                    Box::make('Пользователь оформивший заявление', [
                         Text::make("Фамилия", 'User.lastname')->disabled(),
                         Text::make("Имя", 'User.name')->disabled(),
                         Text::make("Отчество", 'User.fathername')->disabled(),
@@ -37,7 +37,7 @@ class AreaGetFormPage extends FormPage
                 ])->columnSpan(6),
 
                 Column::make([
-                    Block::make('Данные заявителя', [
+                    Box::make('Данные заявителя', [
                         Text::make("Заявитель", "name"),
                         Text::make("Организация", "organization"),
                         Text::make("Должность", "dolgnost"),
@@ -50,14 +50,14 @@ class AreaGetFormPage extends FormPage
 
             Grid::make([
                 Column::make([
-                    Block::make('Данные Участка', [
+                    Box::make('Данные Участка', [
                         Text::make("Участок", "object_name"),
                         Text::make("Тип участка", "object_type"),
                     ])
                 ])->columnSpan(6),
 
                 Column::make([
-                    Block::make('Заявление', [
+                    Box::make('Заявление', [
                         Date::make('Создано', 'created_at')->disabled()->withTime()->format('d.m.Y'),
 
                     ])
@@ -66,7 +66,7 @@ class AreaGetFormPage extends FormPage
 
             LineBreak::make(),
 
-            Block::make('Официальный ответ', [
+            Box::make('Официальный ответ', [
                 Select::make('Статус', 'state')
                         ->options([
                             "Черновик" => "Черновик",
@@ -81,8 +81,8 @@ class AreaGetFormPage extends FormPage
             LineBreak::make(),
 
 
-            HasMany::make("Вложения", "attachment", resource: new AttachmentResource()),
-            HasOne::make("Подпись", "signature", resource: new SignedDocumentResource())
+            HasMany::make("Вложения", "attachment", resource: AttachmentResource::class),
+            HasOne::make("Подпись", "signature", resource: SignedDocumentResource::class)
 
 
 

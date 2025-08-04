@@ -1,2 +1,194 @@
 [01-Jul-2025 23:01:12 UTC] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\app\Console\Commands\SendRequestTest.php on line 4
 [01-Jul-2025 23:01:12 UTC] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\app\Console\Commands\SendRequestTest.php on line 4
+[04-Aug-2025 21:32:48 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:32:48 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:32:49 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:32:49 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:32:54 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:32:54 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:32:54 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:32:54 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:02 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:02 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:04 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:04 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:23 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:23 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:34 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:34 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:34 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:34 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:43 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:43 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:49 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:49 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:52 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:52 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:53 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:53 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:54 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:54 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:55 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:33:55 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:34:04 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:34:04 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:34:04 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:34:04 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../symfony/polyfill-php72/bootstrap.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::{closure}('25072dd6e247008...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:37:46 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../rap2hpoutre/fast-excel/src/functions/fastexcel.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:37:46 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../rap2hpoutre/fast-excel/src/functions/fastexcel.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): {closure}('c379e2a4ec3735f...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:37:46 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../rap2hpoutre/fast-excel/src/functions/fastexcel.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:37:46 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../rap2hpoutre/fast-excel/src/functions/fastexcel.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): {closure}('c379e2a4ec3735f...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:37:54 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../rap2hpoutre/fast-excel/src/functions/fastexcel.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:37:54 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../rap2hpoutre/fast-excel/src/functions/fastexcel.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): {closure}('c379e2a4ec3735f...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:37:54 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../rap2hpoutre/fast-excel/src/functions/fastexcel.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:37:54 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../rap2hpoutre/fast-excel/src/functions/fastexcel.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): {closure}('c379e2a4ec3735f...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:37:54 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../rap2hpoutre/fast-excel/src/functions/fastexcel.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:37:54 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../rap2hpoutre/fast-excel/src/functions/fastexcel.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): {closure}('c379e2a4ec3735f...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:37:54 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../rap2hpoutre/fast-excel/src/functions/fastexcel.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:37:54 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../rap2hpoutre/fast-excel/src/functions/fastexcel.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): {closure}('c379e2a4ec3735f...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:37:56 UTC] PHP Warning:  require(C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../rap2hpoutre/fast-excel/src/functions/fastexcel.php): Failed to open stream: No such file or directory in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41
+[04-Aug-2025 21:37:56 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer/../rap2hpoutre/fast-excel/src/functions/fastexcel.php' (include_path='.;C:\php\pear') in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php:41
+Stack trace:
+#0 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php(45): {closure}('c379e2a4ec3735f...', 'C:\\Users\\asmi\\D...')
+#1 C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\autoload.php(25): ComposerAutoloaderInite0d33f24e28c634b2e80f4311f529b03::getLoader()
+#2 Command line code(1): require_once('C:\\Users\\asmi\\D...')
+#3 {main}
+  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\vendor\composer\autoload_real.php on line 41

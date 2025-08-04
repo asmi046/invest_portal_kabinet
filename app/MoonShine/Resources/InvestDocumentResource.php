@@ -10,7 +10,7 @@ use MoonShine\Fields\File;
 use MoonShine\Fields\Text;
 use App\Models\InvestDocument;
 use MoonShine\Decorations\Block;
-use MoonShine\Resources\ModelResource;
+use MoonShine\Laravel\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -42,7 +42,7 @@ class InvestDocumentResource extends ModelResource
         ];
     }
 
-    public function rules(Model $item): array
+     protected function rules($item): array
     {
         return [];
     }

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\AreaGet;
 
-use MoonShine\Fields\ID;
-use MoonShine\Fields\Text;
-use MoonShine\Fields\Phone;
-use MoonShine\Pages\Crud\IndexPage;
+use MoonShine\UI\Fields\ID;
+use MoonShine\UI\Fields\Text;
+use MoonShine\UI\Fields\Phone;
+use MoonShine\Laravel\Pages\Crud\IndexPage;
 
 class AreaGetIndexPage extends IndexPage
 {

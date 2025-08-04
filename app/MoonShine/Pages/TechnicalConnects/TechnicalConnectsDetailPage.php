@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\TechnicalConnects;
 
-use MoonShine\Pages\Crud\DetailPage;
+use MoonShine\Laravel\Pages\Crud\DetailPage;
 
 
 use MoonShine\Fields\Json;
