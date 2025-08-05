@@ -20,10 +20,6 @@ return new class extends Migration
             $table->string('email')->nullable()->comment('Email организации');
 
             $table->timestamps();
-
-            // Индексы для оптимизации поиска
-            $table->index('name');
-            $table->index('short_name');
         });
     }
 

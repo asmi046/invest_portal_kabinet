@@ -6,6 +6,8 @@ use App\Models\Organization;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use DB;
+
 class OrganizationSeeder extends Seeder
 {
     /**
@@ -13,51 +15,20 @@ class OrganizationSeeder extends Seeder
      */
     public function run(): void
     {
-        $organization = Organization::create([
-            'name' => 'Контролирующая организация',
+        DB::table('organizations')->insert([
+            'name' => 'Контролирующая организация (ЦЭВ)',
             'short_name' => 'Администрация',
         ]);
 
-        // $organization->documentTypes()->create([
-        //     [
-        //         'documentable_type' => 'App\Models\AreaGet',
-        //         'documentable_id' => 1
-        //     ],
-        //     [
-        //         'documentable_type' => 'App\Models\Project',
-        //         'documentable_id' => 1
-        //     ],
-        //     [
-        //         'documentable_type' => 'App\Models\Support',
-        //         'documentable_id' => 1
-        //     ],
-        //     [
-        //         'documentable_type' => 'App\Models\TechnicalConnects',
-        //         'documentable_id' => 1
-        //     ]
-
-        // ]);
-        // $organization->documentTypes()->create(
-        //     [
-        //         'documentable_type' => 'App\Models\AreaGet',
-        //         'documentable_id' => 1
-        //     ]
-        //     );
-
-        $organization = Organization::create([
+        DB::table('organizations')->insert([
             'name' => 'Министерство экономики Курской Области',
             'short_name' => 'Минэкономики',
         ]);
 
-        // $organization->documentTypes()->create([
-        //     [
-        //         'documentable_type' => 'App\Models\Project',
-        //         'documentable_id' => 1
-        //     ],
-        //     [
-        //         'documentable_type' => 'App\Models\Support',
-        //         'documentable_id' => 1
-        //     ],
-        // ]);
+        DB::table('organizations')->insert([
+            'name' => 'Электрические сети Курской области',
+            'short_name' => 'Электросети',
+        ]);
+
     }
 }

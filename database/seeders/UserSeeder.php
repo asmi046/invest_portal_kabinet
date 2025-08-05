@@ -94,9 +94,39 @@ class UserSeeder extends Seeder
                     'email' => "asmi046@gmail.com",
                     'password' => Hash::make("123"),
                     'moonshine_user_role_id' => 1,
+                    'organization_id' => 1,
                     'created_at' => date("Y-m-d H:i:s"),
                     'updated_at' => date("Y-m-d H:i:s")
             ]
+        );
+
+        DB::table('document_type_moonshine_user')->insert( [
+                [
+                    'document_type_id' => 1,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                [
+                    'document_type_id' => 2,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                [
+                    'document_type_id' => 3,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                [
+                    'document_type_id' => 4,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
+            ]
+
         );
 
         $userID = DB::table("moonshine_users")->insertGetId(

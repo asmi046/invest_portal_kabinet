@@ -41,6 +41,8 @@ use MoonShine\UI\Components\{Breadcrumbs,
     Layout\TopBar,
     Layout\Wrapper,
     When};
+use App\MoonShine\Resources\DocumentTypeResource;
+use App\MoonShine\Resources\OrganizationResource;
 
 final class MoonShineLayout extends AppLayout
 {
@@ -54,7 +56,7 @@ final class MoonShineLayout extends AppLayout
     protected function menu(): array
     {
         return [
-        
+
             MenuGroup::make(static fn() => __('Заявление на земельного участка'), [
                 MenuItem::make(
                     "Все заявления",
@@ -92,6 +94,13 @@ final class MoonShineLayout extends AppLayout
             ->icon('cog-6-tooth')
             ->canSee(fn() => in_array(auth()->user()->moonshineUserRole->name, ["Admin", "Просмотр показателей"])),
 
+            MenuGroup::make(static fn() => __('Настройки портала'), [
+                MenuItem::make('Типы документов', DocumentTypeResource::class)->icon('document-text'),
+                MenuItem::make('Организации', OrganizationResource::class)->icon('building-library'),
+            ])
+            ->icon('cube')
+            ->canSee(fn() => in_array(auth()->user()->moonshineUserRole->name, ["Admin", "Просмотр показателей"])),
+
             MenuGroup::make(static fn() => __('moonshine::ui.resource.system'), [
                MenuItem::make(
                    static fn() => __('moonshine::ui.resource.admins_title'),
@@ -104,6 +113,10 @@ final class MoonShineLayout extends AppLayout
             ])
             ->icon('users')
             ->canSee(fn() => auth()->user()->moonshineUserRole->name === "Admin"),
+
+
+
+
         ];
     }
 

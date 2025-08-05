@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('moonshine_users', function (Blueprint $table) {
-            $table->integer('organization_id')->nullable()->comment('ID организации, связанной с пользователем');
+        Schema::create('document_types', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('name');
+            $table->string('model');
+            $table->text('description')->nullable();
         });
     }
 
@@ -21,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('organization_id');
+        Schema::dropIfExists('document_types');
     }
 };

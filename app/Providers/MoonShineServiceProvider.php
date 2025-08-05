@@ -15,6 +15,8 @@ use App\MoonShine\Resources\MoonShineUserRoleResource;
 use MoonShine\Contracts\Core\DependencyInjection\CoreContract;
 use MoonShine\Laravel\DependencyInjection\MoonShineConfigurator;
 use MoonShine\Contracts\Core\DependencyInjection\ConfiguratorContract;
+use App\MoonShine\Resources\DocumentTypeResource;
+use App\MoonShine\Resources\OrganizationResource;
 
 class MoonShineServiceProvider extends ServiceProvider
 {
@@ -33,6 +35,8 @@ class MoonShineServiceProvider extends ServiceProvider
                 AlgorithmResource::class,
                 AttachmentResource::class,
                 SignedDocumentResource::class,
+                DocumentTypeResource::class,
+                OrganizationResource::class,
             ])
             ->pages([
                 ...$config->getPages(),
