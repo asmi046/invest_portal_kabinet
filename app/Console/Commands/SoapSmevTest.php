@@ -3,9 +3,11 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Services\XmlSignService;
 use App\Services\CurlSmevService;
 use App\Services\SoapSmevService;
 use App\Services\SmevEnvvelopeService;
+use App\Services\GoskeyRegistryService;
 
 class SoapSmevTest extends Command
 {
@@ -28,6 +30,18 @@ class SoapSmevTest extends Command
      */
     public function handle()
     {
+
+        $goskeyRegistryService = new GoskeyRegistryService();
+        $goskeyRegistryService->createProcedure(
+            main_file_path: public_path('signed_docs\\2-area-get.pdf'),
+            document_type: 1,
+            user_id: 4
+        );
+
+
+        $xmlSignService = new XmlSignService();
+
+        $xmlSignService->signXmlFile();
 
         $url = "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.2/ws?wsdl";
         $client = new CurlSmevService($url);

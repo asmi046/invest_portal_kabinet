@@ -1,0 +1,105 @@
+2025-08-08 02:01:19.491 [main] INFO  smev.sig.services.CryptoProService - Starting CryptoPro initialization
+2025-08-08 02:01:20.012 [main] INFO  smev.sig.services.CryptoProService - CryptoPro initialized successfully
+2025-08-08 02:01:20.014 [main] INFO  s.sig.services.XmlTransformService - Initializing SMEV XML transforms
+2025-08-08 02:01:20.015 [main] DEBUG s.sig.services.XmlTransformService - SMEV transform registered with URN: urn://smev-gov-ru/xmldsig/transform
+2025-08-08 02:01:20.016 [main] DEBUG s.sig.services.XmlTransformService - Configuring Santuario ignoreLineBreaks: true
+2025-08-08 02:01:20.034 [main] DEBUG s.sig.services.XmlTransformService - Santuario ignoreLineBreaks configured successfully
+2025-08-08 02:01:20.038 [main] INFO  s.sig.services.XmlTransformService - SMEV XML transforms initialized successfully
+2025-08-08 02:01:20.038 [main] INFO  smev.sig.services.CryptoProService - Loading key material for alias: qonnfw1l
+2025-08-08 02:01:20.428 [main] INFO  smev.sig.services.CryptoProService - Key material loaded successfully for alias: qonnfw1l
+2025-08-08 02:01:20.428 [main] DEBUG smev.sig.services.CryptoProService - Certificate subject: CN=МИНЦИФРЫ КУРСКОЙ ОБЛАСТИ, C=RU, ST=77 г. Москва, OID.1.2.643.100.4=#120a34363332303833363139, OID.1.2.643.100.1=#120d31303734363332303135313530
+2025-08-08 02:01:20.579 [main] INFO  smev.sig.Main - XML Signature created successfully
+2025-08-08 02:01:20.580 [main] INFO  smev.sig.Main - Signed XML length: 4371 bytes
+2025-08-08 02:01:20.580 [main] DEBUG smev.sig.Main - Signed XML preview: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:SendRequestRequest>
+         <ns:SenderProvidedRequestData Id="SIGNED_BY_CALLER">
+            <ns:MessageID>6d9d08b8-73e2-11f0-babc-00ffbbed2819</ns:MessageID>
+         
+2025-08-08 02:01:20.583 [main] INFO  smev.sig.Main - Signed XML saved to templates/rez.xml
+2025-08-08 02:01:20.583 [main] INFO  smev.sig.Main - Application completed successfully
+2025-08-08 02:05:48.135 [main] INFO  smev.sig.services.CryptoProService - Starting CryptoPro initialization
+2025-08-08 02:05:48.690 [main] INFO  smev.sig.services.CryptoProService - CryptoPro initialized successfully
+2025-08-08 02:05:48.691 [main] INFO  s.sig.services.XmlTransformService - Initializing SMEV XML transforms
+2025-08-08 02:05:48.692 [main] DEBUG s.sig.services.XmlTransformService - SMEV transform registered with URN: urn://smev-gov-ru/xmldsig/transform
+2025-08-08 02:05:48.693 [main] DEBUG s.sig.services.XmlTransformService - Configuring Santuario ignoreLineBreaks: true
+2025-08-08 02:05:48.713 [main] DEBUG s.sig.services.XmlTransformService - Santuario ignoreLineBreaks configured successfully
+2025-08-08 02:05:48.713 [main] INFO  s.sig.services.XmlTransformService - SMEV XML transforms initialized successfully
+2025-08-08 02:05:48.713 [main] INFO  smev.sig.services.CryptoProService - Loading key material for alias: qonnfw1l
+2025-08-08 02:05:49.172 [main] INFO  smev.sig.services.CryptoProService - Key material loaded successfully for alias: qonnfw1l
+2025-08-08 02:05:49.172 [main] DEBUG smev.sig.services.CryptoProService - Certificate subject: CN=МИНЦИФРЫ КУРСКОЙ ОБЛАСТИ, C=RU, ST=77 г. Москва, OID.1.2.643.100.4=#120a34363332303833363139, OID.1.2.643.100.1=#120d31303734363332303135313530
+2025-08-08 02:05:49.323 [main] INFO  smev.sig.Main - XML Signature created successfully
+2025-08-08 02:05:49.323 [main] INFO  smev.sig.Main - Signed XML length: 4371 bytes
+2025-08-08 02:05:49.323 [main] DEBUG smev.sig.Main - Signed XML preview: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:SendRequestRequest>
+         <ns:SenderProvidedRequestData Id="SIGNED_BY_CALLER">
+            <ns:MessageID>0dc131f2-73e3-11f0-a416-00ffbbed2819</ns:MessageID>
+         
+2025-08-08 02:05:49.328 [main] INFO  smev.sig.Main - Signed XML saved to templates/rez.xml
+2025-08-08 02:05:49.328 [main] INFO  smev.sig.Main - Application completed successfully
+2025-08-08 02:27:07.688 [main] INFO  smev.sig.services.CryptoProService - Starting CryptoPro initialization
+2025-08-08 02:27:08.267 [main] INFO  smev.sig.services.CryptoProService - CryptoPro initialized successfully
+2025-08-08 02:27:08.268 [main] INFO  s.sig.services.XmlTransformService - Initializing SMEV XML transforms
+2025-08-08 02:27:08.271 [main] DEBUG s.sig.services.XmlTransformService - SMEV transform registered with URN: urn://smev-gov-ru/xmldsig/transform
+2025-08-08 02:27:08.272 [main] DEBUG s.sig.services.XmlTransformService - Configuring Santuario ignoreLineBreaks: true
+2025-08-08 02:27:08.293 [main] DEBUG s.sig.services.XmlTransformService - Santuario ignoreLineBreaks configured successfully
+2025-08-08 02:27:08.293 [main] INFO  s.sig.services.XmlTransformService - SMEV XML transforms initialized successfully
+2025-08-08 02:27:08.293 [main] INFO  smev.sig.services.CryptoProService - Loading key material for alias: qonnfw1l
+2025-08-08 02:27:08.777 [main] INFO  smev.sig.services.CryptoProService - Key material loaded successfully for alias: qonnfw1l
+2025-08-08 02:27:08.777 [main] DEBUG smev.sig.services.CryptoProService - Certificate subject: CN=МИНЦИФРЫ КУРСКОЙ ОБЛАСТИ, C=RU, ST=77 г. Москва, OID.1.2.643.100.4=#120a34363332303833363139, OID.1.2.643.100.1=#120d31303734363332303135313530
+2025-08-08 02:27:08.958 [main] INFO  smev.sig.Main - XML Signature created successfully
+2025-08-08 02:27:08.959 [main] INFO  smev.sig.Main - Signed XML length: 4371 bytes
+2025-08-08 02:27:08.959 [main] DEBUG smev.sig.Main - Signed XML preview: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:SendRequestRequest>
+         <ns:SenderProvidedRequestData Id="SIGNED_BY_CALLER">
+            <ns:MessageID>07d91da6-73e6-11f0-b648-00ffbbed2819</ns:MessageID>
+         
+2025-08-08 02:27:08.963 [main] INFO  smev.sig.Main - Signed XML saved to templates/rez.xml
+2025-08-08 02:27:08.964 [main] INFO  smev.sig.Main - Application completed successfully
+2025-08-08 02:27:30.438 [main] INFO  smev.sig.services.CryptoProService - Starting CryptoPro initialization
+2025-08-08 02:27:30.928 [main] INFO  smev.sig.services.CryptoProService - CryptoPro initialized successfully
+2025-08-08 02:27:30.929 [main] INFO  s.sig.services.XmlTransformService - Initializing SMEV XML transforms
+2025-08-08 02:27:30.931 [main] DEBUG s.sig.services.XmlTransformService - SMEV transform registered with URN: urn://smev-gov-ru/xmldsig/transform
+2025-08-08 02:27:30.932 [main] DEBUG s.sig.services.XmlTransformService - Configuring Santuario ignoreLineBreaks: true
+2025-08-08 02:27:30.950 [main] DEBUG s.sig.services.XmlTransformService - Santuario ignoreLineBreaks configured successfully
+2025-08-08 02:27:30.950 [main] INFO  s.sig.services.XmlTransformService - SMEV XML transforms initialized successfully
+2025-08-08 02:27:30.950 [main] INFO  smev.sig.services.CryptoProService - Loading key material for alias: qonnfw1l
+2025-08-08 02:27:31.332 [main] INFO  smev.sig.services.CryptoProService - Key material loaded successfully for alias: qonnfw1l
+2025-08-08 02:27:31.333 [main] DEBUG smev.sig.services.CryptoProService - Certificate subject: CN=МИНЦИФРЫ КУРСКОЙ ОБЛАСТИ, C=RU, ST=77 г. Москва, OID.1.2.643.100.4=#120a34363332303833363139, OID.1.2.643.100.1=#120d31303734363332303135313530
+2025-08-08 02:27:31.494 [main] INFO  smev.sig.Main - XML Signature created successfully
+2025-08-08 02:27:31.495 [main] INFO  smev.sig.Main - Signed XML length: 4371 bytes
+2025-08-08 02:27:31.495 [main] DEBUG smev.sig.Main - Signed XML preview: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:SendRequestRequest>
+         <ns:SenderProvidedRequestData Id="SIGNED_BY_CALLER">
+            <ns:MessageID>15fd32d2-73e6-11f0-91a7-00ffbbed2819</ns:MessageID>
+         
+2025-08-08 02:27:31.499 [main] INFO  smev.sig.Main - Signed XML saved to templates/rez.xml
+2025-08-08 02:27:31.499 [main] INFO  smev.sig.Main - Application completed successfully
+2025-08-08 02:30:53.454 [main] INFO  smev.sig.services.CryptoProService - Starting CryptoPro initialization
+2025-08-08 02:30:54.008 [main] INFO  smev.sig.services.CryptoProService - CryptoPro initialized successfully
+2025-08-08 02:30:54.009 [main] INFO  s.sig.services.XmlTransformService - Initializing SMEV XML transforms
+2025-08-08 02:30:54.011 [main] DEBUG s.sig.services.XmlTransformService - SMEV transform registered with URN: urn://smev-gov-ru/xmldsig/transform
+2025-08-08 02:30:54.012 [main] DEBUG s.sig.services.XmlTransformService - Configuring Santuario ignoreLineBreaks: true
+2025-08-08 02:30:54.031 [main] DEBUG s.sig.services.XmlTransformService - Santuario ignoreLineBreaks configured successfully
+2025-08-08 02:30:54.031 [main] INFO  s.sig.services.XmlTransformService - SMEV XML transforms initialized successfully
+2025-08-08 02:30:54.031 [main] INFO  smev.sig.services.CryptoProService - Loading key material for alias: qonnfw1l
+2025-08-08 02:30:54.425 [main] INFO  smev.sig.services.CryptoProService - Key material loaded successfully for alias: qonnfw1l
+2025-08-08 02:30:54.425 [main] DEBUG smev.sig.services.CryptoProService - Certificate subject: CN=МИНЦИФРЫ КУРСКОЙ ОБЛАСТИ, C=RU, ST=77 г. Москва, OID.1.2.643.100.4=#120a34363332303833363139, OID.1.2.643.100.1=#120d31303734363332303135313530
+2025-08-08 02:30:54.581 [main] INFO  smev.sig.Main - XML Signature created successfully
+2025-08-08 02:30:54.581 [main] INFO  smev.sig.Main - Signed XML length: 4351 bytes
+2025-08-08 02:30:54.581 [main] DEBUG smev.sig.Main - Signed XML preview: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:SendRequestRequest>
+         <ns:SenderProvidedRequestData Id="SIGNED_BY_CALLER">
+            <ns:MessageID>8efe4644-73e6-11f0-9ea1-00ffbbed2819</ns:MessageID>
+         
+2025-08-08 02:30:54.584 [main] INFO  smev.sig.Main - Signed XML saved to templates/rez.xml
+2025-08-08 02:30:54.585 [main] INFO  smev.sig.Main - Application completed successfully

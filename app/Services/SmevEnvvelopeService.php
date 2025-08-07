@@ -99,7 +99,7 @@ class SmevEnvvelopeService
         $uuid = $uuid ?? \Ramsey\Uuid\Uuid::uuid1()->toString();
 
         $envelop->xpath('//ns:MessageID')[0][0] = $uuid;
-        $envelop->xpath('//ns:TestMessage')[0][0] = $test ? 'true' : 'false';
+        // $envelop->xpath('//ns:TestMessage')[0][0] = $test ? 'true' : 'false';
 
         $primaryContentNodes = $envelop->xpath('//ns1:MessagePrimaryContent');
 
@@ -121,8 +121,6 @@ class SmevEnvvelopeService
             $dom->appendChild($fragment);
         }
 
-        dd($uuid, $envelop->asXML());
-
-        return $envelop->asXML();
+        return html_entity_decode($envelop->asXML(), ENT_QUOTES, 'UTF-8');
     }
 }

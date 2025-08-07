@@ -6,10 +6,10 @@ class CurlSmevService {
     protected $url;
     protected $host;
 
-    public function __construct($url)
+    public function __construct($url = null)
     {
-        $this->url = $url;
-        $this->host = parse_url($url, PHP_URL_HOST);
+        $this->url = $url ?? config('goskey.wsdl_url');
+        $this->host = parse_url($this->url, PHP_URL_HOST);
     }
 
     public function doRequest($xmlContent, $action)
