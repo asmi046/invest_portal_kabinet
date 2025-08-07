@@ -33,10 +33,10 @@ class MoonshineUser extends BaseMoonshineUser
     }
 
     /**
-     * Отношение один к одному с моделью Organization
+     * Обратная связь один ко многим с моделью Organization
      */
-    public function organization(): HasOne
+    public function organization()
     {
-        return $this->hasOne(Organization::class, 'id', 'organization_id');
+        return $this->belongsTo(Organization::class, 'organization_id', 'id');
     }
 }

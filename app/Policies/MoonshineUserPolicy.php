@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
+use App\Models\MoonshineUser;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use MoonShine\Models\MoonshineUser;
+
 
 class MoonshineUserPolicy
 {

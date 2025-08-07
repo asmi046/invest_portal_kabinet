@@ -1,4 +1,0 @@
-[05-Aug-2025 13:39:19 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Model" not found in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\app\Models\Organization.php:9
-Stack trace:
-#0 {main}
-  thrown in C:\Users\asmi\Documents\GitHub\invest_portal_kabinet\app\Models\Organization.php on line 9

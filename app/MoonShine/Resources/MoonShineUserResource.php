@@ -53,6 +53,8 @@ class MoonShineUserResource extends ModelResource
 
     protected bool $columnSelection = true;
 
+    protected bool $withPolicy = true;
+
     public function getTitle(): string
     {
         return __('moonshine::ui.resource.admins_title');
@@ -131,10 +133,7 @@ class MoonShineUserResource extends ModelResource
                             ->format("d.m.Y")
                             ->default(now()->toDateTimeString()),
 
-                        HasOne::make('Организация', 'organization', resource: OrganizationResource::class)->fields([
-                            Phone::make('Телефон', 'phone'),
-                            Text::make('Название', 'name'),
-                        ]),
+                        BelongsTo::make('Организация', 'organization', formatted: 'name', resource: OrganizationResource::class),
                         BelongsToMany::make('Типы документов', 'documentTypes',formatted: 'name', resource: DocumentTypeResource::class)->columnLabel('Название')
                     ])->icon('user-circle'),
 

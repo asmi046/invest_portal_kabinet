@@ -30,19 +30,15 @@ class DocumentType extends Model
      */
     public function moonshineUsers(): BelongsToMany
     {
-        return $this->belongsToMany(
-            \MoonShine\Models\MoonshineUser::class,
-            'document_type_moonshine_user',
-            'document_type_id',
-            'moonshine_user_id'
-        )->withTimestamps();
+        return $this->belongsToMany(MoonshineUser::class)->withTimestamps();
     }
 
     /**
-     * Связь с промежуточной моделью для дополнительного контроля
+     * Связь с этапами
+     * Связь один ко многим
      */
-    public function userAssignments(): HasMany
+    public function stages(): HasMany
     {
-        return $this->hasMany(DocumentTypeMoonshineUser::class);
+        return $this->hasMany(Stage::class)->orderBy('order');
     }
 }

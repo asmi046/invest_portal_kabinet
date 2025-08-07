@@ -29,6 +29,8 @@ class AreaGetResource extends ModelResource
 
     protected string $column = 'id';
 
+    protected bool $withPolicy = true;
+
     protected function pages(): array
     {
         return [

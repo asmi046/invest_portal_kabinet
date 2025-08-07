@@ -38,6 +38,11 @@ class AreaGet extends Model
         return $this->hasOne(User::class, "id", "user_id");
     }
 
+    public function documentType()
+    {
+        return $this->belongsTo(DocumentType::class);
+    }
+
     public function attachment() {
         return $this->hasMany(Attachment::class, 'document_id', 'id')
         ->where('inner_document_type', 'area_get');

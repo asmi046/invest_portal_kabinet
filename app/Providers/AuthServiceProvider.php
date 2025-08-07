@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\MoonshineUser;
+use Illuminate\Support\Facades\Gate;
+use App\Policies\MoonshineUserPolicy;
+use MoonShine\Laravel\Models\MoonshineUserRole;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -21,6 +25,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+
     }
 }

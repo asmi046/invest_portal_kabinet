@@ -1,0 +1,17 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:SendRequestRequest>
+         <ns:SenderProvidedRequestData Id="SIGNED_BY_CALLER">
+            <ns:MessageID>2401cefe-5ceb-11f0-97ca-325096b39f47</ns:MessageID>
+            <ns1:MessagePrimaryContent>
+
+            </ns1:MessagePrimaryContent>
+
+            <ns:TestMessage/>
+         </ns:SenderProvidedRequestData>
+         <ns:CallerInformationSystemSignature>
+         </ns:CallerInformationSystemSignature>
+      </ns:SendRequestRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

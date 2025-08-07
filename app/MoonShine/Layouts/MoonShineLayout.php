@@ -64,7 +64,7 @@ final class MoonShineLayout extends AppLayout
                 )->icon('clipboard-document-list'),
             ])
             ->icon('globe-europe-africa')
-            ->canSee(fn() => in_array(auth()->user()->moonshineUserRole->name, ["Admin", "Просмотр показателей"])),
+            ->canSee(fn() => auth()->user()->documentTypes->contains('model', 'App\Models\AreaGet')),
 
             MenuGroup::make(static fn() => __('Техническое присоединение'), [
                 MenuItem::make(
@@ -73,7 +73,8 @@ final class MoonShineLayout extends AppLayout
                 )->icon('clipboard-document-list'),
             ])
             ->icon('power')
-            ->canSee(fn() => in_array(auth()->user()->moonshineUserRole->name, ["Admin", "Ресурсные организации", "Просмотр показателей"])),
+            ->canSee(fn() => auth()->user()->documentTypes->contains('model', 'App\Models\TechnicalConnects')),
+            // ->canSee(fn() => in_array(auth()->user()->moonshineUserRole->name, ["Admin", "Ресурсные организации", "Просмотр показателей"])),
 
             MenuGroup::make(static fn() => __('Дополнительно'), [
                 MenuItem::make(

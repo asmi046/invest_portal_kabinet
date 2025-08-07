@@ -23,40 +23,10 @@ class Organization extends Model
     ];
 
     /**
-     * Приведение типов атрибутов
-     *
-     * @var array<string, string>
+     * Получить пользователей, связанных с организацией.
      */
-    protected $casts = [
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
-
-    /**
-     * Связь с заявлениями
-     * Связь один ко многим
-     */
-    public function declarations(): HasMany
+    public function moonshineUsers(): HasMany
     {
-        return $this->hasMany(Declaration::class);
-    }
-
-    /**
-     * Связь с доступными типами документов через промежуточную таблицу
-     * Полиморфная связь один ко многим
-     */
-    public function documentTypes(): HasMany
-    {
-        return $this->hasMany(OrganizationDocumentType::class);
-    }
-
-    /**
-     * Получить все доступные типы документов для организации
-     * через полиморфную связь
-     */
-    public function getAvailableDocumentTypesAttribute()
-    {
-        return $this->documentTypes()->with('documentable')->get()
-                    ->pluck('documentable');
+        return $this->hasMany(MoonshineUser::class);
     }
 }
