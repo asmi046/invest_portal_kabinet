@@ -123,3 +123,25 @@ ______
 
 Обязательно проставь ->comment
 Так же на основе этой миграции заполни поле $fillable и $casts соответствующей модели
+_____________
+
+В текущем файле в методе signXmlFileViaNetwork считай данные из файла $xmlFilePath и при помощи встроенного http клиента отправь данные по адресу из конфига cryptcp_xml_address методом post с использованием multipart/form-data имя параметрк должно быть file. Так же должны быть переданы следующие параметры:
+elementId со значением SIGNED_BY_CALLER
+signatureElementName со значением ns:CallerInformationSystemSignature
+
+В случае успеха результат должен быть записан в файл $outputFilePath
+В случае если запрос будет с ошибкой то выброси исключение
+
+_____________
+
+
+Мне нужно написать метод в который будет передаваться simplxml и массив с параметрами
+метод находит в документе узел <ns1:RefAttachmentHeaderList> и вставляет в него элементы:
+
+<ns1:RefAttachmentHeader>
+    <ns1:uuid>?</ns1:uuid>
+    <ns1:Hash>?</ns1:Hash>
+    <ns1:MimeType>?</ns1:MimeType>
+</ns1:RefAttachmentHeader>
+
+сгенерированные на основе массива

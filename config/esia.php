@@ -8,7 +8,7 @@ return [
     'esia_token_url_sufix' => env("ESIA_AUTH_URL_SUFIX", "/aas/oauth2/te"),
     'esia_access_type' => env("ESIA_ACCESS_TYPE", "online"),
     'esia_response_type' => env("ESIA_RESPONSE_TYPE", "code"),
-    'esia_scope' => env("ESIA_SCOPE", ['fullname','email', 'mobile']),
+    'esia_scope' => env("ESIA_SCOPE", ['fullname','email', 'mobile', 'snils']),
     'signer_token' => env("CRUPTO_SERVICE_TOKEN", null),
     'signer_url' => env("CRUPTO_SERVICE_URL", null),
 ];

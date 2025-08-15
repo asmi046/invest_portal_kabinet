@@ -9,6 +9,7 @@ use App\Models\GoskeyRegistry;
 use App\Services\XmlSignService;
 use App\Services\CurlSmevService;
 use App\Services\SmevEnvvelopeService;
+use App\Services\AttachmentSignService;
 use Illuminate\Support\Facades\Storage;
 
 class GoskeyRegistryService
@@ -16,73 +17,128 @@ class GoskeyRegistryService
 
     protected $userData;
     protected $documentData;
+    protected array $files = [];
+    protected array $attachmentFileList = [];
+
     protected string $storagePath = 'goskey_registry';
+
+    private function loadAttachmentToS3(): void
+    {
+        foreach ($this->attachmentFileList as $file) {
+            if (isset($file['Document'])) {
+                Storage::disk('s3')->put($file['Document']['uuid'] . "/" . basename($file['Document']['fileName']), file_get_contents($file['Document']['localUrl']));
+            }
+            if (isset($file['Signature'])) {
+                Storage::disk('s3')->put($file['Signature']['uuid'] . "/" . basename($file['Signature']['fileName']), file_get_contents($file['Signature']['localUrl']));
+            }
+        }
+    }
+
+    private function createAttachmentFileList()
+    {
+        $this->attachmentFileList = [];
+        foreach ($this->files as $file) {
+            $document = [];
+
+            $docId = Uuid::uuid1()->toString();
+
+            if (isset($file['Document'])) {
+                $document['Document'] = [
+                    'docId' => $docId,
+                    'uuid' => Uuid::uuid1()->toString(),
+                    'mimeType' => 'application/pdf',
+                    'description' => basename($file['Document']),
+                    'fileName' => basename($file['Document']),
+                    'localUrl' => $file['Document']
+                ];
+            }
+
+            if (isset($file['Signature'])) {
+                $document['Signature'] = [
+                    'docId' => $docId,
+                    'uuid' => Uuid::uuid1()->toString(),
+                    'mimeType' => 'application/x-pkcs7-signature',
+                    'description' => basename($file['Signature']),
+                    'fileName' => basename($file['Signature']),
+                    'localUrl' => $file['Signature']
+                ];
+            }
+
+            $this->attachmentFileList[] = $document;
+        }
+    }
 
     private function createEnvelopeFile(string $fileNamme, string $message_id)
     {
         $smevEnvelopeService = new SmevEnvvelopeService();
         $fileData = $smevEnvelopeService->createSendRequestEnvelope(uuid: $message_id, test: true,
         data: [
-            '@Id' => Uuid::uuid1()->toString(),
-            '@timestamp' => date('Y-m-d\TH:i:s+03:00'),
-            'OID' => $this->userData->snils,
-            'SNILS' => $this->userData->snils,
-            'descDoc' => $this->documentData->name,
-            'Backlink' => config('goskey.backlink'),
-            '//AddData[0]/AttrValue' => 'Инвестиционный портал Курской Области',
+            '//s:RequestSignUkep/@Id' => Uuid::uuid1()->toString(),
+            '//s:RequestSignUkep/@timestamp' => date('Y-m-d\TH:i:s+03:00'),
+            '//s:OID' => $this->userData->oid,
+            '//s:SNILS' => $this->userData->snils,
+            '//s:routeNumber' => 'MNSV03',
+            '//s:signExp' => date('Y-m-d\TH:i:s+03:00', strtotime('+10 hours')),
+            '//s:descDoc' => $this->documentData->name,
+            '//s:Backlink' => config('goskey.backlink'),
+            '//s:AddData/s:AttrValue' => 'Инвестиционный портал Курской Области' // Пример обновления вложенного узла.
         ],
 
-        files: [
-           [
-                'Document' => [
-                    'uuid' => '28a2624e-c59e-4d82-89c9-4db9d451bb7f',
-                    'docId' => '7b3ad8aa-026b-40df-83f2-0b7969083456',
-                    'mimeType' => 'application/pdf',
-                    'description' => 'Договор'
-                ],
-
-                'Signature' => [
-
-                        'docId' => '7b3ad8aa-026b-40df-83f2-0b7969083456',
-                        'uuid' => '70f5753a-1747-4542-a673-e892d1204836',
-                        'mimeType' => 'application/x-pkcs7-signature',
-                        'description' => 'Подпись'
-
-                ]
-            ],
-        ]);
-        // dd($fileData, $fileNamme);
+        files: $this->attachmentFileList
+    );
 
         Storage::disk('local')->put($fileNamme, $fileData);
     }
 
-    public function createProcedure(string $main_file_path = "", int $document_type = null, int $user_id = null)
+    public function createProcedure(array $main_files = [], int $document_type = null, int $user_id = null)
     {
-        $xmlSignService = new XmlSignService();
+        $xmlSignService = new XmlSignService(); // сервис подписания XML
+        $attachmentSignService = new AttachmentSignService(); // сервис для подписания вложений
+        $client = new CurlSmevService(); // сервис для отправки пакета
 
-
-
+        // Данные пользователя и локумента
         $this->userData = User::where('id', $user_id)->first();
         $this->documentData = DocumentType::where('id', $document_type)->first();
 
+        // создание ID сообщения
         $message_id = Uuid::uuid1()->toString();
         $short_identifier = date('Y_m_d_H_i_s') . '-' . uniqid();
 
-
-
+        // Создаем директорию для хранения процедуры
         Storage::disk('local')->makeDirectory($this->storagePath. '/' . $short_identifier);
         $procedureDirPath = Storage::disk('local')->path($this->storagePath. '/' . $short_identifier);
 
-        if (file_exists($main_file_path)) {
-            copy($main_file_path, $procedureDirPath. '/' . basename($main_file_path));
+        if (empty($main_files)) {
+            throw new \Exception("Нет файлов для подписи");
         }
 
+        foreach ($main_files as $file_path) {
+            if (file_exists($file_path)) {
+                copy($file_path, $procedureDirPath. '/' . basename($file_path));
+            } else {
+                throw new \Exception("Нет файла для подписи: $file_path");
+            }
+
+            $attachmentSignService->signAttachment($procedureDirPath . '/' . basename($file_path));
+
+            $this->files[] = [
+                    'Document' => $procedureDirPath . '/' . basename($file_path),
+                    'Signature' => $procedureDirPath . '/' . basename($file_path) . '.p7s',
+            ];
+        }
+
+        $this->createAttachmentFileList();
+        $this->loadAttachmentToS3();
+
+        // Создаем файл конверта
         $this->createEnvelopeFile(
             fileNamme: $this->storagePath. '/' . $short_identifier . '/envelope.xml',
             message_id: $message_id
         );
 
-        $xmlSignService->signXmlFile(
+        // dd('стор');
+
+        $xmlSignService->signXmlFileViaNetwork(
             xmlFilePath: $procedureDirPath . '/envelope.xml',
             outputFilePath: $procedureDirPath . '/envelope_signed.xml'
         );

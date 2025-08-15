@@ -35,7 +35,7 @@ class EsiaController extends Controller
                     'name' => $person_info->firstName,
                     'lastname' => $person_info->lastName,
                     'fathername' => $person_info->middleName,
-                    // 'snils' => $person_info->snils,
+                    'snils' => $person_info->snils,
                     'oid'  => $esia->oid,
                     'reg_type' => 'esia',
                     'email' => $contact_info["EML"],

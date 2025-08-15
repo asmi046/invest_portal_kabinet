@@ -3,38 +3,55 @@ namespace App\Services;
 
 class SmevEnvvelopeService
 {
-    // $data = [
-    //     '@Id' => 'new-id-123',
-    //     '@timestamp' => '2025-01-01T10:00:00+03:00',
-    //     'OID' => '1111111111',
-    //     'routeNumber' => 'MNSV05',
-    //     'descDoc' => 'Обновленный договор',
-    //     '//Document/@docId' => 'updated-doc-id',
-    //     '//Signature/@uuid' => 'updated-signature-uuid'
-    // ];
 
-    private function setXmlData($xml = null, $data = [])
-    {
-        if (empty($data)) {
+    private array $onAddedAttributes = [ 'fileName', 'localUrl' ];
+
+    function updateXmlWithNamespace($xml, $updates) {
+
+        if ($xml === false) {
             return $xml;
         }
 
-        foreach ($data as $path => $value) {
-            if (strpos($path, '@') === 0) {
-                // Это атрибут корневого элемента
-                $attrName = substr($path, 1);
-                // dd($attrName);
-                $xml[$attrName] = $value;
-            } elseif (strpos($path, '//') === 0) {
-                // Это XPath
-                $nodes = $xml->xpath($path);
-                if (!empty($nodes)) {
-                    $nodes[0][0] = $value;
+        $xml->registerXPathNamespace('s', 'urn://gosuslugi/sig-contract-ukep/1.0.1');
+
+        foreach ($updates as $xpath => $newValue) {
+            $nodes = $xml->xpath($xpath);
+
+            if ($nodes !== false && count($nodes) > 0) {
+                foreach ($nodes as $node) {
+                    $node[0] = $newValue;
                 }
-            } else {
-                // Прямое обращение к узлу
-                $xml->{$path} = $value;
             }
+        }
+    }
+
+    public function addRefAttachmentHeaders($xml, array $files = [])
+    {
+        // Находим узел <ns1:RefAttachmentHeaderList>
+        $headerList = $xml->xpath('//ns1:RefAttachmentHeaderList');
+        if (!$headerList || !isset($headerList[0])) {
+            throw new \Exception('Узел <ns1:RefAttachmentHeaderList> не найден');
+        }
+        $headerListNode = $headerList[0];
+
+        // Добавляем элементы
+        foreach ($files as $item) {
+            if (isset($item['Document'])) {
+                $hash = hash_file('sha256', $item['Document']['localUrl'], true);
+                $header = $headerListNode->addChild('ns1:RefAttachmentHeader', null, $headerListNode->getNamespaces()['ns1'] ?? null);
+                $header->addChild('ns1:uuid', $item['Document']['uuid']);
+                $header->addChild('ns1:Hash', base64_encode($hash));
+                $header->addChild('ns1:MimeType', $item['Document']['mimeType']);
+            }
+
+            if (isset($item['Signature'])) {
+                $hash = hash_file('sha256', $item['Signature']['localUrl'], true);
+                $header = $headerListNode->addChild('ns1:RefAttachmentHeader', null, $headerListNode->getNamespaces()['ns1'] ?? null);
+                $header->addChild('ns1:uuid', $item['Signature']['uuid']);
+                $header->addChild('ns1:Hash', base64_encode($hash));
+                $header->addChild('ns1:MimeType', $item['Signature']['mimeType']);
+            }
+
         }
     }
 
@@ -72,7 +89,9 @@ class SmevEnvvelopeService
                 $document = $contract->addChild('Document');
 
                 foreach ($fileData['Document'] as $attrName => $attrValue) {
+                    if (!in_array($attrName, $this->onAddedAttributes)) {
                     $document->addAttribute($attrName, $attrValue);
+                    }
                 }
             }
 
@@ -80,7 +99,9 @@ class SmevEnvvelopeService
                 $signature = $contract->addChild('Signature');
 
                 foreach ($fileData['Signature'] as $attrName => $attrValue) {
-                    $signature->addAttribute($attrName, $attrValue);
+                    if (!in_array($attrName, $this->onAddedAttributes)) {
+                        $signature->addAttribute($attrName, $attrValue);
+                    }
                 }
             }
         }
@@ -93,8 +114,10 @@ class SmevEnvvelopeService
         $envelop = simplexml_load_file(public_path('smev_envelope_template/SendRequestTemplate.xml'));
         $part = simplexml_load_file(public_path('smev_envelope_template/goskey_parts/ukep.xml'));
 
-        $this->setXmlData($part, $data);
+
+        $this->updateXmlWithNamespace($part, $data);
         $this->setContractsData($part, $files);
+
 
         $uuid = $uuid ?? \Ramsey\Uuid\Uuid::uuid1()->toString();
 
@@ -120,6 +143,8 @@ class SmevEnvvelopeService
             }
             $dom->appendChild($fragment);
         }
+
+        $this->addRefAttachmentHeaders($envelop, $files);
 
         return html_entity_decode($envelop->asXML(), ENT_QUOTES, 'UTF-8');
     }

@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
 
 class XmlSignService
 {
@@ -28,6 +30,34 @@ class XmlSignService
         }
 
         return $command;
+    }
+
+    public function signXmlFileViaNetwork(string $xmlFilePath = '', string $outputFilePath = '')
+    {
+        $address = config('cryptography.cryptcp_xml_address');
+
+        // Проверяем существование файла
+        if (!File::exists($xmlFilePath)) {
+            throw new \Exception("XML file not found: $xmlFilePath");
+        }
+
+        // Читаем содержимое файла
+        $fileContent = File::get($xmlFilePath);
+
+        // Формируем запрос
+        $response = Http::attach(
+            'file', $fileContent, basename($xmlFilePath)
+        )->asMultipart()->post($address, [
+            'elementId' => 'SIGNED_BY_CALLER',
+            'signatureElementName' => 'ns:CallerInformationSystemSignature',
+        ]);
+
+        // Проверяем статус ответа
+        if ($response->successful()) {
+            File::put($outputFilePath, $response->body());
+        } else {
+            throw new \Exception('Ошибка при отправке запроса: ' . $response->body());
+        }
     }
 
     public function signXmlFile(string $xmlFilePath = '', string $outputFilePath = ''): bool
