@@ -48,7 +48,7 @@ class CurlSmevService {
         return $response;
     }
 
-    public function parseSoapEnvelope($mimeMessage) {
+    public function parseSoapEnvelope($mimeMessage, bool $asArray = true) {
         // Извлекаем XML между границами MIME
         if (preg_match('/<soap:Envelope.*<\/soap:Envelope>/s', $mimeMessage, $matches)) {
             $soapContent = $matches[0];
@@ -57,7 +57,11 @@ class CurlSmevService {
                 $xml = new \SimpleXMLElement($soapContent);
 
                 // Преобразуем весь SOAP Envelope в массив
-                return $this->xmlToArray($xml);
+                if ($asArray) {
+                    return $this->xmlToArray($xml);
+                } else {
+                    return $xml->asXML();
+                }
 
             } catch (\Exception $e) {
                 throw new \Exception("Failed to parse SOAP Envelope: " . $e->getMessage());

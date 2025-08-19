@@ -49,7 +49,8 @@ class GoskeyRegistryService
                     'mimeType' => 'application/pdf',
                     'description' => basename($file['Document']),
                     'fileName' => basename($file['Document']),
-                    'localUrl' => $file['Document']
+                    'localUrl' => $file['Document'],
+                    'digest' => $file['Digest'],
                 ];
             }
 
@@ -60,7 +61,8 @@ class GoskeyRegistryService
                     'mimeType' => 'application/x-pkcs7-signature',
                     'description' => basename($file['Signature']),
                     'fileName' => basename($file['Signature']),
-                    'localUrl' => $file['Signature']
+                    'localUrl' => $file['Signature'],
+                    'digest' => $file['DigestSig'],
                 ];
             }
 
@@ -124,11 +126,18 @@ class GoskeyRegistryService
             $this->files[] = [
                     'Document' => $procedureDirPath . '/' . basename($file_path),
                     'Signature' => $procedureDirPath . '/' . basename($file_path) . '.p7s',
+                    'Digest' => $attachmentSignService->digestAttachment($procedureDirPath . '/' . basename($file_path)),
+                    'DigestSig' => $attachmentSignService->digestAttachment($procedureDirPath . '/' . basename($file_path). '.p7s')
             ];
         }
 
+        // dd($this->files);
+
+
         $this->createAttachmentFileList();
         $this->loadAttachmentToS3();
+
+        // dd($this->attachmentFileList);
 
         // Создаем файл конверта
         $this->createEnvelopeFile(
@@ -145,7 +154,6 @@ class GoskeyRegistryService
 
         $requestData = file_get_contents($procedureDirPath . '/envelope_signed.xml');
 
-        $client = new CurlSmevService();
         $response = $client->doRequest($requestData, 'urn:SendRequest');
         $rez = $client->parseSoapEnvelope($response);
 

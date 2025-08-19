@@ -4,7 +4,7 @@ namespace App\Services;
 class SmevEnvvelopeService
 {
 
-    private array $onAddedAttributes = [ 'fileName', 'localUrl' ];
+    private array $onAddedAttributes = [ 'fileName', 'localUrl', 'digest' ];
 
     function updateXmlWithNamespace($xml, $updates) {
 
@@ -37,18 +37,16 @@ class SmevEnvvelopeService
         // Добавляем элементы
         foreach ($files as $item) {
             if (isset($item['Document'])) {
-                $hash = hash_file('sha256', $item['Document']['localUrl'], true);
                 $header = $headerListNode->addChild('ns1:RefAttachmentHeader', null, $headerListNode->getNamespaces()['ns1'] ?? null);
                 $header->addChild('ns1:uuid', $item['Document']['uuid']);
-                $header->addChild('ns1:Hash', base64_encode($hash));
+                $header->addChild('ns1:Hash', $item['Document']['digest']);
                 $header->addChild('ns1:MimeType', $item['Document']['mimeType']);
             }
 
             if (isset($item['Signature'])) {
-                $hash = hash_file('sha256', $item['Signature']['localUrl'], true);
                 $header = $headerListNode->addChild('ns1:RefAttachmentHeader', null, $headerListNode->getNamespaces()['ns1'] ?? null);
                 $header->addChild('ns1:uuid', $item['Signature']['uuid']);
-                $header->addChild('ns1:Hash', base64_encode($hash));
+                $header->addChild('ns1:Hash', $item['Signature']['digest']);
                 $header->addChild('ns1:MimeType', $item['Signature']['mimeType']);
             }
 
@@ -145,6 +143,25 @@ class SmevEnvvelopeService
         }
 
         $this->addRefAttachmentHeaders($envelop, $files);
+
+        return html_entity_decode($envelop->asXML(), ENT_QUOTES, 'UTF-8');
+    }
+
+    public function createGetResponseEnvelope(string $namespaceURI = null, string $rootElementLocalName = null): string
+    {
+        $envelop = simplexml_load_file(public_path('smev_envelope_template/GetResponseTemplate.xml'));
+
+        $headerList = $envelop->xpath('//ns1:MessageTypeSelector');
+
+        if ($namespaceURI) {
+            $headerList[0]->addChild('ns1:NamespaceURI', $namespaceURI);
+        }
+        if ($rootElementLocalName) {
+            $headerList[0]->addChild('ns1:RootElementLocalName', $rootElementLocalName);
+        }
+
+        // $headerList[0]->addChild('ns1:Timestamp', date('Y-m-d\TH:i:s\Z', strtotime('-15 minutes')));
+        $headerList[0]->addChild('ns1:Timestamp', date('Y-m-d\TH:i:s\Z'));
 
         return html_entity_decode($envelop->asXML(), ENT_QUOTES, 'UTF-8');
     }
