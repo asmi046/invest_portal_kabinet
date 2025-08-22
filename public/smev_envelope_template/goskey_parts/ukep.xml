@@ -1,5 +1,5 @@
 <RequestSignUkep xmlns="urn://gosuslugi/sig-contract-ukep/1.0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   Id="a7c09763-c077-46eb-8fb6-38356f456575"  timestamp="2024-12-24T14:29:10+03:00">
-	<OID>1234567890</OID>
+	<SNILS>1234567890</SNILS>
 	<routeNumber>MNSV03</routeNumber>
 	<signExp>2024-12-25T14:28:00+03:00</signExp>
 	<descDoc>Договор</descDoc>

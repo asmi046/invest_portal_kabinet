@@ -79,7 +79,7 @@ class GoskeyRegistryService
             '//s:RequestSignUkep/@timestamp' => date('Y-m-d\TH:i:s+03:00'),
             '//s:OID' => $this->userData->oid,
             '//s:SNILS' => $this->userData->snils,
-            '//s:routeNumber' => 'MNSV03',
+            '//s:routeNumber' => config('goskey.is_contur'),
             '//s:signExp' => date('Y-m-d\TH:i:s+03:00', strtotime('+10 hours')),
             '//s:descDoc' => $this->documentData->name,
             '//s:Backlink' => config('goskey.backlink'),

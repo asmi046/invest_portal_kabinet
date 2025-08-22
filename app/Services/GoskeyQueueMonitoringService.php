@@ -35,6 +35,23 @@ class GoskeyQueueMonitoringService
         } else {
             throw new \Exception('Ошибка при отправке запроса: ' . $response->body());
         }
+    }
 
+    public function sendAscRequest(string $messageId): void
+    {
+        $client = new CurlSmevService();
+        $smevService = new SmevEnvvelopeService();
+        $envelope = $smevService->createAscRequest($messageId, true);
+
+        dd($envelope);
+
+        $response = $client->doRequest($envelope, 'urn:GetQueueStatus');
+
+        if ($response) {
+            $status = $client->parseSoapEnvelope($response, true);
+            dd($status);
+        } else {
+            throw new \Exception('Ошибка при получении статуса очереди');
+        }
     }
 }

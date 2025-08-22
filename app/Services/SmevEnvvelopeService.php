@@ -25,6 +25,23 @@ class SmevEnvvelopeService
         }
     }
 
+    function updateXmlCustomNamespace($xml, $updates) {
+
+        if ($xml === false) {
+            return $xml;
+        }
+
+        foreach ($updates as $xpath => $newValue) {
+            $nodes = $xml->xpath($xpath);
+
+            if ($nodes !== false && count($nodes) > 0) {
+                foreach ($nodes as $node) {
+                    $node[0] = $newValue;
+                }
+            }
+        }
+    }
+
     public function addRefAttachmentHeaders($xml, array $files = [])
     {
         // Находим узел <ns1:RefAttachmentHeaderList>
@@ -164,5 +181,20 @@ class SmevEnvvelopeService
         $headerList[0]->addChild('ns1:Timestamp', date('Y-m-d\TH:i:s\Z'));
 
         return html_entity_decode($envelop->asXML(), ENT_QUOTES, 'UTF-8');
+    }
+
+    public function createAscRequest(string $messageId = null, bool $accepted = true): string
+    {
+        $envelop = simplexml_load_file(public_path('smev_envelope_template/AckRequest.xml'));
+
+        $data =[
+            '//ns1:AckTargetMessage/@accepted' => $accepted ? 'true' : 'false',
+            '//ns1:AckTargetMessage' => $messageId,
+        ];
+
+        $this->updateXmlCustomNamespace($envelop, $data);
+
+        return html_entity_decode($envelop->asXML(), ENT_QUOTES, 'UTF-8');
+
     }
 }
