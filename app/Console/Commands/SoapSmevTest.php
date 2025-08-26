@@ -4,8 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Services\XmlSignService;
-use App\Services\CurlSmevService;
-use App\Services\SoapSmevService;
 use App\Services\SmevEnvvelopeService;
 use App\Services\GoskeyRegistryService;
 

@@ -26,7 +26,6 @@ class QueueGetTest extends Command
      */
     public function handle()
     {
-        $queueService = new GoskeyQueueMonitoringService();
-        $queueService->getQueue();
+        app(GoskeyQueueMonitoringService::class)->getQueue();
     }
 }

@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Services\GoskeyQueueMonitoringService;
 
-class SendAsc extends Command
+class SendAsk extends Command
 {
     /**
      * The name and signature of the console command.
@@ -27,7 +27,7 @@ class SendAsc extends Command
     public function handle()
     {
         $messageId = $this->ask('Введите messageId:');
-        $service = new GoskeyQueueMonitoringService();
-        $service->sendAscRequest($messageId );
+
+        app(GoskeyQueueMonitoringService::class)->sendAscRequest($messageId);
     }
 }

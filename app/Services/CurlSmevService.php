@@ -48,7 +48,7 @@ class CurlSmevService {
         return $response;
     }
 
-    public function parseSoapEnvelope($mimeMessage, bool $asArray = true) {
+    public function parseSoapEnvelope($mimeMessage, bool $asArray = false) {
         // Извлекаем XML между границами MIME
         if (preg_match('/<soap:Envelope.*<\/soap:Envelope>/s', $mimeMessage, $matches)) {
             $soapContent = $matches[0];

@@ -131,13 +131,9 @@ class GoskeyRegistryService
             ];
         }
 
-        // dd($this->files);
-
 
         $this->createAttachmentFileList();
         $this->loadAttachmentToS3();
-
-        // dd($this->attachmentFileList);
 
         // Создаем файл конверта
         $this->createEnvelopeFile(
@@ -145,7 +141,6 @@ class GoskeyRegistryService
             message_id: $message_id
         );
 
-        // dd('стор');
 
         $xmlSignService->signXmlFileViaNetwork(
             xmlFilePath: $procedureDirPath . '/envelope.xml',
@@ -155,7 +150,9 @@ class GoskeyRegistryService
         $requestData = file_get_contents($procedureDirPath . '/envelope_signed.xml');
 
         $response = $client->doRequest($requestData, 'urn:SendRequest');
-        $rez = $client->parseSoapEnvelope($response);
+        $response = $client->parseSoapEnvelope($response);
+
+        $rez = GoskeyResultAnalizator::analyzeRequest($response);
 
         GoskeyRegistry::create([
             'message_id' => $message_id,
@@ -166,8 +163,8 @@ class GoskeyRegistryService
             'status' => 'created'
         ]);
 
-        dd($rez);
 
+        dd($rez);
         return null; // Заглушка, заменить реальной логикой
     }
 }

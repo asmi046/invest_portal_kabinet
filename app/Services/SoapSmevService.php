@@ -18,7 +18,7 @@ class SoapSmevService extends \SoapClient
                     "Content-Type: text/xml;charset=UTF-8",
                     "SOAPAction: \"$action\"",
                     "Content-Length: " . strlen($cleanRequest),
-                    "Host: smev3-n0.test.gosuslugi.ru:7500",
+                    "Host: " . parse_url(config('services.smev.wsdl_url'), PHP_URL_HOST),
                     "Connection: Keep-Alive",
                     "User-Agent: Apache-HttpClient/4.5.5 (Java/17.0.12)",
                     "Accept-Encoding: gzip,deflate"
@@ -36,4 +36,5 @@ class SoapSmevService extends \SoapClient
 
         return $response;
     }
+
 }

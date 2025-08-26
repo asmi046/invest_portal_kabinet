@@ -2,11 +2,28 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Http;
+use App\Services\XmlSignService;
+use App\Services\CurlSmevService;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
+use App\Services\SmevEnvvelopeService;
 
 class GoskeyQueueMonitoringService
 {
+    protected SmevEnvvelopeService $smevService;
+    protected CurlSmevService $client;
+    protected XmlSignService $xmlSignService;
+
+    public function __construct(
+        SmevEnvvelopeService $smevService,
+        CurlSmevService $client,
+        XmlSignService $xmlSignService
+    ) {
+        $this->smevService = $smevService;
+        $this->client = $client;
+        $this->xmlSignService = $xmlSignService;
+    }
+
     /**
      * Start the monitoring server.
      *
@@ -14,44 +31,25 @@ class GoskeyQueueMonitoringService
      */
     public function getQueue(): void
     {
-        $smevService = new SmevEnvvelopeService();
-        $client = new CurlSmevService(); // сервис для отправки пакета
-        $envelope = $smevService->createGetResponseEnvelope();
 
-        $address = config('cryptography.cryptcp_xml_address');
-        $response = Http::attach(
-            'file', $envelope, 'r.xml'
-        )->asMultipart()->post($address, [
-            'elementId' => 'SIGNED_BY_CALLER',
-            'signatureElementName' => 'ns:CallerInformationSystemSignature',
-        ]);
+        $envelope = $this->smevService->createGetResponseEnvelope();
 
-        if ($response->successful()) {
-            $response = $client->doRequest($response->body(), 'urn:GetResponse');
+        $xml = $this->xmlSignService->signXmlContentViaNetwork($envelope);
 
-            $rez = $client->parseSoapEnvelope($response, true);
-            // File::put("q.xml", mb_convert_encoding($rez, 'UTF-8') );
-            dd($rez);
-        } else {
-            throw new \Exception('Ошибка при отправке запроса: ' . $response->body());
-        }
+        $response = $this->client->doRequest($xml, 'urn:GetResponse');
+
+        $rez = $this->client->parseSoapEnvelope($response, true);
+        dd($rez);
     }
 
     public function sendAscRequest(string $messageId): void
     {
-        $client = new CurlSmevService();
-        $smevService = new SmevEnvvelopeService();
-        $envelope = $smevService->createAscRequest($messageId, true);
+        $envelope = $this->smevService->createAscRequest($messageId, true);
+        $xml = $this->xmlSignService->signXmlContentViaNetwork($envelope);
+        $response = $this->client->doRequest($xml, 'urn:Ask');
 
-        dd($envelope);
+        $rez = $this->client->parseSoapEnvelope($response, true);
 
-        $response = $client->doRequest($envelope, 'urn:GetQueueStatus');
-
-        if ($response) {
-            $status = $client->parseSoapEnvelope($response, true);
-            dd($status);
-        } else {
-            throw new \Exception('Ошибка при получении статуса очереди');
-        }
+        dd($rez);
     }
 }
