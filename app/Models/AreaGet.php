@@ -12,6 +12,8 @@ class AreaGet extends Model
     public $fillable = [
         "created_at",
         "user_id",
+        "document_type",
+        "verified",
         "state",
         "name",
         "dolgnost",

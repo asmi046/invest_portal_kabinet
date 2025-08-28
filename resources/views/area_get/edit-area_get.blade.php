@@ -16,6 +16,9 @@
             subtitle="Мои заявления"
         ></x-breadcrumbs>
         <h1>{{ $title }} №{{$item->id}}</h1>
+
+        <x-goskey.sign-document :document="$item"></x-goskey.sign-document>
+
         <x-organization-report :item="$item"></x-organization-report>
 
         <x-area-get.edit-form :item="$item" format="edit" :action="route('area_get_save')"></x-area-get.edit-form>

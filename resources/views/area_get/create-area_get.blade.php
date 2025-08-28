@@ -19,7 +19,7 @@
                 subtitle="Мои заявления"
             ></x-breadcrumbs>
             <h1>{{ $title }}</h1>
-
+            <x-goskey.sign-document></x-goskey.sign-document>
             <x-area-get.edit-form format="create" action="{{route('area_get_save')}}"></x-area-get.edit-form>
         </div>
     </section>

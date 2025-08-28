@@ -1,0 +1,90 @@
+.goskey_banner {
+    display: flex;
+    gap:50px;
+
+    .logo_wrappe {
+        width:200px;
+        display: flex;
+        height: 100%;
+        img{
+            margin-top: 0;
+            margin-bottom: auto;
+        }
+    }
+
+    .text_wrappe {
+        h2 {
+            color: #0A2996;
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 10px;
+
+        }
+
+        p {
+            font-size: 14px;
+        }
+
+        .mobile_store {
+            display: flex;
+            gap:20px;
+            flex-wrap: wrap;
+            img {
+                max-width: 110px;
+            }
+        }
+    }
+}
+
+.goskey_sign_page {
+    display: flex;
+    flex-wrap: wrap;
+    gap:30px;
+    font-size: 14px;
+    margin: 20px 0;
+
+    .wrapper-icon {
+        width:80px;
+        &.no_active {
+            filter: grayscale(100%);
+            opacity: 0.5;
+        }
+    }
+
+    .btn-link__actions {
+        display: flex;
+        gap:20px;
+        .btn {
+            border-color: #0A2996;
+            color: #0A2996;
+            background-color: white;
+            font-size: 14px;
+            padding: 1rem 2rem;
+            min-height: unset;
+            &:hover {
+                background-color: #0A2996;
+                color: white;
+            }
+        }
+    }
+
+    .wrapper-control {
+        flex:1;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .goskey_banner {
+        flex-direction: column;
+        gap: 40px!important;
+        .logo_wrappe  {
+            width: 100%;
+            height: unset;
+            img {
+                margin: 0 auto 0 0;
+                height: 150px;
+            }
+        }
+    }
+}
+

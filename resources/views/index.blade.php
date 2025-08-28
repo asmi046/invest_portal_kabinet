@@ -30,6 +30,33 @@
                 <li>На получение доступа к ключевым элементам инфраструктуры согласно своду инвестиционных правил</li>
             </ol>
 
+            <div class="btn-link-box columns-box">
+                <div class="btn-link goskey_banner">
+                    <div class="logo_wrappe">
+                        <img src="{{ asset('img/goskey-vertical-logo.svg')}}" alt="Подписание при помощи Госключа">
+                    </div>
+                    <div class="text_wrappe">
+                        <h2>Подписывайте документы при помощи МП Госключ</h2>
+                        <p>Приложение Госключ позволяет бесплатно получить сертификат электронной подписи и подписывать документы.</p>
+                        <p>В нашем личном кабинете Вы можете подписать все запросы при помощи мобильного приложения Госключь.</p>
+                        <div class="mobile_store">
+                            <a href="https://apps.rustore.ru/app/ru.gosuslugi.goskey">
+                                <img src="{{ asset('img/mobile_store_icon/store_ru.svg') }}" alt="Скачать Госключ с RuStore">
+                            </a>
+                            <a href="https://appgallery.huawei.com/#/app/C104297607">
+                                <img src="{{ asset('img/mobile_store_icon/store_gallery.svg') }}" alt="Скачать Госключ с AppGalery">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=ru.gosuslugi.goskey">
+                                <img src="{{ asset('img/mobile_store_icon/store_play.svg') }}" alt="Скачать Госключ с Google Play">
+                            </a>
+                            <a href="https://apps.apple.com/ru/app/id1566096745">
+                                <img src="{{ asset('img/mobile_store_icon/store_apple.svg') }}" alt="Скачать Госключ с App Store">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="btn-link-box columns-box columns-box--two-col">
                 <x-widget-icon-lnk lnk="{{ route('project_create') }}" title="Подать заявление на государственную поддержку" icon="building-icon"></x-widget-icon-lnk>
                 <x-widget-icon-lnk lnk="{{ route('support_select') }}" title="Заявления на государственную поддержку" icon="laptop-icon"></x-widget-icon-lnk>

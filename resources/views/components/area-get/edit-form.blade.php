@@ -24,6 +24,8 @@
 
 
     <input type="hidden" name="item_id" value="{{ $item->id ?? 0 }}">
+    <input type="hidden" name="verified" value="{{ $item->verified ?? false }}">
+    <input type="hidden" name="document_type" value="1">
 
     <div class="columns-box columns-box--two-col">
         <label class="form-elem">
