@@ -160,11 +160,11 @@ class GoskeyRegistryService
             'user_id' => $user_id,
             'document_type' => $document_type,
             'last_check_at' => null,
-            'status' => 'created'
+            'status' => $rez['error'] ? 'error' : $rez['code'],
+            'error_message' => $rez['error'] ? $rez['error_message'] : null,
         ]);
 
 
-        dd($rez);
-        return null; // Заглушка, заменить реальной логикой
+        return $rez;
     }
 }

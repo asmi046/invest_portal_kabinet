@@ -88,6 +88,21 @@ class UserSeeder extends Seeder
             ]
         );
 
+        $userID = DB::table("users")->insertGetId(
+            [
+                    'name' => "Инвестор",
+                    'lastname' => "Иванов",
+                    'fathername' => "Инвесторович",
+                    'oid' => '1002489741',
+                    'snils' => '062-362-737 51',
+                    'reg_type' => 'esia',
+                    'phone' => "+7(903)6330801",
+                    'email' => "asmi-work046@yandex.ru",
+                    'password' => Hash::make("123"),
+                    'email_verified_at' => date("Y-m-d H:i:s"),
+            ]
+        );
+
         $userID = DB::table("moonshine_users")->insertGetId(
             [
                     'name' => "Админ",

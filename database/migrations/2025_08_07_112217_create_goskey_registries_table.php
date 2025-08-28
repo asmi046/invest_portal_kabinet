@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('document_type')->comment('Тип документа');
             $table->timestamp('last_check_at')->nullable()->comment('Дата и время последней проверки');
             $table->string('status')->nullable()->comment('Статус');
+            $table->string('status_code')->nullable()->comment('Код статуса');
+            $table->string('error_code')->nullable()->comment('Код ошибки');
+            $table->string('error_message')->nullable()->comment('Описание ошибки');
             $table->timestamps();
         });
     }

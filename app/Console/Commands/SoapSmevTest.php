@@ -30,7 +30,7 @@ class SoapSmevTest extends Command
     {
 
         $goskeyRegistryService = new GoskeyRegistryService();
-        $goskeyRegistryService->createProcedure(
+        $rez = $goskeyRegistryService->createProcedure(
             main_files: [
                 public_path('signed_docs\\2areaget.pdf')
                 // public_path('signed_docs\\5-area-get.pdf')
@@ -38,5 +38,7 @@ class SoapSmevTest extends Command
             document_type: 1,
             user_id: 5
         );
+
+        dd($rez);
     }
 }

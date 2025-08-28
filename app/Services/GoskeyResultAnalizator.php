@@ -4,10 +4,90 @@ namespace App\Services;
 
 class GoskeyResultAnalizator
 {
+    public static function analyzeResponse($response)
+    {
+        $result = [];
+        try {
+            $xml = new \SimpleXMLElement($response);
+        } catch (\Exception $e) {
+            return ['error' => true, 'error_message' => 'Некорректный XML'];
+        }
+
+        $xml->registerXPathNamespace('ns2', 'urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2');
+        $originalMessageId = $xml->xpath('//ns2:Response/ns2:OriginalMessageId');
+        $messageId = $xml->xpath('//ns2:Response/ns2:MessageMetadata/ns2:MessageId');
+
+        $result['original_message_id'] = isset($originalMessageId[0])?(string)$originalMessageId[0]:null;
+        $result['message_id'] = isset($messageId[0])?(string)$messageId[0]:null;
+
+        $errorNodes = $xml->xpath('//*[local-name()="ResponseSignUkep"]/*[local-name()="Error"]');
+        if ($errorNodes && isset($errorNodes[0])) {
+            $error = $errorNodes[0];
+            $result['type']  = 'error';
+            $result['error_code']  = (string)$error->ErrorCode;
+            $result['error_message'] = (string)$error->ErrorMessage;
+        }
+
+        $smevFaultNodes = $xml->xpath('//ns2:SmevFault');
+        if ($smevFaultNodes && isset($smevFaultNodes[0])) {
+            $smevFault = $smevFaultNodes[0];
+            $result['type']  = 'error';
+            $result['error_code']  = (string)$smevFault->Code;
+            $result['error_message'] = (string)$smevFault->Description;
+        }
+
+        $signRejected = $xml->xpath("//*[local-name()='SignReject']");
+        if ($signRejected && isset($signRejected[0])) {
+            $result['type']  = 'status';
+            $result['temporary_code']  = -100;
+            $result['state_message'] = "Пользователь отказался от подписания";
+        }
+
+        $stateMediumNodes = $xml->xpath("//*[local-name()='StateMedium']");
+        if ($stateMediumNodes && isset($stateMediumNodes[0])) {
+            $stateMedium = $stateMediumNodes[0];
+            $result['type']  = 'status';
+            $result['temporary_code'] = (string)$stateMedium->TemporaryCode;
+            $result['state_message'] = (string)$stateMedium->StateMessage;
+        }
+
+
+        return $result;
+    }
+
+    public static function analyzeAsk($response)
+    {
+        try {
+            $xml = new \SimpleXMLElement($response);
+        } catch (\Exception $e) {
+            return ['error' => true, 'error_message' => 'Некорректный XML'];
+        }
+
+        // Проверяем наличие узла <soap:Fault>
+        $fault = $xml->xpath('//soap:Fault');
+        if ($fault && isset($fault[0])) {
+            $result['error'] = true;
+            // Ищем faultstring
+            $faultstring = $fault[0]->xpath('./faultstring');
+            if ($faultstring && isset($faultstring[0])) {
+                $result['error_message'] = (string)$faultstring[0];
+            }
+            // Ищем Code
+            $code = $fault[0]->xpath('./Code');
+            if ($code && isset($code[0])) {
+                $result['code'] = (string)$code[0];
+            }
+            return $result;
+        } else {
+            $result['error'] = false;
+            $result['code'] = 'Success';
+        }
+
+        return $result;
+    }
+
     public static function analyzeRequest($response)
     {
-            $result = [];
-
             // Преобразуем строку в SimpleXMLElement
             try {
                 $xml = new \SimpleXMLElement($response);

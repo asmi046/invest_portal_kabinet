@@ -29,7 +29,7 @@ class GoskeyQueueMonitoringService
      *
      * @return void
      */
-    public function getQueue(): void
+    public function getQueue()
     {
 
         $envelope = $this->smevService->createGetResponseEnvelope();
@@ -38,18 +38,17 @@ class GoskeyQueueMonitoringService
 
         $response = $this->client->doRequest($xml, 'urn:GetResponse');
 
-        $rez = $this->client->parseSoapEnvelope($response, true);
-        dd($rez);
+        $rez = $this->client->parseSoapEnvelope($response);
+
+        return $rez;
     }
 
-    public function sendAscRequest(string $messageId): void
+    public function sendAscRequest(string $messageId)
     {
         $envelope = $this->smevService->createAscRequest($messageId, true);
         $xml = $this->xmlSignService->signXmlContentViaNetwork($envelope);
         $response = $this->client->doRequest($xml, 'urn:Ask');
 
-        $rez = $this->client->parseSoapEnvelope($response, true);
-
-        dd($rez);
+        return $this->client->parseSoapEnvelope($response);
     }
 }

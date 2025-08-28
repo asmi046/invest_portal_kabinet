@@ -1,0 +1,149 @@
+{
+    "soap:Body": {
+        "ns2:GetResponseResponse": {
+            "ns2:ResponseMessage": {
+                "ns2:Response": {
+                    "@attributes": {
+                        "Id": "SIGNED_BY_SMEV"
+                    },
+                    "SenderProvidedResponseData": {
+                        "@attributes": {
+                            "Id": "SIGNED_BY_CALLER"
+                        },
+                        "MessageID": "e48e306b-829f-11f0-a3f1-b2c5eb096ce8",
+                        "To": "eyJzaWQiOjMyNzQxNTcwLCJtaWQiOiJkYzI4MDNjYS04MjlmLTExZjAtOTA5OC0wMGZmYmJlZDI4MTkiLCJlb2wiOjAsInNsYyI6Imdvc3VzbHVnaV9zaWctY29udHJhY3QtdWtlcF8xLjAuMF9SZXF1ZXN0U2lnblVrZXAiLCJtbm0iOiJVMjgxMDEiLCJucyI6InVybjovL2dvc3VzbHVnaS9zaWctY29udHJhY3QtdWtlcC8xLjAuMSIsInJlb2wiOjAsIm9yaWQiOm51bGx9",
+                        "ns2:MessagePrimaryContent": {
+                            "ResponseSignUkep": {
+                                "@attributes": {
+                                    "Id": "11b7813a-ccbe-4347-8c92-ab93659f7fe5",
+                                    "ReqId": "e1d4d6ea-829f-11f0-892a-00ffbbed2819",
+                                    "timestamp": "2025-08-26T20:12:49.426+03:00"
+                                },
+                                "SNILS": "062-362-737 51",
+                                "StateMedium": {
+                                    "TemporaryCode": "6",
+                                    "StateMessage": "Документы отправлены пользователю"
+                                }
+                            }
+                        }
+                    },
+                    "ns2:OriginalMessageId": "dc2803ca-829f-11f0-9098-00ffbbed2819",
+                    "ns2:SenderProvidedResponseData": {
+                        "@attributes": {
+                            "Id": "SIGNED_BY_CALLER"
+                        },
+                        "MessageID": "e48e306b-829f-11f0-a3f1-b2c5eb096ce8",
+                        "To": "eyJzaWQiOjMyNzQxNTcwLCJtaWQiOiJkYzI4MDNjYS04MjlmLTExZjAtOTA5OC0wMGZmYmJlZDI4MTkiLCJlb2wiOjAsInNsYyI6Imdvc3VzbHVnaV9zaWctY29udHJhY3QtdWtlcF8xLjAuMF9SZXF1ZXN0U2lnblVrZXAiLCJtbm0iOiJVMjgxMDEiLCJucyI6InVybjovL2dvc3VzbHVnaS9zaWctY29udHJhY3QtdWtlcC8xLjAuMSIsInJlb2wiOjAsIm9yaWQiOm51bGx9",
+                        "ns2:MessagePrimaryContent": {
+                            "ResponseSignUkep": {
+                                "@attributes": {
+                                    "Id": "11b7813a-ccbe-4347-8c92-ab93659f7fe5",
+                                    "ReqId": "e1d4d6ea-829f-11f0-892a-00ffbbed2819",
+                                    "timestamp": "2025-08-26T20:12:49.426+03:00"
+                                },
+                                "SNILS": "062-362-737 51",
+                                "StateMedium": {
+                                    "TemporaryCode": "6",
+                                    "StateMessage": "Документы отправлены пользователю"
+                                }
+                            }
+                        }
+                    },
+                    "ns2:MessageMetadata": {
+                        "ns2:MessageId": "e48e306b-829f-11f0-a3f1-b2c5eb096ce8",
+                        "ns2:MessageType": "RESPONSE",
+                        "ns2:Sender": {
+                            "ns2:Mnemonic": "MNSV05"
+                        },
+                        "ns2:SendingTimestamp": "2025-08-26T20:12:49.522+03:00",
+                        "ns2:Recipient": {
+                            "ns2:Mnemonic": "U28101"
+                        },
+                        "ns2:DeliveryTimestamp": "2025-08-27T16:02:40.116+03:00",
+                        "ns2:Status": "messageIsDelivered"
+                    },
+                    "ns2:SenderInformationSystemSignature": {
+                        "ds:Signature": {
+                            "ds:SignedInfo": {
+                                "ds:CanonicalizationMethod": {
+                                    "@attributes": {
+                                        "Algorithm": "http:\/\/www.w3.org\/2001\/10\/xml-exc-c14n#"
+                                    }
+                                },
+                                "ds:SignatureMethod": {
+                                    "@attributes": {
+                                        "Algorithm": "urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr34102012-gostr34112012-256"
+                                    }
+                                },
+                                "ds:Reference": {
+                                    "@attributes": {
+                                        "URI": "#SIGNED_BY_CALLER"
+                                    },
+                                    "ds:Transforms": {
+                                        "ds:Transform": {
+                                            "@attributes": {
+                                                "Algorithm": "urn:\/\/smev-gov-ru\/xmldsig\/transform"
+                                            }
+                                        }
+                                    },
+                                    "ds:DigestMethod": {
+                                        "@attributes": {
+                                            "Algorithm": "urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr34112012-256"
+                                        }
+                                    },
+                                    "ds:DigestValue": "TKE5Z6grImJ4qJQchKhY1uJxIaVhpeb4iJH0P9AmnAk="
+                                }
+                            },
+                            "ds:SignatureValue": "ywYejnBK4kgdyrRR4jG1SQj3VUfcqda5aoKVFm\/KZPIDVFGUwJOWX12WM1F1DNPz0LieOC1ymTNoaGhwbrk0wg==",
+                            "ds:KeyInfo": {
+                                "ds:X509Data": {
+                                    "ds:X509Certificate": "MIII9DCCCKGgAwIBAgIRAu1s4gA3szG4SaWpjU5OezswCgYIKoUDBwEBAwIwggGBMRUwEwYFKoUDZAQSCjc3MDcwNDkzODgxGDAWBgUqhQNkARINMTAyNzcwMDE5ODc2NzELMAkGA1UEBhMCUlUxKTAnBgNVBAgMIDc4INCh0LDQvdC60YIt0J\/QtdGC0LXRgNCx0YPRgNCzMSYwJAYDVQQHDB3QodCw0L3QutGCLdCf0LXRgtC10YDQsdGD0YDQszGBnjCBmwYDVQQJDIGT0LzRg9C90LjRhtC40L\/QsNC70YzQvdGL0Lkg0L7QutGA0YPQsyDQodC80L7Qu9GM0L3QuNC90YHQutC+0LUg0JLQnS7QotCV0KAu0JMuLCDQodC40L3QvtC\/0YHQutCw0Y8g0L3QsNCx0LXRgNC10LbQvdCw0Y8sINC00L7QvCAxNCwg0LvQuNGC0LXRgNCwINCQMSYwJAYDVQQKDB3Qn9CQ0J4gItCg0L7RgdGC0LXQu9C10LrQvtC8IjElMCMGA1UEAwwc0KLQtdGB0YLQvtCy0YvQuSDQo9CmINCg0KLQmjAeFw0yNTA4MTIxMzM0MjRaFw0yNjA4MTIxMzQ0MjRaMIIBvjEVMBMGBSqFA2QEEgo3NzEwNDc0Mzc1MRIwEAYJKoZIhvcNAQkCDANERVYxIDAeBgkqhkiG9w0BCQEWEXNkQHNjLm1pbnN2eWF6LnJ1MRgwFgYFKoUDZAESDTEwNDc3MDIwMjY3MDExGTAXBgNVBAoMENCc0LjQvdGG0LjRhNGA0YsxTTBLBgNVBAkMRNCf0YDQtdGB0L3QtdC90YHQutCw0Y8g0L3QsNCxLiwg0LQuIDEwLCDRgdGC0YAuIDIsIElRLdC60LLQsNGA0YLQsNC7MRUwEwYDVQQHDAzQnNC+0YHQutCy0LAxHDAaBgNVBAgMEzc3INCzLiDQnNC+0YHQutCy0LAxCzAJBgNVBAYTAlJVMYGoMIGlBgNVBAMMgZ3QnNC40L3QuNGB0YLQtdGA0YHRgtCy0L4g0YbQuNGE0YDQvtCy0L7Qs9C+INGA0LDQt9Cy0LjRgtC40Y8sINGB0LLRj9C30Lgg0Lgg0LzQsNGB0YHQvtCy0YvRhSDQutC+0LzQvNGD0L3QuNC60LDRhtC40Lkg0KDQvtGB0YHQuNC50YHQutC+0Lkg0KTQtdC00LXRgNCw0YbQuNC4MGYwHwYIKoUDBwEBAQEwEwYHKoUDAgIkAAYIKoUDBwEBAgIDQwAEQBhe7pMvFyU5u2cfvlZDP8p1uOBzFBA8w2MUwI3UJ8eS9hPbSV2pZmhkOlQit9NWHBYyO5EQYgZONaTwsQZZ3UyjggSqMIIEpjAOBgNVHQ8BAf8EBAMCA\/gwHQYDVR0OBBYEFPsLxD95pbiL65oM7SOykYP2tx34MB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDBUBggrBgEFBQcBAQRIMEYwRAYIKwYBBQUHMAKGOGh0dHA6Ly9jZXJ0ZW5yb2xsLnRlc3QuZ29zdXNsdWdpLnJ1L2NkcC90ZXN0X2NhX3J0azMuY2VyMB0GA1UdIAQWMBQwCAYGKoUDZHEBMAgGBiqFA2RxAjArBgNVHRAEJDAigA8yMDI1MDgxMjEzMzQyM1qBDzIwMjYwODEyMTMzNDIzWjCCATcGBSqFA2RwBIIBLDCCASgMMiLQmtGA0LjQv9GC0L7Qn9GA0L4gQ1NQIDQuMCBSNCIgKNCy0LXRgNGB0LjRjyA0LjApDCwi0JrRgNC40L\/RgtC+0J\/RgNC+INCj0KYiICjQstC10YDRgdC40LggMi4wKQxh0KHQtdGA0YLQuNGE0LjQutCw0YLRiyDRgdC+0L7RgtCy0LXRgtGB0YLQstC40Y8g0KTQodCRINCg0L7RgdGB0LjQuCDQodCkLzEyNC0zOTcxINC+0YIgMTUuMDEuMjAyMQxh0KHQtdGA0YLQuNGE0LjQutCw0YLRiyDRgdC+0L7RgtCy0LXRgtGB0YLQstC40Y8g0KTQodCRINCg0L7RgdGB0LjQuCDQodCkLzEyOC00Mzc2INC+0YIgMjguMTAuMjAyMjA9BgUqhQNkbwQ0DDIi0JrRgNC40L\/RgtC+0J\/RgNC+IENTUCA0LjAgUjQiICjQstC10YDRgdC40Y8gNC4wKTBlBgNVHR8EXjBcMFqgWKBWhlRodHRwOi8vY2VydGVucm9sbC50ZXN0Lmdvc3VzbHVnaS5ydS9jZHAvYjBmZDhlYjk1OWQ5NDg5ZDViN2I0YzE0M2EwNmNhZDc5NTJhMDc0NC5jcmwwDAYFKoUDZHIEAwIBADCCAcMGA1UdIwSCAbowggG2gBSw\/Y65WdlInVt7TBQ6BsrXlSoHRKGCAYmkggGFMIIBgTEVMBMGBSqFA2QEEgo3NzA3MDQ5Mzg4MRgwFgYFKoUDZAESDTEwMjc3MDAxOTg3NjcxCzAJBgNVBAYTAlJVMSkwJwYDVQQIDCA3OCDQodCw0L3QutGCLdCf0LXRgtC10YDQsdGD0YDQszEmMCQGA1UEBwwd0KHQsNC90LrRgi3Qn9C10YLQtdGA0LHRg9GA0LMxgZ4wgZsGA1UECQyBk9C80YPQvdC40YbQuNC\/0LDQu9GM0L3Ri9C5INC+0LrRgNGD0LMg0KHQvNC+0LvRjNC90LjQvdGB0LrQvtC1INCS0J0u0KLQldCgLtCTLiwg0KHQuNC90L7Qv9GB0LrQsNGPINC90LDQsdC10YDQtdC20L3QsNGPLCDQtNC+0LwgMTQsINC70LjRgtC10YDQsCDQkDEmMCQGA1UECgwd0J\/QkNCeICLQoNC+0YHRgtC10LvQtdC60L7QvCIxJTAjBgNVBAMMHNCi0LXRgdGC0L7QstGL0Lkg0KPQpiDQoNCi0JqCEQLRkKkAiLBYlkt8lE\/Q3xYXMAoGCCqFAwcBAQMCA0EAYHMbP9h8\/c8bC89mLEeQ2rqvfELBas8rt+QYSy\/Dy0w3AWqwXJ83myM8wwKqCHTJ2Z0MY7U66QlBY7NtxUAcjg=="
+                                }
+                            }
+                        }
+                    }
+                },
+                "ns2:SMEVSignature": {
+                    "ds:Signature": {
+                        "ds:SignedInfo": {
+                            "ds:CanonicalizationMethod": {
+                                "@attributes": {
+                                    "Algorithm": "http:\/\/www.w3.org\/2001\/10\/xml-exc-c14n#"
+                                }
+                            },
+                            "ds:SignatureMethod": {
+                                "@attributes": {
+                                    "Algorithm": "urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr34102012-gostr34112012-256"
+                                }
+                            },
+                            "ds:Reference": {
+                                "@attributes": {
+                                    "URI": "#SIGNED_BY_SMEV"
+                                },
+                                "ds:Transforms": {
+                                    "ds:Transform": {
+                                        "@attributes": {
+                                            "Algorithm": "urn:\/\/smev-gov-ru\/xmldsig\/transform"
+                                        }
+                                    }
+                                },
+                                "ds:DigestMethod": {
+                                    "@attributes": {
+                                        "Algorithm": "urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr34112012-256"
+                                    }
+                                },
+                                "ds:DigestValue": "6YrNII7U5NGDL\/A298JeBlspRnbJ+CkkK4pDiJT\/a7w="
+                            }
+                        },
+                        "ds:SignatureValue": "W2iVjKwrpe7\/SVrwbevsbyzT7nvyY8MPl5kjP45v+JJ0tAn5LBAl8Y0aqGfFDlBB0dRcWnTKF8qql8x3txV3HA==",
+                        "ds:KeyInfo": {
+                            "ds:X509Data": {
+                                "ds:X509Certificate": "MIIIczCCCCCgAwIBAgIRAsbmsQATs1q5T+N9Z5wv3AIwCgYIKoUDBwEBAwIwggGBMRUwEwYFKoUDZAQSCjc3MDcwNDkzODgxGDAWBgUqhQNkARINMTAyNzcwMDE5ODc2NzELMAkGA1UEBhMCUlUxKTAnBgNVBAgMIDc4INCh0LDQvdC60YIt0J\/QtdGC0LXRgNCx0YPRgNCzMSYwJAYDVQQHDB3QodCw0L3QutGCLdCf0LXRgtC10YDQsdGD0YDQszGBnjCBmwYDVQQJDIGT0LzRg9C90LjRhtC40L\/QsNC70YzQvdGL0Lkg0L7QutGA0YPQsyDQodC80L7Qu9GM0L3QuNC90YHQutC+0LUg0JLQnS7QotCV0KAu0JMuLCDQodC40L3QvtC\/0YHQutCw0Y8g0L3QsNCx0LXRgNC10LbQvdCw0Y8sINC00L7QvCAxNCwg0LvQuNGC0LXRgNCwINCQMSYwJAYDVQQKDB3Qn9CQ0J4gItCg0L7RgdGC0LXQu9C10LrQvtC8IjElMCMGA1UEAwwc0KLQtdGB0YLQvtCy0YvQuSDQo9CmINCg0KLQmjAeFw0yNTA3MDcxMDM3NDNaFw0yNjA3MDcxMDQ3NDNaMIIBPTEVMBMGBSqFA2QEEgo1MDQ3MDUzOTIwMRowGAYJKoZIhvcNAQkCDAvQotCh0JzQrdCSMzErMCkGCSqGSIb3DQEJARYcVGF0eWFuYS5ub3ZpY2hrb3ZhQHJ0bGFicy5ydTEYMBYGBSqFA2QBEg0xMDM1MDA5NTY3NDUwMR0wGwYDVQQKDBTQkNCeICLQoNCiINCb0LDQsdGBIjEwMC4GA1UECQwn0KPQm9CY0KbQkCDQn9Cg0J7Qm9CV0KLQkNCg0KHQmtCQ0K8sIDIzMRMwEQYDVQQHDArQpdC40LzQutC4MS8wLQYDVQQIDCY1MCDQnNC+0YHQutC+0LLRgdC60LDRjyDQvtCx0LvQsNGB0YLRjDELMAkGA1UEBhMCUlUxHTAbBgNVBAMMFNCQ0J4gItCg0KIg0JvQsNCx0YEiMGYwHwYIKoUDBwEBAQEwEwYHKoUDAgIkAAYIKoUDBwEBAgIDQwAEQHq4oaVgrHEYvykxjLPKyAFHAyGPkB5ieKuiXTHzEh84ul1EB8z8rl13lCkgMKRrn4EDsqY78O+7ni\/xd03A+qSjggSqMIIEpjAOBgNVHQ8BAf8EBAMCA\/gwHQYDVR0OBBYEFCv1QLkOHgNQPPWEQwsmDx2CuqklMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDBUBggrBgEFBQcBAQRIMEYwRAYIKwYBBQUHMAKGOGh0dHA6Ly9jZXJ0ZW5yb2xsLnRlc3QuZ29zdXNsdWdpLnJ1L2NkcC90ZXN0X2NhX3J0azMuY2VyMB0GA1UdIAQWMBQwCAYGKoUDZHEBMAgGBiqFA2RxAjArBgNVHRAEJDAigA8yMDI1MDcwNzEwMzc0M1qBDzIwMjYwNzA3MTAzNzQzWjCCATcGBSqFA2RwBIIBLDCCASgMMiLQmtGA0LjQv9GC0L7Qn9GA0L4gQ1NQIDQuMCBSNCIgKNCy0LXRgNGB0LjRjyA0LjApDCwi0JrRgNC40L\/RgtC+0J\/RgNC+INCj0KYiICjQstC10YDRgdC40LggMi4wKQxh0KHQtdGA0YLQuNGE0LjQutCw0YLRiyDRgdC+0L7RgtCy0LXRgtGB0YLQstC40Y8g0KTQodCRINCg0L7RgdGB0LjQuCDQodCkLzEyNC0zOTcxINC+0YIgMTUuMDEuMjAyMQxh0KHQtdGA0YLQuNGE0LjQutCw0YLRiyDRgdC+0L7RgtCy0LXRgtGB0YLQstC40Y8g0KTQodCRINCg0L7RgdGB0LjQuCDQodCkLzEyOC00Mzc2INC+0YIgMjguMTAuMjAyMjA9BgUqhQNkbwQ0DDIi0JrRgNC40L\/RgtC+0J\/RgNC+IENTUCA0LjAgUjQiICjQstC10YDRgdC40Y8gNC4wKTBlBgNVHR8EXjBcMFqgWKBWhlRodHRwOi8vY2VydGVucm9sbC50ZXN0Lmdvc3VzbHVnaS5ydS9jZHAvYjBmZDhlYjk1OWQ5NDg5ZDViN2I0YzE0M2EwNmNhZDc5NTJhMDc0NC5jcmwwDAYFKoUDZHIEAwIBADCCAcMGA1UdIwSCAbowggG2gBSw\/Y65WdlInVt7TBQ6BsrXlSoHRKGCAYmkggGFMIIBgTEVMBMGBSqFA2QEEgo3NzA3MDQ5Mzg4MRgwFgYFKoUDZAESDTEwMjc3MDAxOTg3NjcxCzAJBgNVBAYTAlJVMSkwJwYDVQQIDCA3OCDQodCw0L3QutGCLdCf0LXRgtC10YDQsdGD0YDQszEmMCQGA1UEBwwd0KHQsNC90LrRgi3Qn9C10YLQtdGA0LHRg9GA0LMxgZ4wgZsGA1UECQyBk9C80YPQvdC40YbQuNC\/0LDQu9GM0L3Ri9C5INC+0LrRgNGD0LMg0KHQvNC+0LvRjNC90LjQvdGB0LrQvtC1INCS0J0u0KLQldCgLtCTLiwg0KHQuNC90L7Qv9GB0LrQsNGPINC90LDQsdC10YDQtdC20L3QsNGPLCDQtNC+0LwgMTQsINC70LjRgtC10YDQsCDQkDEmMCQGA1UECgwd0J\/QkNCeICLQoNC+0YHRgtC10LvQtdC60L7QvCIxJTAjBgNVBAMMHNCi0LXRgdGC0L7QstGL0Lkg0KPQpiDQoNCi0JqCEQLRkKkAiLBYlkt8lE\/Q3xYXMAoGCCqFAwcBAQMCA0EA2I4g60+gv4HfI\/I3Mf9zQdAGQTAtQftInd+0QjNbXeKdtjbWhxVw9DAd8dhBSMo0zBCr\/2G1vkZMqNeMooEkiQ=="
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
