@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\AreaGet;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class AreaGet extends Model
 {
@@ -13,7 +14,7 @@ class AreaGet extends Model
         "created_at",
         "user_id",
         "document_type",
-        "verified",
+        "validated",
         "state",
         "name",
         "dolgnost",
@@ -28,6 +29,10 @@ class AreaGet extends Model
     public $with = [
         'attachment',
         'signature'
+    ];
+
+    protected $attributes = [
+        'document_type' => AreaGet::class,
     ];
 
     /**

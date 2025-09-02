@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -18,8 +18,8 @@ return new class extends Migration
                                         ->constrained()
                                         ->onUpdate('cascade')
                                         ->onDelete('cascade');
-            $table->integer('document_type')->comment("Тип документа");
-            $table->boolean('verified')->default(false)->comment("Проверен");
+            $table->string('document_type')->comment("Тип документа");
+            $table->boolean('validated')->default(false)->comment("Проверен");
 
             $table->string('state')->comment("Статус документа");
             $table->string("name")->comment("ФИО заявителя");

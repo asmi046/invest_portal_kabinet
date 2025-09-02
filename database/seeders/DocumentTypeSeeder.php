@@ -13,8 +13,6 @@ class DocumentTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        // Очищаем таблицу перед заполнением
-        DB::table('document_types')->truncate();
 
         // Данные для заполнения таблицы document_types
         $documentTypes = [

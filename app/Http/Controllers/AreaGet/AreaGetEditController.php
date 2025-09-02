@@ -34,7 +34,7 @@ class AreaGetEditController extends Controller
 
                 $tc = AreaGet::create($data);
 
-                return redirect()->route('area_get_edit', $tc->id)->with('drafr_save', "Черновик сохранен");;
+                return redirect()->route('area_get_edit', $tc->id)->with('drafr_save', "Черновик сохранен");
             break;
 
             case 'save_draft':
@@ -43,6 +43,7 @@ class AreaGetEditController extends Controller
 
                 $data["user_id"] = auth()->user()->id;
                 $data["state"] = "Черновик";
+                $data["validated"] = false;
 
                 $item = AreaGet::where('id', $request->input('item_id'))->first();
                 if(!$item) abort('404');
@@ -59,6 +60,20 @@ class AreaGetEditController extends Controller
                     );
 
                 return redirect()->back()->with('drafr_save', "Черновик сохранен");
+            break;
+
+            case 'check_draft':
+                $s_request = new AreaGetSigneRequest();
+                $data = $request->validate($s_request->rules(), $s_request->messages());
+                $item = AreaGet::where('id', $data['item_id'])->first();
+                if(!$item) abort('404');
+
+                $item->update([
+                    'validated' => true,
+                ]);
+
+                return redirect()->route('area_get_edit',  $data['item_id'])->with('drafr_save', "Черновик проверен");
+
             break;
 
             case 'validate_signe':

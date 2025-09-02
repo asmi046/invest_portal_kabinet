@@ -3,11 +3,16 @@
         <img src="{{ asset('img/goskey-vertical-logo.svg') }}" alt="">
     </div>
     <div class="wrapper-control">
-        <p>{!! $message !!}</p>
+        @if (!$signActive)
+            <p>{!! $message !!}</p>
+        @endif
+
         @if ($signActive)
-            <div class="btn-link__actions">
-                <a href="#" class="btn">Подписать как физлицо</a>
-                <a href="#" class="btn">Подписать как юридическое лицо</a>
+            <div id="goskey_app" class="goskey_app">
+                <goskey-sign-panel
+                    :model="'{{ addslashes($document->document_type) }}'"
+                    :document-id="{{ $document->id }}"
+                />
             </div>
         @endif
     </div>

@@ -26,6 +26,7 @@ class AreaGetSeeder extends Seeder
             [
                 [
                     'created_at' => date("Y-m-d H:i:s"),
+                    'document_type' => \App\Models\AreaGet::class,
                     'user_id' => 1,
                     'state'=> "Черновик",
                     "name" => "Иванов Иван Иванович",
@@ -39,6 +40,7 @@ class AreaGetSeeder extends Seeder
                 ],
                 [
                     'created_at' => date("Y-m-d H:i:s"),
+                    'document_type' => \App\Models\AreaGet::class,
                     'user_id' => 1,
                     'state'=> "Черновик",
                     "name" => "Петров Иван Федорович",
@@ -52,6 +54,7 @@ class AreaGetSeeder extends Seeder
                 ],
                 [
                     'created_at' => date("Y-m-d H:i:s"),
+                    'document_type' => \App\Models\AreaGet::class,
                     'user_id' => 2,
                     'state'=> "Черновик",
                     "name" => "Климов Иван Иванович",
@@ -65,6 +68,7 @@ class AreaGetSeeder extends Seeder
                 ],
                 [
                     'created_at' => date("Y-m-d H:i:s"),
+                    'document_type' => \App\Models\AreaGet::class,
                     'user_id' => 2,
                     'state'=> "Черновик",
                     "name" => "Краков Иван Степанович",
