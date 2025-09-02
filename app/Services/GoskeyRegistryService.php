@@ -92,15 +92,16 @@ class GoskeyRegistryService
         Storage::disk('local')->put($fileNamme, $fileData);
     }
 
-    public function createProcedure(array $main_files = [], int $document_type = null, int $user_id = null)
+    public function createProcedure(array $main_files = [], string $document_type = null, int $document_id = null, int $user_id = null)
     {
+        // dd($main_files, $document_type, $document_id, $user_id);
         $xmlSignService = new XmlSignService(); // сервис подписания XML
         $attachmentSignService = new AttachmentSignService(); // сервис для подписания вложений
         $client = new CurlSmevService(); // сервис для отправки пакета
 
         // Данные пользователя и локумента
         $this->userData = User::where('id', $user_id)->first();
-        $this->documentData = DocumentType::where('id', $document_type)->first();
+        $this->documentData = DocumentType::where('model', $document_type)->first();
 
         // создание ID сообщения
         $message_id = Uuid::uuid1()->toString();
@@ -158,7 +159,8 @@ class GoskeyRegistryService
             'message_id' => $message_id,
             'short_identifier' => $short_identifier,
             'user_id' => $user_id,
-            'document_type' => $document_type,
+            'registryable_id' => $document_id,
+            'registryable_type' => $document_type,
             'last_check_at' => null,
             'status' => $rez['error'] ? 'error' : $rez['code'],
             'error_message' => $rez['error'] ? $rez['error_message'] : null,

@@ -2,10 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Models\AreaGet;
 use Illuminate\Console\Command;
 use App\Services\XmlSignService;
 use App\Services\SmevEnvvelopeService;
 use App\Services\GoskeyRegistryService;
+use App\Services\GoskeyResultAnalizator;
 
 class SoapSmevTest extends Command
 {
@@ -35,10 +37,10 @@ class SoapSmevTest extends Command
                 public_path('signed_docs\\2areaget.pdf')
                 // public_path('signed_docs\\5-area-get.pdf')
             ],
-            document_type: 1,
+            document_type: AreaGet::class,
+            document_id: 1,
             user_id: 5
         );
-
         dd($rez);
     }
 }

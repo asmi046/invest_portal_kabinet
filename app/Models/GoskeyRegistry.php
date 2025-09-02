@@ -14,6 +14,8 @@ class GoskeyRegistry extends Model
         'document_type',
         'last_check_at',
         'status',
+        'registryable_id',
+        'registryable_type',
     ];
 
     protected $casts = [
@@ -27,5 +29,10 @@ class GoskeyRegistry extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function registryable()
+    {
+        return $this->morphTo();
     }
 }

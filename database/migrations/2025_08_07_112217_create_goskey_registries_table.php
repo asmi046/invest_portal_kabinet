@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('message_id')->comment('ID сообщения');
             $table->string('short_identifier', 70)->comment('Короткий идентификатор');
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->comment('ID пользователя');
-            $table->string('document_type')->comment('Тип документа');
+            $table->morphs('registryable');
             $table->timestamp('last_check_at')->nullable()->comment('Дата и время последней проверки');
             $table->string('status')->nullable()->comment('Статус');
             $table->string('status_code')->nullable()->comment('Код статуса');
