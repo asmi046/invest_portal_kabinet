@@ -28,13 +28,10 @@ class TestS3 extends Command
     {
         // $directory = $this->ask('Введите имя директории для поиска файлов в S3');
         try {
-            $directory = '81172f94-7910-11f0-99df-00ffbbed2819/file.txt';
-            Storage::disk('s3')->put($directory, 'Hello, S3!');
-            $this->info('Файл успешно записан!');
-
-            $content = Storage::disk('s3')->allFiles($directory);
-            $this->info('Содержимое директории:');
-            $this->line(implode("\n", $content));
+            // $content = Storage::disk('s3')->get('6613e6cd-d6a3-4e05-a925-1ba155c81d8e/34e4e206-8991-11f0-83ca-00ffbbed2819_subsSign.pkcs7');
+            $content = Storage::disk('s3')->download('6613e6cd-d6a3-4e05-a925-1ba155c81d8e/34e4e206-8991-11f0-83ca-00ffbbed2819_subsSign.pkcs7', 'local_subsSign.pkcs7');
+            $this->info('Содержимое файла:');
+            dd($content);
 
         } catch (\Exception $e) {
             $this->error('Ошибка S3: ' . $e->getMessage());

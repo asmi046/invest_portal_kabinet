@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('status_code')->nullable()->comment('Код статуса');
             $table->string('error_code')->nullable()->comment('Код ошибки');
             $table->string('error_message')->nullable()->comment('Описание ошибки');
+            $table->json('signatures')->nullable()->comment('Подписи');
             $table->timestamps();
         });
     }
@@ -34,3 +35,4 @@ return new class extends Migration
         Schema::dropIfExists('goskey_registries');
     }
 };
+

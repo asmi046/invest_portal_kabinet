@@ -2,11 +2,15 @@
 
 namespace App\Services;
 
+use App\Models\GoskeyRegistry;
 use App\Services\XmlSignService;
 use App\Services\CurlSmevService;
+use App\Models\GoskeyQueueMessage;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use App\Services\SmevEnvvelopeService;
+use App\Services\GoskeyResultAnalizator;
 
 class GoskeyQueueMonitoringService
 {
@@ -50,5 +54,49 @@ class GoskeyQueueMonitoringService
         $response = $this->client->doRequest($xml, 'urn:Ask');
 
         return $this->client->parseSoapEnvelope($response);
+    }
+
+    public function messageRecognition() {
+        $rez = $this->getQueue();
+        $analyzedResponse = GoskeyResultAnalizator::analyzeResponse($rez);
+
+        $result = [];
+
+        if ($analyzedResponse['original_message_id'] == null) {
+            $result[] = 'Очередь пуста';
+        } else {
+            GoskeyQueueMessage::create($analyzedResponse);
+
+            $updateResult = 0;
+            if ($analyzedResponse['type'] === 'error') {
+                $updateResult = GoskeyRegistry::where('message_id', $analyzedResponse['original_message_id'])
+                ->update(['status' => 'error', 'error_code' => $analyzedResponse['error_code'], 'error_message' => $analyzedResponse['error_message'], 'last_check_at' => now()]);
+                $result[] = 'Ошибка: '.$analyzedResponse['error_message'];
+            } else {
+                $updateResult = GoskeyRegistry::where('message_id', $analyzedResponse['original_message_id'])
+                ->update([
+                    'status' => $analyzedResponse['state_message'],
+                    'status_code' => $analyzedResponse['temporary_code'],
+                    'signatures' => isset($analyzedResponse['signatures'])?json_encode($analyzedResponse['signatures']):null,
+                    'last_check_at' => now()
+                ]);
+                $result[] = 'Статус: '.$analyzedResponse['state_message'];
+            }
+
+            if ($updateResult == 0) {
+                Log::channel('goskey')->info('Не обновлено в регистре, возможно запись в базе удалена (message_id '.$analyzedResponse['original_message_id'].')');
+                $result[] = 'Не обновлено в регистре, возможно запись в базе удалена (message_id '.$analyzedResponse['original_message_id'].')';
+            }
+
+            $ask = app(GoskeyQueueMonitoringService::class)->sendAscRequest($analyzedResponse['message_id']);
+            $askResult = GoskeyResultAnalizator::analyzeAsk($ask);
+
+            if ($askResult['error'] == true) {
+                Log::channel('goskey')->info('Ошибка при подтверждении сообщения из очереди (message_id '.$analyzedResponse['message_id'].'): '.$askResult['error_message']);
+                $result[] = 'Ошибка при подтверждении сообщения из очереди (message_id '.$analyzedResponse['message_id'].'): '.$askResult['error_message'];
+            }
+        }
+
+        return $result;
     }
 }
