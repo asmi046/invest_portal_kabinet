@@ -94,11 +94,13 @@ class SmevEnvvelopeService
             $dom->parentNode->removeChild($dom);
         }
 
-        // Создаем новый Contract элемент
-        $contract = $contracts->addChild('Contract');
+
 
         // Обрабатываем каждый файл из массива
         foreach ($files as $fileData) {
+            // Создаем новый Contract элемент
+            $contract = $contracts->addChild('Contract');
+
             // Добавляем Document
             if (isset($fileData['Document'])) {
                 $document = $contract->addChild('Document');

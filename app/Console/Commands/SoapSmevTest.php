@@ -34,8 +34,8 @@ class SoapSmevTest extends Command
         $goskeyRegistryService = new GoskeyRegistryService();
         $rez = $goskeyRegistryService->createProcedure(
             main_files: [
-                public_path('signed_docs\\2areaget.pdf')
-                // public_path('signed_docs\\5-area-get.pdf')
+                public_path('signed_docs\\2areaget.pdf'),
+                public_path('signed_docs\\5-area-get.pdf')
             ],
             document_type: AreaGet::class,
             document_id: 1,

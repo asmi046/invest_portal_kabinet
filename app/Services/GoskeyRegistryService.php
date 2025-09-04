@@ -94,7 +94,6 @@ class GoskeyRegistryService
 
     public function createProcedure(array $main_files = [], string $document_type = null, int $document_id = null, int $user_id = null)
     {
-        // dd($main_files, $document_type, $document_id, $user_id);
         $xmlSignService = new XmlSignService(); // сервис подписания XML
         $attachmentSignService = new AttachmentSignService(); // сервис для подписания вложений
         $client = new CurlSmevService(); // сервис для отправки пакета
@@ -108,8 +107,8 @@ class GoskeyRegistryService
         $short_identifier = date('Y_m_d_H_i_s') . '-' . uniqid();
 
         // Создаем директорию для хранения процедуры
-        Storage::disk('local')->makeDirectory($this->storagePath. '/' . $short_identifier);
-        $procedureDirPath = Storage::disk('local')->path($this->storagePath. '/' . $short_identifier);
+        Storage::disk('local')->makeDirectory($this->storagePath. '/' . $message_id);
+        $procedureDirPath = Storage::disk('local')->path($this->storagePath. '/' . $message_id);
 
         if (empty($main_files)) {
             throw new \Exception("Нет файлов для подписи");
@@ -138,7 +137,7 @@ class GoskeyRegistryService
 
         // Создаем файл конверта
         $this->createEnvelopeFile(
-            fileNamme: $this->storagePath. '/' . $short_identifier . '/envelope.xml',
+            fileNamme: $this->storagePath. '/' . $message_id . '/envelope.xml',
             message_id: $message_id
         );
 
