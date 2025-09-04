@@ -16,6 +16,7 @@ class AreaGet extends Model
         "user_id",
         "document_type",
         "validated",
+        "editable",
         "state",
         "name",
         "dolgnost",

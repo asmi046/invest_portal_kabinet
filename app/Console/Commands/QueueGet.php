@@ -37,6 +37,7 @@ class QueueGet extends Command
         if ($analyzedResponse['original_message_id'] == null) {
             $this->info('Очередь пуста');
         } else {
+            // dd($analyzedResponse);
             GoskeyQueueMessage::create($analyzedResponse);
 
             $updateResult = 0;

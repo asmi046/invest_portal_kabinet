@@ -42,6 +42,8 @@ const stopProcess = (is_error = false, message = "", e = null) => {
         showLoader.value = false;
         if (is_error) {
             console.error(message, e);
+        } else {
+            setTimeout(() => window.location.reload(), 1000);
         }
 }
 

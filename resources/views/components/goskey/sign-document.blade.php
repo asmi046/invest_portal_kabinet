@@ -3,17 +3,19 @@
         <img src="{{ asset('img/goskey-vertical-logo.svg') }}" alt="">
     </div>
     <div class="wrapper-control">
-        @if (!$signActive)
+        @if (!$signActive || $signProcess)
             <p>{!! $message !!}</p>
         @endif
 
-        @if ($signActive)
+
             <div id="goskey_app" class="goskey_app">
-                <goskey-sign-panel
-                    :model="'{{ addslashes($document->document_type) }}'"
-                    :document-id="{{ $document->id }}"
-                />
+                @if ($signActive && !$signProcess)
+                    <goskey-sign-panel
+                        :model="'{{ addslashes($document->document_type) }}'"
+                        :document-id="{{ $document->id }}"
+                    />
+                @endif
             </div>
-        @endif
+
     </div>
 </div>

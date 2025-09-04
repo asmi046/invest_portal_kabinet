@@ -25,6 +25,7 @@ class GoskeySignController extends Controller
         if ($rez['error']) {
             abort(500, $rez['error_message'] . " " . $rez['error_code']);
         } else {
+            $request->model::find($request->documentId)->update(['editable' => false]);
             return response()->json([
                 'status' => 'success',
                 'message' => 'Документ успешно отправлен на подписание',

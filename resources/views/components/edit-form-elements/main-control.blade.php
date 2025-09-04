@@ -7,7 +7,10 @@
 
                     @if (!in_array($item->state, config('documents')[$doct]['statuses_noedit']))
                         <div class="form-control-panel">
-                            <button type="submit" class="btn" title="Сохранить черновик" name="action" value="save_draft"> <span class="save-icon"></span>Сохранить черновик</button>
+                            @if ($item->editable)
+                                <button type="submit" class="btn" title="Сохранить черновик" name="action" value="save_draft"> <span class="save-icon"></span>Сохранить черновик</button>
+                            @endif
+
                             @if (!$item->validated)
                                 <button type="submit" class="btn" title="Проверить и подписать" name="action" value="check_draft"> <span class="sing-icon"></span>Проверить</button>
                             @endif

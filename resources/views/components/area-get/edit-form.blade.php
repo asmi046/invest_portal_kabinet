@@ -2,7 +2,7 @@
     @class(['form-project-submission', 'flex-form', 'form_disabled' => isset($item->state) && in_array($item->state,
     config('documents')["area_get"]['statuses_noedit'])])
     method="POST"
-    @if (isset($item->state) && in_array($item->state, config('documents')["area_get"]['statuses_noedit']))
+    @if (isset($item) && $item->editable == false)
         inert="inert"
     @endif
     action="{{ ( isset($action) )?$action:"#"  }}">
