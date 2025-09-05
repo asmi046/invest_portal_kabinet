@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\GoskeyRegistry;
 use App\Services\PrintServices;
 use App\Services\GoskeyRegistryService;
 
@@ -38,4 +39,17 @@ class GoskeySignController extends Controller
     {
         abort(403, "Доступ к функции запрещен");
     }
+
+    public function get_sign_state(Request $request)
+    {
+        return GoskeyRegistry::where('message_id', $request->message_id)->firstOrFail();
+    }
+
+    public function download($filename)
+    {
+        $path = storage_path('app/' . $filename);
+        if (!file_exists($path)) abort(404);
+        return response()->file($path);
+    }
+
 }

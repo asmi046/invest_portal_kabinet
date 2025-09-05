@@ -21,6 +21,7 @@ class SignDocument extends Component
         $this->document = $document;
         $this->signActive = false;
         $this->signProcess = false;
+
         if (auth()->user()->snils == null && auth()->user()->oid == null ) {
             $this->message = 'На данный момент подписание документа не возможно! Вам необходимо пройти регистрацию на нашем портале через Госуслуги или заполнить поле СНИЛС в <a href="'.route('user-data').'">параметрах вашего профиля.</a>';
         } elseif ($document == null) {

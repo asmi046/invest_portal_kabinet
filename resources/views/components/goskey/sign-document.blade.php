@@ -14,6 +14,10 @@
                         :model="'{{ addslashes($document->document_type) }}'"
                         :document-id="{{ $document->id }}"
                     />
+                @elseif($signProcess)
+                    <goskey-sign-process
+                        :message-id="'{{ $document->goskeyRegistries[0]->message_id }}'"
+                    />
                 @endif
             </div>
 

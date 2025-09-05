@@ -68,9 +68,35 @@
         }
     }
 
+    .status_line {
+        display: flex;
+        gap:10px;
+
+        .state {
+            font-weight: bold;
+            color:#0A2996;
+            &.error {
+                color: red;
+            }
+            &.success {
+                color: green;
+            }
+        }
+    }
+
+    .sign_files {
+            display: flex;
+            flex-direction: column;
+            gap:5px;
+            .file {
+                display: flex;
+                gap: 10px;
+            }
+        }
+
     .loader {
-        width: 40px;
-        height: 40px;
+        width: 20px;
+        height: 20px;
     }
 
     .result_status {

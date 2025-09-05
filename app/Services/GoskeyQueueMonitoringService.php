@@ -70,7 +70,7 @@ class GoskeyQueueMonitoringService
             $updateResult = 0;
             if ($analyzedResponse['type'] === 'error') {
                 $updateResult = GoskeyRegistry::where('message_id', $analyzedResponse['original_message_id'])
-                ->update(['status' => 'error', 'error_code' => $analyzedResponse['error_code'], 'error_message' => $analyzedResponse['error_message'], 'last_check_at' => now()]);
+                ->update(['status' => $analyzedResponse['error_message'], 'error_code' => $analyzedResponse['error_code'], 'error_message' => $analyzedResponse['error_message'], 'last_check_at' => now()]);
                 $result[] = 'Ошибка: '.$analyzedResponse['error_message'];
             } else {
                 $updateResult = GoskeyRegistry::where('message_id', $analyzedResponse['original_message_id'])

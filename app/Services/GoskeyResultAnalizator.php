@@ -80,9 +80,9 @@ class GoskeyResultAnalizator
 
         $signRejected = $xml->xpath("//*[local-name()='ResponseSignUkep']/*[local-name()='SignReject']");
         if ($signRejected && isset($signRejected[0])) {
-            $result['type']  = 'status';
-            $result['temporary_code']  = -100;
-            $result['state_message'] = "Пользователь отказался от подписания";
+            $result['type']  = 'error';
+            $result['error_code']  = -100;
+            $result['error_message'] = "Пользователь отказался от подписания";
         }
 
 

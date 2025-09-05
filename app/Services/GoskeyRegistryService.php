@@ -72,6 +72,10 @@ class GoskeyRegistryService
 
     private function createEnvelopeFile(string $fileNamme, string $message_id)
     {
+        $dt = new \DateTime('now', new \DateTimeZone('Europe/Moscow'));
+        $dt->modify('+5 minutes');
+        $signExp = $dt->format('Y-m-d\\TH:i:sP');
+
         $smevEnvelopeService = new SmevEnvvelopeService();
         $fileData = $smevEnvelopeService->createSendRequestEnvelope(uuid: $message_id, test: true,
         data: [
@@ -80,7 +84,8 @@ class GoskeyRegistryService
             '//s:OID' => $this->userData->oid,
             '//s:SNILS' => $this->userData->snils,
             '//s:routeNumber' => config('goskey.is_contur'),
-            '//s:signExp' => date('Y-m-d\TH:i:s+03:00', strtotime('+10 hours')),
+            // '//s:signExp' => date('Y-m-d\TH:i:s+03:00', strtotime('+10 hours')),
+            '//s:signExp' => $signExp,
             '//s:descDoc' => $this->documentData->name,
             '//s:Backlink' => config('goskey.backlink'),
             '//s:AddData/s:AttrValue' => 'Инвестиционный портал Курской Области' // Пример обновления вложенного узла.
