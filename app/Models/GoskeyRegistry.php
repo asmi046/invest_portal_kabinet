@@ -9,6 +9,7 @@ class GoskeyRegistry extends Model
 {
     protected $fillable = [
         'message_id',
+        'is_ul',
         'short_identifier',
         'user_id',
         'document_type',

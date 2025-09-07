@@ -1,0 +1,22 @@
+<RequestSign xmlns="urn://gosuslugi/sig-contract-fns/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="a7c09763-c077-46eb-8fb6-38356f456575"  timestamp="2024-02-08T15:43:00.000Z">
+  <RFOrg>
+    <SNILS>111-111-111 11</SNILS>
+    <OGRN_org>1234567890123</OGRN_org>
+  </RFOrg>
+  <routeNumber>MNSV03</routeNumber>
+  <signType>UKEP</signType>
+  <personType>fns_chief</personType>
+  <signExp>2024-03-08T15:50:53.942Z</signExp>
+  <descDoc>Договор</descDoc>
+  <Contracts>
+    <Contract>
+      <Document docId="7b3ad8aa-026b-40df-83f2-0b7969083456" mimeType="application/pdf" uuid="28a2624e-c59e-4d82-89c9-4db9d451bb7f"/>
+      <Signature docId="7b3ad8aa-026b-40df-83f2-0b7969083456" uuid="70f5753a-1747-4542-a673-e892d1204836"/>
+    </Contract>
+  </Contracts>
+  <Backlink>https://www.gosuslugi.ru/</Backlink>
+  <AddData>
+    <AttrName>orgName</AttrName>
+    <AttrValue>ООО Тестовый отправитель</AttrValue>
+  </AddData>
+</RequestSign>

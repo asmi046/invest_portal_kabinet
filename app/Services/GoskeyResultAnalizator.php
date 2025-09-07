@@ -36,6 +36,7 @@ class GoskeyResultAnalizator
             $result['type']  = 'error';
             $result['error_code']  = (string)$smevFault->Code;
             $result['error_message'] = (string)$smevFault->Description;
+            return $result;
         }
 
         $stateMediumNodes = $xml->xpath("//*[local-name()='StateMedium']");
@@ -44,6 +45,7 @@ class GoskeyResultAnalizator
             $result['type']  = 'status';
             $result['temporary_code'] = (string)$stateMedium->TemporaryCode;
             $result['state_message'] = (string)$stateMedium->StateMessage;
+
         }
 
         $status = $xml->xpath('//ns2:MessageMetadata/ns2:Status');

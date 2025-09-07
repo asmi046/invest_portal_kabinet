@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('goskey_registries', function (Blueprint $table) {
             $table->id();
             $table->uuid('message_id')->comment('ID сообщения');
+            $table->boolean('is_ul')->default(false)->comment('Признак юридического лица');
             $table->string('short_identifier', 70)->comment('Короткий идентификатор');
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->comment('ID пользователя');
             $table->morphs('registryable');

@@ -88,6 +88,7 @@ class UserSeeder extends Seeder
             ]
         );
 
+
         $userID = DB::table("users")->insertGetId(
             [
                     'name' => "Инвестор",
@@ -100,6 +101,9 @@ class UserSeeder extends Seeder
                     'email' => "asmi-work046@yandex.ru",
                     'password' => Hash::make("123"),
                     'email_verified_at' => date("Y-m-d H:i:s"),
+                    'ul_name' => 'ИП Иванов И. И.',
+                    'ul_inn' => '463246349734',
+                    'ul_ogrn' => '313463235300020',
             ]
         );
 

@@ -77,27 +77,58 @@ class GoskeyRegistryService
         $signExp = $dt->format('Y-m-d\\TH:i:sP');
 
         $smevEnvelopeService = new SmevEnvvelopeService();
-        $fileData = $smevEnvelopeService->createSendRequestEnvelope(uuid: $message_id, test: true,
-        data: [
-            '//s:RequestSignUkep/@Id' => Uuid::uuid1()->toString(),
-            '//s:RequestSignUkep/@timestamp' => date('Y-m-d\TH:i:s+03:00'),
-            '//s:OID' => $this->userData->oid,
-            '//s:SNILS' => $this->userData->snils,
-            '//s:routeNumber' => config('goskey.is_contur'),
-            // '//s:signExp' => date('Y-m-d\TH:i:s+03:00', strtotime('+10 hours')),
-            '//s:signExp' => $signExp,
-            '//s:descDoc' => $this->documentData->name,
-            '//s:Backlink' => config('goskey.backlink'),
-            '//s:AddData/s:AttrValue' => 'Инвестиционный портал Курской Области' // Пример обновления вложенного узла.
-        ],
+        $fileData = $smevEnvelopeService->createSendRequestEnvelope(uuid: $message_id,
+            data: [
+                '//s:RequestSignUkep/@Id' => Uuid::uuid1()->toString(),
+                '//s:RequestSignUkep/@timestamp' => date('Y-m-d\TH:i:s+03:00'),
+                '//s:OID' => $this->userData->oid,
+                '//s:SNILS' => $this->userData->snils,
+                '//s:routeNumber' => config('goskey.is_contur'),
+                // '//s:signExp' => date('Y-m-d\TH:i:s+03:00', strtotime('+10 hours')),
+                '//s:signExp' => $signExp,
+                '//s:descDoc' => $this->documentData->name,
+                '//s:Backlink' => config('goskey.backlink'),
+                '//s:AddData/s:AttrValue' => 'Инвестиционный портал Курской Области' // Пример обновления вложенного узла.
+            ],
 
-        files: $this->attachmentFileList
-    );
+            files: $this->attachmentFileList
+        );
 
         Storage::disk('local')->put($fileNamme, $fileData);
     }
 
-    public function createProcedure(array $main_files = [], string $document_type = null, int $document_id = null, int $user_id = null)
+    private function createEnvelopeFileUl(string $fileNamme, string $message_id)
+    {
+        $dt = new \DateTime('now', new \DateTimeZone('Europe/Moscow'));
+        $dt->modify('+5 minutes');
+        $signExp = $dt->format('Y-m-d\\TH:i:sP');
+
+        $smevEnvelopeService = new SmevEnvvelopeService();
+        $fileData = $smevEnvelopeService->createSendRequestEnvelope(uuid: $message_id,
+            data: [
+                '//s:RequestSign/@Id' => Uuid::uuid1()->toString(),
+                '//s:RequestSign/@timestamp' => date('Y-m-d\TH:i:s+03:00'),
+                '//s:RFOrg/s:OGRN_org' => $this->userData->ul_ogrn,
+                '//s:RFOrg/s:SNILS' => $this->userData->snils,
+                '//s:routeNumber' => config('goskey.is_contur'),
+                '//s:signType' => 'UKEP',
+                '//s:personType' => 'fns_chief',
+                '//s:signExp' => $signExp,
+                '//s:descDoc' => $this->documentData->name,
+                '//s:Backlink' => config('goskey.backlink'),
+                '//s:AddData/s:AttrValue' => 'Инвестиционный портал Курской Области' // Пример обновления вложенного узла.
+            ],
+
+            files: $this->attachmentFileList,
+            innerFile: "ukep_ul.xml",
+            namespace: 'urn://gosuslugi/sig-contract-fns/1.0.0',
+            ul: true
+        );
+
+        Storage::disk('local')->put($fileNamme, $fileData);
+    }
+
+    public function createProcedure(array $main_files = [], string $document_type = null, int $document_id = null, int $user_id = null, bool $ul = false)
     {
         $xmlSignService = new XmlSignService(); // сервис подписания XML
         $attachmentSignService = new AttachmentSignService(); // сервис для подписания вложений
@@ -141,10 +172,18 @@ class GoskeyRegistryService
         $this->loadAttachmentToS3();
 
         // Создаем файл конверта
-        $this->createEnvelopeFile(
-            fileNamme: $this->storagePath. '/' . $message_id . '/envelope.xml',
-            message_id: $message_id
-        );
+        if (!$ul) {
+            $this->createEnvelopeFile(
+                fileNamme: $this->storagePath. '/' . $message_id . '/envelope.xml',
+                message_id: $message_id
+            );
+        } else {
+            $this->createEnvelopeFileUl(
+                fileNamme: $this->storagePath. '/' . $message_id . '/envelope.xml',
+                message_id: $message_id
+            );
+        }
+
 
 
         $xmlSignService->signXmlFileViaNetwork(
@@ -161,6 +200,7 @@ class GoskeyRegistryService
 
         GoskeyRegistry::create([
             'message_id' => $message_id,
+            'is_ul' => $ul,
             'short_identifier' => $short_identifier,
             'user_id' => $user_id,
             'registryable_id' => $document_id,

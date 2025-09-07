@@ -6,13 +6,13 @@ class SmevEnvvelopeService
 
     private array $onAddedAttributes = [ 'fileName', 'localUrl', 'digest' ];
 
-    function updateXmlWithNamespace($xml, $updates) {
+    function updateXmlWithNamespace($xml, $updates, $namespace = 'urn://gosuslugi/sig-contract-ukep/1.0.1') {
 
         if ($xml === false) {
             return $xml;
         }
 
-        $xml->registerXPathNamespace('s', 'urn://gosuslugi/sig-contract-ukep/1.0.1');
+        $xml->registerXPathNamespace('s', $namespace);
 
         foreach ($updates as $xpath => $newValue) {
             $nodes = $xml->xpath($xpath);
@@ -70,14 +70,14 @@ class SmevEnvvelopeService
         }
     }
 
-    private function setContractsData($part = null, $files = [])
+    private function setContractsData($part = null, $files = [], $namespace = 'urn://gosuslugi/sig-contract-ukep/1.0.1', $ul = false)
     {
         if (empty($files) || !$part) {
             return $part;
         }
 
         // Регистрируем namespace для поиска элементов
-        $part->registerXPathNamespace('ukep', 'urn://gosuslugi/sig-contract-ukep/1.0.1');
+        $part->registerXPathNamespace('ukep', $namespace);
 
         // Найдем узел Contracts с учетом namespace
         $contractsNodes = $part->xpath('//ukep:Contracts');
@@ -116,6 +116,10 @@ class SmevEnvvelopeService
                 $signature = $contract->addChild('Signature');
 
                 foreach ($fileData['Signature'] as $attrName => $attrValue) {
+                    if ($ul && $attrName === 'mimeType') {
+                        // dd($ul);
+                        continue;
+                    }
                     if (!in_array($attrName, $this->onAddedAttributes)) {
                         $signature->addAttribute($attrName, $attrValue);
                     }
@@ -126,14 +130,14 @@ class SmevEnvvelopeService
         return $part;
     }
 
-    public function createSendRequestEnvelope(string $uuid = null, bool $test = false, array $data = [], array $files = []): string
+    public function createSendRequestEnvelope(string $uuid = null, array $data = [], array $files = [], string $innerFile = "ukep.xml", string $namespace = 'urn://gosuslugi/sig-contract-ukep/1.0.1', $ul = false): string
     {
         $envelop = simplexml_load_file(public_path('smev_envelope_template/SendRequestTemplate.xml'));
-        $part = simplexml_load_file(public_path('smev_envelope_template/goskey_parts/ukep.xml'));
+        $part = simplexml_load_file(public_path('smev_envelope_template/goskey_parts/'.$innerFile));
 
 
-        $this->updateXmlWithNamespace($part, $data);
-        $this->setContractsData($part, $files);
+        $this->updateXmlWithNamespace($part, $data, $namespace);
+        $this->setContractsData($part, $files, $namespace, $ul);
 
 
         $uuid = $uuid ?? \Ramsey\Uuid\Uuid::uuid1()->toString();

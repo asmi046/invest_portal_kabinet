@@ -1,0 +1,33 @@
+<RequestSign xmlns="urn://gosuslugi/sig-contract-fns/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Id="6e0ea56e-8c1e-11f0-96f2-00ffbbed2819"
+    timestamp="2025-09-07T19:11:17+03:00">
+    <RFOrg>
+        <SNILS>062-362-737 51</SNILS>
+        <OGRN_org>313463235300020</OGRN_org>
+    </RFOrg>
+    <routeNumber>MNSV05</routeNumber>
+    <signType>UKEP</signType>
+    <personType>fns_chief</personType>
+    <signExp>2025-09-07T22:16:17+03:00</signExp>
+    <descDoc>Заявление на выделение земельного участка</descDoc>
+    <Contracts>
+
+        <Contract>
+            <Document description="2areaget.pdf" docId="6c96f268-8c1e-11f0-8f9c-00ffbbed2819"
+                mimeType="application/pdf" uuid="6c96f39e-8c1e-11f0-91c5-00ffbbed2819" />
+            <Signature description="2areaget.pdf.p7s" docId="6c96f268-8c1e-11f0-8f9c-00ffbbed2819"
+                 uuid="6c96f434-8c1e-11f0-9016-00ffbbed2819" />
+        </Contract>
+        <Contract>
+            <Document description="5-area-get.pdf" docId="6c96f498-8c1e-11f0-ac5b-00ffbbed2819"
+                mimeType="application/pdf" uuid="6c96f4fc-8c1e-11f0-af9c-00ffbbed2819" />
+            <Signature description="5-area-get.pdf.p7s" docId="6c96f498-8c1e-11f0-ac5b-00ffbbed2819"
+             uuid="6c96f556-8c1e-11f0-af8b-00ffbbed2819" />
+        </Contract>
+    </Contracts>
+    <Backlink>https://invest.rkursk.ru/</Backlink>
+    <AddData>
+        <AttrName>orgName</AttrName>
+        <AttrValue>Инвестиционный портал Курской Области</AttrValue>
+    </AddData>
+</RequestSign>

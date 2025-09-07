@@ -60,6 +60,9 @@ class GoskeyQueueMonitoringService
         $rez = $this->getQueue();
         $analyzedResponse = GoskeyResultAnalizator::analyzeResponse($rez);
 
+        // Сохраняем $analyzedResponse в файл queue_result.xml
+        File::put(storage_path('app/queue_result.xml'), print_r($rez, true));
+
         $result = [];
 
         if ($analyzedResponse['original_message_id'] == null) {
