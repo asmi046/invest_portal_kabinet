@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('ul_name')->nullable()->comment('Юридическое лицо');
             $table->string('ul_inn')->nullable()->comment('ИНН');
             $table->string('ul_ogrn')->nullable()->comment('ОГРН');
+            $table->string('ul_attorney')->nullable()->comment('Доверенность (МЧД)');
         });
     }
 

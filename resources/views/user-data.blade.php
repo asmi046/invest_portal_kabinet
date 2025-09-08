@@ -73,8 +73,62 @@
                 @enderror
             </label>
 
+            <h2>Данные компании</h2>
+
+            <label class="form-elem">
+                <span class="form-elem__caption">
+                    Наименование
+                </span>
+                <input type="text" name="ul_name" class="form-elem__field"  value="{{ $user->ul_name ?? '' }}">
+                @error('ul_name')
+                    <span class="form-elem__error-message">{{ $message }}</span>
+                @enderror
+            </label>
+
+            <label class="form-elem">
+                <span class="form-elem__caption">
+                    ИНН
+                </span>
+                <input type="text" name="ul_inn" class="form-elem__field"  value="{{ $user->ul_inn ?? '' }}">
+                @error('ul_inn')
+                    <span class="form-elem__error-message">{{ $message }}</span>
+                @enderror
+            </label>
+
+            <label class="form-elem">
+                <span class="form-elem__caption">
+                    ОГРН (ОГРНИП)
+                </span>
+                <input type="text" name="ul_ogrn" class="form-elem__field"  value="{{ $user->ul_ogrn ?? '' }}">
+                @error('ul_ogrn')
+                    <span class="form-elem__error-message">{{ $message }}</span>
+                @enderror
+            </label>
+
+            <h2>Доверенность (МЧД)</h2>
+
+            <div class="file-funnel">
+                <input type="file" name="attachment" class="file-funnel__file-input" multiple="multiple">
+                <div class="file-funnel__text">
+                    <span class="file-funnel__caption">
+                        Загрузить файлы
+                    </span>
+                    <span class="file-funnel__direction">
+                        В форматах XML
+                    </span>
+                </div>
+                <div class="file-funnel__receiver">
+                    +
+                </div>
+                <div class="file-funnel__docs">
+                    <button type="button" class="file-funnel-btn file-funnel-btn--reset">Очистить</button>
+                </div>
+            </div>
+
             <button type="submit" class="btn" title="Сохранить данные" name="action" value="create_draft"> <span class="save-icon"></span>Сохранить данные</button>
         </form>
+
+
 
         <h2>Смена пароля</h2>
 

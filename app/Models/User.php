@@ -32,6 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'ul_name',
         'ul_inn',
         'ul_ogrn',
+        'ul_attorney',
     ];
 
     /**

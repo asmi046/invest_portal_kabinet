@@ -8,7 +8,7 @@
     .form-elem__caption {
         flex-grow: 1;
         display: block;
-        font-size: 1.6rem;
+        font-size: 1.3rem;
         line-height: 1.2;
 
         sup {
@@ -19,11 +19,11 @@
     .form-elem__field {
         display: block;
         width: 100%;
-        height: 5.6rem;
+        height: 4.5rem;
         padding: 0.5rem 1.6rem;
         border: 1px solid var(--bg);
         border-radius: 4px;
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         line-height: 1;
         color: var(--color);
         box-sizing: border-box;
@@ -544,7 +544,7 @@ form {
 .flex-form {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 1.5rem;
 
     .columns-box--two-col {
         grid-row-gap: 3rem;

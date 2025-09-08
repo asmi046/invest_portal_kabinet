@@ -40,7 +40,7 @@ class SoapSmevTest extends Command
             document_type: AreaGet::class,
             document_id: 1,
             user_id: 5,
-            // ul: true
+            ul: true
         );
         dd($rez);
     }
