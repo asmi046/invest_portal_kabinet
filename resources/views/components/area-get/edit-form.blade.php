@@ -99,7 +99,7 @@
             <option value="" disabled selected>Выберите тип проекта</option>
             <option @selected(isset($item->object_type) && ($item->object_type === 'Масштабный инвестиционный проект')) value="Масштабный инвестиционный проект">Масштабный инвестиционный проект</option>
             <option @selected(isset($item->object_type) && ($item->object_type === 'Социально-культурного назначения')) value="Социально-культурного назначения">Социально-культурного назначения</option>
-            <option @selected(isset($item->object_type) && ($item->object_type === 'Коммунально-бфтового назначения')) value="Коммунально-бытового назначения">Коммунально-бытового назначения</option>
+            <option @selected(isset($item->object_type) && ($item->object_type === 'Коммунально-бытового назначения')) value="Коммунально-бытового назначения">Коммунально-бытового назначения</option>
         </select>
 
         @error('object_type')

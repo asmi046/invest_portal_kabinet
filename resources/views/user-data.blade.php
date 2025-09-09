@@ -14,7 +14,7 @@
         <x-breadcrumbs title="Изменение личных данных польхователя"></x-breadcrumbs>
 
         <h2>Мои данные</h2>
-        <form class="flex-form" action="{{ route('save_user_data') }}" method="POST">
+        <form class="flex-form" action="{{ route('save_user_data') }}" method="POST" enctype='multipart/form-data'>
             @csrf
 
             @if (session('success_user_data'))
@@ -107,8 +107,16 @@
 
             <h2>Доверенность (МЧД)</h2>
 
+            @if ($user->ul_attorney)
+                <div class="attachment-file">
+                    <a href="{{ Storage::url($user->ul_attorney)}}"> {{ basename($user->ul_attorney) }}</a>
+                    <button class="attachment-file__btn close-icon" type="submit" title="Удалить вложение" name="attorney_delete" value="{{ $user->ul_attorney }}"> </button>
+                </div>
+            @endif
+
+
             <div class="file-funnel">
-                <input type="file" name="attachment" class="file-funnel__file-input" multiple="multiple">
+                <input type="file" name="ul_attorney" class="file-funnel__file-input" multiple="multiple">
                 <div class="file-funnel__text">
                     <span class="file-funnel__caption">
                         Загрузить файлы

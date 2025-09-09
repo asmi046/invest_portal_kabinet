@@ -4,11 +4,21 @@
 
     .logo_wrappe {
         width:200px;
+        gap:20px;
         display: flex;
+        flex-direction: column;
         height: 100%;
-        img{
-            margin-top: 0;
-            margin-bottom: auto;
+        .logo{
+            margin: auto;
+            width:150px;
+            height: auto;
+        }
+
+        .qr {
+            width:130px;
+            height: auto;
+            margin: auto;
+
         }
     }
 
@@ -34,6 +44,11 @@
             }
         }
     }
+}
+
+.ukep_instruction{
+    width: 100%;
+    height: auto;
 }
 
 .goskey_sign_page {
@@ -116,13 +131,13 @@
 @media screen and (max-width: 768px){
     .goskey_banner {
         flex-direction: column;
-        gap: 40px!important;
+        gap: 20px;
         .logo_wrappe  {
             width: 100%;
             height: unset;
-            img {
-                margin: 0 auto 0 0;
-                height: 150px;
+            flex-direction: row;
+            .logo, .qr {
+                width:100px
             }
         }
     }

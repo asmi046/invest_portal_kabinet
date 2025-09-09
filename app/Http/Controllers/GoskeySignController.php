@@ -74,4 +74,10 @@ class GoskeySignController extends Controller
         return response()->file($path);
     }
 
+    public function ukep_info()
+    {
+        return view('ukep-info');
+    }
+
+
 }

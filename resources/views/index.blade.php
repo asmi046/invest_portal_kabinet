@@ -33,11 +33,13 @@
             <div class="btn-link-box columns-box">
                 <div class="btn-link goskey_banner">
                     <div class="logo_wrappe">
-                        <img src="{{ asset('img/goskey-vertical-logo.svg')}}" alt="Подписание при помощи Госключа">
+                        <img class="logo" src="{{ asset('img/goskey/goskey-vertical-logo.svg')}}" alt="Подписание при помощи Госключа">
+                        <img class="qr" src="{{ asset('img/goskey/qr-goskey.png')}}" alt="Подписание при помощи Госключа">
                     </div>
                     <div class="text_wrappe">
                         <h2>Подписывайте документы при помощи МП Госключ</h2>
                         <p>Приложение Госключ позволяет бесплатно получить сертификат электронной подписи и подписывать документы.</p>
+                        <p><a href="{{ route('ukep_info') }}">Как подписать документ с помощью Госключа?</a></p>
                         <p>В нашем личном кабинете Вы можете подписать все запросы при помощи мобильного приложения Госключь.</p>
                         <div class="mobile_store">
                             <a href="https://apps.rustore.ru/app/ru.gosuslugi.goskey">

@@ -43,7 +43,8 @@ class UserDataFormRequest extends FormRequest
             "lastname" => [ 'required', 'string' ],
             "fathername" => [ 'required', 'string' ],
             "email" => [ 'required', 'string' ],
-            "phone" => [ 'required', 'string' ]
+            "phone" => [ 'required', 'string' ],
+            "ul_attorney" => [ 'nullable' ],
         ];
     }
 }

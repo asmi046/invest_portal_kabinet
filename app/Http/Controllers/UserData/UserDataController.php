@@ -16,10 +16,20 @@ class UserDataController extends Controller
     }
 
     public function save_user_data(UserDataFormRequest $request) {
+
         $data = $request->validated();
 
-
         $user = User::where('id', auth()->user()->id)->first();
+
+        $file = $request->file('ul_attorney');
+        if ($file) {
+            $path = $file->storeAs("users/{$user->id}/attorney", $file->getClientOriginalName(), 'public');
+            $data['ul_attorney'] = $path;
+        }
+
+        if ($request->input('attorney_delete')) {
+            $data['ul_attorney'] = null;
+        }
 
         $user->forceFill($data);
         $user->save();

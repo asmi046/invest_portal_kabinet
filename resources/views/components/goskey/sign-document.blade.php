@@ -1,6 +1,6 @@
 <div class="btn-link goskey_sign_page">
     <div @class(['wrapper-icon', 'no_active' => !$signActive])>
-        <img src="{{ asset('img/goskey-vertical-logo.svg') }}" alt="">
+        <img src="{{ asset('img/goskey/goskey-vertical-logo.svg') }}" alt="">
     </div>
     <div class="wrapper-control">
         @if (!$signActive || $signProcess)
