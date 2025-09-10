@@ -72,6 +72,23 @@ class GoskeyResultAnalizator
 
         }
 
+        $signCompleat = $xml->xpath("//*[local-name()='ResponseSign']/*[local-name()='Documents']");
+        if ($signCompleat) {
+
+            $filesList = self::saveSignedFilesUl($response);
+            if ($filesList) {
+                $result['type']  = 'status';
+                $result['temporary_code']  = 100;
+                $result['state_message'] = "Документы успешно подписанны (ЮЛ)";
+                $result['signatures'] = $filesList;
+            } else {
+                $result['type']  = 'error';
+                $result['error_code']  = -200;
+                $result['error_message'] = "Файлы подписи не полученны из хранилища";
+            }
+
+        }
+
         $errorNodes = $xml->xpath('//*[local-name()="ResponseSignUkep"]/*[local-name()="Error"]');
         if ($errorNodes && isset($errorNodes[0])) {
             $error = $errorNodes[0];
@@ -80,7 +97,22 @@ class GoskeyResultAnalizator
             $result['error_message'] = (string)$error->ErrorMessage;
         }
 
+        $errorNodes = $xml->xpath('//*[local-name()="ResponseSign"]/*[local-name()="Error"]');
+        if ($errorNodes && isset($errorNodes[0])) {
+            $error = $errorNodes[0];
+            $result['type']  = 'error';
+            $result['error_code']  = (string)$error->ErrorCode;
+            $result['error_message'] = (string)$error->ErrorMessage;
+        }
+
         $signRejected = $xml->xpath("//*[local-name()='ResponseSignUkep']/*[local-name()='SignReject']");
+        if ($signRejected && isset($signRejected[0])) {
+            $result['type']  = 'error';
+            $result['error_code']  = -100;
+            $result['error_message'] = "Пользователь отказался от подписания";
+        }
+
+        $signRejected = $xml->xpath("//*[local-name()='ResponseSign']/*[local-name()='SignReject']");
         if ($signRejected && isset($signRejected[0])) {
             $result['type']  = 'error';
             $result['error_code']  = -100;
@@ -208,6 +240,56 @@ class GoskeyResultAnalizator
         $originalMessageId = isset($originalMessageIdNodes[0]) ? (string)$originalMessageIdNodes[0] : null;
 
         $signCompleat = $xml->xpath("//*[local-name()='ResponseSignUkep']/*[local-name()='Documents']");
+        if ($signCompleat && isset($signCompleat[0])) {
+            $documents = $signCompleat[0]->children();
+            foreach ($documents as $doc) {
+                $attributes = [];
+                foreach ($doc->SignatureGosKey->attributes() as $attrName => $attrValue) {
+                    $attributes[$attrName] = (string)$attrValue;
+                }
+
+                $result_list[$attributes['uuid']] = $attributes;
+            }
+        }
+
+        $xml->registerXPathNamespace('sb2', 'urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2');
+        $attachments = $xml->xpath('//sb2:FSAttachmentsList/sb2:FSAttachment');
+        $allFilesLoaded = true;
+        $sign_list = [];
+        if ($attachments) {
+            foreach ($attachments as $attachment) {
+                $uuid = (string)$attachment->children('sb2', true)->uuid;
+                $result_list[$uuid]['UserName'] = (string)$attachment->children('sb2', true)->UserName;
+                $result_list[$uuid]['Password'] = (string)$attachment->children('sb2', true)->Password;
+                $result_list[$uuid]['FileName'] = (string)$attachment->children('sb2', true)->FileName;
+
+                $sign_list[] = [
+                    'signed_file'=>  'goskey_registry/' .$originalMessageId. '/'. $result_list[$uuid]['description'],
+                    'signature'=> 'goskey_registry/' .$originalMessageId. '/'. $result_list[$uuid]['description']. '_subsSign.p7s',
+                ];
+
+                $allFilesLoaded = self::getFilesFromFtp($result_list[$uuid], $originalMessageId);
+            }
+        }
+
+        return $allFilesLoaded ?  $sign_list: null;
+    }
+
+    public static function saveSignedFilesUl($response)
+    {
+        file_put_contents('signed_files_ul.xml', $response);
+        $result_list = [];
+        try {
+            $xml = new \SimpleXMLElement($response);
+        } catch (\Exception $e) {
+            return ['error' => true, 'error_message' => 'Некорректный XML'];
+        }
+
+        $xml->registerXPathNamespace('ns2', 'urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2');
+        $originalMessageIdNodes = $xml->xpath('//ns2:OriginalMessageId');
+        $originalMessageId = isset($originalMessageIdNodes[0]) ? (string)$originalMessageIdNodes[0] : null;
+
+        $signCompleat = $xml->xpath("//*[local-name()='ResponseSign']/*[local-name()='Documents']");
         if ($signCompleat && isset($signCompleat[0])) {
             $documents = $signCompleat[0]->children();
             foreach ($documents as $doc) {

@@ -21,6 +21,11 @@ class DocumentStatePanel extends Component
             $this->can_show = true;
             $this->state = $item->state;
             $this->validated = $item->validated;
+
+
+            if ($item->goskeyRegistries && isset($item->goskeyRegistries[0]) && $item->goskeyRegistries[0]->status_code == 100) {
+                $this->signed = true;
+            }
         }
     }
 

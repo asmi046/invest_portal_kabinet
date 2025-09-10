@@ -437,6 +437,29 @@ a.btn-link, button.btn-link{
     td{
         padding: 1.5rem 2rem;
     }
+
+    .signed_blk {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 0.5rem;
+        font-size: 1.4rem;
+        color: var(--green);
+        .sign2-icon {
+            display: block;
+            width: 2.6rem;
+            height: 2.6rem;
+            background-color: var(--green);
+
+        }
+
+        &.error_sig {
+            color: var(--alert-color);
+            .sign2-icon {
+                background-color: var(--alert-color);
+            }
+        }
+    }
     tbody{
         tr{
              &:first-child{
@@ -453,6 +476,7 @@ a.btn-link, button.btn-link{
              }
         }
     }
+
 }
 
 .table-box{

@@ -17,6 +17,7 @@ use MoonShine\Laravel\DependencyInjection\MoonShineConfigurator;
 use MoonShine\Contracts\Core\DependencyInjection\ConfiguratorContract;
 use App\MoonShine\Resources\DocumentTypeResource;
 use App\MoonShine\Resources\OrganizationResource;
+use App\MoonShine\Resources\GoskeyRegistryResource;
 
 class MoonShineServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,7 @@ class MoonShineServiceProvider extends ServiceProvider
                 SignedDocumentResource::class,
                 DocumentTypeResource::class,
                 OrganizationResource::class,
+                GoskeyRegistryResource::class,
             ])
             ->pages([
                 ...$config->getPages(),

@@ -9,6 +9,7 @@ use MoonShine\MenuManager\MenuItem;
 
 use App\MoonShine\Resources\AreaGetResource;
 use App\MoonShine\Resources\TechnicalConnectsResource;
+use App\MoonShine\Resources\AttachmentResource;
 use App\MoonShine\Resources\OrganizationContactResource;
 use App\MoonShine\Resources\AlgorithmResource;
 use App\MoonShine\Resources\InvestDocumentResource;
@@ -43,6 +44,7 @@ use MoonShine\UI\Components\{Breadcrumbs,
     When};
 use App\MoonShine\Resources\DocumentTypeResource;
 use App\MoonShine\Resources\OrganizationResource;
+use App\MoonShine\Resources\GoskeyRegistryResource;
 
 final class MoonShineLayout extends AppLayout
 {
@@ -117,7 +119,8 @@ final class MoonShineLayout extends AppLayout
 
 
 
-
+            // MenuItem::make('Вложения', AttachmentResource::class)->icon('paper-clip'),
+            // MenuItem::make('Процедуры госключа', GoskeyRegistryResource::class)->icon('shield-check'),
         ];
     }
 

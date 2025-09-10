@@ -159,6 +159,17 @@ class UserSeeder extends Seeder
             ]
         );
 
+        DB::table('document_type_moonshine_user')->insert( [
+                [
+                    'document_type_id' => 1,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+            ]
+
+        );
+
         $userID = DB::table("moonshine_users")->insertGetId(
             [
                     'name' => "Корп. Развитие",

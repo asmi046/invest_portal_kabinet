@@ -53,6 +53,7 @@
                                     <th>ID</th>
                                     <th>Объект</th>
                                     <th>Тип объекта</th>
+                                    <th>Подпись</th>
                                     <th>Статус</th>
                                     <th>Управление</th>
                                 </tr>
@@ -63,6 +64,18 @@
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->object_name }}</td>
                                         <td>{{ $item->object_type }}</td>
+                                        <td>
+                                            @if ($item->goskeyRegistries && isset($item->goskeyRegistries[0]) && $item->goskeyRegistries[0]->status_code == 100)
+                                                <div @class(['signed_blk'])> <span class="icon sign2-icon"></span> Подписан</div>
+                                            @endif
+
+                                            @if ($item->goskeyRegistries && isset($item->goskeyRegistries[0]) && $item->goskeyRegistries[0]->error_code == -100)
+                                                <div @class(['signed_blk', 'error_sig'])> <span class="icon sign2-icon"></span> Отказ</div>
+                                            @elseif  ($item->goskeyRegistries && isset($item->goskeyRegistries[0]) && $item->goskeyRegistries[0]->error_code != null)
+                                                <div @class(['signed_blk', 'error_sig'])> <span class="icon sign2-icon"></span> Ошибка</div>
+                                            @endif
+
+                                        </td>
                                         <td>{{ $item->state }}</td>
                                         <td>
                                             <a href="{{route('area_get_print', $item->id)}}">Печатная форма</a>

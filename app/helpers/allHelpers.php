@@ -1,5 +1,19 @@
 <?php
 
+if (!function_exists("get_attachment_list_before_sign")) {
+    function get_attachment_list_before_sign($model, $documentId, string $documentUrl) {
+        $att_files = [];
+        $att_files[] = $documentUrl;
+
+        $document = $model::findOrFail($documentId);
+        foreach ($document->attachment as $att) {
+            $att_files[] = storage_path('app/public/' . $att->storage_patch . "/" . $att->file);
+        }
+
+        return $att_files;
+    }
+}
+
 if (!function_exists("get_fio_str")) {
     function get_fio_str() {
         return auth()->user()->lastname." ".auth()->user()->name." ".auth()->user()->fathername;

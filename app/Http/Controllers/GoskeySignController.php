@@ -13,11 +13,11 @@ class GoskeySignController extends Controller
     {
         $documentUrl = PrintServices::save($request->model, $request->documentId);
 
+        $att_files = get_attachment_list_before_sign($request->model, $request->documentId,$documentUrl);
+
         $goskeyRegistryService = new GoskeyRegistryService();
         $rez = $goskeyRegistryService->createProcedure(
-            main_files: [
-                $documentUrl
-            ],
+            main_files: $att_files,
             document_type: $request->model,
             document_id: $request->documentId,
             user_id: auth()->user()->id
@@ -39,11 +39,11 @@ class GoskeySignController extends Controller
     {
         $documentUrl = PrintServices::save($request->model, $request->documentId);
 
+        $att_files = get_attachment_list_before_sign($request->model, $request->documentId, $documentUrl);
+
         $goskeyRegistryService = new GoskeyRegistryService();
         $rez = $goskeyRegistryService->createProcedure(
-            main_files: [
-                $documentUrl
-            ],
+            main_files: $att_files,
             document_type: $request->model,
             document_id: $request->documentId,
             user_id: auth()->user()->id,

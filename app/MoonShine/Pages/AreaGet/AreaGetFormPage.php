@@ -8,19 +8,22 @@ use MoonShine\UI\Fields\Url;
 use MoonShine\UI\Fields\Date;
 use MoonShine\UI\Fields\File;
 use MoonShine\UI\Fields\Text;
+use App\Models\GoskeyRegistry;
 use MoonShine\UI\Fields\Phone;
 use MoonShine\UI\Fields\Select;
 use MoonShine\TinyMce\Fields\TinyMce;
+use MoonShine\UI\Components\Layout\Box;
 use MoonShine\UI\Components\Layout\Flex;
 use MoonShine\UI\Components\Layout\Grid;
-use MoonShine\UI\Components\Layout\Box;
-use MoonShine\UI\Components\Layout\Column;
 use MoonShine\Laravel\Pages\Crud\FormPage;
+use MoonShine\UI\Components\Layout\Column;
 use MoonShine\UI\Components\Layout\LineBreak;
-use MoonShine\Laravel\Fields\Relationships\HasOne;
-use MoonShine\Laravel\Fields\Relationships\HasMany;
 use App\MoonShine\Resources\AttachmentResource;
+use MoonShine\Laravel\Fields\Relationships\HasOne;
+use App\MoonShine\Resources\GoskeyRegistryResource;
 use App\MoonShine\Resources\SignedDocumentResource;
+use MoonShine\Laravel\Fields\Relationships\HasMany;
+use MoonShine\Laravel\Fields\Relationships\MorphMany;
 
 class AreaGetFormPage extends FormPage
 {
@@ -82,7 +85,13 @@ class AreaGetFormPage extends FormPage
 
 
             HasMany::make("Вложения", "attachment", resource: AttachmentResource::class),
-            HasOne::make("Подпись", "signature", resource: SignedDocumentResource::class)
+            MorphMany::make(
+                'Подпись (Госключ)',
+                'goskeyRegistries',
+                resource: GoskeyRegistryResource::class
+            ),
+            HasOne::make("Подпись (плагин)", "signature", resource: SignedDocumentResource::class)
+
 
 
 
