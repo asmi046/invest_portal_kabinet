@@ -54,6 +54,7 @@
                                     <th>Объект</th>
                                     <th>Тип объекта</th>
                                     <th>Подпись</th>
+                                    <th>Тип подписи</th>
                                     <th>Статус</th>
                                     <th>Управление</th>
                                 </tr>
@@ -65,26 +66,14 @@
                                         <td>{{ $item->object_name }}</td>
                                         <td>{{ $item->object_type }}</td>
                                         <td>
-                                            @if ($item->goskeyRegistries && isset($item->goskeyRegistries[0]) && $item->goskeyRegistries[0]->status_code == 100)
-                                                <div @class(['signed_blk'])> <span class="icon sign2-icon"></span> Подписан</div>
-                                            @endif
-
-                                            @if ($item->goskeyRegistries && isset($item->goskeyRegistries[0]) && $item->goskeyRegistries[0]->error_code == -100)
-                                                <div @class(['signed_blk', 'error_sig'])> <span class="icon sign2-icon"></span> Отказ</div>
-                                            @elseif  ($item->goskeyRegistries && isset($item->goskeyRegistries[0]) && $item->goskeyRegistries[0]->error_code != null)
-                                                <div @class(['signed_blk', 'error_sig'])> <span class="icon sign2-icon"></span> Ошибка</div>
-                                            @endif
-
+                                            <x-document-table.sign-cell :item="$item"></x-document-table.sign-cell>
+                                        </td>
+                                        <td>
+                                            <x-document-table.sign-type-cell :item="$item"></x-document-table.sign-type-cell>
                                         </td>
                                         <td>{{ $item->state }}</td>
                                         <td>
-                                            <a href="{{route('area_get_print', $item->id)}}">Печатная форма</a>
-                                            @if (!in_array($item->state, config('documents')['area_get']['statuses_noedit']))
-                                                <a href="{{route('area_get_edit', $item->id)}}">Редактировать</a>
-                                            @else
-                                                <a href="{{route('area_get_edit', $item->id)}}">Посмотреть</a>
-                                            @endif
-                                            <a href="{{route('area_get_status', $item->id)}}">Статус</a>
+                                            <x-document-table.control-cell :item="$item" :route-name="'area_get'"></x-document-table.control-cell>
                                         </td>
                                     </tr>
                                 @endforeach

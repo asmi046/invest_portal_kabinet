@@ -79,5 +79,10 @@ class GoskeySignController extends Controller
         return view('ukep-info');
     }
 
+    public function ukep_info_ul()
+    {
+        return view('ukep-info-ul');
+    }
+
 
 }

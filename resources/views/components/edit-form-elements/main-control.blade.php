@@ -16,11 +16,13 @@
                             @endif
 
                             <a href="{{route('area_get_print', $item->id)}}" class="btn" title="Печатная форма"> <span class="print-form-icon"></span>Печатная форма</a>
-                            <a
-                            class="btn mlAuto"
-                            onclick="if (!confirm('Черновик будет удален навсегда! Вы уверенны?')) return false;"
-                            href="{{ route($deleteroat, $item->id) }}"
-                            ><span class="delete-icon"></span>Удалить</a>
+                            @if (!isset($item->goskeyRegistries[0]))
+                                <a class="btn mlAuto"
+                                onclick="if (!confirm('Черновик будет удален навсегда! Вы уверенны?')) return false;"
+                                href="{{ route($deleteroat, $item->id) }}"
+                                ><span class="delete-icon"></span>Удалить</a>
+                            @endif
+
                         </div>
                     @endif
 
