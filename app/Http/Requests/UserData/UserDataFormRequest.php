@@ -45,6 +45,7 @@ class UserDataFormRequest extends FormRequest
             "email" => [ 'required', 'string' ],
             "phone" => [ 'required', 'string' ],
             "ul_attorney" => [ 'nullable' ],
+            "role" => [ ],
         ];
     }
 }

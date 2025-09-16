@@ -13,6 +13,7 @@
                     <goskey-sign-panel
                         :model="'{{ addslashes($document->document_type) }}'"
                         :document-id="{{ $document->id }}"
+                        :user='@json(Auth::user())'
                     />
                 @elseif($signProcess)
                     <goskey-sign-process

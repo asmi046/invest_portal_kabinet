@@ -2,8 +2,8 @@
 <template>
     <p v-html="message"></p>
     <div v-show="isStart" class="btn-link__actions">
-        <a href="#" class="btn fign_fl" @click.prevent="signFl">Подписать как физлицо</a>
-        <a href="#" class="btn fign_ul" @click.prevent="signUl">Подписать как юридическое лицо</a>
+        <a v-show="showFl" href="#" class="btn fign_fl" @click.prevent="signFl">Подписать как физлицо</a>
+        <a v-show="showUl" href="#" class="btn fign_ul" @click.prevent="signUl">Подписать как юридическое лицо</a>
     </div>
     <img v-show="showLoader" class="loader" :src="assetUrl + 'img/loader.svg'" alt="Загрузка">
     <p class="result_status" :class="{ 'error': resultStatusIsError, 'success': !resultStatusIsError }" v-show="showResultStatus">{{ resultMessage }}</p>
@@ -27,6 +27,10 @@ const props = defineProps({
     documentId: {
         type: Number,
         required: true
+    },
+    user: {
+        type: Object,
+        required: true
     }
 })
 
@@ -34,6 +38,9 @@ const isStart = ref(true);
 const showLoader = ref(false);
 const showResultStatus = ref(false);
 const resultStatusIsError = ref(false);
+
+const showFl= ref(false)
+const showUl= ref(false)
 
 const stopProcess = (is_error = false, message = "", e = null) => {
         resultMessage.value = message + (e ? e.message : '');
@@ -83,10 +90,22 @@ const signUl = () => {
     });
 }
 
+const whotShow = () => {
+    if (props.user && props.user.role == "Физическое лицо") {
+        showFl.value = true
+    } else if (props.user && props.user.role == "Юридическое лицо") {
+        showUl.value = true
+    } if (props.user && props.user.role == "Сотрудник") {
+        showFl.value = true
+        if (props.user.ul_attorney) {
+            showUl.value = true
+        }
+    }
+}
+
 
 onMounted(() => {
-    console.log('GoskeySignPanel mounted');
-    console.log(props.model, props.documentId);
+    whotShow()
 })
 
 </script>

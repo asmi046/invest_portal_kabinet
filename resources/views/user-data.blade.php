@@ -88,10 +88,10 @@
                     Роль пользователя<sup>*</sup>
                 </span>
                 <select name="role" class="select-ch select-ch--no-search" id="">
-                    <option @selected(isset($item->role) && ($item->role === 'Физическое лицо')) value="Физическое лицо">Физическое лицо</option>
-                    <option @selected(isset($item->role) && ($item->role === 'Юридическое лицо')) value="Юридическое лицо">Юридическое лицо</option>
-                    <option @selected(isset($item->role) && ($item->role === 'Индивидуальный предприниматель')) value="Индивидуальный предприниматель">Индивидуальный предприниматель</option>
-                    <option @selected(isset($item->role) && ($item->role === 'Сотрудник')) value="Сотрудник">Сотрудник</option>
+                    <option value="" disabled selected>Выберите роль</option>
+                    <option @selected(isset($user->role) && ($user->role === 'Физическое лицо')) value="Физическое лицо">Физическое лицо</option>
+                    <option @selected(isset($user->role) && ($user->role === 'Юридическое лицо')) value="Юридическое лицо">Юридическое лицо</option>
+                    <option @selected(isset($user->role) && ($user->role === 'Сотрудник')) value="Сотрудник">Сотрудник</option>
                 </select>
 
                 @error('role')
