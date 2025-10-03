@@ -28,85 +28,23 @@
     <input type="hidden" name="document_type" value="1">
 
     <div class="columns-box columns-box--two-col">
-        <label class="form-elem">
-            <span class="form-elem__caption">
-                Ф.И.О. заявителя<sup>*</sup>
-            </span>
-            <input type="text" name="name" class="form-elem__field"  value="{{ $item->name ?? old('name') ?? get_fio_str() }}">
-            @error('name')
-                <span class="form-elem__error-message">{{ $message }}</span>
-            @enderror
-        </label>
+        <x-form.input name="name" label="Ф.И.О. заявителя" :required="false" value="{{ $item->name ?? old('name') ?? get_fio_str() }}" />
 
-        <label class="form-elem">
-            <span class="form-elem__caption">
-                Организация<sup>*</sup>
-            </span>
-            <input type="text" name="organization" class="form-elem__field"  value="{{ $item->organization ?? old('organization') ?? '' }}">
-            @error('organization')
-                <span class="form-elem__error-message">{{ $message }}</span>
-            @enderror
-        </label>
+        <x-form.input name="organization" label="Организация" :required="true" value="{{ $item->organization ?? old('organization') ?? '' }}" />
 
-        <label class="form-elem">
-            <span class="form-elem__caption">
-                Должность<sup>*</sup>
-            </span>
-            <input type="text" name="dolgnost" class="form-elem__field"  value="{{ $item->dolgnost ?? old('dolgnost') ?? '' }}">
-            @error('dolgnost')
-                <span class="form-elem__error-message">{{ $message }}</span>
-            @enderror
-        </label>
+        <x-form.input name="dolgnost" label="Должность" :required="true" value="{{ $item->dolgnost ?? old('dolgnost') ?? '' }}" />
 
-        <label class="form-elem">
-            <span class="form-elem__caption">
-                Телефон<sup>*</sup>
-            </span>
-            <input type="text" name="phone" class="form-elem__field tel-mask"  value="{{ $item->phone ?? old('phone') ??  auth()->user()->phone }}">
-            @error('phone')
-                <span class="form-elem__error-message">{{ $message }}</span>
-            @enderror
-        </label>
+        <x-form.input name="phone" label="Телефон" :required="true" value="{{ $item->phone ?? old('phone') ??  auth()->user()->phone }}" />
     </div>
 
-    <label class="form-elem">
-        <span class="form-elem__caption">
-            Адрес заявителя<sup>*</sup>
-        </span>
-        <input type="text" name="zayavitel_adress" class="form-elem__field"  value="{{ $item->zayavitel_adress ?? old('zayavitel_adress') ?? '' }}">
-        @error('zayavitel_adress')
-            <span class="form-elem__error-message">{{ $message }}</span>
-        @enderror
-    </label>
+    <x-form.input name="zayavitel_adress" label="Адрес заявителя" :required="true" value="{{ $item->zayavitel_adress ?? old('zayavitel_adress') ?? '' }}" />
 
     <h3>Информациф об объекте</h3>
 
-    <label class="form-elem">
-        <span class="form-elem__caption">
-            Наименование объекта<sup>*</sup>
-        </span>
-        <input type="text" name="object_name" class="form-elem__field"  value="{{ $item->object_name ?? old('object_name') ?? '' }}">
-        @error('object_name')
-            <span class="form-elem__error-message">{{ $message }}</span>
-        @enderror
-    </label>
+    <x-form.input name="object_name" label="Наименование объекта" :required="true" value="{{ $item->object_name ?? old('object_name') ?? '' }}" />
 
-    <label class="form-elem">
-        <span class="form-elem__caption">
-            Тип объекта<sup>*</sup>
-        </span>
-        <select name="object_type" class="select-ch select-ch--no-search" id="">
-            <option value="" disabled selected>Выберите тип проекта</option>
-            <option @selected(isset($item->object_type) && ($item->object_type === 'Масштабный инвестиционный проект')) value="Масштабный инвестиционный проект">Масштабный инвестиционный проект</option>
-            <option @selected(isset($item->object_type) && ($item->object_type === 'Социально-культурного назначения')) value="Социально-культурного назначения">Социально-культурного назначения</option>
-            <option @selected(isset($item->object_type) && ($item->object_type === 'Коммунально-бытового назначения')) value="Коммунально-бытового назначения">Коммунально-бытового назначения</option>
-        </select>
-
-        @error('object_type')
-            <span class="form-elem__error-message">{{ $message }}</span>
-        @enderror
-    </label>
-
+    <x-form.select name="object_type" label="Тип объекта" :required="true" :item="$item ?? null" :value="$item->object_type ?? old('object_type') ?? ''"
+        :list="['Масштабный инвестиционный проект', 'Социально-культурного назначения', 'Коммунально-бытового назначения']" />
 
 
     @if ($format !== "create" )
@@ -122,40 +60,14 @@
             </div>
 
 
-        <div class="file-funnel">
-            <input type="file" name="attachment[]" class="file-funnel__file-input" multiple="multiple">
-            <div class="file-funnel__text">
-                <span class="file-funnel__caption">
-                    Загрузить файлы
-                </span>
-                <span class="file-funnel__direction">
-                    В форматах doc, docx, pdf, jpg, png
-                </span>
-            </div>
-            <div class="file-funnel__receiver">
-                +
-            </div>
-            <div class="file-funnel__docs">
-                <button type="button" class="file-funnel-btn file-funnel-btn--reset">Очистить</button>
-            </div>
-        </div>
+        <x-form.file name="attachment[]" label="Загрузить файлы" format="В форматах doc, docx, pdf, jpg, png"></x-form.file>
+
     @endif
 
 
-    <label class="form-elem">
-        <span class="form-elem__caption">
-            Страниц в приложении
-        </span>
-        <input type="number" name="prilogenie_list_count" class="form-elem__field"  value="{{ $item->prilogenie_list_count ?? old('prilogenie_list_count') ?? '' }}">
-        @error('prilogenie_list_count')
-            <span class="form-elem__error-message">{{ $message }}</span>
-        @enderror
-    </label>
+    <x-form.input type="number" name="prilogenie_list_count" label="Страниц в приложении" :required="true" value="{{ $item->prilogenie_list_count ?? old('prilogenie_list_count') ?? '' }}" />
 
-
-
-
-     <x-edit-form-elements.main-control :format="$format" :item="$item ?? null" doct="area_get" deleteroat="area_get_delete" ></x-edit-form-elements.main-control>
+    <x-edit-form-elements.main-control :format="$format" :item="$item ?? null" doct="area_get" deleteroat="area_get_delete" ></x-edit-form-elements.main-control>
 
 
 

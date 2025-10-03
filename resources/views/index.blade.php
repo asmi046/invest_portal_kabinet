@@ -61,9 +61,7 @@
             </div>
 
             <div class="btn-link-box columns-box columns-box--two-col">
-                <x-widget-icon-lnk lnk="{{ route('project_create') }}" title="Подать заявление на государственную поддержку" icon="building-icon"></x-widget-icon-lnk>
-                <x-widget-icon-lnk lnk="{{ route('support_select') }}" title="Заявления на государственную поддержку" icon="laptop-icon"></x-widget-icon-lnk>
-                <x-widget-icon-lnk lnk="{{ route('technical_connect_create') }}" title="Заявления на технологическое присоединение" icon="tablet-icon"></x-widget-icon-lnk>
+                <x-document-types.main-page-menu></x-document-types.main-page-menu>
             </div>
 
 

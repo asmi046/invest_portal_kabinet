@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('land_auction_applications', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->comment("Название проэкта")
+                                        ->constrained()
+                                        ->onUpdate('cascade')
+                                        ->onDelete('cascade');
+            $table->string('document_type')->comment("Тип документа");
+            $table->boolean('validated')->default(false)->comment("Проверен");
+            $table->boolean('editable')->default(true)->comment("Можно редактировать");
+
             $table->string('company_name', 256);
             $table->string('ogrn', 13);
             $table->string('inn', 12);

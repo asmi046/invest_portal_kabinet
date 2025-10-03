@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class ConstructionPermit extends Model
 {
     protected $fillable = [
+        "user_id",
+        "document_type",
+        "validated",
+        "editable",
+
         'last_name', 'first_name', 'middle_name',
         'passport_name', 'passport_series', 'passport_number',
         'passport_issued_by', 'passport_issued_at', 'passport_code',

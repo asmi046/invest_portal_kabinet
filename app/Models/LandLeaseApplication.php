@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 class LandLeaseApplication extends Model
 {
     protected $fillable = [
+        "user_id",
+        "document_type",
+        "validated",
+        "editable",
+
         'company_name',
         'ogrn',
         'inn',

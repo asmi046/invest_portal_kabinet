@@ -8,6 +8,11 @@ class LandAuctionApplication extends Model
 {
 
     protected $fillable = [
+        "user_id",
+        "document_type",
+        "validated",
+        "editable",
+
         'company_name',
         'ogrn',
         'inn',

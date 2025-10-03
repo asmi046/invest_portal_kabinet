@@ -1,6 +1,7 @@
 <nav>
     <menu class="main-menu">
-        <li @class(['active-parent' => stripos(Route::currentRouteName(), "project") !== false])>
+        <x-document-types.side-menu></x-document-types.side-menu>
+        {{-- <li @class(['active-parent' => stripos(Route::currentRouteName(), "project") !== false])>
             <div class="main-menu__parent-panel">
                 <span>Инвестиционные проекты</span>
                 <button class="main-menu__arrow"></button>
@@ -54,6 +55,6 @@
                 <x-side-menu.li-item icon="list-icon" :find="['information_algoritm']" :route="route('information_algoritm')" title="Алгоритмы действий инвестора по технологическому присоединению"></x-side-menu.li-item>
                 <x-side-menu.li-item icon="bagdoc-icon" :find="['information_org_list']" :route="route('information_org_list')" title="Список ресурсоснабжающих организаций"></x-side-menu.li-item>
             </ul>
-        </li>
+        </li> --}}
     </menu>
 </nav>

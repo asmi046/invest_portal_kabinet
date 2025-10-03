@@ -14,9 +14,14 @@ return new class extends Migration
         Schema::create('document_types', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
-            $table->string('model');
-            $table->text('description')->nullable();
+            $table->string('name')->comment('Название типа документа');
+            $table->string('short_name')->nullable()->comment('Краткое название типа документа');
+            $table->string('model')->comment('Название связанной модели');
+            $table->text('description')->nullable()->comment('Описание типа документа');
+            $table->integer('order')->default(100)->comment('Порядок сортировки');
+            $table->string('create_url')->default("#")->comment('URL для создания документа');
+            $table->string('index_url')->default("#")->comment('URL для просмотра списка документов');
+            $table->string('icon')->default("#")->comment('Иконка типа документа');
         });
     }
 

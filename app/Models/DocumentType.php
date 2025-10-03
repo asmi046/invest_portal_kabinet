@@ -12,6 +12,15 @@ class DocumentType extends Model
         'name',
         'description',
         'model',
+        'short_name',
+        'name',
+        'short_name',
+        'model',
+        'description',
+        'order',
+        'create_url',
+        'index_url',
+        'icon',
     ];
 
     /**
@@ -22,6 +31,10 @@ class DocumentType extends Model
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+    ];
+
+    protected $with = [
+        'stages',
     ];
 
     /**

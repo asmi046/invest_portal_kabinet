@@ -14,6 +14,15 @@ return new class extends Migration
         Schema::create('construction_permits', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('user_id')->comment("Название проэкта")
+                                        ->constrained()
+                                        ->onUpdate('cascade')
+                                        ->onDelete('cascade');
+            $table->string('document_type')->comment("Тип документа");
+            $table->boolean('validated')->default(false)->comment("Проверен");
+            $table->boolean('editable')->default(true)->comment("Можно редактировать");
+
+
             // 1.1 Сведения о физическом лице
             $table->string('last_name', 256);
             $table->string('first_name', 256);

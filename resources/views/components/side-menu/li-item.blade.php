@@ -1,3 +1,3 @@
-<li @class([$icon, 'active' => isset($find)?in_array(Route::currentRouteName(), $find):false]) >
+<li @class([$icon, 'active' => (request()->url() == url($route))?true:false]) >
     <a href="{{ $route }}">{{ $title }}</a>
 </li>
