@@ -21,6 +21,7 @@
             <h1>{{ $title }}</h1>
             <x-goskey.sign-document></x-goskey.sign-document>
 
+             <x-document-forms.heat_connection format="create" action="#"></x-document-forms.heat_connection>
         </div>
     </section>
 

@@ -31,20 +31,19 @@ return new class extends Migration
             $table->string('email', 100)->nullable();
 
             // Заявление
-            $table->string('statement_applicant_name', 256);
             $table->string('object_name', 256);
             $table->string('object_address', 256);
             $table->text('object_description')->nullable();
 
-            // Приложения
-            $table->binary('attachments')->nullable();
+            $table->float('payload_all_snab', 8, 2)->default(0)->comment("Общая нагрузка на водоснабжение, м3/сут");
+            $table->float('payload_all_ot', 8, 2)->default(0)->comment("Общая нагрузка на водоотведение, м3/час");
+            $table->float('payload_hoz_snab', 8, 2)->default(0)->comment("Нагрузка на хозяйственные нужды на водоснабжение, м3/сут");
+            $table->float('payload_hoz_ot', 8, 2)->default(0)->comment("Нагрузка на хозяйственные нужды на водоотведение, м3/час");
+            $table->float('payload_prom_snab', 8, 2)->default(0)->comment("Нагрузка на производственные нужды на водоснабжение, м3/сут");
+            $table->float('payload_prom_ot', 8, 2)->default(0)->comment("Нагрузка на производственные нужды , м3/час");
+            $table->float('payload_fire_snab', 8, 2)->default(0)->comment("Нагрузка на пожарные нужды на водоснабжение, л/сек");
+            $table->float('payload_fire_ot', 8, 2)->default(0)->comment("Нагрузка на пожарные нужды на водоотведение, л/сек");
 
-            // Подпись
-            $table->string('last_name', 256);
-            $table->string('first_name', 256);
-            $table->string('middle_name', 256)->nullable();
-            $table->string('signature', 100);
-            $table->date('application_date')->nullable();
 
             $table->timestamps();
         });

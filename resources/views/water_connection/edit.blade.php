@@ -21,5 +21,6 @@
 
         <x-organization-report :item="$item"></x-organization-report>
 
+        <x-document-forms.water_connection format="edit" action="#"></x-document-forms.water_connection>
     </div>
 @endsection

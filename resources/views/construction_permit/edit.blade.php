@@ -21,5 +21,6 @@
 
         <x-organization-report :item="$item"></x-organization-report>
 
+        <x-document-forms.construction-permit format="edit" action="#"></x-document-forms.construction-permit>
     </div>
 @endsection

@@ -21,6 +21,8 @@
             <h1>{{ $title }}</h1>
             <x-goskey.sign-document></x-goskey.sign-document>
 
+            <x-document-forms.land-auction-application format="create" action="#"></x-document-forms.land-auction-application>
+
         </div>
     </section>
 

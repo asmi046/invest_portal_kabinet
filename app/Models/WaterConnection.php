@@ -12,13 +12,27 @@ class WaterConnection extends Model
         "validated",
         "editable",
 
-        'supplier_org','applicant_name','address','phone','email',
-        'statement_applicant_name','object_name','object_address','object_description',
-        'attachments',
-        'last_name','first_name','middle_name','signature','application_date',
+        'supplier_org',
+        'applicant_name',
+        'address',
+        'phone',
+        'email',
+
+        'object_name',
+        'object_address',
+        'object_description',
+
+        'payload_all_snab',
+        'payload_all_ot',
+        'payload_hoz_snab',
+        'payload_hoz_ot',
+        'payload_prom_snab',
+        'payload_prom_ot',
+        'payload_fire_snab',
+        'payload_fire_ot',
     ];
 
     protected $casts = [
-        'application_date' => 'date',
+
     ];
 }

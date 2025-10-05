@@ -21,5 +21,7 @@
 
         <x-organization-report :item="$item"></x-organization-report>
 
+        <x-document-forms.gas_connection format="edit" action="#"></x-document-forms.gas_connection>
+
     </div>
 @endsection

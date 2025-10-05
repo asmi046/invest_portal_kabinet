@@ -21,5 +21,7 @@
 
         <x-organization-report :item="$item"></x-organization-report>
 
+        <x-document-forms.land-lease-application format="edit" action="#"></x-document-forms.land-lease-application>
+
     </div>
 @endsection
