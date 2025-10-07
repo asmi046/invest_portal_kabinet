@@ -47,6 +47,8 @@ use App\Http\Controllers\LandAuctionApplicationController;
         Route::get('/', [WaterConnectionController::class, 'index'])->name('water_connection.index');
         Route::get('/edit/{id}', [WaterConnectionController::class, 'edit'])->name('water_connection.edit');
         Route::get('/create', [WaterConnectionController::class, 'create'])->name('water_connection.create');
+        Route::post('/save', [WaterConnectionController::class, "save"])->name('area_get_save');
+        Route::get('/delete/{id}', [WaterConnectionController::class, "delete"])->name('area_get_delete');
     });
 
     Route::middleware('auth')->prefix('commissioning_permit')->group(function () {

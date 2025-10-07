@@ -1,10 +1,7 @@
-<a href="{{route($routeName.'_print', $item->id)}}">Печатная форма</a>
-@if (
-    !in_array($item->state, config('documents')['area_get']['statuses_noedit']) &&
-    !isset($item->goskeyRegistries[0])
-)
-    <a href="{{route($routeName.'_edit', $item->id)}}">Редактировать</a>
+<a href="{{ $documentType->index_url."/print/".$item->id }}">Печатная форма</a>
+@if ($item->editable && !isset($item->goskeyRegistries[0]))
+    <a href="{{ $documentType->index_url."/edit/".$item->id }}">Редактировать</a>
 @else
-    <a href="{{route($routeName.'_edit', $item->id)}}">Посмотреть</a>
+    <a href="{{ $documentType->index_url."/edit/".$item->id }}">Посмотреть</a>
 @endif
-<a href="{{route($routeName.'_status', $item->id)}}">Статус</a>
+<a href="{{ $documentType->index_url."/status/".$item->id }}">Статус</a>

@@ -10,14 +10,14 @@ class ControlCell extends Component
 {
 
     public $item;
-    public $routeName;
+    public $documentType;
     /**
      * Create a new component instance.
      */
-    public function __construct($item = null, string $routeName = null)
+    public function __construct($item = null, $documentType = null)
     {
         $this->item = $item;
-        $this->routeName = $routeName;
+        $this->documentType = $documentType;
     }
 
     /**

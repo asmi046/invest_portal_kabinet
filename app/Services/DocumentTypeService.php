@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\DocumentType;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DocumentTypeService
@@ -29,5 +30,63 @@ class DocumentTypeService
         }
 
         return ['all' => $all, 'stages' => $stages];
+    }
+
+    public function deleteDocument($model, $id)
+    {
+        $item = $model::where('id', $id)->first();
+        $item->attachment()->delete();
+        $item->delete();
+    }
+
+    public function createDraft(string $model, array $data)
+    {
+        $data["user_id"] = auth()->user()->id;
+        $data["state"] = "Черновик";
+
+        return $model::create($data);
+    }
+
+    public function saveDraft(string $model, string $request_model, Request $request, array $data, int $id)
+    {
+        $d_request = new $request_model();
+        $request->validate($d_request->rules(), $d_request->messages());
+
+        $data["user_id"] = auth()->user()->id;
+        $data["state"] = "Черновик";
+        $data["validated"] = false;
+
+
+        $item = $model::where('id', $id)->first();
+        if(!$item) abort('404');
+
+        $item->update($data);
+
+        $attachment = new AttachmentCreateServices();
+
+        if ($request->hasFile('attachment'))
+        $files = $attachment->create_attachment(
+            $request->file('attachment'),
+            $model,
+            $item->id
+        );
+    }
+
+    public function checkDraft(string $model, string $request_model, array $data, int $id)
+    {
+        $d_request = new $request_model();
+        $data = $request->validate($d_request->rules(), $d_request->messages());
+
+        $data["user_id"] = auth()->user()->id;
+        $data["state"] = "Черновик";
+        $data["validated"] = false;
+
+
+        $item = $model::where('id', $id)->first();
+        if(!$item) abort('404');
+
+        $item->update([
+            'validated' => true,
+        ]);
     }
 }

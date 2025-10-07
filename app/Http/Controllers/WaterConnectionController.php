@@ -6,32 +6,77 @@ use App\Models\DocumentType;
 use Illuminate\Http\Request;
 use App\Models\WaterConnection;
 use App\Services\DocumentTypeService;
+use App\Http\Requests\WaterConnection\WaterConnectionSignRequest;
+use App\Http\Requests\WaterConnection\WaterConnectionDraftRequest;
 
 class WaterConnectionController extends Controller
 {
     protected $model = WaterConnection::class;
+    protected $draftRequest = WaterConnectionDraftRequest::class;
+    protected $signRequest = WaterConnectionSignRequest::class;
+    protected $documentType;
+
+    public function __construct()
+    {
+        $this->documentType = DocumentType::where('model', $this->model)->first();
+    }
 
     public function index(DocumentTypeService $documentTypeService) {
 
-        $documentType = DocumentType::where('model', $this->model)->first();
-        $documentListInfo = $documentTypeService->getDocumentListInfo($this->model, $documentType);
-
+        $documentListInfo = $documentTypeService->getDocumentListInfo($this->model, $this->documentType);
         return view('water_connection.index',
                 [
-                    'areas' => $documentListInfo['all'],
+                    'elements' => $documentListInfo['all'],
                     "state"=>$documentListInfo['stages'],
-                    'document_type' => $documentType
+                    'document_type' => $this->documentType
                 ]);
     }
 
     public function edit($id) {
         $item = $this->model::findOrFail($id);
-        $documentType = DocumentType::where('model', $this->model)->first();
-        return view('water_connection.edit', ['item' => $item, 'document_type' => $documentType]);
+        return view('water_connection.edit', ['item' => $item, 'document_type' => $this->documentType]);
     }
 
     public function create() {
-        $documentType = DocumentType::where('model', $this->model)->first();
-        return view('water_connection.create', ['document_type' => $documentType]);
+        return view('water_connection.create', ['document_type' => $this->documentType]);
     }
+
+
+    public function delete(DocumentTypeService $documentTypeService, $id) {
+        $documentTypeService->deleteDocument($this->model, $id);
+        return redirect($this->documentType->index_url)->with('deleted', "Запись была успешно удалена");
+    }
+
+    public function save(DocumentTypeService $documentTypeService, Request $request) {
+
+        $att_delete = $request->input('att_delete');
+        if ($att_delete)
+        {
+            $at = Attachment::where('id', $att_delete)->first();
+            $at->delete();
+            return redirect()->back()->with('form_message', "Вложение удалено");
+        }
+
+        switch ($request->input('action')) {
+
+            case 'create_draft':
+                $data = $documentTypeService->createDraft($this->model, $request->all());
+                return redirect($this->documentType->index_url.'/edit/'.$data->id)->with('form_message', "Черновик сохранен");
+            break;
+
+            case 'save_draft':
+                $data = $documentTypeService->saveDraft($this->model, $this->draftRequest, $request, $request->all(), $request->input('id'));
+                return redirect()->back()->with('form_message', "Черновик сохранен");
+            break;
+
+            case 'check_draft':
+                $data = $documentTypeService->checkDraft($this->model, $this->signRequest, $request->all(), $request->input('id'));
+                return redirect($this->documentType->index_url.'/edit/'.$data->id)->with('form_message', "Черновик проверен");
+            break;
+
+        }
+
+
+    }
+
 }

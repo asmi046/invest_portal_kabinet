@@ -21,18 +21,19 @@ return new class extends Migration
             $table->string('document_type')->comment("Тип документа");
             $table->boolean('validated')->default(false)->comment("Проверен");
             $table->boolean('editable')->default(true)->comment("Можно редактировать");
+            $table->string('state')->comment("Статус документа");
 
 
             // Организация/заявитель (основные сведения)
-            $table->string('supplier_org', 256);
-            $table->string('applicant_name', 256);
-            $table->string('address', 256);
+            $table->string('supplier_org', 256)->nullable();
+            $table->string('applicant_name', 256)->nullable();
+            $table->string('address', 256)->nullable();
             $table->string('phone', 20)->nullable();
             $table->string('email', 100)->nullable();
 
             // Заявление
-            $table->string('object_name', 256);
-            $table->string('object_address', 256);
+            $table->string('object_name', 256)->nullable();
+            $table->string('object_address', 256)->nullable();
             $table->text('object_description')->nullable();
 
             $table->float('payload_all_snab', 8, 2)->default(0)->comment("Общая нагрузка на водоснабжение, м3/сут");

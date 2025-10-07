@@ -3,9 +3,9 @@
                 <div class="form-control-panel">
                     <button type="submit" class="btn" title="Сохранить черновик" name="action" value="create_draft"> <span class="save-icon"></span>Сохранить черновик</button>
                 </div>
-            @else
+@else
 
-                    @if (!in_array($item->state, config('documents')[$doct]['statuses_noedit']))
+                    @if (isset($item) && $item->editable)
                         <div class="form-control-panel">
                             @if ($item->editable)
                                 <button type="submit" class="btn" title="Сохранить черновик" name="action" value="save_draft"> <span class="save-icon"></span>Сохранить черновик</button>
