@@ -21,74 +21,49 @@ return new class extends Migration
             $table->string('document_type')->comment("Тип документа");
             $table->boolean('validated')->default(false)->comment("Проверен");
             $table->boolean('editable')->default(true)->comment("Можно редактировать");
+            $table->string('state')->comment("Статус документа");
 
 
             // 1.1 Сведения о физическом лице
-            $table->string('last_name', 256);
-            $table->string('first_name', 256);
-            $table->string('middle_name', 256)->nullable();
-            $table->string('passport_name', 256);
-            $table->string('passport_series', 10);
-            $table->string('passport_number', 10);
-            $table->string('passport_issued_by', 256);
-            $table->date('passport_issued_at')->nullable();
-            $table->string('passport_code', 10)->nullable();
-            $table->string('ogrnip', 13)->nullable();
-            $table->string('inn', 12)->nullable();
+            $table->string('applicant_name', 256)->nullable()->comment('Заявитель');
+            $table->string('applicant_passport_data', 556)->nullable()->comment('Паспортные данные');
+            $table->string('applicant_ogrn', 256)->nullable()->comment('ОГРН / ОГРНИП');
+            $table->string('applicant_inn', 256)->nullable()->comment('ИНН');
 
             // 1.2 Сведения о юр. лице
-            $table->string('company_name', 256)->nullable();
-            $table->string('ogrn', 13)->nullable();
-            $table->string('inn_company', 12)->nullable();
-            $table->string('director_last_name', 256)->nullable();
-            $table->string('director_first_name', 256)->nullable();
-            $table->string('director_middle_name', 256)->nullable();
-            $table->string('director_passport_name', 256)->nullable();
-            $table->string('director_passport_series', 10)->nullable();
-            $table->string('director_passport_number', 10)->nullable();
-            $table->string('director_passport_issued_by', 256)->nullable();
-            $table->date('director_passport_issued_at')->nullable();
-            $table->string('director_passport_code', 10)->nullable();
+            $table->string('applicant_company_name', 256)->nullable()->comment('Заявитель (ЮЛ)');
+            $table->string('applicant_company_passport_data', 556)->nullable()->comment('Паспортные данные (ЮЛ)');
+            $table->string('applicant_company_ogrn', 256)->nullable()->comment('ОГРН / ОГРНИП (ЮЛ)');
+            $table->string('applicant_company_inn', 256)->nullable()->comment('ИНН (ЮЛ)');
 
             // 1.3 Сведения о представителе
-            $table->string('rep_last_name', 256)->nullable();
-            $table->string('rep_first_name', 256)->nullable();
-            $table->string('rep_middle_name', 256)->nullable();
-            $table->string('rep_passport_name', 256)->nullable();
-            $table->string('rep_passport_series', 10)->nullable();
-            $table->string('rep_passport_number', 10)->nullable();
-            $table->string('rep_passport_issued_by', 256)->nullable();
-            $table->date('rep_passport_issued_at')->nullable();
-            $table->string('rep_passport_code', 10)->nullable();
-            $table->string('rep_doc_name', 256)->nullable();
-            $table->string('rep_doc_number', 256)->nullable();
-            $table->string('rep_doc_issued_by', 256)->nullable();
-            $table->date('rep_doc_issued_at')->nullable();
+            $table->string('applicant_company_name', 256)->nullable()->comment('Заявитель (Представитель)');
+            $table->string('applicant_company_passport_data', 556)->nullable()->comment('Паспортные данные (Представитель)');
+            $table->string('applicant_company_ogrn', 256)->nullable()->comment('ОГРН / ОГРНИП (Представитель)');
+            $table->string('applicant_company_inn', 256)->nullable()->comment('ИНН (Представитель)');
+            $table->date('rep_doc_issued_at')->nullable()->comment('Доверенность');
 
             // Сведения об объекте
-            $table->string('object_name', 256);
-            $table->string('object_cadastral_number', 20)->nullable();
+            $table->text('object_name')->nullable()->comment('Наименование объекта');
+            $table->string('object_cadastral_number', 20)->nullable()->comment('Кадастровый номер объекта');
 
             // Сведения о земельном участке
-            $table->string('land_cadastral_number', 256);
-            $table->string('land_docs', 256)->nullable();
+            $table->string('land_cadastral_number', 256)->comment('Кадастровый номер земельного участка');
+            $table->string('land_docs', 256)->nullable()->comment('Реквизиты утвержденного проекта межевания территории');
 
-            // Документы
-            $table->binary('document')->nullable();
-            $table->string('document_number', 256)->nullable();
-            $table->date('document_date')->nullable();
-            $table->binary('attachment')->nullable();
+            // строительство объекта на основании документов
+            $table->string('doc_name', 556)->nullable();
+            $table->string('doc_number', 256)->nullable();
+            $table->date('doc_date')->nullable();
 
             // Контакты
-            $table->string('phone', 20);
-            $table->string('email', 256)->nullable();
+            $table->string('phone', 20)->nullable();
+            $table->string('email', 100)->nullable();
 
-            // Результат рассмотрения
-            $table->string('result', 256)->nullable();
-
-            // Подпись
-            $table->string('signature', 100);
-            $table->string('initials', 60);
+            // Результат предоставления услуги
+            $table->string('send_result_type', 550)->default('Направить на ГосУслуги');
+            $table->string('send_mfc_adress', 550)->nullable()->comment('Предоставление в коммитете или МФЦ');
+            $table->string('send_post_adress', 550)->nullable()->comment('Отправить на почтовый адрес');
 
             $table->timestamps();
         });

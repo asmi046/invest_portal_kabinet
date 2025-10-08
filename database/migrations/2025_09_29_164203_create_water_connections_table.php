@@ -26,7 +26,7 @@ return new class extends Migration
 
             // Организация/заявитель (основные сведения)
             $table->string('supplier_org', 256)->nullable();
-            $table->string('applicant_name', 256)->nullable();
+            $table->string('applicant_name', 256)->nullable()->comment('Заявитель');
             $table->string('address', 256)->nullable();
             $table->string('phone', 20)->nullable();
             $table->string('email', 100)->nullable();

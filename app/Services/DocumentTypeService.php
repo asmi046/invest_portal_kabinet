@@ -72,21 +72,19 @@ class DocumentTypeService
         );
     }
 
-    public function checkDraft(string $model, string $request_model, array $data, int $id)
+    public function checkDraft(string $model, string $request_model, Request $request, array $data, int $id)
     {
         $d_request = new $request_model();
         $data = $request->validate($d_request->rules(), $d_request->messages());
 
         $data["user_id"] = auth()->user()->id;
         $data["state"] = "Черновик";
-        $data["validated"] = false;
+        $data["validated"] = true;
 
 
         $item = $model::where('id', $id)->first();
         if(!$item) abort('404');
 
-        $item->update([
-            'validated' => true,
-        ]);
+        $item->update($data);
     }
 }

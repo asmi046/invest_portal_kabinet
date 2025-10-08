@@ -57,5 +57,6 @@
         <x-form.input name="payload_fire_ot" label="Нагрузка на пожарные нужды на водоотведение, л/сек" :required="false" value="{{ $item->payload_fire_ot ?? old('payload_fire_ot') ?? '0' }}" />
     </div>
 
-    <x-form.main-control :format="$format" :item="$item ?? null" doct="area_get" deleteroat="area_get_delete" ></x-form.main-control>
+    <x-form.main-control :format="$format" :item="$item ?? null" :document-type="$documentType" ></x-form.main-control>
 </form>
+

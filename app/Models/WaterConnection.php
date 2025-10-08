@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\CreateDocServices;
 use Illuminate\Database\Eloquent\Model;
 
 class WaterConnection extends Model
@@ -37,6 +38,10 @@ class WaterConnection extends Model
 
     ];
 
+    protected $with = [
+        'attachment',
+        'documentType',
+    ];
 
     public function print() {
         $document = new CreateDocServices();
@@ -46,12 +51,12 @@ class WaterConnection extends Model
         $options['month'] = get_month(date('m'));
         $options['year'] = date('Y');
 
-        $fn = $document->create_tmp_document(
-            public_path('documents_template/area_get.docx'),
+        $fn = $document->create_tmp_document_html(
+            public_path('documents_template/WaterConnection.html'),
             $options,
             $this->id,
-            'area_get',
-            "Заявление на предоставление участка: " . $this->object_name
+            'WaterConnection',
+            "Заявление на техническое присоединение к объектам водоснабжения и водоотведения: " . $this->object_name
         );
 
         return $fn["url"];
@@ -70,7 +75,7 @@ class WaterConnection extends Model
 
     public function documentType()
     {
-        return $this->belongsTo(DocumentType::class);
+        return $this->belongsTo(DocumentType::class, 'document_type', 'id');
     }
 
     public function attachment() {

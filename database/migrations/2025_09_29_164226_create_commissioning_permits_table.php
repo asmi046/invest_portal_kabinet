@@ -21,70 +21,48 @@ return new class extends Migration
             $table->string('document_type')->comment("Тип документа");
             $table->boolean('validated')->default(false)->comment("Проверен");
             $table->boolean('editable')->default(true)->comment("Можно редактировать");
+            $table->string('state')->comment("Статус документа");
 
-            // Сведения о застройщике
-            $table->date('form_date')->nullable();
-            $table->text('authority_name')->nullable();
+            $table->text('supplier_org')->nullable()->comment('Наименование уполномоченного на выдачу разрешений на ввод объекта в эксплуатацию федерального органа исполнительной власти');
 
-            // Физическое лицо
-            $table->string('last_name', 256)->nullable();
-            $table->string('first_name', 256)->nullable();
-            $table->string('middle_name', 256)->nullable();
-            $table->string('passport_name', 256)->nullable();
-            $table->string('passport_series', 10)->nullable();
-            $table->string('passport_number', 10)->nullable();
-            $table->string('passport_issued_by', 256)->nullable();
-            $table->date('passport_issued_at')->nullable();
-            $table->string('passport_code', 10)->nullable();
-
-            // Индивидуальный предприниматель
-            $table->string('ogrnip', 13)->nullable();
-
-            // Юридическое лицо
-            $table->string('company_name', 256)->nullable();
-            $table->string('ogrn', 13)->nullable();
-            $table->string('inn_company', 12)->nullable();
+            // Сведения о заявителе
+            $table->string('applicant_type', 256)->default('Физическое лицо')->comment('Тип заявителя');
+            $table->string('applicant_name', 256)->nullable()->comment('Наименование заявителя');
+            $table->string('applicant_ogrn', 256)->nullable()->comment('ОГРН / ОГРНИП');
+            $table->string('applicant_inn', 256)->nullable()->comment('ИНН');
+            $table->string('applicant_passport_data', 556)->nullable()->comment('Паспортные данные');
 
             // Сведения об объекте
-            $table->text('object_name')->nullable();
-            $table->text('object_address')->nullable();
+            $table->text('object_name')->nullable()->comment('Наименование объекта капитального строительства (этапа)в соответствии с проектной документацией');
+            $table->text('object_address')->nullable()->comment('Адрес (местоположение) объекта');
 
             // Земельный участок
-            $table->string('land_cadastral_number', 256)->nullable();
+            $table->string('land_cadastral_number', 256)->nullable()->comment('Кадастровый номер земельного участка');
 
             // Разрешение на строительство
-            $table->string('permit_index', 256)->nullable();
             $table->string('permit_authority', 256)->nullable();
             $table->string('permit_number', 256)->nullable();
             $table->date('permit_date')->nullable();
 
             // Ранее выданные разрешения
-            $table->string('previous_permit_index', 256)->nullable();
             $table->string('previous_permit_authority', 256)->nullable();
             $table->string('previous_permit_number', 256)->nullable();
             $table->date('previous_permit_date')->nullable();
 
             // Ввод объекта на основании документов
-            $table->string('doc_index', 256)->nullable();
-            $table->string('doc_name', 256)->nullable();
+            $table->string('doc_name', 556)->nullable();
             $table->string('doc_number', 256)->nullable();
             $table->date('doc_date')->nullable();
-            $table->binary('doc_attachment')->nullable();
 
             // Контакты
             $table->string('phone', 20)->nullable();
             $table->string('email', 100)->nullable();
 
             // Результат предоставления услуги
-            $table->string('result_portal', 100)->nullable();
-            $table->string('result_mfc', 100)->nullable();
-            $table->string('result_mail', 256)->nullable();
+            $table->string('send_result_type', 550)->default('Направить на ГосУслуги');
+            $table->string('send_mfc_adress', 550)->nullable()->comment('Предоставление в коммитете или МФЦ');
+            $table->string('send_post_adress', 550)->nullable()->comment('Отправить на почтовый адрес');
 
-            // Подпись
-            $table->string('sign_last_name', 256)->nullable();
-            $table->string('sign_first_name', 256)->nullable();
-            $table->string('sign_middle_name', 256)->nullable();
-            $table->string('signature', 100)->nullable();
 
             $table->timestamps();
         });

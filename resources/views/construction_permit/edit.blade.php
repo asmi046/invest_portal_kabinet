@@ -21,6 +21,6 @@
 
         <x-organization-report :item="$item"></x-organization-report>
 
-        <x-document-forms.construction-permit format="edit" action="#"></x-document-forms.construction-permit>
+        <x-document-forms.commissioning-permit format="edit" :document-type="$document_type" :item="$item"></x-document-forms.commissioning-permit>
     </div>
 @endsection

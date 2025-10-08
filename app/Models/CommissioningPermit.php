@@ -2,37 +2,133 @@
 
 namespace App\Models;
 
+use App\Services\CreateDocServices;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CommissioningPermit extends Model
 {
     protected $fillable = [
-
+        // Системные поля
         "user_id",
         "document_type",
         "validated",
         "editable",
+        "state",
 
-        'form_date','authority_name',
-        'last_name','first_name','middle_name',
-        'passport_name','passport_series','passport_number',
-        'passport_issued_by','passport_issued_at','passport_code',
-        'ogrnip','company_name','ogrn','inn_company',
-        'object_name','object_address','land_cadastral_number',
-        'permit_index','permit_authority','permit_number','permit_date',
-        'previous_permit_index','previous_permit_authority',
-        'previous_permit_number','previous_permit_date',
-        'doc_index','doc_name','doc_number','doc_date','doc_attachment',
-        'phone','email',
-        'result_portal','result_mfc','result_mail',
-        'sign_last_name','sign_first_name','sign_middle_name','signature',
+        // Уполномоченный орган
+        'supplier_org',
+
+        // Сведения о заявителе
+        'applicant_type',
+        'applicant_name',
+        'applicant_ogrn',
+        'applicant_inn',
+        'applicant_passport_data',
+
+        // Сведения об объекте
+        'object_name',
+        'object_address',
+
+        // Земельный участок
+        'land_cadastral_number',
+
+        // Разрешение на строительство
+        'permit_authority',
+        'permit_number',
+        'permit_date',
+
+        // Ранее выданные разрешения
+        'previous_permit_authority',
+        'previous_permit_number',
+        'previous_permit_date',
+
+        // Ввод объекта на основании документов
+        'doc_name',
+        'doc_number',
+        'doc_date',
+
+        // Контакты
+        'phone',
+        'email',
+
+        // Результат предоставления услуги
+        'send_result_type',
+        'send_mfc_adress',
+        'send_post_adress',
     ];
 
     protected $casts = [
-        'form_date' => 'date',
-        'passport_issued_at' => 'date',
-        'permit_date' => 'date',
-        'previous_permit_date' => 'date',
-        'doc_date' => 'date',
+        'validated' => 'boolean',
+        'editable' => 'boolean',
     ];
+
+    protected $with = [
+        'attachment',
+        'documentType',
+    ];
+
+    public function print() {
+        $document = new CreateDocServices();
+        $options = $this->getOriginal();
+
+        $options['dey'] = date('d');
+        $options['month'] = get_month(date('m'));
+        $options['year'] = date('Y');
+
+        $fn = $document->create_tmp_document_html(
+            public_path('documents_template/CommissioningPermit.html'),
+            $options,
+            $this->id,
+            'CommissioningPermit',
+            "Заявление на техническое присоединение к объектам водоснабжения и водоотведения: " . $this->object_name
+        );
+
+        return $fn["url"];
+    }
+
+    protected function permit_date(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => ($value)?date("d.m.Y", strtotime($value)):null,
+            set: fn ($value) => ($value)?date("Y-m-d", strtotime($value)):null,
+        );
+    }
+
+    protected function previous_permit_date(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => ($value)?date("d.m.Y", strtotime($value)):null,
+            set: fn ($value) => ($value)?date("Y-m-d", strtotime($value)):null,
+        );
+    }
+
+    protected function doc_date(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => ($value)?date("d.m.Y", strtotime($value)):null,
+            set: fn ($value) => ($value)?date("Y-m-d", strtotime($value)):null,
+        );
+    }
+
+    public function goskeyRegistries()
+    {
+        return $this->morphMany(GoskeyRegistry::class, 'registryable');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, "id", "user_id");
+    }
+
+    public function documentType()
+    {
+        return $this->belongsTo(DocumentType::class, 'document_type', 'id');
+    }
+
+    public function attachment() {
+        return $this->hasMany(Attachment::class, 'document_id', 'id')
+        ->where('inner_document_type', self::class);
+    }
 }

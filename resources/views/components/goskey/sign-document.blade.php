@@ -11,7 +11,7 @@
             <div id="goskey_app" class="goskey_app">
                 @if ($signActive && !$signProcess)
                     <goskey-sign-panel
-                        :model="'{{ addslashes($document->document_type) }}'"
+                        :model="'{{ addslashes($document->documentType->model) }}'"
                         :document-id="{{ $document->id }}"
                         :user='@json(Auth::user())'
                     />

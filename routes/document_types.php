@@ -47,12 +47,16 @@ use App\Http\Controllers\LandAuctionApplicationController;
         Route::get('/', [WaterConnectionController::class, 'index'])->name('water_connection.index');
         Route::get('/edit/{id}', [WaterConnectionController::class, 'edit'])->name('water_connection.edit');
         Route::get('/create', [WaterConnectionController::class, 'create'])->name('water_connection.create');
-        Route::post('/save', [WaterConnectionController::class, "save"])->name('area_get_save');
-        Route::get('/delete/{id}', [WaterConnectionController::class, "delete"])->name('area_get_delete');
+        Route::post('/save', [WaterConnectionController::class, "save"])->name('water_connection.save');
+        Route::get('/delete/{id}', [WaterConnectionController::class, "delete"])->name('water_connection.delete');
+        Route::get('/print/{id}', [WaterConnectionController::class, "print"])->name('water_connection.print');
     });
 
     Route::middleware('auth')->prefix('commissioning_permit')->group(function () {
         Route::get('/', [CommissioningPermitController::class, 'index'])->name('commissioning_permit.index');
         Route::get('/edit/{id}', [CommissioningPermitController::class, 'edit'])->name('commissioning_permit.edit');
         Route::get('/create', [CommissioningPermitController::class, 'create'])->name('commissioning_permit.create');
+        Route::post('/save', [CommissioningPermitController::class, "save"])->name('commissioning_permit.save');
+        Route::get('/delete/{id}', [CommissioningPermitController::class, "delete"])->name('commissioning_permit.delete');
+        Route::get('/print/{id}', [CommissioningPermitController::class, "print"])->name('commissioning_permit.print');
     });

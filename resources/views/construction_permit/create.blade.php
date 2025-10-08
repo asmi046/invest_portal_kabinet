@@ -21,7 +21,8 @@
             <h1>{{ $title }}</h1>
             <x-goskey.sign-document></x-goskey.sign-document>
 
-            <x-document-forms.construction-permit format="create" action="#"></x-document-forms.construction-permit>
+            <x-document-forms.construction-permit format="create" :document-type="$document_type"></x-document-forms.construction-permit>
+
         </div>
     </section>
 

@@ -58,6 +58,8 @@ const signFl = () => {
     message.value = 'Подписание как физлицо:';
     isStart.value = false;
     showLoader.value = true;
+    console.log(props.model, props.documentId);
+    // return;
     axios.get('/goskey/sign_fl', {
         params: {
             model: props.model,
