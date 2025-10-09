@@ -23,7 +23,7 @@ return new class extends Migration
             $table->boolean('editable')->default(true)->comment("Можно редактировать");
             $table->string('state')->comment("Статус документа");
 
-            $table->text('supplier_org')->nullable()->comment('Наименование уполномоченного на выдачу разрешений на ввод объекта в эксплуатацию федерального органа исполнительной власти');
+            $table->string('supplier_org', 500)->nullable()->comment('Наименование уполномоченного на выдачу разрешений на ввод объекта в эксплуатацию федерального органа исполнительной власти');
 
             // Сведения о заявителе
             $table->string('applicant_type', 256)->default('Физическое лицо')->comment('Тип заявителя');

@@ -17,30 +17,45 @@ use App\Http\Controllers\LandAuctionApplicationController;
         Route::get('/', [LandLeaseApplicationController::class, 'index'])->name('lend_lease.index');
         Route::get('/edit/{id}', [LandLeaseApplicationController::class, 'edit'])->name('lend_lease.edit');
         Route::get('/create', [LandLeaseApplicationController::class, 'create'])->name('lend_lease.create');
+        Route::post('/save', [LandLeaseApplicationController::class, "save"])->name('lend_lease.save');
+        Route::get('/delete/{id}', [LandLeaseApplicationController::class, "delete"])->name('lend_lease.delete');
+        Route::get('/print/{id}', [LandLeaseApplicationController::class, "print"])->name('lend_lease.print');
     });
 
     Route::middleware('auth')->prefix('lend_auction')->group(function () {
         Route::get('/', [LandAuctionApplicationController::class, 'index'])->name('lend_auction.index');
         Route::get('/edit/{id}', [LandAuctionApplicationController::class, 'edit'])->name('lend_auction.edit');
         Route::get('/create', [LandAuctionApplicationController::class, 'create'])->name('lend_auction.create');
+        Route::post('/save', [LandAuctionApplicationController::class, "save"])->name('lend_auction.save');
+        Route::get('/delete/{id}', [LandAuctionApplicationController::class, "delete"])->name('lend_auction.delete');
+        Route::get('/print/{id}', [LandAuctionApplicationController::class, "print"])->name('lend_auction.print');
     });
 
     Route::middleware('auth')->prefix('construction_permit')->group(function () {
         Route::get('/', [ConstructionPermitController::class, 'index'])->name('construction_permit.index');
         Route::get('/edit/{id}', [ConstructionPermitController::class, 'edit'])->name('construction_permit.edit');
         Route::get('/create', [ConstructionPermitController::class, 'create'])->name('construction_permit.create');
+        Route::post('/save', [ConstructionPermitController::class, "save"])->name('construction_permit.save');
+        Route::get('/delete/{id}', [ConstructionPermitController::class, "delete"])->name('construction_permit.delete');
+        Route::get('/print/{id}', [ConstructionPermitController::class, "print"])->name('construction_permit.print');
     });
 
     Route::middleware('auth')->prefix('gas_connection')->group(function () {
         Route::get('/', [GasConnectionController::class, 'index'])->name('gas_connection.index');
         Route::get('/edit/{id}', [GasConnectionController::class, 'edit'])->name('gas_connection.edit');
         Route::get('/create', [GasConnectionController::class, 'create'])->name('gas_connection.create');
+        Route::post('/save', [GasConnectionController::class, "save"])->name('gas_connection.save');
+        Route::get('/delete/{id}', [GasConnectionController::class, "delete"])->name('gas_connection.delete');
+        Route::get('/print/{id}', [GasConnectionController::class, "print"])->name('gas_connection.print');
     });
 
     Route::middleware('auth')->prefix('heat_connection')->group(function () {
         Route::get('/', [HeatConnectionController::class, 'index'])->name('heat_connection.index');
         Route::get('/edit/{id}', [HeatConnectionController::class, 'edit'])->name('heat_connection.edit');
         Route::get('/create', [HeatConnectionController::class, 'create'])->name('heat_connection.create');
+        Route::post('/save', [HeatConnectionController::class, "save"])->name('heat_connection.save');
+        Route::get('/delete/{id}', [HeatConnectionController::class, "delete"])->name('heat_connection.delete');
+        Route::get('/print/{id}', [HeatConnectionController::class, "print"])->name('heat_connection.print');
     });
 
     Route::middleware('auth')->prefix('water_connection')->group(function () {

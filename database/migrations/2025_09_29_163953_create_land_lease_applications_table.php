@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('land_lease_applications', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('user_id')->comment("Название проэкта")
                                         ->constrained()
                                         ->onUpdate('cascade')
@@ -21,31 +20,36 @@ return new class extends Migration
             $table->string('document_type')->comment("Тип документа");
             $table->boolean('validated')->default(false)->comment("Проверен");
             $table->boolean('editable')->default(true)->comment("Можно редактировать");
+            $table->string('state')->comment("Статус документа");
 
-            $table->string('company_name', 256);
-            $table->string('ogrn', 13);
-            $table->string('inn', 12);
-            $table->string('address', 256);
-            $table->string('position', 256);
-            $table->string('representative_name', 256);
-            $table->string('document_name', 256);
-            $table->string('document_details', 256);
-            $table->string('postal_address', 256);
-            $table->string('phone', 20);
-            $table->string('email', 256)->nullable();
-            $table->string('cadastral_number', 25);
-            $table->decimal('area', 10, 2);
-            $table->date('lease_term')->nullable();
-            $table->string('landmarks', 256);
-            $table->string('purpose', 256);
-            $table->string('legal_basis', 256);
-            $table->string('preliminary_decision', 256)->nullable();
-            $table->string('planning_decision', 256)->nullable();
-            $table->string('withdrawal_decision', 256)->nullable();
-            $table->text('consent_confirmation')->nullable();
-            $table->string('signature', 100);
-            $table->string('initials', 60);
-            $table->date('application_date')->nullable();
+
+            $table->string('supplier_org')->nullable()->comment('Организация');
+
+            $table->string('applicant_name', 256)->nullable()->comment('Заявитель');
+            $table->string('applicant_ogrn', 256)->nullable()->comment('ОГРН / ОГРНИП');
+            $table->string('applicant_inn', 256)->nullable()->comment('ИНН');
+            $table->string('applicant_address', 256)->nullable()->comment('Адрес заявителя');
+
+            $table->string('person', 256)->comment('ФИО представителя');
+            $table->string('person_dover', 256)->comment('Наименование и реквизиты документа, подтверждающего полномочия представителя заявителя');
+
+            // Контакты
+            $table->string('phone', 20)->nullable();
+            $table->string('email', 100)->nullable();
+            $table->string('post_address', 500)->nullable();
+
+            $table->string('land_cadastral_number', 256)->nullable()->comment('Кадастровый номер земельного участка');
+            $table->decimal('area', 10, 2)->comment('Площадь земельного участка (кв.м)');
+            $table->string('lease_term')->nullable()->comment('Срок аренды земельного участка');
+
+            $table->string('landmarks', 556)->nullable()->comment('Ориентиры земельного участка');
+            $table->text('purpose')->nullable()->comment('Цель использования земельного участка');
+
+            $table->string('basis', 256)->nullable()->comment('Основание предоставления земельного участка без проведения торгов');
+            $table->string('req_dock')->nullable()->comment('Реквизиты решения о предварительном согласовании предоставления земельного участка');
+            $table->string('req_dock_plan')->nullable()->comment('Реквизиты решения об утверждении документа территориального планирования и (или) проекта планировки территории');
+            $table->string('req_dock_iz')->nullable()->comment('Реквизиты решения об изъятии земельного участка для государственных или муниципальных нужд');
+
             $table->timestamps();
         });
     }

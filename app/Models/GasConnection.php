@@ -2,53 +2,130 @@
 
 namespace App\Models;
 
+use App\Services\CreateDocServices;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class GasConnection extends Model
 {
-    protected $fillable = [
-        "user_id",
-        "document_type",
-        "validated",
-        "editable",
 
-        'full_name','short_name','last_name','first_name','middle_name',
-        'residence','postal_address','passport_name','passport_series',
-        'passport_number','passport_issued_by','passport_issued_at','passport_code',
-        'egrul_number','egrip_number','registry_date',
-        'contact_info','land_doc_date','land_doc_number','reason',
-        'object_name','object_address',
-        'need_on_land','need_design','need_equipment_installation',
-        'need_pipeline_construction','need_meter_installation',
-        'need_meter_supply','need_equipment_supply',
-        'gas_flow_total','gas_flow_new','gas_flow_existing','planned_date',
-        'connection_point','connection_planned_date',
-        'connection_flow_total','connection_flow_new','connection_flow_existing',
-        'consumption_type','previous_tech_number','previous_tech_date',
-        'additional_info','notification_method','attachments',
-        'applicant_last_name','applicant_first_name','applicant_middle_name',
-        'applicant_phone','applicant_position','applicant_signature','applicant_date',
+    protected $fillable = [
+        'user_id',
+        'document_type',
+        'validated',
+        'editable',
+        'state',
+        'applicant_name',
+        'applicant_ogrn',
+        'applicant_ogrn_data',
+        'applicant_address',
+        'applicant_passport_data',
+        'applicant_connect_variants',
+        'phone',
+        'email',
+        'land_docs',
+        'reason',
+        'object_name',
+        'object_address',
+        'need_any_works',
+        'need_design',
+        'need_equipment_installation',
+        'need_pipeline_construction',
+        'need_meter_installation',
+        'need_meter_supply',
+        'need_equipment_supply',
+        'gas_flow_total',
+        'gas_flow_new',
+        'gas_flow_existing',
+        'planned_date',
+        'connection_point',
+        'connection_planned_date',
+        'connection_flow_total',
+        'connection_flow_new',
+        'connection_flow_existing',
+        'consumption_type',
+        'previous_tech_number',
+        'previous_tech_date',
+        'additional_info',
+        'notification_method',
     ];
 
     protected $casts = [
-        'passport_issued_at' => 'date',
-        'registry_date' => 'date',
-        'land_doc_date' => 'date',
-        'planned_date' => 'date',
-        'connection_planned_date' => 'date',
-        'gas_flow_total' => 'decimal:2',
-        'gas_flow_new' => 'decimal:2',
-        'gas_flow_existing' => 'decimal:2',
-        'connection_flow_total' => 'decimal:2',
-        'connection_flow_new' => 'decimal:2',
-        'connection_flow_existing' => 'decimal:2',
-        'need_on_land' => 'boolean',
+        'validated' => 'boolean',
+        'editable' => 'boolean',
+        'need_any_works' => 'boolean',
         'need_design' => 'boolean',
         'need_equipment_installation' => 'boolean',
         'need_pipeline_construction' => 'boolean',
         'need_meter_installation' => 'boolean',
         'need_meter_supply' => 'boolean',
         'need_equipment_supply' => 'boolean',
-        'applicant_date' => 'date',
+        'gas_flow_total' => 'decimal:2',
+        'gas_flow_new' => 'decimal:2',
+        'gas_flow_existing' => 'decimal:2',
+        'connection_flow_total' => 'decimal:2',
+        'connection_flow_new' => 'decimal:2',
+        'connection_flow_existing' => 'decimal:2',
+        'connection_point' => 'integer',
     ];
+
+    protected $with = [
+        'attachment',
+        'documentType',
+    ];
+
+    public function print() {
+        $document = new CreateDocServices();
+        $options = $this->getOriginal();
+
+        $options['dey'] = date('d');
+        $options['month'] = get_month(date('m'));
+        $options['year'] = date('Y');
+
+        $fn = $document->create_tmp_document_html(
+            public_path('documents_template/GasConnection.html'),
+            $options,
+            $this->id,
+            'GasConnection',
+            "Заявление на техническое присоединение к объектам газораспределения: " . $this->object_name
+        );
+
+        return $fn["url"];
+    }
+
+    protected function plannedDate(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => ($value) ? date("d.m.Y", strtotime($value)) : null,
+            set: fn ($value) => ($value) ? date("Y-m-d", strtotime($value)) : null,
+        );
+    }
+
+    protected function connectionPlannedDate(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => ($value) ? date("d.m.Y", strtotime($value)) : null,
+            set: fn ($value) => ($value) ? date("Y-m-d", strtotime($value)) : null,
+        );
+    }
+
+    public function goskeyRegistries()
+    {
+        return $this->morphMany(GoskeyRegistry::class, 'registryable');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, "id", "user_id");
+    }
+
+    public function documentType()
+    {
+        return $this->belongsTo(DocumentType::class, 'document_type', 'id');
+    }
+
+    public function attachment() {
+        return $this->hasMany(Attachment::class, 'document_id', 'id')
+        ->where('inner_document_type', self::class);
+    }
 }

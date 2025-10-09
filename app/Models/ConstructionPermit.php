@@ -7,40 +7,89 @@ use Illuminate\Database\Eloquent\Model;
 class ConstructionPermit extends Model
 {
     protected $fillable = [
-        "user_id",
-        "document_type",
-        "validated",
-        "editable",
-
-        'last_name', 'first_name', 'middle_name',
-        'passport_name', 'passport_series', 'passport_number',
-        'passport_issued_by', 'passport_issued_at', 'passport_code',
-        'ogrnip', 'inn',
-
-        'company_name', 'ogrn', 'inn_company',
-        'director_last_name', 'director_first_name', 'director_middle_name',
-        'director_passport_name', 'director_passport_series',
-        'director_passport_number', 'director_passport_issued_by',
-        'director_passport_issued_at', 'director_passport_code',
-
-        'rep_last_name', 'rep_first_name', 'rep_middle_name',
-        'rep_passport_name', 'rep_passport_series', 'rep_passport_number',
-        'rep_passport_issued_by', 'rep_passport_issued_at', 'rep_passport_code',
-        'rep_doc_name', 'rep_doc_number', 'rep_doc_issued_by', 'rep_doc_issued_at',
-
-        'object_name', 'object_cadastral_number',
-        'land_cadastral_number', 'land_docs',
-
-        'document', 'document_number', 'document_date', 'attachment',
-        'phone', 'email', 'result',
-        'signature', 'initials',
+        'user_id',
+        'document_type',
+        'validated',
+        'editable',
+        'state',
+        'supplier_org',
+        'applicant_name',
+        'applicant_passport_data',
+        'applicant_ogrn',
+        'applicant_inn',
+        'applicant_company_name',
+        'applicant_company_passport_data',
+        'applicant_company_ogrn',
+        'applicant_company_inn',
+        'rep_doc_issued_at',
+        'object_name',
+        'object_cadastral_number',
+        'land_cadastral_number',
+        'land_docs',
+        'doc_name',
+        'doc_number',
+        'doc_date',
+        'phone',
+        'email',
+        'send_result_type',
+        'send_mfc_adress',
     ];
 
     protected $casts = [
-        'passport_issued_at' => 'date',
-        'director_passport_issued_at' => 'date',
-        'rep_passport_issued_at' => 'date',
-        'rep_doc_issued_at' => 'date',
-        'document_date' => 'date',
+        'validated' => 'boolean',
+        'editable' => 'boolean',
     ];
+
+
+    protected $with = [
+        'attachment',
+        'documentType',
+    ];
+
+    public function print() {
+        $document = new CreateDocServices();
+        $options = $this->getOriginal();
+
+        $options['dey'] = date('d');
+        $options['month'] = get_month(date('m'));
+        $options['year'] = date('Y');
+
+        $fn = $document->create_tmp_document_html(
+            public_path('documents_template/ConstructionPermit.html'),
+            $options,
+            $this->id,
+            'ConstructionPermit',
+            "Разрешение на строительство в рамках реализации инвестиционного проекта: " . $this->object_name
+        );
+
+        return $fn["url"];
+    }
+
+    protected function docDate(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => ($value) ? date("d.m.Y", strtotime($value)) : null,
+            set: fn ($value) => ($value) ? date("Y-m-d", strtotime($value)) : null,
+        );
+    }
+
+    public function goskeyRegistries()
+    {
+        return $this->morphMany(GoskeyRegistry::class, 'registryable');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, "id", "user_id");
+    }
+
+    public function documentType()
+    {
+        return $this->belongsTo(DocumentType::class, 'document_type', 'id');
+    }
+
+    public function attachment() {
+        return $this->hasMany(Attachment::class, 'document_id', 'id')
+        ->where('inner_document_type', self::class);
+    }
 }

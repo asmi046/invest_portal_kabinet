@@ -20,26 +20,28 @@ return new class extends Migration
             $table->string('document_type')->comment("Тип документа");
             $table->boolean('validated')->default(false)->comment("Проверен");
             $table->boolean('editable')->default(true)->comment("Можно редактировать");
+            $table->string('state')->comment("Статус документа");
 
-            $table->string('company_name', 256);
-            $table->string('ogrn', 13);
-            $table->string('inn', 12);
-            $table->string('address', 256);
-            $table->string('position', 256);
-            $table->string('representative_name', 256);
-            $table->string('document_name', 256);
-            $table->string('document_details', 256);
-            $table->string('postal_address', 256);
-            $table->string('phone', 20);
-            $table->string('email', 256)->nullable();
-            $table->string('auction_cadastral_number', 25);
-            $table->string('landmarks', 256);
-            $table->decimal('area', 10, 2);
-            $table->string('purpose', 256);
-            $table->text('consent_confirmation')->nullable();
-            $table->string('signature', 100);
-            $table->string('initials', 60);
-            $table->date('application_date')->nullable();
+
+            $table->string('supplier_org')->nullable()->comment('Организация');
+
+            $table->string('applicant_name', 256)->nullable()->comment('Заявитель');
+            $table->string('applicant_ogrn', 256)->nullable()->comment('ОГРН / ОГРНИП');
+            $table->string('applicant_inn', 256)->nullable()->comment('ИНН');
+            $table->string('applicant_address', 256)->nullable()->comment('Адрес заявителя');
+
+            $table->string('person', 256)->comment('ФИО представителя');
+            $table->string('person_dover', 256)->comment('Наименование и реквизиты документа, подтверждающего полномочия представителя заявителя');
+
+            // Контакты
+            $table->string('phone', 20)->nullable();
+            $table->string('email', 100)->nullable();
+            $table->string('post_address', 500)->nullable();
+
+            $table->string('land_cadastral_number', 256)->nullable()->comment('Кадастровый номер земельного участка');
+            $table->string('landmarks', 556)->nullable()->comment('Ориентиры земельного участка');
+            $table->decimal('area', 10, 2)->comment('Площадь земельного участка (кв.м)');
+            $table->text('purpose')->nullable()->comment('Цель использования земельного участка');
             $table->timestamps();
         });
     }

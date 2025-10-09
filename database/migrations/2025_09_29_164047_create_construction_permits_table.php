@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('state')->comment("Статус документа");
 
 
+            $table->string('supplier_org')->nullable()->comment('Организация');
+
             // 1.1 Сведения о физическом лице
             $table->string('applicant_name', 256)->nullable()->comment('Заявитель');
             $table->string('applicant_passport_data', 556)->nullable()->comment('Паспортные данные');
@@ -37,11 +39,11 @@ return new class extends Migration
             $table->string('applicant_company_inn', 256)->nullable()->comment('ИНН (ЮЛ)');
 
             // 1.3 Сведения о представителе
-            $table->string('applicant_company_name', 256)->nullable()->comment('Заявитель (Представитель)');
-            $table->string('applicant_company_passport_data', 556)->nullable()->comment('Паспортные данные (Представитель)');
-            $table->string('applicant_company_ogrn', 256)->nullable()->comment('ОГРН / ОГРНИП (Представитель)');
-            $table->string('applicant_company_inn', 256)->nullable()->comment('ИНН (Представитель)');
-            $table->date('rep_doc_issued_at')->nullable()->comment('Доверенность');
+            $table->string('applicant_predst_name', 256)->nullable()->comment('Заявитель (Представитель)');
+            $table->string('applicant_predst_passport_data', 556)->nullable()->comment('Паспортные данные (Представитель)');
+            $table->string('applicant_predst_ogrn', 256)->nullable()->comment('ОГРН / ОГРНИП (Представитель)');
+            $table->string('applicant_predst_inn', 256)->nullable()->comment('ИНН (Представитель)');
+            $table->string('rep_doc_issued_at')->nullable()->comment('Доверенность');
 
             // Сведения об объекте
             $table->text('object_name')->nullable()->comment('Наименование объекта');
@@ -63,7 +65,6 @@ return new class extends Migration
             // Результат предоставления услуги
             $table->string('send_result_type', 550)->default('Направить на ГосУслуги');
             $table->string('send_mfc_adress', 550)->nullable()->comment('Предоставление в коммитете или МФЦ');
-            $table->string('send_post_adress', 550)->nullable()->comment('Отправить на почтовый адрес');
 
             $table->timestamps();
         });
