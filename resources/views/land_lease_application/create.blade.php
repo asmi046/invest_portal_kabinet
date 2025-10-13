@@ -21,7 +21,7 @@
             <h1>{{ $title }}</h1>
             <x-goskey.sign-document></x-goskey.sign-document>
 
-            <x-document-forms.land-lease-application format="create" action="#"></x-document-forms.land-lease-application>
+             <x-document-forms.land-lease-application format="create" :document-type="$document_type"></x-document-forms.land-lease-application>
         </div>
     </section>
 

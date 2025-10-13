@@ -18,23 +18,23 @@ use PhpOffice\PhpWord\SimpleType\TblWidth;
 
 class CreateDocServices {
 
-    protected function setupDomPDF() {
-        $rendererName = Settings::PDF_RENDERER_DOMPDF;
-        $rendererLibraryPath = realpath('../vendor/dompdf/dompdf');
-        Settings::setPdfRenderer($rendererName, $rendererLibraryPath);
+    // protected function setupDomPDF() {
+    //     $rendererName = Settings::PDF_RENDERER_DOMPDF;
+    //     $rendererLibraryPath = realpath('../vendor/dompdf/dompdf');
+    //     Settings::setPdfRenderer($rendererName, $rendererLibraryPath);
 
-        // Настройка кодировки и шрифтов для русского текста
-        $options = new Options();
-        $options->set('defaultFont', 'DejaVu Sans');
-        $options->set('isRemoteEnabled', true);
-        $options->set('defaultMediaType', 'screen');
-        $options->set('isFontSubsettingEnabled', true);
-        $options->set('isPhpEnabled', true);
-        $options->set('isHtml5ParserEnabled', true);
+    //     // Настройка кодировки и шрифтов для русского текста
+    //     $options = new Options();
+    //     $options->set('defaultFont', 'DejaVu Sans');
+    //     $options->set('isRemoteEnabled', true);
+    //     $options->set('defaultMediaType', 'screen');
+    //     $options->set('isFontSubsettingEnabled', true);
+    //     $options->set('isPhpEnabled', true);
+    //     $options->set('isHtml5ParserEnabled', true);
 
-        // Устанавливаем настройки для PhpWord
-        Settings::setPdfRendererOptions($options);
-    }
+    //     // Устанавливаем настройки для PhpWord
+    //     Settings::setPdfRendererOptions($options);
+    // }
 
     protected function get_etaps_table($values) {
         $table = new Table(['unit' => TblWidth::TWIP, 'borderSize' => 1]);

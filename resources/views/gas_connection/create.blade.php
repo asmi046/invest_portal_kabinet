@@ -21,7 +21,7 @@
             <h1>{{ $title }}</h1>
             <x-goskey.sign-document></x-goskey.sign-document>
 
-            <x-document-forms.gas_connection format="create" action="#"></x-document-forms.gas_connection>
+            <x-document-forms.gas-connection format="create" :document-type="$document_type"></x-document-forms.gas-connection>
 
         </div>
     </section>

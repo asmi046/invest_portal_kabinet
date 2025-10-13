@@ -17,6 +17,7 @@
     <input type="hidden" name="verified" value="{{ $item->verified ?? false }}">
     <input type="hidden" name="document_type" value="{{ $documentType->id ?? 1 }}">
 
+    {{-- Начало формы --}}
     <h3>Организация осуществляющая подключение</h3>
 
 
@@ -56,6 +57,7 @@
         <x-form.input name="payload_fire_snab" label="Нагрузка на пожарные нужды на водоснабжение, л/сек" :required="false" value="{{ $item->payload_fire_snab ?? old('payload_fire_snab') ?? '0' }}" />
         <x-form.input name="payload_fire_ot" label="Нагрузка на пожарные нужды на водоотведение, л/сек" :required="false" value="{{ $item->payload_fire_ot ?? old('payload_fire_ot') ?? '0' }}" />
     </div>
+    {{-- Конец формы --}}
 
     <x-form.main-control :format="$format" :item="$item ?? null" :document-type="$documentType" ></x-form.main-control>
 </form>

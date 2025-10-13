@@ -21,6 +21,6 @@
 
         <x-organization-report :item="$item"></x-organization-report>
 
-         <x-document-forms.heat_connection format="edit" action="#"></x-document-forms.heat_connection>
+         <x-document-forms.heat_connection format="edit" :document-type="$document_type"></x-document-forms.heat_connection>
     </div>
 @endsection

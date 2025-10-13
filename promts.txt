@@ -204,3 +204,51 @@ _____________
 в вонмонент передается параметром message-id
 Нужно отправлять каждые 3 секунды запрос на роут /goskey/get_sign_state (отправку осуществляем при помощи axios асинхронно)
 В ответе будет приходить массив в котором будет  параметр status его нужно выводить в параграф шаблона
+_____________
+
+Изучи следующие файлы:
+
+resources\views\components\document-forms\commissioning-permit.blade.php
+resources\views\components\document-forms\construction-permit.blade.php
+resources\views\components\document-forms\water-connection.blade.php
+resources\views\components\document-forms\land-lease-application.blade.php
+
+Особое внимание удели части которая расположенна между 2х комментариев
+
+{{-- Начало формы --}}
+{{-- Конец формы --}}
+
+В этих фйлах реализованы CRUD формы для работы с таблицами описанными при помощи миграций:
+database\migrations\2025_09_29_164226_create_commissioning_permits_table.php
+database\migrations\2025_09_29_164047_create_construction_permits_table.php
+database\migrations\2025_09_29_164203_create_water_connections_table.php
+database\migrations\2025_09_29_163953_create_land_lease_applications_table.php
+
+соответственно.
+
+После того как изучишь данные формы и миграции сделай мне форму описывющую миграцию:
+database\migrations\2025_09_29_164147_create_heat_connections_table.php
+
+Параметр label для компонентов предварительно возьми из комментариев к полям модели, если они отсутутвуют придумай сам.
+Задачу реши в чате, не трогай файлы.
+_____________
+
+Изучи следующие html файлы:
+
+public\documents_template\CommissioningPermit.html
+public\documents_template\WaterConnection.html
+
+На основе полученной информации сделай мне такой же html файл из прикрепленного к заданию документа. При выполнии задания опирайся на следующие инструкции:
+
+Обрати внимание что в этих файлах встречаются параметры для замены вида: ${supplier_org} эти параметры нужно вставить опираясь на файлы миграции database\migrations\2025_09_29_163953_create_land_lease_applications_table.php внутрь фигурных скобок вставляй название полей миграции.
+
+Учти что поля ${dey}, ${month}, ${year} отсутутсвуют в миграции но их нужно использовать.
+
+В документе есть блок с подписями и местом для  печати его вставь следующим образом:
+
+<p>_________________________ / <u>${applicant_name}</u>   ${dey}" ${month} ${year} г.</p>
+
+<p style="text-align: left;" class="p_comment">(подпись)</p>
+
+<p>М.П.</p>
+
