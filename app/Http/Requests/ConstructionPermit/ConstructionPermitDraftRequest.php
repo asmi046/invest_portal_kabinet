@@ -11,7 +11,7 @@ class ConstructionPermitDraftRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,21 @@ class ConstructionPermitDraftRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'applicant_name' => ['required', 'string', 'max:256'],
+        ];
+    }
+
+    /**
+     * Get custom validation messages.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'applicant_name.required' => 'Поле "Наименование заявителя" обязательно для заполнения.',
+            'applicant_name.string' => 'Поле "Наименование заявителя" должно быть строкой.',
+            'applicant_name.max' => 'Поле "Наименование заявителя" не должно превышать 256 символов.',
         ];
     }
 }

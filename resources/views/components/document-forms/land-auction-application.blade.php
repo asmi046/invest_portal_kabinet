@@ -19,44 +19,45 @@
 
     {{-- Начало формы --}}
 
-    <x-form.input name="supplier_org" label="Организация в которую подается заявление" :required="false" value="{{ $item->supplier_org ?? old('supplier_org') }}" />
+    <x-form.input name="supplier_org" :required="true" label="Организация в которую подается заявление" :required="false" value="{{ $item->supplier_org ?? old('supplier_org') }}" />
 
     <h3>Сведения о заявителе</h3>
 
     <div class="columns-box columns-box--two-col">
-        <x-form.input name="applicant_name" label="Заявитель" :required="false" value="{{ $item->applicant_name ?? old('applicant_name') ?? get_fio_str() }}" />
-        <x-form.input name="applicant_ogrn" label="ОГРН / ОГРНИП" :required="false" value="{{ $item->applicant_ogrn ?? old('applicant_ogrn') }}" />
-        <x-form.input name="applicant_inn" label="ИНН" :required="false" value="{{ $item->applicant_inn ?? old('applicant_inn') }}" />
-        <x-form.input name="applicant_address" label="Адрес заявителя" :required="false" value="{{ $item->applicant_address ?? old('applicant_address') }}" />
+        <x-form.input name="applicant_name" label="Заявитель" :required="true" value="{{ $item->applicant_name ?? old('applicant_name') ?? get_fio_str() }}" />
+        <x-form.input name="applicant_ogrn" label="ОГРН / ОГРНИП" :required="true" value="{{ $item->applicant_ogrn ?? old('applicant_ogrn') }}" />
+        <x-form.input name="applicant_inn" label="ИНН" :required="true" value="{{ $item->applicant_inn ?? old('applicant_inn') }}" />
+        <x-form.input name="applicant_address" label="Адрес заявителя" :required="true" value="{{ $item->applicant_address ?? old('applicant_address') }}" />
     </div>
 
     <h3>Сведения о представителе</h3>
 
     <div class="columns-box columns-box--two-col">
-        <x-form.input name="person" label="ФИО представителя" :required="true" value="{{ $item->person ?? old('person') }}" />
-        <x-form.input name="person_dover" label="Наименование и реквизиты документа, подтверждающего полномочия представителя заявителя" :required="true" value="{{ $item->person_dover ?? old('person_dover') }}" />
+        <x-form.input name="person" label="ФИО представителя" :required="false" value="{{ $item->person ?? old('person') }}" />
+        <x-form.input name="person_dover" label="Наименование и реквизиты документа, подтверждающего полномочия представителя заявителя" :required="false" value="{{ $item->person_dover ?? old('person_dover') }}" />
     </div>
 
     <h3>Контактная информация</h3>
 
     <div class="columns-box columns-box--two-col">
-        <x-form.input name="phone" label="Телефон" :required="false" value="{{ $item->phone ?? old('phone') ?? auth()->user()->phone}}" />
+        <x-form.input name="phone" label="Телефон" :required="true" value="{{ $item->phone ?? old('phone') ?? auth()->user()->phone}}" />
         <x-form.input name="email" label="Адрес электронной почты" :required="false" value="{{ $item->email ?? old('email') ?? auth()->user()->email }}" />
-        <x-form.input name="post_address" label="Почтовый адрес" :required="false" value="{{ $item->post_address ?? old('post_address') }}" />
+        <x-form.input name="post_address" label="Почтовый адрес" :required="true" value="{{ $item->post_address ?? old('post_address') }}" />
     </div>
 
     <h3>Сведения о земельном участке</h3>
 
     <div class="columns-box columns-box--two-col">
-        <x-form.input name="land_cadastral_number" label="Кадастровый номер земельного участка" :required="false" value="{{ $item->land_cadastral_number ?? old('land_cadastral_number') }}" />
+        <x-form.input name="land_cadastral_number" label="Кадастровый номер земельного участка" :required="true" value="{{ $item->land_cadastral_number ?? old('land_cadastral_number') }}" />
         <x-form.input name="area" label="Площадь земельного участка (кв.м)" :required="true" type="number" step="0.01" value="{{ $item->area ?? old('area') }}" />
         <x-form.input name="landmarks" label="Ориентиры земельного участка" :required="false" value="{{ $item->landmarks ?? old('landmarks') }}" />
     </div>
 
-    <x-form.textarea name="purpose" label="Цель использования земельного участка" :required="false" value="{{ $item->purpose ?? old('purpose') }}" />
+    <x-form.textarea name="purpose" label="Цель использования земельного участка" :required="true" value="{{ $item->purpose ?? old('purpose') }}" />
 
     {{-- Конец формы --}}
 
 
     <x-form.main-control :format="$format" :item="$item ?? null" :document-type="$documentType" ></x-form.main-control>
 </form>
+<x-form.blocked-control :format="$format" :item="$item ?? null" :document-type="$documentType" ></x-form.blocked-control>

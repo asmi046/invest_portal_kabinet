@@ -237,18 +237,65 @@ _____________
 
 public\documents_template\CommissioningPermit.html
 public\documents_template\WaterConnection.html
+public\documents_template\LandLeaseApplication.html
+public\documents_template\LandAuctionApplication.html
 
 На основе полученной информации сделай мне такой же html файл из прикрепленного к заданию документа. При выполнии задания опирайся на следующие инструкции:
 
-Обрати внимание что в этих файлах встречаются параметры для замены вида: ${supplier_org} эти параметры нужно вставить опираясь на файлы миграции database\migrations\2025_09_29_163953_create_land_lease_applications_table.php внутрь фигурных скобок вставляй название полей миграции.
+    - Обрати внимание что в этих файлах встречаются параметры для замены вида: ${supplier_org} эти параметры нужно вставить опираясь на файлы миграции database\migrations\2025_09_29_164047_create_construction_permits_table.php внутрь фигурных скобок вставляй название полей миграции.
 
-Учти что поля ${dey}, ${month}, ${year} отсутутсвуют в миграции но их нужно использовать.
+    - Учти что поля ${dey}, ${month}, ${year} отсутутсвуют в миграции но их нужно использовать.
 
-В документе есть блок с подписями и местом для  печати его вставь следующим образом:
+    - Вставь вот эти стили и используй только их:
 
-<p>_________________________ / <u>${applicant_name}</u>   ${dey}" ${month} ${year} г.</p>
+    <style>
+            body { font-family: 'Times New Roman', Times, serif; font-size: 14px; }
+            h1, h2, h3, h4, h5, h6 { text-align: center; margin: 10px 0; }
+            h1 { font-size: 18px; }
+            table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+            .table_empty td, th{  width:100%; border: none; display: block; }
+            .table_empty tbody {  width:100%; display: block; }
+            .table_empty tbody tr {  width:100%; display: block; }
+            .comment { font-size: 12px; font-style: italic;  text-align: center; }
+            .p_comment { font-size: 12px; font-style: italic;  text-align: center; }
+            .table_50{ width: 50%; }
+            .table_left {display: block; margin-bottom: 20px; margin-left: auto;}
+            td, th { border: 1px solid #000; padding: 5px; text-align: left; }
+            .center { text-align: center; }
+            .header { font-weight: bold; background-color: #f0f0f0; }
+    </style>
 
-<p style="text-align: left;" class="p_comment">(подпись)</p>
+    - В документе есть блок с подписями и местом для  печати его вставь следующим образом:
 
-<p>М.П.</p>
+    <p>_________________________ / <u>${applicant_name}</u>   ${dey}" ${month} ${year} г.</p>
+
+    <p style="text-align: left;" class="p_comment">(подпись)</p>
+
+    <p>М.П.</p>
+
+    - После блока подписей вставь воттакой параметр для замены: ${sign_stamped}
+    - В параграфы с классом p_comment добавляй стиль style="border-top: 1px solid #000;"
+
+
+_____________
+
+Проанализируй файл
+
+resources\views\components\document-forms\construction-permit.blade.php в нем описана форма, найди все компоненты с
+
+:required="true" и сгенерируй для них правила и сообщения которые помести в request расположенный в файле
+
+app\Http\Requests\ConstructionPermit\ConstructionPermitSignRequest.php
+
+При работе ориентируйся на описание полей из таблицы из миграции:
+
+database\migrations\2025_09_29_164047_create_construction_permits_table.php
+
+А так же на следующие правила:
+В полях c упоминанием ОГРН / ОГРНИП / ИНН допускаются только цифры при этом они строковые а не целые
+В полях c упоминанием площади должны быть вещественные значения отличные от нуля
+Правила делай в стиле массивов
+Не изменяй других файлов только: app\Http\Requests\ConstructionPermit\ConstructionPermitSignRequest.php
+
+
 

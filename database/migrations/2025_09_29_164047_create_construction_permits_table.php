@@ -50,8 +50,8 @@ return new class extends Migration
             $table->string('object_cadastral_number', 20)->nullable()->comment('Кадастровый номер объекта');
 
             // Сведения о земельном участке
-            $table->string('land_cadastral_number', 256)->comment('Кадастровый номер земельного участка');
-            $table->string('land_docs', 256)->nullable()->comment('Реквизиты утвержденного проекта межевания территории');
+            $table->string('land_cadastral_number', 256)->nullable()->comment('Кадастровый номер земельного участка');
+            $table->string('land_docs', 256)->nullable()->nullable()->comment('Реквизиты утвержденного проекта межевания территории');
 
             // строительство объекта на основании документов
             $table->string('doc_name', 556)->nullable();
@@ -61,6 +61,8 @@ return new class extends Migration
             // Контакты
             $table->string('phone', 20)->nullable();
             $table->string('email', 100)->nullable();
+
+            $table->text('attention_details')->nullable()->comment('Описание вложений');
 
             // Результат предоставления услуги
             $table->string('send_result_type', 550)->default('Направить на ГосУслуги');

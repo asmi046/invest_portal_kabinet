@@ -39,8 +39,11 @@ class DocumentTypeService
         $item->delete();
     }
 
-    public function createDraft(string $model, array $data)
+    public function createDraft(string $model, string $request_model, Request $request, array $data)
     {
+        $d_request = new $request_model();
+        $request->validate($d_request->rules(), $d_request->messages());
+
         $data["user_id"] = auth()->user()->id;
         $data["state"] = "Черновик";
 

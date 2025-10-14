@@ -1,5 +1,5 @@
-@if (isset($item) && in_array($item->state, config('documents')[$doct]['statuses_noedit']))
+@if (isset($item) && !$item->editable)
     <div class="form-control-panel">
-        <a href="{{route($printroute, $item->id)}}" class="btn" title="Печатная форма"> <span class="print-form-icon"></span>Печатная форма</a>
+        <a href="{{ $documentType->index_url.'/print/'.$item->id }}" class="btn" title="Печатная форма"> <span class="print-form-icon"></span>Печатная форма</a>
     </div>
 @endif

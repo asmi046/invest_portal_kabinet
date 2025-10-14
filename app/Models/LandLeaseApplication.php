@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use App\Services\CreateDocServices;
+use App\Services\GetSignDataService;
 use Illuminate\Database\Eloquent\Model;
 
 class LandLeaseApplication extends Model
@@ -53,6 +54,10 @@ class LandLeaseApplication extends Model
         $options['dey'] = date('d');
         $options['month'] = get_month(date('m'));
         $options['year'] = date('Y');
+
+        $getSignDataService = new GetSignDataService();
+        $signData = $getSignDataService->getSignData($this);
+        $options = array_merge($options, $signData);
 
         $fn = $document->create_tmp_document_html(
             public_path('documents_template/LandLeaseApplication.html'),

@@ -19,24 +19,24 @@
 
     {{-- Начало формы --}}
 
-    <x-form.input name="supplier_org" label="Организация в которую подается заявление" :required="false" value="{{ $item->supplier_org ?? old('supplier_org') }}" />
+    <x-form.input name="supplier_org" label="Организация в которую подается заявление" :required="true" value="{{ $item->supplier_org ?? old('supplier_org') }}" />
 
     <h3>Сведения о физическом лице (или ИП)</h3>
 
     <div class="columns-box columns-box--two-col">
-        <x-form.input name="applicant_name" label="Наименование заявителя" :required="false" value="{{ $item->applicant_name ?? old('applicant_name') ?? get_fio_str() }}" />
-        <x-form.input name="applicant_ogrn" label="ОГРНИП заявителя (если есть)" :required="false" value="{{ $item->applicant_ogrn ?? old('applicant_ogrn') }}" />
-        <x-form.input name="applicant_inn" label="ИНН заявителя" :required="false" value="{{ $item->applicant_inn ?? old('applicant_inn') }}" />
-        <x-form.input name="applicant_passport_data" label="Паспортные данные заявителя (если физическое лицо)" :required="false" value="{{ $item->applicant_passport_data ?? old('applicant_passport_data') }}" />
+        <x-form.input name="applicant_name" label="Наименование заявителя" :required="true" value="{{ $item->applicant_name ?? old('applicant_name') ?? get_fio_str() }}" />
+        <x-form.input name="applicant_ogrn" label="ОГРНИП заявителя (если есть)" :required="true" value="{{ $item->applicant_ogrn ?? old('applicant_ogrn') }}" />
+        <x-form.input name="applicant_inn" label="ИНН заявителя" :required="true" value="{{ $item->applicant_inn ?? old('applicant_inn') }}" />
+        <x-form.input name="applicant_passport_data" label="Паспортные данные заявителя (если физическое лицо)" :required="true" value="{{ $item->applicant_passport_data ?? old('applicant_passport_data') }}" />
     </div>
 
     <h3>Сведения о юридическом лице </h3>
 
     <div class="columns-box columns-box--two-col">
-        <x-form.input name="applicant_company_name" label="Наименование компании" :required="false" value="{{ $item->applicant_company_name ?? old('applicant_company_name') }}" />
-        <x-form.input name="applicant_company_ogrn" label="ОГРН заявителя" :required="false" value="{{ $item->applicant_company_ogrn ?? old('applicant_company_ogrn') }}" />
-        <x-form.input name="applicant_company_inn" label="ИНН заявителя" :required="false" value="{{ $item->applicant_company_inn ?? old('applicant_company_inn') }}" />
-        <x-form.input name="applicant_company_passport_data" label="Паспортные данные руководителя" :required="false" value="{{ $item->applicant_company_passport_data ?? old('applicant_company_passport_data') }}" />
+        <x-form.input name="applicant_company_name" label="Наименование компании" :required="true" value="{{ $item->applicant_company_name ?? old('applicant_company_name') }}" />
+        <x-form.input name="applicant_company_ogrn" label="ОГРН заявителя" :required="true" value="{{ $item->applicant_company_ogrn ?? old('applicant_company_ogrn') }}" />
+        <x-form.input name="applicant_company_inn" label="ИНН заявителя" :required="true" value="{{ $item->applicant_company_inn ?? old('applicant_company_inn') }}" />
+        <x-form.input name="applicant_company_passport_data" label="Паспортные данные руководителя" :required="true" value="{{ $item->applicant_company_passport_data ?? old('applicant_company_passport_data') }}" />
     </div>
 
     <h3>Сведения о представителе</h3>
@@ -53,15 +53,15 @@
     <h3>Сведения об объекте</h3>
 
     <div class="columns-box columns-box--two-col">
-        <x-form.input name="object_name" label="Наименование объекта капитального строительства" :required="false" value="{{ $item->object_name ?? old('object_name') }}" />
-        <x-form.input name="object_cadastral_number" label="Кадастровый номер объекта" :required="false" value="{{ $item->object_cadastral_number ?? old('object_cadastral_number') }}" />
+        <x-form.input name="object_name" label="Наименование объекта капитального строительства" :required="true" value="{{ $item->object_name ?? old('object_name') }}" />
+        <x-form.input name="object_cadastral_number" label="Кадастровый номер объекта" :required="true" value="{{ $item->object_cadastral_number ?? old('object_cadastral_number') }}" />
     </div>
 
     <h3>Сведения о земельном участке</h3>
 
     <div class="columns-box columns-box--two-col">
-        <x-form.input name="land_cadastral_number" label="Кадастровый номер земельного участка" :required="false" value="{{ $item->land_cadastral_number ?? old('land_cadastral_number') }}" />
-        <x-form.input name="land_docs" label="Реквизиты утвержденного проекта межевания территории" :required="false" value="{{ $item->land_docs ?? old('land_docs') }}" />
+        <x-form.input name="land_cadastral_number" label="Кадастровый номер земельного участка" :required="true" value="{{ $item->land_cadastral_number ?? old('land_cadastral_number') }}" />
+        <x-form.input name="land_docs" label="Реквизиты утвержденного проекта межевания территории" :required="true" value="{{ $item->land_docs ?? old('land_docs') }}" />
     </div>
 
     <h3>При этом сообщаю, что строительство/реконструкция объекта капитального строительства будет осуществляться на основании следующих документов:</h3>
@@ -76,9 +76,26 @@
         ]"
     />
     <div class="columns-box columns-box--two-col">
-        <x-form.input name="doc_number" label="Номер документа" :required="false" value="{{ $item->doc_number ?? old('doc_number') }}" />`
+        <x-form.input name="doc_number" label="Номер документа" :required="false" value="{{ $item->doc_number ?? old('doc_number') }}" />
         <x-form.input type="date" name="doc_date" label="Дата выдачи документа" :required="false" value="{{ $item->doc_date ?? old('doc_date') }}" />
     </div>
+
+    @if ($format !== "create" )
+        <h3>Приложения</h3>
+
+            <div class="attachment-files-box">
+                @foreach ($item->attachment as $file)
+                    <div class="attachment-file">
+                        <a href="{{ Storage::url($file->storage_patch."/".$file->file)}}"> {{ $file->file_real }}</a>
+                        <button class="attachment-file__btn close-icon" type="submit" title="Удалить вложение" name="att_delete" value="{{ $file->id }}"> </button>
+                    </div>
+                @endforeach
+            </div>
+
+
+        <x-form.file name="attachment[]" label="Загрузить файлы" format="В форматах pdf"></x-form.file>
+        <x-form.textarea name="attention_details" label="Описание вложений" :required="false" value="{{ $item->attention_details ?? old('attention_details') }}" />
+    @endif
 
     <h3>Контакты</h3>
 

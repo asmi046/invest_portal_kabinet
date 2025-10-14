@@ -30,8 +30,8 @@ return new class extends Migration
             $table->string('applicant_inn', 256)->nullable()->comment('ИНН');
             $table->string('applicant_address', 256)->nullable()->comment('Адрес заявителя');
 
-            $table->string('person', 256)->comment('ФИО представителя');
-            $table->string('person_dover', 256)->comment('Наименование и реквизиты документа, подтверждающего полномочия представителя заявителя');
+            $table->string('person', 256)->nullable()->comment('ФИО представителя');
+            $table->string('person_dover', 256)->nullable()->comment('Наименование и реквизиты документа, подтверждающего полномочия представителя заявителя');
 
             // Контакты
             $table->string('phone', 20)->nullable();
@@ -40,7 +40,7 @@ return new class extends Migration
 
             $table->string('land_cadastral_number', 256)->nullable()->comment('Кадастровый номер земельного участка');
             $table->string('landmarks', 556)->nullable()->comment('Ориентиры земельного участка');
-            $table->decimal('area', 10, 2)->comment('Площадь земельного участка (кв.м)');
+            $table->decimal('area', 10, 2)->default(0)->comment('Площадь земельного участка (кв.м)');
             $table->text('purpose')->nullable()->comment('Цель использования земельного участка');
             $table->timestamps();
         });

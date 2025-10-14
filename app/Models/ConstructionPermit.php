@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Services\CreateDocServices;
+use App\Services\GetSignDataService;
 use Illuminate\Database\Eloquent\Model;
 
 class ConstructionPermit extends Model
@@ -21,6 +23,10 @@ class ConstructionPermit extends Model
         'applicant_company_passport_data',
         'applicant_company_ogrn',
         'applicant_company_inn',
+        'applicant_predst_name',
+        'applicant_predst_passport_data',
+        'applicant_predst_ogrn',
+        'applicant_predst_inn',
         'rep_doc_issued_at',
         'object_name',
         'object_cadastral_number',
@@ -33,6 +39,7 @@ class ConstructionPermit extends Model
         'email',
         'send_result_type',
         'send_mfc_adress',
+        'attention_details',
     ];
 
     protected $casts = [
@@ -53,6 +60,11 @@ class ConstructionPermit extends Model
         $options['dey'] = date('d');
         $options['month'] = get_month(date('m'));
         $options['year'] = date('Y');
+
+
+        $getSignDataService = new GetSignDataService();
+        $signData = $getSignDataService->getSignData($this);
+        $options = array_merge($options, $signData);
 
         $fn = $document->create_tmp_document_html(
             public_path('documents_template/ConstructionPermit.html'),

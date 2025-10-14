@@ -145,9 +145,9 @@
 
     .form-elem__error-message {
         position: absolute;
-        top: 100%;
-        left: 0;
-        font-size: 1.4rem;
+        top: 103%;
+        left: 5px;
+        font-size: 1.1rem;
         color: var(--alert-color);
     }
 
@@ -547,7 +547,7 @@ form {
     gap: 1.5rem;
 
     .columns-box--two-col {
-        grid-row-gap: 1.5rem;
+        grid-row-gap: 2rem;
     }
 }
 
