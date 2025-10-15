@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Services\CreateDocServices;
+use App\Services\GetSignDataService;
 use Illuminate\Database\Eloquent\Model;
 
 class WaterConnection extends Model
@@ -46,12 +47,15 @@ class WaterConnection extends Model
     public function print() {
         $document = new CreateDocServices();
         $options = $this->getOriginal();
-        $goskeyRegistries = $this->goskeyRegistries;
 
         $options['dey'] = date('d');
         $options['month'] = get_month(date('m'));
         $options['year'] = date('Y');
-        $options['goskey_data'] = $goskeyRegistries->toArray();
+
+        $getSignDataService = new GetSignDataService();
+        $signData = $getSignDataService->getSignData($this);
+        $options = array_merge($options, $signData);
+
 
         $fn = $document->create_tmp_document_html(
             public_path('documents_template/WaterConnection.html'),

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Заявка на подключение к системе теплоснабжения</title>
+
+<style>
+        body { font-family: 'Times New Roman', Times, serif; font-size: 14px; }
+        h1, h2, h3, h4, h5, h6 { text-align: center; margin: 10px 0; }
+        h1 { font-size: 18px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        .table_empty td, .table_empty th{  width:100%; border: none; display: block; }
+        .table_empty tbody {  width:100%; display: block; }
+        .table_empty tbody tr {  width:100%; display: block; }
+        .comment { font-size: 12px; font-style: italic;  text-align: center; }
+        .p_comment { font-size: 12px; font-style: italic;  text-align: center; }
+        .table_50{ width: 50%; }
+        .table_left {display: block; margin-bottom: 20px; margin-left: auto;}
+        td, th { border: 1px solid #000; padding: 5px; text-align: left; }
+        .center { text-align: center; }
+        .header { font-weight: bold; background-color: #f0f0f0; }
+</style>
+
+</head>
+<body>
+
+<p>${supplier_org}</p>
+<p style="border-top: 1px solid #000;" class="p_comment">(полное наименование организации)</p>
+<table border="1">
+  <tr>
+    <td colspan="2">
+      <p><strong>Реквизиты:</strong></p>
+    </td>
+  </tr>
+  <tr>
+    <td>Юридический адрес</td>
+    <td>${applicant_address_ur}</td>
+  </tr>
+  <tr>
+    <td>Почтовый адрес</td>
+    <td>${applicant_address_post}</td>
+  </tr>
+  <tr>
+    <td>Тел./факс</td>
+    <td>${applicant_phone}</td>
+  </tr>
+  <tr>
+    <td>Наименование банка</td>
+    <td>${applicant_bank_name}</td>
+  </tr>
+  <tr>
+    <td>Р/с</td>
+    <td>${applicant_bank_rs}</td>
+  </tr>
+  <tr>
+    <td>Кор./с</td>
+    <td>${applicant_bank_ks}</td>
+  </tr>
+  <tr>
+    <td>БИК</td>
+    <td>${applicant_bank_bik}</td>
+  </tr>
+  <tr>
+    <td>ИНН/КПП</td>
+    <td>${applicant_inn_kpp}</td>
+  </tr>
+  <tr>
+    <td>№ записи в ЕГРЮЛ</td>
+    <td>${applicant_ogrn}</td>
+  </tr>
+</table>
+
+<h1><strong>ЗАЯВКА</strong></h1>
+<h3><strong>на подключение к системе теплоснабжения</strong></h3>
+
+<p>${object_name}, расположенный по адресу ${object_address}.</p>
+
+<p>Технические параметры подключаемого объекта:</p>
+
+
+<table border="1">
+  <tr>
+    <th rowspan="2"></th>
+    <th colspan="2" style="text-align: center;">Тепловая нагрузка, Гкал/ч максимальная минимальная</th>
+    <th colspan="2" style="text-align: center;">Расход теплоносителя, т/ч</th>
+  </tr>
+  <tr>
+    <th>часовая</th>
+    <th>среднечасовая</th>
+    <th>расчетный</th>
+    <th>среднечасовой</th>
+  </tr>
+  <tr>
+    <td rowspan="2">всего</td>
+    <td>${teplovaya_nagruzka_vsego_chasovaya_maksimalnaya}</td>
+    <td>${teplovaya_nagruzka_vsego_srednechasovaya_maksimalnaya}</td>
+    <td rowspan="2">${raskhod_teplonositelya_vsego_rashetnyi}</td>
+    <td rowspan="2">${raskhod_teplonositelya_vsego_srednechasovoy}</td>
+  </tr>
+
+  <tr>
+    <td>${teplovaya_nagruzka_vsego_chasovaya_minimalnaya}</td>
+    <td>${teplovaya_nagruzka_vsego_srednechasovaya_minimalnaya}</td>
+
+  </tr>
+  <tr>
+    <td colspan="5" style="text-align: center;">в том числе на:</td>
+  </tr>
+  <tr>
+    <td rowspan="2">отопление</td>
+    <td>${teplovaya_nagruzka_otoplenie_chasovaya_maksimalnaya}</td>
+    <td>${teplovaya_nagruzka_otoplenie_srednechasovaya_maksimalnaya}</td>
+    <td rowspan="2">${raskhod_teplonositelya_otoplenie_rashetnyi}</td>
+    <td rowspan="2">${raskhod_teplonositelya_otoplenie_srednechasovoy}</td>
+  </tr>
+  <tr>
+    <td>${teplovaya_nagruzka_otoplenie_chasovaya_minimalnaya}</td>
+    <td>${teplovaya_nagruzka_otoplenie_srednechasovaya_minimalnaya}</td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">вентиляцию</td>
+    <td>${teplovaya_nagruzka_ventilyatsia_chasovaya_maksimalnaya}</td>
+    <td>${teplovaya_nagruzka_ventilyatsia_srednechasovaya_maksimalnaya}</td>
+    <td rowspan="2">${raskhod_teplonositelya_ventilyatsia_rashetnyi}</td>
+    <td rowspan="2">${raskhod_teplonositelya_ventilyatsia_srednechasovoy}</td>
+  </tr>
+
+  <tr>
+    <td>${teplovaya_nagruzka_ventilyatsia_chasovaya_minimalnaya}</td>
+    <td>${teplovaya_nagruzka_ventilyatsia_srednechasovaya_minimalnaya}</td>
+  </tr>
+
+
+
+  <tr>
+    <td rowspan="2">горячее водоснабжение</td>
+    <td>${teplovaya_nagruzka_gorvoda_chasovaya_maksimalnaya}</td>
+    <td>${teplovaya_nagruzka_gorvoda_srednechasovaya_maksimalnaya}</td>
+    <td rowspan="2">${raskhod_teplonositelya_gorvoda_rashetnyi}</td>
+    <td rowspan="2">${raskhod_teplonositelya_gorvoda_srednechasovoy}</td>
+  </tr>
+
+  <tr>
+    <td>${teplovaya_nagruzka_gorvoda_chasovaya_minimalnaya}</td>
+    <td>${teplovaya_nagruzka_gorvoda_srednechasovaya_minimalnaya}</td>
+  </tr>
+
+</table>
+
+<ul>
+  <li>Параметры теплоносителя p = ${heat_pressure} м вод. ст.; Т = ${heat_temperature}°С.</li>
+  <li>Наличие узла учета тепловой энергии и теплоносителя ${has_meter_control}.</li>
+  <li>Режим теплопотребления ${consumption_mode}.<br>
+  <p style="border-top: 1px solid #000;" class="p_comment">(непрерывный, одно-, двухсменный)</p></li>
+  <li>Требования к надежности теплоснабжения ${reliability_category}.<br>
+  <p style="border-top: 1px solid #000;" class="p_comment">(категория надежности)</p></li>
+  <li>Наличие собственного источника энергии ${has_own_source}.</li>
+</ul>
+
+<p>Планируемый год ввода в эксплуатацию объекта: ${commissioning_year}.</p>
+
+<p>Информация о виде разрешенного использования земельного участка ${land_usage_info}.</p>
+
+<p>Информация о предельных параметрах разрешённого строительства (реконструкции/модернизации) подключаемого объекта ${construction_limits}.</p>
+
+<h3><strong>Приложения:</strong></h3>
+
+<ol>
+  <li>Копии правоустанавливающих документов, подтверждающих право пользования подключаемым объектом и (или) земельным участком.</li>
+  <li>Ситуационный план расположения подключаемого объекта с привязкой к территории населенного пункта, содержащего информацию о границах земельного участка.</li>
+  <li>Топографическая карта земельного участка в масштабе 1:500 (для квартальной застройки 1:2000) с указанием всех наземных и подземных коммуникаций и сооружений.</li>
+  <li>Расчёт тепловых нагрузок.</li>
+</ol>
+
+<p>Всего предоставлено документов на ${attachments_list} л. в ${attachments_ekz} экз.</p>
+
+<p>_________________________ / <u>${applicant_name}</u>   ${dey}" ${month} ${year} г.</p>
+
+<p style="text-align: left;" class="p_comment">(подпись)</p>
+
+<p>М.П.</p>
+
+${sign_stamped}
+
+</body>
+</html>

@@ -77,13 +77,6 @@ class ConstructionPermit extends Model
         return $fn["url"];
     }
 
-    protected function docDate(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => ($value) ? date("d.m.Y", strtotime($value)) : null,
-            set: fn ($value) => ($value) ? date("Y-m-d", strtotime($value)) : null,
-        );
-    }
 
     public function goskeyRegistries()
     {

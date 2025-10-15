@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Services\CreateDocServices;
+use App\Services\GetSignDataService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -76,6 +77,10 @@ class CommissioningPermit extends Model
         $options['dey'] = date('d');
         $options['month'] = get_month(date('m'));
         $options['year'] = date('Y');
+
+        $getSignDataService = new GetSignDataService();
+        $signData = $getSignDataService->getSignData($this);
+        $options = array_merge($options, $signData);
 
         $fn = $document->create_tmp_document_html(
             public_path('documents_template/CommissioningPermit.html'),

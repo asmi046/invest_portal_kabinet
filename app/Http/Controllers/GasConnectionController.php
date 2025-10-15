@@ -34,6 +34,7 @@ class GasConnectionController extends Controller
 
     public function edit($id) {
         $item = $this->model::findOrFail($id);
+        // dd($item);
         return view($this->viewFolder . '.edit', ['item' => $item, 'document_type' => $this->documentType]);
     }
 
@@ -66,11 +67,12 @@ class GasConnectionController extends Controller
         switch ($request->input('action')) {
 
             case 'create_draft':
-                $data = $documentTypeService->createDraft($this->model, $request->all());
+                $data = $documentTypeService->createDraft($this->model, $this->draftRequest, $request, $request->all());
                 return redirect($this->documentType->index_url.'/edit/'.$data->id)->with('form_message', "Черновик сохранен");
             break;
 
             case 'save_draft':
+
                 $data = $documentTypeService->saveDraft($this->model, $this->draftRequest, $request, $request->all(), $id);
                 return redirect()->back()->with('form_message', "Черновик сохранен");
             break;

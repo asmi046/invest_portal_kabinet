@@ -27,7 +27,7 @@ return new class extends Migration
 
             $table->string('applicant_name', 256)->nullable()->comment('Заявитель');
             $table->string('applicant_ogrn', 256)->nullable()->comment('ОГРН / ОГРНИП');
-            $table->string('applicant_ogrn_data', 256)->nullable()->comment('ОГРН / ОГРНИП (дата регистрации)');
+            $table->date('applicant_ogrn_data')->nullable()->comment('ОГРН / ОГРНИП (дата регистрации)');
             $table->string('applicant_address', 256)->nullable()->comment('Адрес заявителя');
             $table->string('applicant_passport_data', 556)->nullable()->comment('Паспортные данные');
             $table->string('applicant_connect_variants', 556)->nullable()->comment('Способы обмена информацией');
@@ -69,11 +69,13 @@ return new class extends Migration
 
             // Ранее выданные тех. условия
             $table->string('previous_tech_number', 256)->nullable()->comment('Номер ранее выданных технических условий');
-            $table->string('previous_tech_date', 256)->nullable()->comment('Дата ранее выданных технических условий');
+            $table->date('previous_tech_date')->nullable()->comment('Дата ранее выданных технических условий');
 
             // Доп. информация
             $table->text('additional_info')->nullable()->comment('Дополнительная информация');
             $table->string('notification_method', 256)->nullable()->comment('Способ уведомления о подключении');
+
+            $table->text('attention_details')->nullable()->comment('Описание вложений');
 
             $table->timestamps();
         });

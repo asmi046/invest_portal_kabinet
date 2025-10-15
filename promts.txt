@@ -239,10 +239,13 @@ public\documents_template\CommissioningPermit.html
 public\documents_template\WaterConnection.html
 public\documents_template\LandLeaseApplication.html
 public\documents_template\LandAuctionApplication.html
+public\documents_template\ConstructionPermit.html
+public\documents_template\GasConnection.html
+
 
 На основе полученной информации сделай мне такой же html файл из прикрепленного к заданию документа. При выполнии задания опирайся на следующие инструкции:
 
-    - Обрати внимание что в этих файлах встречаются параметры для замены вида: ${supplier_org} эти параметры нужно вставить опираясь на файлы миграции database\migrations\2025_09_29_164047_create_construction_permits_table.php внутрь фигурных скобок вставляй название полей миграции.
+    - Обрати внимание что в этих файлах встречаются параметры для замены вида: ${supplier_org} эти параметры нужно вставить опираясь на файлы миграции database\migrations\2025_09_29_164147_create_heat_connections_table.php внутрь фигурных скобок вставляй название полей миграции.
 
     - Учти что поля ${dey}, ${month}, ${year} отсутутсвуют в миграции но их нужно использовать.
 
@@ -253,7 +256,7 @@ public\documents_template\LandAuctionApplication.html
             h1, h2, h3, h4, h5, h6 { text-align: center; margin: 10px 0; }
             h1 { font-size: 18px; }
             table { width: 100%; border-collapse: collapse; margin: 10px 0; }
-            .table_empty td, th{  width:100%; border: none; display: block; }
+            .table_empty td, .table_empty th{  width:100%; border: none; display: block; }
             .table_empty tbody {  width:100%; display: block; }
             .table_empty tbody tr {  width:100%; display: block; }
             .comment { font-size: 12px; font-style: italic;  text-align: center; }
@@ -281,21 +284,22 @@ _____________
 
 Проанализируй файл
 
-resources\views\components\document-forms\construction-permit.blade.php в нем описана форма, найди все компоненты с
+resources\views\components\document-forms\heat-connection.blade.php в нем описана форма, найди все компоненты с
 
 :required="true" и сгенерируй для них правила и сообщения которые помести в request расположенный в файле
 
-app\Http\Requests\ConstructionPermit\ConstructionPermitSignRequest.php
+app\Http\Requests\HeatConnection\HeatConnectionSignRequest.php
 
 При работе ориентируйся на описание полей из таблицы из миграции:
 
-database\migrations\2025_09_29_164047_create_construction_permits_table.php
+database\migrations\2025_09_29_164147_create_heat_connections_table.php
 
 А так же на следующие правила:
 В полях c упоминанием ОГРН / ОГРНИП / ИНН допускаются только цифры при этом они строковые а не целые
 В полях c упоминанием площади должны быть вещественные значения отличные от нуля
+В полях c упоминанием фраз Тепловая нагрузка, Расход теплоносителя проверяй на вещественное число
 Правила делай в стиле массивов
-Не изменяй других файлов только: app\Http\Requests\ConstructionPermit\ConstructionPermitSignRequest.php
+Не изменяй других файлов только: app\Http\Requests\HeatConnection\HeatConnectionSignRequest.php
 
 
 

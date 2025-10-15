@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Services\CreateDocServices;
+use App\Services\GetSignDataService;
 use Illuminate\Database\Eloquent\Model;
+use App\Services\PrintDataReplaceService;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class GasConnection extends Model
@@ -48,18 +50,12 @@ class GasConnection extends Model
         'previous_tech_date',
         'additional_info',
         'notification_method',
+        'attention_details'
     ];
 
     protected $casts = [
         'validated' => 'boolean',
         'editable' => 'boolean',
-        'need_any_works' => 'boolean',
-        'need_design' => 'boolean',
-        'need_equipment_installation' => 'boolean',
-        'need_pipeline_construction' => 'boolean',
-        'need_meter_installation' => 'boolean',
-        'need_meter_supply' => 'boolean',
-        'need_equipment_supply' => 'boolean',
         'gas_flow_total' => 'decimal:2',
         'gas_flow_new' => 'decimal:2',
         'gas_flow_existing' => 'decimal:2',
@@ -82,6 +78,20 @@ class GasConnection extends Model
         $options['month'] = get_month(date('m'));
         $options['year'] = date('Y');
 
+
+        PrintDataReplaceService::yes_no_replace($options, [
+            'need_design',
+            'need_equipment_installation',
+            'need_pipeline_construction',
+            'need_meter_installation',
+            'need_meter_supply',
+            'need_equipment_supply',
+        ]);
+
+        $getSignDataService = new GetSignDataService();
+        $signData = $getSignDataService->getSignData($this);
+        $options = array_merge($options, $signData);
+
         $fn = $document->create_tmp_document_html(
             public_path('documents_template/GasConnection.html'),
             $options,
@@ -91,22 +101,6 @@ class GasConnection extends Model
         );
 
         return $fn["url"];
-    }
-
-    protected function plannedDate(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => ($value) ? date("d.m.Y", strtotime($value)) : null,
-            set: fn ($value) => ($value) ? date("Y-m-d", strtotime($value)) : null,
-        );
-    }
-
-    protected function connectionPlannedDate(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => ($value) ? date("d.m.Y", strtotime($value)) : null,
-            set: fn ($value) => ($value) ? date("Y-m-d", strtotime($value)) : null,
-        );
     }
 
     public function goskeyRegistries()

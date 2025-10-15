@@ -53,7 +53,8 @@
     <x-form.input name="previous_permit_authority" label="Наименование органа, выдавшего разрешение" :required="false" value="{{ $item->previous_permit_authority ?? old('previous_permit_authority') }}" />
     <div class="columns-box columns-box--two-col">
         <x-form.input name="previous_permit_number" label="Номер документа" :required="false" value="{{ $item->previous_permit_number ?? old('previous_permit_number') }}" />
-        <x-form.input type="date" name="previous_permit_date" label="Дата выдачи разрешения" :required="false" value="{{ $item->previous_permit_date ?? old('previous_permit_date') }}" />
+
+            <x-form.input type="date" name="previous_permit_date" label="Дата выдачи разрешения" :required="false" value="{{ $item->previous_permit_date ?? old('previous_permit_date') }}" />
     </div>
 
     <h3>При этом сообщаю, что ввод объекта в эксплуатацию будет осуществляться на основании следующих документов:</h3>
@@ -95,3 +96,6 @@
 
     <x-form.main-control :format="$format" :item="$item ?? null" :document-type="$documentType" ></x-form.main-control>
 </form>
+
+<x-form.blocked-control :format="$format" :item="$item ?? null" :document-type="$documentType" ></x-form.blocked-control>
+

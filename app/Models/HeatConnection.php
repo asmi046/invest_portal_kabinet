@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Services\CreateDocServices;
+use App\Services\GetSignDataService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
@@ -68,8 +69,6 @@ class HeatConnection extends Model
     protected $casts = [
         'validated' => 'boolean',
         'editable' => 'boolean',
-        'has_meter_control' => 'boolean',
-        'has_own_source' => 'boolean',
         'heat_pressure' => 'decimal:2',
         'heat_temperature' => 'decimal:2',
         'commissioning_year' => 'integer',
@@ -114,6 +113,10 @@ class HeatConnection extends Model
         $options['dey'] = date('d');
         $options['month'] = get_month(date('m'));
         $options['year'] = date('Y');
+
+        $getSignDataService = new GetSignDataService();
+        $signData = $getSignDataService->getSignData($this);
+        $options = array_merge($options, $signData);
 
         $fn = $document->create_tmp_document_html(
             public_path('documents_template/HeatConnection.html'),

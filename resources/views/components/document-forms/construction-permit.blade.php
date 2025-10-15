@@ -77,7 +77,10 @@
     />
     <div class="columns-box columns-box--two-col">
         <x-form.input name="doc_number" label="Номер документа" :required="false" value="{{ $item->doc_number ?? old('doc_number') }}" />
-        <x-form.input type="date" name="doc_date" label="Дата выдачи документа" :required="false" value="{{ $item->doc_date ?? old('doc_date') }}" />
+                   {{-- @php
+    dd($item->doc_date, old('doc_date'))
+    @endphp --}}
+            <x-form.input type="date" name="doc_date" label="Дата выдачи документа" :required="false" value="{{ $item->doc_date ?? old('doc_date') }}" />
     </div>
 
     @if ($format !== "create" )
