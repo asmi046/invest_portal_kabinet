@@ -94,29 +94,29 @@ class CommissioningPermit extends Model
         return $fn["url"];
     }
 
-    protected function permit_date(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => ($value)?date("d.m.Y", strtotime($value)):null,
-            set: fn ($value) => ($value)?date("Y-m-d", strtotime($value)):null,
-        );
-    }
+    // protected function permit_date(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn ($value) => ($value)?date("d.m.Y", strtotime($value)):null,
+    //         set: fn ($value) => ($value)?date("Y-m-d", strtotime($value)):null,
+    //     );
+    // }
 
-    protected function previous_permit_date(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => ($value)?date("d.m.Y", strtotime($value)):null,
-            set: fn ($value) => ($value)?date("Y-m-d", strtotime($value)):null,
-        );
-    }
+    // protected function previous_permit_date(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn ($value) => ($value)?date("d.m.Y", strtotime($value)):null,
+    //         set: fn ($value) => ($value)?date("Y-m-d", strtotime($value)):null,
+    //     );
+    // }
 
-    protected function doc_date(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => ($value)?date("d.m.Y", strtotime($value)):null,
-            set: fn ($value) => ($value)?date("Y-m-d", strtotime($value)):null,
-        );
-    }
+    // protected function doc_date(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn ($value) => ($value)?date("d.m.Y", strtotime($value)):null,
+    //         set: fn ($value) => ($value)?date("Y-m-d", strtotime($value)):null,
+    //     );
+    // }
 
     public function goskeyRegistries()
     {

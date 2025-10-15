@@ -45,6 +45,13 @@ use MoonShine\UI\Components\{Breadcrumbs,
 use App\MoonShine\Resources\DocumentTypeResource;
 use App\MoonShine\Resources\OrganizationResource;
 use App\MoonShine\Resources\GoskeyRegistryResource;
+use App\MoonShine\Resources\CommissioningPermitResource;
+use App\MoonShine\Resources\ConstructionPermitResource;
+use App\MoonShine\Resources\GasConnectionResource;
+use App\MoonShine\Resources\HeatConnectionResource;
+use App\MoonShine\Resources\LandAuctionApplicationResource;
+use App\MoonShine\Resources\LandLeaseApplicationResource;
+use App\MoonShine\Resources\WaterConnectionResource;
 
 final class MoonShineLayout extends AppLayout
 {
@@ -59,24 +66,66 @@ final class MoonShineLayout extends AppLayout
     {
         return [
 
-            MenuGroup::make(static fn() => __('Заявление на земельного участка'), [
-                MenuItem::make(
-                    "Все заявления",
+            MenuGroup::make(static fn() => __('Земельные участки'), [
+                MenuItem::make("Предоставление участка",
                     AreaGetResource::class
-                )->icon('clipboard-document-list'),
-            ])
-            ->icon('globe-europe-africa')
-            ->canSee(fn() => auth()->user()->documentTypes->contains('model', 'App\Models\AreaGet')),
+                )
+                ->icon('globe-alt')
+                ->canSee(fn() => auth()->user()->documentTypes->contains('model', 'App\Models\AreaGet')),
+
+                MenuItem::make('Проведении аукциона ',
+                    LandAuctionApplicationResource::class
+                )
+                ->icon('globe-asia-australia')
+                ->canSee(fn() => auth()->user()->documentTypes->contains('model', 'App\Models\LandAuctionApplication')),
+
+                MenuItem::make('Приобретение участка',
+                    LandLeaseApplicationResource::class
+                )
+                ->icon('globe-americas')
+                ->canSee(fn() => auth()->user()->documentTypes->contains('model', 'App\Models\LandLeaseApplication')),
+            ]),
+            MenuGroup::make(static fn() => __('Строительство'), [
+                MenuItem::make('Ввод объекта в эксплуатацию',
+                    CommissioningPermitResource::class
+                )
+                ->icon('home-modern')
+                ->canSee(fn() => auth()->user()->documentTypes->contains('model', 'App\Models\CommissioningPermit')),
+
+                MenuItem::make('Разрешение на строительство',
+                    ConstructionPermitResource::class
+                )
+                ->icon('home-modern')
+                ->canSee(fn() => auth()->user()->documentTypes->contains('model', 'App\Models\ConstructionPermit')),
+            ]),
+
 
             MenuGroup::make(static fn() => __('Техническое присоединение'), [
                 MenuItem::make(
-                    "Все заявления",
+                    "Электросети",
                     TechnicalConnectsResource::class
-                )->icon('clipboard-document-list'),
-            ])
-            ->icon('power')
-            ->canSee(fn() => auth()->user()->documentTypes->contains('model', 'App\Models\TechnicalConnects')),
-            // ->canSee(fn() => in_array(auth()->user()->moonshineUserRole->name, ["Admin", "Ресурсные организации", "Просмотр показателей"])),
+                )
+                ->icon('clipboard-document-list')
+                ->canSee(fn() => auth()->user()->documentTypes->contains('model', 'App\Models\TechnicalConnects')),
+
+                MenuItem::make('Газовые сети',
+                    GasConnectionResource::class
+                )
+                ->icon('sparkles')
+                ->canSee(fn() => auth()->user()->documentTypes->contains('model', 'App\Models\GasConnection')),
+
+                MenuItem::make('Тепловые сети',
+                    HeatConnectionResource::class
+                )
+                ->icon('fire')
+                ->canSee(fn() => auth()->user()->documentTypes->contains('model', 'App\Models\HeatConnection')),
+
+                MenuItem::make('Водоснабжение',
+                    WaterConnectionResource::class
+                )
+                ->icon('lifebuoy')
+                ->canSee(fn() => auth()->user()->documentTypes->contains('model', 'App\Models\WaterConnection')),
+            ]),
 
             MenuGroup::make(static fn() => __('Дополнительно'), [
                 MenuItem::make(
@@ -121,6 +170,7 @@ final class MoonShineLayout extends AppLayout
 
             // MenuItem::make('Вложения', AttachmentResource::class)->icon('paper-clip'),
             // MenuItem::make('Процедуры госключа', GoskeyRegistryResource::class)->icon('shield-check'),
+
         ];
     }
 

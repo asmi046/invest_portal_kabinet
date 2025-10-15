@@ -319,22 +319,30 @@ resources\views\components\document-forms\land-lease-application.blade.php
 Результат выведи в чат файлы не трогай.
 ________
 
-Для ModelResource админ панели moonshine который находится в файле app\MoonShine\Resources\MipResource.php проставь поля опираясь на миграцию database\migrations\2025_08_28_212644_create_mips_table.php.
+Для ModelResource админ панели moonshine который находится в файле app\MoonShine\Resources\WaterConnectionResource.php проставь поля опираясь на миграцию database\migrations\2025_09_29_164203_create_water_connections_table.php.
 
 В класс ресурса добавь следующие поля:
 
-protected string $title = 'Участники МИП';
-protected string $column = 'title';
+protected string $title = 'Заявление на техническое присоединение к объектам водоснабжения и водоотведения';
+protected string $column = 'id';
 
 Если поля существуют замени в них содержимое.
 
+Так же в класс ресурса добавь метод:
+protected function activeActions(): ListOf
+{
+    return parent::activeActions()->except(Action::VIEW);
+}
+
+Обрати внимание что для Action::VIEW множестов нужно подключить вот это use MoonShine\Laravel\Enums\Action;
+
 В метод indexFields вынеси поля:
 
-'title'
-'cover'
-'cadastral_number'
+'applicant_name'
+'object_name'
 
-В методах formFields и detailFields распиши все поля кроме created_at и updated_at
+В методах formFields  распиши все поля кроме created_at и updated_at
+Метод detailFields не заполняй.
 
 При формировании полей используй ->comment в миграции в качестве имени поля. Пример: Text::make("Заголовок", 'title'),
 Для полей миграции с именем img или image, cover, map,  используй компонент Image так же добавляй ->dir(''), строку внутри оставляй пустой.  Пример: Image::make('Изображение', 'img')->dir(''),
@@ -345,8 +353,17 @@ protected string $column = 'title';
 Json::make('Галерея', 'images')->fields([
     Position::make(),
 ]),
-
 Так же ко всем полям json добавляй ->removable()
+
+После описания основных полей добавь связи:
+
+HasMany::make("Вложения", "attachment", resource: AttachmentResource::class),
+MorphMany::make(
+    'Подпись (Госключ)',
+    'goskeyRegistries',
+    resource: GoskeyRegistryResource::class
+),
+HasOne::make("Подпись (плагин)", "signature", resource: SignedDocumentResource::class)
 
 Так же опираясь на миграцию заполни метод rules, при этом не включай поля которые в миграции помеченны nullable(), так же не включай поле slug
 
@@ -360,6 +377,10 @@ Json::make('Галерея', 'images')->fields([
     }
 
 В этом методе должны быть следующие поля:
-'title'
-'description'
-'cadastral_number'
+'object_name'
+'applicant_name'
+'phone'
+
+Поля в фильтре должны быть реализованы при помощи тех же классов что и в методе formFields то есть если методе formFields есть
+Text::make('Заявитель', 'applicant_name'),
+То в фильтрах тоже используй Text::make('Заявитель', 'applicant_name'), не используй TextFilter

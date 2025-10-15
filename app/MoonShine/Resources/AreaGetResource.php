@@ -8,12 +8,14 @@ use App\Models\AreaGet;
 use MoonShine\Fields\ID;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Phone;
-use MoonShine\Handlers\ExportHandler;
+use MoonShine\Support\ListOf;
 
+use MoonShine\Laravel\Enums\Action;
+use MoonShine\Handlers\ExportHandler;
 use MoonShine\Handlers\ImportHandler;
-use MoonShine\Laravel\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\ActionButtons\ActionButton;
+use MoonShine\Laravel\Resources\ModelResource;
 use App\MoonShine\Pages\AreaGet\AreaGetFormPage;
 use App\MoonShine\Pages\AreaGet\AreaGetIndexPage;
 use App\MoonShine\Pages\AreaGet\AreaGetDetailPage;
@@ -30,6 +32,11 @@ class AreaGetResource extends ModelResource
     protected string $column = 'id';
 
     protected bool $withPolicy = true;
+
+    protected function activeActions(): ListOf
+    {
+        return parent::activeActions()->except(Action::VIEW);
+    }
 
     protected function pages(): array
     {

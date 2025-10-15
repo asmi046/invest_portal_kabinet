@@ -19,6 +19,13 @@ use App\MoonShine\Resources\TechnicalConnectsResource;
 use MoonShine\Contracts\Core\DependencyInjection\CoreContract;
 use MoonShine\Laravel\DependencyInjection\MoonShineConfigurator;
 use MoonShine\Contracts\Core\DependencyInjection\ConfiguratorContract;
+use App\MoonShine\Resources\CommissioningPermitResource;
+use App\MoonShine\Resources\ConstructionPermitResource;
+use App\MoonShine\Resources\GasConnectionResource;
+use App\MoonShine\Resources\HeatConnectionResource;
+use App\MoonShine\Resources\LandAuctionApplicationResource;
+use App\MoonShine\Resources\LandLeaseApplicationResource;
+use App\MoonShine\Resources\WaterConnectionResource;
 
 class MoonShineServiceProvider extends ServiceProvider
 {
@@ -41,6 +48,13 @@ class MoonShineServiceProvider extends ServiceProvider
                 OrganizationResource::class,
                 GoskeyRegistryResource::class,
                 TechnicalConnectsResource::class,
+                CommissioningPermitResource::class,
+                ConstructionPermitResource::class,
+                GasConnectionResource::class,
+                HeatConnectionResource::class,
+                LandAuctionApplicationResource::class,
+                LandLeaseApplicationResource::class,
+                WaterConnectionResource::class,
             ])
             ->pages([
                 ...$config->getPages(),
