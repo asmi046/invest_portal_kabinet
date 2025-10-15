@@ -145,7 +145,7 @@ class CreateDocServices {
     public function create_tmp_document_html(string $template_patch, array $options, int $model_id, string $document_type, string $document, $state = "temp", $directory = "tmp_docs")
     {
 
-            $filename =  Auth::user()['id']."_".$model_id."_".date("Y_m_d_H_i_s");
+            $filename =  Auth::user()['id']."_".$model_id."_".$document_type."_".date("Y_m_d_H_i_s");
             $filepatch =  public_path($directory);
             $file_pdf = $filepatch.'/'.$filename.".pdf";
             $file_docx = $filepatch.'/'.$filename.".docx";
@@ -245,6 +245,43 @@ class CreateDocServices {
 
         } catch (\Throwable $e) {
             return $e->getMessage();
+        }
+
+
+    }
+
+    public function create_signed_document_from_file( string $file, int $document_id, string $document_model):SignedDocument {
+        try{
+
+            $storagePath = 'local_signe/'. str_replace('\\', '_', $document_model) . '/' . $document_id;
+            Storage::disk('local')->makeDirectory($storagePath);
+
+            if (file_exists($file)) {
+                // copy($file, $storagePath. '/' . basename($file));
+                Storage::disk('local')->put($storagePath . '/' . basename($file), file_get_contents($file));
+            } else {
+                abort(404, "Нет файла для подписи: $file");
+            }
+
+            return SignedDocument::firstOrCreate(
+                [
+                    'inner_document_type' => $document_model,
+                    'document_id' => $document_id
+                ],
+                [
+                    'file_real' => basename($file),
+                    'file' => basename($file),
+                    'storage_patch' => $storagePath,
+                    'inner_document_type' => $document_model,
+                    'document_id' => $document_id
+                ],
+            );
+
+
+
+
+        } catch (\Throwable $e) {
+            abort(404, "Нет файла для подписи: $file");
         }
 
 

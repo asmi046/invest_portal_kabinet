@@ -11,6 +11,7 @@ class DocumentStatePanel extends Component
     public bool $can_show = false;
     public bool $validated = false;
     public bool $signed = false;
+    public bool $signed_local = false;
     public string $state = "Создание";
     /**
      * Create a new component instance.
@@ -25,6 +26,9 @@ class DocumentStatePanel extends Component
 
             if ($item->goskeyRegistries && isset($item->goskeyRegistries[0]) && $item->goskeyRegistries[0]->status_code == 100) {
                 $this->signed = true;
+            }
+            if( $item->signature && $item->signature->signature != null ) {
+                $this->signed_local = true;
             }
         }
     }

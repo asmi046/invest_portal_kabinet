@@ -65,7 +65,7 @@
             </div>
 
 
-            <h2 class="h3">Мои заявки и проекты</h2>
+            {{-- <h2 class="h3">Мои заявки и проекты</h2>
             <div class="iportal-card-box columns-box columns-box--two-col">
                 @if ($last_project)
                     <x-widget-green
@@ -105,7 +105,7 @@
                     @endif
                 @endif
 
-            </div>
+            </div> --}}
 
             <div class="ip-tab">
                 <div class="ip-tab-controller">

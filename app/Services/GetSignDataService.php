@@ -45,7 +45,53 @@ class GetSignDataService
         return $rez;
     }
 
+
     public function getSignData(Model $document): array
+    {
+        $result = $this->getGoskeySignData($document);
+        if (!$result['sign_stamped']) {
+
+            $result = $this->getLocalSignData($document);
+        }
+        return $result;
+    }
+
+    public function getLocalSignData(Model $document): array
+    {
+        $signFiles = $document->signature;
+
+        if (!$signFiles) {
+            return ['sign_stamped' => null];
+        }
+
+        if (!$signFiles->first()) {
+            return ['sign_stamped' => null];
+        }
+
+        $signatures_file = $signFiles->signature ?? null;
+
+        $signFileContent = \Storage::get($signFiles->storage_patch.'/'.$signatures_file);
+
+
+        if (!$signFileContent) {
+            return ['sign_stamped' => null];
+        }
+
+        $response = Http::attach(
+            'file', $signFileContent, 'sign.sig'
+        )->asMultipart()->post(config('cryptography.cryptcp_file_get_sign_data_address'));
+
+        // Проверяем статус ответа
+        if ($response->successful()) {
+            return ['sign_stamped' => $this->signStempTemplate($response->json())];
+        } else {
+            return ['sign_stamped' => null];
+        }
+    }
+
+
+
+    public function getGoskeySignData(Model $document): array
     {
         $signFiles = $document->goskeyRegistries();
         if (!$signFiles) {

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Заявление на выделение земельного участка</title>
+    <style>
+            body { font-family: 'Times New Roman', Times, serif; font-size: 14px; }
+            h1, h2, h3, h4, h5, h6 { text-align: center; margin: 10px 0; }
+            h1 { font-size: 18px; }
+            table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+            .table_empty td, th{ border: none; }
+            .comment { font-size: 12px; font-style: italic;  text-align: center; }
+            .p_comment { font-size: 12px; font-style: italic;  text-align: center; }
+
+
+            .table_50{ width: 50%; }
+            .table_left {display: block; margin-bottom: 20px; margin-left: auto;}
+
+            td, th { border: 1px solid #000; padding: 5px; text-align: left; }
+            .center { text-align: center; }
+            .header { font-weight: bold; background-color: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <h1>ЗАЯВЛЕНИЕ</h1>
+
+    <p>от <strong>${name}</strong> далее - заявитель</p>
+
+    <p>Адрес заявителя: <strong>${zayavitel_adress}</strong></p>
+
+    <p>Телефон заявителя: <strong>${phone}</strong></p>
+
+    <p>Прошу подтвердить соответствие <strong>${object_name}</strong> критериям,
+    установленным Законом Курской области 22 июня 2015 года N 58-ЗКО "Об
+    установлении критериев, которым должны соответствовать объекты
+    социально-культурного и коммунально-бытового назначения, масштабные
+    инвестиционные проекты, для размещения (реализации) которых допускается
+    предоставление земельных участков в аренду без проведения торгов".</p>
+
+    <p>Приложение: на ${prilogenie_list_count} л.</p>
+
+    <p>Заявитель: <strong>${name} ${dolgnost} ${organization}</strong></p>
+
+    <p>Подпись_______________ "${dey}" ${month} ${year} г.</p>
+
+    <p>(подпись М.П.)</p>
+
+    <p>Объект <strong>${object_name}</strong> относится к категории <strong>${object_type}</strong>.</p>
+
+    ${sign_stamped}
+</body>
+</html>

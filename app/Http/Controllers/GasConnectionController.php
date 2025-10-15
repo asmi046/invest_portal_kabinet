@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DocumentType;
 use Illuminate\Http\Request;
 use App\Models\GasConnection;
+use App\Services\CreateDocServices;
 use App\Services\DocumentTypeService;
 use App\Http\Requests\GasConnection\GasConnectionSignRequest;
 use App\Http\Requests\GasConnection\GasConnectionDraftRequest;
@@ -46,6 +47,12 @@ class GasConnectionController extends Controller
     public function print($id) {
         $element = $this->model::where('id', $id)->first();
         return response()->download($element->print());
+    }
+
+    public function sign(CreateDocServices $createDocServices, $id) {
+        $element = $this->model::where('id', $id)->first();
+        $fn = $createDocServices->create_signed_document_from_file($element->print(), $id, $this->model);
+        return redirect()->route("signe", $fn->id);
     }
 
     public function delete(DocumentTypeService $documentTypeService, $id) {

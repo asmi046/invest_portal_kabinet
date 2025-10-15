@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AreaGet;
 use App\Models\DocumentType;
 use Illuminate\Http\Request;
-use App\Models\CommissioningPermit;
 use App\Services\CreateDocServices;
 use App\Services\DocumentTypeService;
-use App\Http\Requests\CommissioningPermit\CommissioningPermitSignRequest;
-use App\Http\Requests\CommissioningPermit\CommissioningPermitDraftRequest;
+use App\Http\Requests\AreaGet\AreaGetSignRequest;
+use App\Http\Requests\AreaGet\AreaGetDraftRequest;
 
-class CommissioningPermitController extends Controller
+class AreaGetNewController extends Controller
 {
-    protected $model = CommissioningPermit::class;
-    protected $draftRequest = CommissioningPermitDraftRequest::class;
-    protected $signRequest = CommissioningPermitSignRequest::class;
-    protected string $viewFolder = 'commissioning_permit';
+    protected $model = AreaGet::class;
+    protected $draftRequest = AreaGetDraftRequest::class;
+    protected $signRequest = AreaGetSignRequest::class;
+    protected string $viewFolder = 'area_get';
     protected $documentType;
 
     public function __construct()

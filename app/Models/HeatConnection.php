@@ -104,6 +104,7 @@ class HeatConnection extends Model
     protected $with = [
         'attachment',
         'documentType',
+        'signature'
     ];
 
     public function print() {
@@ -154,6 +155,11 @@ class HeatConnection extends Model
 
     public function attachment() {
         return $this->hasMany(Attachment::class, 'document_id', 'id')
+        ->where('inner_document_type', self::class);
+    }
+
+    public function signature() {
+        return $this->hasOne(SignedDocument::class, 'document_id', 'id')
         ->where('inner_document_type', self::class);
     }
 

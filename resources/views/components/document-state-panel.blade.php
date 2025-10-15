@@ -8,6 +8,10 @@
         @if ($signed)
             <div class="state_blk signed"> <span class="icon sign2-icon"></span> Подписан</div>
         @endif
+
+        @if ($signed_local)
+            <div class="state_blk signed_local"> <span class="icon sign2-icon"></span> Подписан (локально)</div>
+        @endif
     </div>
 
 </div>

@@ -1,7 +1,11 @@
 <a href="{{ $documentType->index_url."/print/".$item->id }}">Печатная форма</a>
-@if ($item->editable && !isset($item->goskeyRegistries[0]))
-    <a href="{{ $documentType->index_url."/edit/".$item->id }}">Редактировать</a>
-@else
+@if ($signed || $signed_local)
     <a href="{{ $documentType->index_url."/edit/".$item->id }}">Посмотреть</a>
+@else
+    <a href="{{ $documentType->index_url."/edit/".$item->id }}">Редактировать</a>
 @endif
-<a href="{{ $documentType->index_url."/status/".$item->id }}">Статус</a>
+
+@if ($item->validate && !$signed && !$signed_local)
+    <a href="{{ $documentType->index_url."/sign/".$item->id }}">Подписать</a>
+@endif
+{{-- <a href="{{ $documentType->index_url."/status/".$item->id }}">Статус</a> --}}

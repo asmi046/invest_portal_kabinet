@@ -45,6 +45,7 @@ class LandLeaseApplication extends Model
     protected $with = [
         'attachment',
         'documentType',
+        'signature'
     ];
 
     public function print() {
@@ -90,5 +91,9 @@ class LandLeaseApplication extends Model
         ->where('inner_document_type', self::class);
     }
 
+    public function signature() {
+        return $this->hasOne(SignedDocument::class, 'document_id', 'id')
+        ->where('inner_document_type', self::class);
+    }
 
 }

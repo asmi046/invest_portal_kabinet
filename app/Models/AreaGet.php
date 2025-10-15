@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\AreaGet;
 use App\Services\CreateDocServices;
+use App\Services\GetSignDataService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -30,12 +31,14 @@ class AreaGet extends Model
 
     public $with = [
         'attachment',
+        'documentType',
         'signature'
     ];
 
     protected $attributes = [
         'document_type' => AreaGet::class,
     ];
+
 
 
     public function print() {
@@ -46,17 +49,20 @@ class AreaGet extends Model
         $options['month'] = get_month(date('m'));
         $options['year'] = date('Y');
 
-        $fn = $document->create_tmp_document(
-            public_path('documents_template/area_get.docx'),
+        $getSignDataService = new GetSignDataService();
+        $signData = $getSignDataService->getSignData($this);
+        $options = array_merge($options, $signData);
+
+        $fn = $document->create_tmp_document_html(
+            public_path('documents_template/AreaGet.html'),
             $options,
             $this->id,
-            'area_get',
-            "Заявление на предоставление участка: " . $this->object_name
+            'AreaGet',
+            "Заявление на выделение земельного участка: " . $this->object_name
         );
 
         return $fn["url"];
     }
-
 
     public function goskeyRegistries()
     {
@@ -70,17 +76,17 @@ class AreaGet extends Model
 
     public function documentType()
     {
-        return $this->belongsTo(DocumentType::class);
+        return $this->belongsTo(DocumentType::class, 'document_type', 'id');
     }
 
     public function attachment() {
         return $this->hasMany(Attachment::class, 'document_id', 'id')
-        ->where('inner_document_type', 'area_get');
+        ->where('inner_document_type', self::class);
     }
 
     public function signature() {
         return $this->hasOne(SignedDocument::class, 'document_id', 'id')
-        ->where('inner_document_type', 'area_get');
+        ->where('inner_document_type', self::class);
     }
 
 }
