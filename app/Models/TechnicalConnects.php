@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Services\CreateDocServices;
+use App\Services\GetSignDataService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TechnicalConnects extends Model
 {
@@ -11,6 +13,9 @@ class TechnicalConnects extends Model
 
     public $fillable = [
         "user_id",
+        "document_type",
+        "validated",
+        "editable",
         "state",
         "name",
         "dolgnost",
@@ -53,26 +58,56 @@ class TechnicalConnects extends Model
 
     public $with = [
         'attachment',
+        'documentType',
         'signature'
     ];
 
-    /**
-     * user
-     *
-     * @return void
-     */
+
+    public function print() {
+        $document = new CreateDocServices();
+        $options = $this->getOriginal();
+
+        $options['dey'] = date('d');
+        $options['month'] = get_month(date('m'));
+        $options['year'] = date('Y');
+
+        $getSignDataService = new GetSignDataService();
+        $signData = $getSignDataService->getSignData($this);
+        $options = array_merge($options, $signData);
+
+        $fn = $document->create_tmp_document_html(
+            public_path('documents_template/TechnicalConnect.html'),
+            $options,
+            $this->id,
+            'TechnicalConnects',
+            "Заявление на технологическое присоединение к электрическим сетям: " . $this->object_name
+        );
+
+        return $fn["url"];
+    }
+
+    public function goskeyRegistries()
+    {
+        return $this->morphMany(GoskeyRegistry::class, 'registryable');
+    }
+
     public function user()
     {
         return $this->hasOne(User::class, "id", "user_id");
     }
 
+    public function documentType()
+    {
+        return $this->belongsTo(DocumentType::class, 'document_type', 'id');
+    }
+
     public function attachment() {
         return $this->hasMany(Attachment::class, 'document_id', 'id')
-        ->where('inner_document_type', 'tc');
+        ->where('inner_document_type', self::class);
     }
 
     public function signature() {
         return $this->hasOne(SignedDocument::class, 'document_id', 'id')
-        ->where('inner_document_type', 'tc');
+        ->where('inner_document_type', self::class);
     }
 }

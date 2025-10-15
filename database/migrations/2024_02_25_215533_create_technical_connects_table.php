@@ -18,6 +18,10 @@ return new class extends Migration
                                         ->constrained()
                                         ->onUpdate('cascade')
                                         ->onDelete('cascade');
+            $table->string('document_type')->comment("Тип документа");
+            $table->boolean('validated')->default(false)->comment("Проверен");
+            $table->boolean('editable')->default(true)->comment("Можно редактировать");
+
             $table->string('state')->comment("Статус документа");
             $table->string("name")->comment("ФИО заявителя");
             $table->string("dolgnost")->nullable()->comment("Должность заявителя");

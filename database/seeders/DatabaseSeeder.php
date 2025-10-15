@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
             AlgorithmSeeder::class,
             ProjectSeeder::class,
             SupportSeeder::class,
-            TechnicalConnectsSeeder::class,
-            AreaGetSeeder::class,
+            // TechnicalConnectsSeeder::class,
+            // AreaGetSeeder::class,
             OrganizationContactSeeder::class,
         ]);
 

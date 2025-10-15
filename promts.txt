@@ -303,3 +303,17 @@ database\migrations\2025_09_29_164147_create_heat_connections_table.php
 
 
 
+_____________
+
+Изучи формы которые располагаются в файлах:
+resources\views\components\document-forms\water-connection.blade.php
+resources\views\components\document-forms\heat-connection.blade.php
+resources\views\components\document-forms\commissioning-permit.blade.php
+resources\views\components\document-forms\land-lease-application.blade.php
+
+В файле resources\views\components\tc\edit-form.blade.php возьми содержимоне находящеся между 2 комментариев
+{{-- начало описания формы --}}
+{{-- конец описания формы --}}
+
+Приобразуй содержимое в компоненты по примеру изученных форм.
+Результат выведи в чат файлы не трогай.

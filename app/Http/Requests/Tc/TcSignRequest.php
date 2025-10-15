@@ -4,7 +4,7 @@ namespace App\Http\Requests\Tc;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TcSigneRequest extends FormRequest
+class TcSignRequest extends FormRequest
 {
  /**
      * Determine if the user is authorized to make this request.

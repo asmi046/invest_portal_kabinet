@@ -21,7 +21,7 @@
     @endforeach
 
     <input type="hidden" name="item_id" value="{{ $item->id ?? 0 }}">
-
+    {{-- начало описания формы --}}
     <div class="columns-box columns-box--two-col">
         <label class="form-elem">
             <span class="form-elem__caption">
@@ -329,7 +329,7 @@
             @enderror
         </label>
     @endif
-
+{{-- конец описания формы --}}
 
     <x-edit-form-elements.main-control :format="$format" :item="$item ?? null" doct="tc" deleteroat="technical_connect_delete" ></x-edit-form-elements.main-control>
 

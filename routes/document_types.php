@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\GossSupportController;
+use App\Http\Controllers\TechnicalConnectNewController;
 
     use App\Http\Controllers\AreaGetNewController;
     use App\Http\Controllers\GasConnectionController;
@@ -35,6 +36,16 @@ use App\Http\Controllers\GossSupportController;
         Route::get('/delete/{id}', [ProjectController::class, "delete"])->name('projects.delete');
         Route::get('/print/{id}', [ProjectController::class, "print"])->name('projects.print');
         Route::get('/sign/{id}', [ProjectController::class, "sign"])->name('projects.sign');
+    });
+
+    Route::middleware('auth')->prefix('technical_connect')->group(function () {
+        Route::get('/', [TechnicalConnectNewController::class, 'index'])->name('technical_connect.index');
+        Route::get('/edit/{id}', [TechnicalConnectNewController::class, 'edit'])->name('technical_connect.edit');
+        Route::get('/create', [TechnicalConnectNewController::class, 'create'])->name('technical_connect.create');
+        Route::post('/save', [TechnicalConnectNewController::class, "save"])->name('technical_connect.save');
+        Route::get('/delete/{id}', [TechnicalConnectNewController::class, "delete"])->name('technical_connect.delete');
+        Route::get('/print/{id}', [TechnicalConnectNewController::class, "print"])->name('technical_connect.print');
+        Route::get('/sign/{id}', [TechnicalConnectNewController::class, "sign"])->name('technical_connect.sign');
     });
 
     Route::middleware('auth')->prefix('support')->group(function () {
