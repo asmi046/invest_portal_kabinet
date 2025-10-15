@@ -7,22 +7,22 @@ namespace App\MoonShine\Pages\TechnicalConnects;
 use MoonShine\Laravel\Pages\Crud\DetailPage;
 
 
-use MoonShine\Fields\Json;
-use MoonShine\Fields\Text;
+use MoonShine\UI\Fields\Json;
+use MoonShine\UI\Fields\Text;
 
-use MoonShine\Fields\Phone;
-use MoonShine\Fields\Select;
-use MoonShine\Fields\TinyMce;
-use MoonShine\Fields\Position;
-use MoonShine\Fields\Textarea;
+use MoonShine\UI\Fields\Phone;
+use MoonShine\UI\Fields\Select;
+use MoonShine\UI\Fields\TinyMce;
+use MoonShine\UI\Fields\Position;
+use MoonShine\UI\Fields\Textarea;
 use MoonShine\Decorations\Flex;
 use MoonShine\Decorations\Grid;
 use MoonShine\Decorations\Block;
 use MoonShine\Decorations\Column;
 use MoonShine\Pages\Crud\FormPage;
 use MoonShine\Decorations\LineBreak;
-use MoonShine\Fields\Relationships\HasOne;
-use MoonShine\Fields\Relationships\HasMany;
+use MoonShine\UI\Fields\Relationships\HasOne;
+use MoonShine\UI\Fields\Relationships\HasMany;
 use App\MoonShine\Resources\AttachmentResource;
 use App\MoonShine\Resources\SignedDocumentResource;
 

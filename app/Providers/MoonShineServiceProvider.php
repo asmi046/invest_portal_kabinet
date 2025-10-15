@@ -8,16 +8,17 @@ use Illuminate\Support\ServiceProvider;
 use App\MoonShine\Resources\AreaGetResource;
 use App\MoonShine\Resources\AlgorithmResource;
 use App\MoonShine\Resources\AttachmentResource;
+use App\MoonShine\Resources\DocumentTypeResource;
+use App\MoonShine\Resources\OrganizationResource;
 use App\MoonShine\Resources\MoonShineUserResource;
+use App\MoonShine\Resources\GoskeyRegistryResource;
 use App\MoonShine\Resources\SignedDocumentResource;
 use MoonShine\Laravel\DependencyInjection\MoonShine;
 use App\MoonShine\Resources\MoonShineUserRoleResource;
+use App\MoonShine\Resources\TechnicalConnectsResource;
 use MoonShine\Contracts\Core\DependencyInjection\CoreContract;
 use MoonShine\Laravel\DependencyInjection\MoonShineConfigurator;
 use MoonShine\Contracts\Core\DependencyInjection\ConfiguratorContract;
-use App\MoonShine\Resources\DocumentTypeResource;
-use App\MoonShine\Resources\OrganizationResource;
-use App\MoonShine\Resources\GoskeyRegistryResource;
 
 class MoonShineServiceProvider extends ServiceProvider
 {
@@ -39,6 +40,7 @@ class MoonShineServiceProvider extends ServiceProvider
                 DocumentTypeResource::class,
                 OrganizationResource::class,
                 GoskeyRegistryResource::class,
+                TechnicalConnectsResource::class,
             ])
             ->pages([
                 ...$config->getPages(),

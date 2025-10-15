@@ -4,29 +4,26 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\TechnicalConnects;
 
-use MoonShine\Fields\File;
-use MoonShine\Fields\Json;
-
-use MoonShine\Fields\Text;
-use MoonShine\Fields\Phone;
-use MoonShine\Fields\Number;
-use MoonShine\Fields\Select;
-use MoonShine\Fields\TinyMce;
-use MoonShine\Decorations\Tab;
-use MoonShine\Fields\Position;
-use MoonShine\Fields\Switcher;
-use MoonShine\Fields\Textarea;
-use MoonShine\Decorations\Flex;
+use MoonShine\UI\Fields\File;
+use MoonShine\UI\Fields\Text;
+use MoonShine\UI\Fields\Phone;
 use MoonShine\Decorations\Grid;
-use MoonShine\Decorations\Tabs;
-use MoonShine\Decorations\Block;
+use MoonShine\UI\Fields\Number;
+use MoonShine\UI\Fields\Select;
 use MoonShine\Decorations\Column;
-use MoonShine\Laravel\Pages\Crud\FormPage;
+use MoonShine\UI\Components\Tabs;
+use MoonShine\UI\Fields\Position;
+use MoonShine\UI\Fields\Switcher;
+use MoonShine\UI\Fields\Textarea;
 use MoonShine\Decorations\LineBreak;
-use MoonShine\Fields\Relationships\HasOne;
-use MoonShine\Fields\Relationships\HasMany;
+use MoonShine\TinyMce\Fields\TinyMce;
+use MoonShine\UI\Components\Tabs\Tab;
+use MoonShine\UI\Components\Layout\Flex;
+use MoonShine\Laravel\Pages\Crud\FormPage;
+use MoonShine\Laravel\Fields\Relationships\HasOne;
 use App\MoonShine\Resources\AttachmentResource;
 use App\MoonShine\Resources\SignedDocumentResource;
+use MoonShine\Laravel\Fields\Relationships\HasMany;
 
 class TechnicalConnectsFormPage extends FormPage
 {
@@ -68,7 +65,7 @@ class TechnicalConnectsFormPage extends FormPage
                     Text::make("Наименование энергопринимающих устройств", "ustroistvo")->required(),
                     Text::make("Место нахождения энергопринимающих устройств", "raspologeie")->required(),
 
-                    Block::make('Показатели мощности', [
+
                         Flex::make([
                             Text::make("Максимальная мощность энергопринимающих устройств", "pover_prin_devices")->required(),
                             Text::make("При напряжении", "napr_prin_devices")->required(),
@@ -83,7 +80,7 @@ class TechnicalConnectsFormPage extends FormPage
                             Text::make("Максимальная мощность ранее присоединенных в данной точке", "pover_pris_r_devices"),
                             Text::make("При напряжении", "napr_pris_r_devices"),
                         ]),
-                    ]),
+
                 ]),
 
                 Tab::make('Проверка и статусы', [
@@ -96,7 +93,7 @@ class TechnicalConnectsFormPage extends FormPage
                         "В обработке" => "В обработке",
                         "Предоставлен ответ" => "Предоставлен ответ"
                     ])->disabled(fn() => auth()->user()->moonshine_user_role_id == 3),
-                    TinyMce::make('Официальный ответ', 'report')->when(fn() => auth()->user()->moonshine_user_role_id == 3)
+                    TinyMce::make('Официальный ответ', 'report')
                 ]),
 
                 Tab::make('Пользователь в системе', [
@@ -129,12 +126,12 @@ class TechnicalConnectsFormPage extends FormPage
             // ]),
 
 
-            Block::make('Приложения к заявлению', [
-                Textarea::make('Описание вложений', 'prilogenie'),
-                HasMany::make("Вложения", "attachment", resource: new AttachmentResource()),
-            ])
 
-            // HasOne::make("Подпись", "signature", resource: new SignedDocumentResource())
+                Textarea::make('Описание вложений', 'prilogenie'),
+                HasMany::make("Вложения", "attachment", resource: AttachmentResource::class),
+
+
+            HasOne::make("Подпись", "signature", resource: SignedDocumentResource::class)
         ];
     }
 

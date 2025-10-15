@@ -317,3 +317,49 @@ resources\views\components\document-forms\land-lease-application.blade.php
 
 Приобразуй содержимое в компоненты по примеру изученных форм.
 Результат выведи в чат файлы не трогай.
+________
+
+Для ModelResource админ панели moonshine который находится в файле app\MoonShine\Resources\MipResource.php проставь поля опираясь на миграцию database\migrations\2025_08_28_212644_create_mips_table.php.
+
+В класс ресурса добавь следующие поля:
+
+protected string $title = 'Участники МИП';
+protected string $column = 'title';
+
+Если поля существуют замени в них содержимое.
+
+В метод indexFields вынеси поля:
+
+'title'
+'cover'
+'cadastral_number'
+
+В методах formFields и detailFields распиши все поля кроме created_at и updated_at
+
+При формировании полей используй ->comment в миграции в качестве имени поля. Пример: Text::make("Заголовок", 'title'),
+Для полей миграции с именем img или image, cover, map,  используй компонент Image так же добавляй ->dir(''), строку внутри оставляй пустой.  Пример: Image::make('Изображение', 'img')->dir(''),
+Для полей миграции с именем slug используй компонент Slug.  Пример: Slug::make("Ссылка", 'slug'),
+Для полей миграции с типом boolean используй компонент Switcher.  Пример: Switcher::make('По умолчанию', 'is_default'),
+Для полей миграции с именем description используй компонент TinyMce.  Пример: TinyMce::make('Описание', 'description'),
+Для полей миграции с типом json используй компонент Json, с модификаторм ->fields в котором по умолчанию должно быть поле Position::make().  Пример:
+Json::make('Галерея', 'images')->fields([
+    Position::make(),
+]),
+
+Так же ко всем полям json добавляй ->removable()
+
+Так же опираясь на миграцию заполни метод rules, при этом не включай поля которые в миграции помеченны nullable(), так же не включай поле slug
+
+Так же добавь метод filters по следующему шаблону
+
+    protected function filters(): iterable
+    {
+        return [
+
+        ];
+    }
+
+В этом методе должны быть следующие поля:
+'title'
+'description'
+'cadastral_number'

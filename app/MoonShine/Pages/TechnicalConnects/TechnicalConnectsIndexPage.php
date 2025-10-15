@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\TechnicalConnects;
 
-use MoonShine\Fields\Text;
-use MoonShine\Fields\Field;
-use MoonShine\Fields\Phone;
-use MoonShine\Fields\Preview;
+use MoonShine\UI\Fields\Text;
+use MoonShine\UI\Fields\Field;
+use MoonShine\UI\Fields\Phone;
+use MoonShine\UI\Fields\Preview;
 use MoonShine\Laravel\Pages\Crud\IndexPage;
 
 class TechnicalConnectsIndexPage extends IndexPage
