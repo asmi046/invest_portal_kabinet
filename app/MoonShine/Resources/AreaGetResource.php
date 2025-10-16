@@ -35,7 +35,7 @@ class AreaGetResource extends ModelResource
 
     protected function activeActions(): ListOf
     {
-        return parent::activeActions()->except(Action::VIEW);
+        return parent::activeActions()->except(Action::VIEW, Action::DELETE, Action::CREATE);
     }
 
     protected function pages(): array

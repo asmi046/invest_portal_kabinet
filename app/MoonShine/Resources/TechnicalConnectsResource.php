@@ -34,7 +34,7 @@ class TechnicalConnectsResource extends ModelResource
 
     protected function activeActions(): ListOf
     {
-        return parent::activeActions()->except(Action::VIEW);
+        return parent::activeActions()->except(Action::VIEW, Action::DELETE, Action::CREATE);
     }
 
     public function pages(): array

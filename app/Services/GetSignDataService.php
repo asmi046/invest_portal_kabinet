@@ -12,13 +12,13 @@ class GetSignDataService
 
     private function signStempTemplate(array $signData):string
     {
-        $rez = "<table class ='sign-stemp-table'>";
-        $rez .= "<tr><td>Документ подписан электронной подписью:</td></tr>";
+        $rez = "<table style='color: blue; border-collapse: collapse; font-size:10px; width: 50%;' class ='sign-stemp-table'>";
+        $rez .= "<tr><td style='border: 1px solid blue;'>Документ подписан электронной подписью:</td></tr>";
 
-        $rez .= "<tr><td>" . ($signData['issuerSerial'] ?? '') . "</td></tr>";
+        $rez .= "<tr><td style='border: 1px solid blue;'>" . ($signData['issuerSerial'] ?? '') . "</td></tr>";
 
         if (isset($signData['subjectDetails'])) {
-            $rez .= "<tr><td>";
+            $rez .= "<tr><td style='border: 1px solid blue;'>";
             $rez .= ($signData['subjectDetails']['cn']) ? $signData['subjectDetails']['cn'] : '';
             $rez .= isset($signData['subjectDetails']['country']) ? " ".$signData['subjectDetails']['country'] : '';
             $rez .= isset($signData['subjectDetails']['state']) ? " Регион: ".$signData['subjectDetails']['state'] : '';
@@ -29,8 +29,8 @@ class GetSignDataService
         }
 
         if (isset($signData['issuerDetails'])) {
-            $rez .= "<tr><td>Удостоверяющий центр:</td></tr>";
-            $rez .= "<tr><td>";
+            $rez .= "<tr><td style='border: 1px solid blue;'>Удостоверяющий центр:</td></tr>";
+            $rez .= "<tr><td style='border: 1px solid blue;'>";
             $rez .= $signData['issuerDetails']['cn'] ?? '';
             $rez .= isset($signData['issuerDetails']['country']) ? $signData['issuerDetails']['country'] : '';
             $rez .= isset($signData['issuerDetails']['state']) ? " Регион: ".$signData['issuerDetails']['state'] : '';

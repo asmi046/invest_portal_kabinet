@@ -11,8 +11,10 @@ use MoonShine\UI\Fields\Text;
 use App\Models\GoskeyRegistry;
 use MoonShine\UI\Fields\Phone;
 use MoonShine\UI\Fields\Select;
+use App\MoonShine\Fields\StateFields;
 use MoonShine\TinyMce\Fields\TinyMce;
 use MoonShine\UI\Components\Layout\Box;
+use App\MoonShine\Fields\RelationFields;
 use MoonShine\UI\Components\Layout\Flex;
 use MoonShine\UI\Components\Layout\Grid;
 use MoonShine\Laravel\Pages\Crud\FormPage;
@@ -30,6 +32,17 @@ class AreaGetFormPage extends FormPage
     public function fields(): array
     {
         return [
+            Box::make('Основные данные', [
+            Select::make('Тип документа', 'document_type')
+                        ->options([
+                            1 => 'Заявление на выделение земельного участка',
+                        ])
+                    ->default(1)
+                    ->disabled(),
+                    ...StateFields::make(),
+            ]),
+
+
             Grid::make([
                 Column::make([
                     Box::make('Пользователь оформивший заявление', [
@@ -84,13 +97,7 @@ class AreaGetFormPage extends FormPage
             LineBreak::make(),
 
 
-            HasMany::make("Вложения", "attachment", resource: AttachmentResource::class),
-            MorphMany::make(
-                'Подпись (Госключ)',
-                'goskeyRegistries',
-                resource: GoskeyRegistryResource::class
-            ),
-            HasOne::make("Подпись (плагин)", "signature", resource: SignedDocumentResource::class)
+            ...RelationFields::make(),
 
 
 

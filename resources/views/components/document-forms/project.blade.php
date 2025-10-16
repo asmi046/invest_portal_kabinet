@@ -22,6 +22,7 @@
     {{-- Конец формы --}}
 
     {{-- <x-form.main-control :format="$format" :item="$item ?? null" :document-type="$documentType" ></x-form.main-control> --}}
+    <x-form.blocked-control :format="$format" :item="$item ?? null" :document-type="$documentType" ></x-form.blocked-control>
+
 </form>
-<x-form.blocked-control :format="$format" :item="$item ?? null" :document-type="$documentType" ></x-form.blocked-control>
 

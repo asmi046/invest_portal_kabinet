@@ -2,7 +2,7 @@
     @class(['form-project-submission', 'flex-form', 'form_disabled' => isset($item) && !$item->editable ])
     method="POST"
     @if (isset($item) && $item->editable == false)
-        inert="inert"
+        {{-- inert="inert" --}}
     @endif
     action="{{ $documentType->index_url }}/save"
 >
@@ -122,6 +122,7 @@
 
 
     <x-form.main-control :format="$format" :item="$item ?? null" :document-type="$documentType" ></x-form.main-control>
+    <x-form.blocked-control :format="$format" :item="$item ?? null" :document-type="$documentType" ></x-form.blocked-control>
 </form>
 
-<x-form.blocked-control :format="$format" :item="$item ?? null" :document-type="$documentType" ></x-form.blocked-control>
+

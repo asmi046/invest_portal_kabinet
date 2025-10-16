@@ -72,6 +72,10 @@ class WaterConnectionController extends Controller
         }
 
         switch ($request->input('action')) {
+            case 'send':
+                $data = $documentTypeService->sendDocument($this->model, $id);
+                return redirect()->back()->with('form_message', "Документ отправлен");
+            break;
 
             case 'create_draft':
                 $data = $documentTypeService->createDraft($this->model, $this->draftRequest, $request, $request->all());

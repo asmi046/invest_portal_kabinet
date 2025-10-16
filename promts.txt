@@ -284,22 +284,22 @@ _____________
 
 Проанализируй файл
 
-resources\views\components\document-forms\heat-connection.blade.php в нем описана форма, найди все компоненты с
+resources\views\components\document-forms\commissioning-permit.blade.php в нем описана форма, найди все компоненты с
 
 :required="true" и сгенерируй для них правила и сообщения которые помести в request расположенный в файле
 
-app\Http\Requests\HeatConnection\HeatConnectionSignRequest.php
+app\Http\Requests\CommissioningPermit\CommissioningPermitSignRequest.php
 
 При работе ориентируйся на описание полей из таблицы из миграции:
 
-database\migrations\2025_09_29_164147_create_heat_connections_table.php
+database\migrations\2025_09_29_164226_create_commissioning_permits_table.php
 
 А так же на следующие правила:
 В полях c упоминанием ОГРН / ОГРНИП / ИНН допускаются только цифры при этом они строковые а не целые
 В полях c упоминанием площади должны быть вещественные значения отличные от нуля
 В полях c упоминанием фраз Тепловая нагрузка, Расход теплоносителя проверяй на вещественное число
 Правила делай в стиле массивов
-Не изменяй других файлов только: app\Http\Requests\HeatConnection\HeatConnectionSignRequest.php
+Не изменяй других файлов только: app\Http\Requests\CommissioningPermit\CommissioningPermitSignRequest.php
 
 
 

@@ -16,12 +16,14 @@ use MoonShine\UI\Fields\Position;
 use MoonShine\UI\Fields\Switcher;
 use MoonShine\UI\Fields\Textarea;
 use MoonShine\Decorations\LineBreak;
+use App\MoonShine\Fields\StateFields;
 use MoonShine\TinyMce\Fields\TinyMce;
 use MoonShine\UI\Components\Tabs\Tab;
+use App\MoonShine\Fields\RelationFields;
 use MoonShine\UI\Components\Layout\Flex;
 use MoonShine\Laravel\Pages\Crud\FormPage;
-use MoonShine\Laravel\Fields\Relationships\HasOne;
 use App\MoonShine\Resources\AttachmentResource;
+use MoonShine\Laravel\Fields\Relationships\HasOne;
 use App\MoonShine\Resources\SignedDocumentResource;
 use MoonShine\Laravel\Fields\Relationships\HasMany;
 
@@ -31,7 +33,19 @@ class TechnicalConnectsFormPage extends FormPage
     {
         return [
 
+
+
             Tabs::make([
+                Tab::make('Основные данные', [
+
+                    Select::make('Тип документа', 'document_type')
+                        ->options([
+                            3 => 'Заявление на технологическое присоединение к электрическим сетям',
+                        ])
+                    ->default(3)
+                    ->disabled(),
+                    ...StateFields::make(),
+                ]),
                 Tab::make('Данные заявителя', [
                     Text::make("Заявитель", "name")->required(),
                     Text::make("Организация", "organization")->required(),
@@ -128,10 +142,7 @@ class TechnicalConnectsFormPage extends FormPage
 
 
                 Textarea::make('Описание вложений', 'prilogenie'),
-                HasMany::make("Вложения", "attachment", resource: AttachmentResource::class),
-
-
-            HasOne::make("Подпись", "signature", resource: SignedDocumentResource::class)
+                ...RelationFields::make(),
         ];
     }
 

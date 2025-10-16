@@ -26,7 +26,8 @@ class DocumentTypeService
         $stages["Всего"] = $to_stat->count();
 
         foreach ($to_stat as $item) {
-            $stages[$item->state] += 1;
+            if (isset($stages[$item->state]))
+                $stages[$item->state] += 1;
         }
 
         return ['all' => $all, 'stages' => $stages];
@@ -49,6 +50,16 @@ class DocumentTypeService
 
         return $model::create($data);
     }
+
+
+    public function sendDocument(string $model, int $id) {
+        $item = $model::where('id', $id)->first();
+        if(!$item) abort('404');
+        $item->update([
+            "state" => "На рассмотрении",
+        ]);
+    }
+
 
     public function saveDraft(string $model, string $request_model, Request $request, array $data, int $id)
     {

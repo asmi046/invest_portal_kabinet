@@ -4,33 +4,35 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Models\LandAuctionApplication;
-
-use MoonShine\Laravel\Resources\ModelResource;
-use MoonShine\UI\Components\Layout\Box;
 use MoonShine\UI\Fields\ID;
+use MoonShine\Support\ListOf;
+
 use MoonShine\UI\Fields\Text;
-use MoonShine\UI\Fields\Phone;
 use MoonShine\UI\Fields\Email;
+use MoonShine\UI\Fields\Phone;
 use MoonShine\UI\Fields\Number;
 use MoonShine\UI\Fields\Select;
+use MoonShine\UI\Components\Tabs;
 use MoonShine\UI\Fields\Switcher;
 use MoonShine\UI\Fields\Textarea;
-use MoonShine\UI\Components\Tabs;
-use MoonShine\UI\Components\Tabs\Tab;
-use MoonShine\Laravel\Fields\Relationships\HasOne;
-use MoonShine\Laravel\Fields\Relationships\HasMany;
-use MoonShine\Laravel\Fields\Relationships\MorphMany;
-use App\MoonShine\Resources\AttachmentResource;
-use App\MoonShine\Resources\GoskeyRegistryResource;
-use App\MoonShine\Resources\SignedDocumentResource;
-use MoonShine\Contracts\UI\FieldContract;
-use MoonShine\Contracts\UI\ComponentContract;
-use MoonShine\Support\ListOf;
-use MoonShine\UI\Components\ActionButton;
 use MoonShine\Laravel\Enums\Action;
 use MoonShine\UI\Filters\TextFilter;
+use App\MoonShine\Fields\StateFields;
+use MoonShine\UI\Components\Tabs\Tab;
+use App\Models\LandAuctionApplication;
+use Illuminate\Database\Eloquent\Model;
+use MoonShine\UI\Components\Layout\Box;
+use App\MoonShine\Fields\RelationFields;
+use MoonShine\Contracts\UI\FieldContract;
+use MoonShine\UI\Components\ActionButton;
+use MoonShine\Contracts\UI\ComponentContract;
+use MoonShine\Laravel\Resources\ModelResource;
+use App\MoonShine\Resources\AttachmentResource;
+use MoonShine\Laravel\Fields\Relationships\HasOne;
+use App\MoonShine\Resources\GoskeyRegistryResource;
+use App\MoonShine\Resources\SignedDocumentResource;
+use MoonShine\Laravel\Fields\Relationships\HasMany;
+use MoonShine\Laravel\Fields\Relationships\MorphMany;
 
 /**
  * @extends ModelResource<LandAuctionApplication>
@@ -45,7 +47,7 @@ class LandAuctionApplicationResource extends ModelResource
 
     protected function activeActions(): ListOf
     {
-        return parent::activeActions()->except(Action::VIEW);
+        return parent::activeActions()->except(Action::VIEW, Action::DELETE, Action::CREATE);
     }
 
     /**
@@ -68,16 +70,14 @@ class LandAuctionApplicationResource extends ModelResource
         return [
             Tabs::make([
                 Tab::make('Основные данные', [
-                    Text::make('Организация', 'supplier_org'),
-                    Select::make('Статус документа', 'state')
+                    Select::make('Тип документа', 'document_type')
                         ->options([
-                            'Черновик' => 'Черновик',
-                            'Отправлен' => 'Отправлен',
-                            'В обработке' => 'В обработке',
-                            'Предоставлен ответ' => 'Предоставлен ответ'
-                        ]),
-                    Switcher::make('Проверен', 'validated'),
-                    Switcher::make('Можно редактировать', 'editable'),
+                            6 => 'Заявление о проведении аукциона по продаже земельного участка',
+                        ])
+                    ->default(6)
+                    ->disabled(),
+                    ...StateFields::make(),
+                    Text::make('Организация', 'supplier_org'),
                 ]),
 
                 Tab::make('Данные заявителя', [
@@ -106,13 +106,7 @@ class LandAuctionApplicationResource extends ModelResource
                 ]),
             ]),
 
-            HasMany::make("Вложения", "attachment", resource: AttachmentResource::class),
-            MorphMany::make(
-                'Подпись (Госключ)',
-                'goskeyRegistries',
-                resource: GoskeyRegistryResource::class
-            ),
-            HasOne::make("Подпись (плагин)", "signature", resource: SignedDocumentResource::class)
+            ...RelationFields::make(),
         ];
     }
 

@@ -18,9 +18,11 @@ use MoonShine\UI\Fields\Textarea;
 use MoonShine\Laravel\Enums\Action;
 use App\Models\LandLeaseApplication;
 use MoonShine\UI\Filters\TextFilter;
+use App\MoonShine\Fields\StateFields;
 use MoonShine\UI\Components\Tabs\Tab;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\UI\Components\Layout\Box;
+use App\MoonShine\Fields\RelationFields;
 use MoonShine\Contracts\UI\FieldContract;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Laravel\Resources\ModelResource;
@@ -44,7 +46,7 @@ class LandLeaseApplicationResource extends ModelResource
 
     protected function activeActions(): ListOf
     {
-        return parent::activeActions()->except(Action::VIEW);
+        return parent::activeActions()->except(Action::VIEW, Action::DELETE, Action::CREATE);
     }
 
     /**
@@ -67,16 +69,14 @@ class LandLeaseApplicationResource extends ModelResource
         return [
             Tabs::make([
                 Tab::make('Основные данные', [
-                    Text::make('Организация', 'supplier_org'),
-                    Select::make('Статус документа', 'state')
+                    Select::make('Тип документа', 'document_type')
                         ->options([
-                            'Черновик' => 'Черновик',
-                            'Отправлен' => 'Отправлен',
-                            'В обработке' => 'В обработке',
-                            'Предоставлен ответ' => 'Предоставлен ответ'
-                        ]),
-                    Switcher::make('Проверен', 'validated'),
-                    Switcher::make('Можно редактировать', 'editable'),
+                            5 => 'Заявление на приобретение земельного участка в аренду',
+                        ])
+                    ->default(5)
+                    ->disabled(),
+                    Text::make('Организация', 'supplier_org'),
+                    ...StateFields::make(),
                 ]),
 
                 Tab::make('Данные заявителя', [
@@ -113,13 +113,7 @@ class LandLeaseApplicationResource extends ModelResource
                 ]),
             ]),
 
-            HasMany::make("Вложения", "attachment", resource: AttachmentResource::class),
-            MorphMany::make(
-                'Подпись (Госключ)',
-                'goskeyRegistries',
-                resource: GoskeyRegistryResource::class
-            ),
-            HasOne::make("Подпись (плагин)", "signature", resource: SignedDocumentResource::class)
+            ...RelationFields::make(),
         ];
     }
 

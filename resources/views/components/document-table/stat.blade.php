@@ -18,17 +18,17 @@
                         ></x-widget-stat>
                     @endisset
 
-                    @isset($state['Отправлено на рассмотрение'])
+                    @isset($state['На рассмотрении'])
                         <x-widget-stat
-                            :value="$state['Отправлено на рассмотрение']"
+                            :value="$state['На рассмотрении']"
                             title="проектов в статусе отправлено на рассмотрение"
                             icon="two-docs-icon"
                         ></x-widget-stat>
                     @endisset
 
-                    @isset($state['Принят'])
+                    @isset($state['Требуется доработка'])
                         <x-widget-stat
-                            :value="$state['Принят']"
+                            :value="$state['Требуется доработка']"
                             title="проектов в статусе принят"
                             icon="two-docs-icon"
                         ></x-widget-stat>

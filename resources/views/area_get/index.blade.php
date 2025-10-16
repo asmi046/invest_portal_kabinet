@@ -16,7 +16,8 @@
 
             <x-document-table.stat :state="$state" :document-type="$document_type"></x-document-table.stat>
 
-            <x-document-table :elements="$elements" :document-type="$document_type"></x-document-table>
+
+            <x-document-table :list="[ 'Объект' => 'object_name', 'ФИО заявителя' => 'name' ]" :elements="$elements" :document-type="$document_type"></x-document-table>
 
             @if ($elements->count() > 0)
                 <x-pagination :tovars="$elements"></x-pagination>

@@ -16,6 +16,7 @@ class DocumentTypeSeeder extends Seeder
 
         // Данные для заполнения таблицы document_types
         $documentTypes = [
+            //1
             [
                 'name' => 'Заявление на выделение земельного участка',
                 'short_name' => 'Заявление на выделение земельного участка',
@@ -28,6 +29,7 @@ class DocumentTypeSeeder extends Seeder
                 'updated_at' => now(),
                 'icon' => "building-icon",
             ],
+            //2
             [
                 'name' => 'Заявление на финансирование инвестиционного проекта',
                 'short_name' => 'Заявление на финансирование инвестиционного проекта',
@@ -40,6 +42,7 @@ class DocumentTypeSeeder extends Seeder
                 'updated_at' => now(),
                 'icon' => "laptop-icon",
             ],
+            //3
             [
                 'name' => 'Заявление на технологическое присоединение к электрическим сетям',
                 'short_name' => 'Заявление на технологическое присоединение к электрическим сетям',
@@ -52,6 +55,7 @@ class DocumentTypeSeeder extends Seeder
                 'updated_at' => now(),
                 'icon' => "tablet-icon",
             ],
+            //4
             [
                 'name' => 'Заявление на государственную поддержку',
                 'short_name' => 'Заявление на государственную поддержку',
@@ -64,7 +68,7 @@ class DocumentTypeSeeder extends Seeder
                 'updated_at' => now(),
                 'icon' => "tablet-icon",
             ],
-
+            //5
             [
                 'name' => '	Заявление на приобретение земельного участка, находящегося в государственной собственности, в аренду без проведения торгов',
                 'short_name' => 'Заявление на приобретение земельного участка в аренду',
@@ -77,7 +81,7 @@ class DocumentTypeSeeder extends Seeder
                 'updated_at' => now(),
                 'icon' => "tablet-icon",
             ],
-
+            //6
             [
                 'name' => '	Заявление о проведении аукциона по продаже земельного участка, находящегося в государственной собственности',
                 'short_name' => 'Заявление о проведении аукциона по продаже земельного участка',
@@ -90,7 +94,7 @@ class DocumentTypeSeeder extends Seeder
                 'updated_at' => now(),
                 'icon' => "tablet-icon",
             ],
-
+            //7
             [
                 'name' => '	Получить разрешение на строительство в рамках реализации инвестиционного проекта',
                 'short_name' => 'Получить разрешение на строительство',
@@ -103,7 +107,7 @@ class DocumentTypeSeeder extends Seeder
                 'updated_at' => now(),
                 'icon' => "tablet-icon",
             ],
-
+            //8
             [
                 'name' => 'Заявление на техническое присоединение к объектам газораспределения',
                 'short_name' => 'Заявление на техническое присоединение к объектам газораспределения',
@@ -116,7 +120,7 @@ class DocumentTypeSeeder extends Seeder
                 'updated_at' => now(),
                 'icon' => "tablet-icon",
             ],
-
+            //9
             [
                 'name' => 'Заявление на техническое присоединение к объектам теплоснабжения',
                 'short_name' => 'Заявление на техническое присоединение к объектам теплоснабжения',
@@ -129,7 +133,7 @@ class DocumentTypeSeeder extends Seeder
                 'updated_at' => now(),
                 'icon' => "tablet-icon",
             ],
-
+            //10
             [
                 'name' => 'Заявление на техническое присоединение к объектам водоснабжения и водоотведения',
                 'short_name' => 'Заявление на техническое присоединение к объектам водоснабжения и водоотведения',
@@ -142,7 +146,7 @@ class DocumentTypeSeeder extends Seeder
                 'updated_at' => now(),
                 'icon' => "tablet-icon",
             ],
-
+            //11
             [
                 'name' => 'Заявление о выдаче разрешения на ввод объекта в эксплуатацию',
                 'short_name' => 'Заявление о выдаче разрешения на ввод объекта в эксплуатацию',
@@ -160,434 +164,431 @@ class DocumentTypeSeeder extends Seeder
         // Вставляем данные в таблицу напрямую через DB фасад
         DB::table('document_types')->insert($documentTypes);
 
-        DB::table('stages')->insert([
-            [
-                'name' => 'Черновик',
-                'order' => 1,
-                'document_type_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Отправлено на рассмотрение',
-                'order' => 2,
-                'document_type_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+        for ($i=1; $i<=11; $i++)
+        {
+            DB::table('stages')->insert([
+                [
+                    'name' => 'Черновик',
+                    'order' => 1,
+                    'document_type_id' => $i,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                [
+                    'name' => 'На рассмотрении',
+                    'order' => 2,
+                    'document_type_id' => $i,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
 
-            [
-                'name' => 'На проверке',
-                'order' => 3,
-                'document_type_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Возврат на доработку',
-                'order' => 4,
-                'document_type_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Принят',
-                'order' => 5,
-                'document_type_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+                [
+                    'name' => 'Требуется доработка',
+                    'order' => 3,
+                    'document_type_id' => $i,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                [
+                    'name' => 'Утвержден порядок контроля и приемки',
+                    'order' => 4,
+                    'document_type_id' => $i,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+            ]);
+        }
 
-        DB::table('stages')->insert([
-            [
-                'name' => 'Черновик',
-                'order' => 1,
-                'document_type_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Отправлено на рассмотрение',
-                'order' => 2,
-                'document_type_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
 
-            [
-                'name' => 'На проверке',
-                'order' => 3,
-                'document_type_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Возврат на доработку',
-                'order' => 4,
-                'document_type_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Принят',
-                'order' => 5,
-                'document_type_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        // DB::table('stages')->insert([
+        //     [
+        //         'name' => 'Черновик',
+        //         'order' => 1,
+        //         'document_type_id' => 2,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Отправлено на рассмотрение',
+        //         'order' => 2,
+        //         'document_type_id' => 2,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
 
-        DB::table('stages')->insert([
-            [
-                'name' => 'Черновик',
-                'order' => 1,
-                'document_type_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Отправлено на рассмотрение',
-                'order' => 2,
-                'document_type_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+        //     [
+        //         'name' => 'На проверке',
+        //         'order' => 3,
+        //         'document_type_id' => 2,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Возврат на доработку',
+        //         'order' => 4,
+        //         'document_type_id' => 2,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Принят',
+        //         'order' => 5,
+        //         'document_type_id' => 2,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        // ]);
 
-            [
-                'name' => 'На проверке',
-                'order' => 3,
-                'document_type_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Возврат на доработку',
-                'order' => 4,
-                'document_type_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Принят',
-                'order' => 5,
-                'document_type_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        // DB::table('stages')->insert([
+        //     [
+        //         'name' => 'Черновик',
+        //         'order' => 1,
+        //         'document_type_id' => 3,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Отправлено на рассмотрение',
+        //         'order' => 2,
+        //         'document_type_id' => 3,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
 
-        DB::table('stages')->insert([
-            [
-                'name' => 'Черновик',
-                'order' => 1,
-                'document_type_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Отправлено на рассмотрение',
-                'order' => 2,
-                'document_type_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+        //     [
+        //         'name' => 'На проверке',
+        //         'order' => 3,
+        //         'document_type_id' => 3,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Возврат на доработку',
+        //         'order' => 4,
+        //         'document_type_id' => 3,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Принят',
+        //         'order' => 5,
+        //         'document_type_id' => 3,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        // ]);
 
-            [
-                'name' => 'На проверке',
-                'order' => 3,
-                'document_type_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Возврат на доработку',
-                'order' => 4,
-                'document_type_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Принят',
-                'order' => 5,
-                'document_type_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        // DB::table('stages')->insert([
+        //     [
+        //         'name' => 'Черновик',
+        //         'order' => 1,
+        //         'document_type_id' => 4,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Отправлено на рассмотрение',
+        //         'order' => 2,
+        //         'document_type_id' => 4,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
 
-        DB::table('stages')->insert([
-            [
-                'name' => 'Черновик',
-                'order' => 1,
-                'document_type_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Отправлено на рассмотрение',
-                'order' => 2,
-                'document_type_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+        //     [
+        //         'name' => 'На проверке',
+        //         'order' => 3,
+        //         'document_type_id' => 4,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Возврат на доработку',
+        //         'order' => 4,
+        //         'document_type_id' => 4,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Принят',
+        //         'order' => 5,
+        //         'document_type_id' => 4,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        // ]);
 
-            [
-                'name' => 'На проверке',
-                'order' => 3,
-                'document_type_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Возврат на доработку',
-                'order' => 4,
-                'document_type_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Принят',
-                'order' => 5,
-                'document_type_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        // DB::table('stages')->insert([
+        //     [
+        //         'name' => 'Черновик',
+        //         'order' => 1,
+        //         'document_type_id' => 5,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Отправлено на рассмотрение',
+        //         'order' => 2,
+        //         'document_type_id' => 5,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
 
-        DB::table('stages')->insert([
-            [
-                'name' => 'Черновик',
-                'order' => 1,
-                'document_type_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Отправлено на рассмотрение',
-                'order' => 2,
-                'document_type_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+        //     [
+        //         'name' => 'На проверке',
+        //         'order' => 3,
+        //         'document_type_id' => 5,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Возврат на доработку',
+        //         'order' => 4,
+        //         'document_type_id' => 5,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Принят',
+        //         'order' => 5,
+        //         'document_type_id' => 5,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        // ]);
 
-            [
-                'name' => 'На проверке',
-                'order' => 3,
-                'document_type_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Возврат на доработку',
-                'order' => 4,
-                'document_type_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Принят',
-                'order' => 5,
-                'document_type_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        // DB::table('stages')->insert([
+        //     [
+        //         'name' => 'Черновик',
+        //         'order' => 1,
+        //         'document_type_id' => 6,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Отправлено на рассмотрение',
+        //         'order' => 2,
+        //         'document_type_id' => 6,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
 
-        DB::table('stages')->insert([
-            [
-                'name' => 'Черновик',
-                'order' => 1,
-                'document_type_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Отправлено на рассмотрение',
-                'order' => 2,
-                'document_type_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+        //     [
+        //         'name' => 'На проверке',
+        //         'order' => 3,
+        //         'document_type_id' => 6,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Возврат на доработку',
+        //         'order' => 4,
+        //         'document_type_id' => 6,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Принят',
+        //         'order' => 5,
+        //         'document_type_id' => 6,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        // ]);
 
-            [
-                'name' => 'На проверке',
-                'order' => 3,
-                'document_type_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Возврат на доработку',
-                'order' => 4,
-                'document_type_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Принят',
-                'order' => 5,
-                'document_type_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        // DB::table('stages')->insert([
+        //     [
+        //         'name' => 'Черновик',
+        //         'order' => 1,
+        //         'document_type_id' => 7,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Отправлено на рассмотрение',
+        //         'order' => 2,
+        //         'document_type_id' => 7,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
 
-        DB::table('stages')->insert([
-            [
-                'name' => 'Черновик',
-                'order' => 1,
-                'document_type_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Отправлено на рассмотрение',
-                'order' => 2,
-                'document_type_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+        //     [
+        //         'name' => 'На проверке',
+        //         'order' => 3,
+        //         'document_type_id' => 7,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Возврат на доработку',
+        //         'order' => 4,
+        //         'document_type_id' => 7,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Принят',
+        //         'order' => 5,
+        //         'document_type_id' => 7,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        // ]);
 
-            [
-                'name' => 'На проверке',
-                'order' => 3,
-                'document_type_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Возврат на доработку',
-                'order' => 4,
-                'document_type_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Принят',
-                'order' => 5,
-                'document_type_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        // DB::table('stages')->insert([
+        //     [
+        //         'name' => 'Черновик',
+        //         'order' => 1,
+        //         'document_type_id' => 8,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Отправлено на рассмотрение',
+        //         'order' => 2,
+        //         'document_type_id' => 8,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
 
-        DB::table('stages')->insert([
-            [
-                'name' => 'Черновик',
-                'order' => 1,
-                'document_type_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Отправлено на рассмотрение',
-                'order' => 2,
-                'document_type_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+        //     [
+        //         'name' => 'На проверке',
+        //         'order' => 3,
+        //         'document_type_id' => 8,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Возврат на доработку',
+        //         'order' => 4,
+        //         'document_type_id' => 8,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Принят',
+        //         'order' => 5,
+        //         'document_type_id' => 8,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        // ]);
 
-            [
-                'name' => 'На проверке',
-                'order' => 3,
-                'document_type_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Возврат на доработку',
-                'order' => 4,
-                'document_type_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Принят',
-                'order' => 5,
-                'document_type_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        // DB::table('stages')->insert([
+        //     [
+        //         'name' => 'Черновик',
+        //         'order' => 1,
+        //         'document_type_id' => 9,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Отправлено на рассмотрение',
+        //         'order' => 2,
+        //         'document_type_id' => 9,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
 
-        DB::table('stages')->insert([
-            [
-                'name' => 'Черновик',
-                'order' => 1,
-                'document_type_id' => 10,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Отправлено на рассмотрение',
-                'order' => 2,
-                'document_type_id' => 10,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+        //     [
+        //         'name' => 'На проверке',
+        //         'order' => 3,
+        //         'document_type_id' => 9,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Возврат на доработку',
+        //         'order' => 4,
+        //         'document_type_id' => 9,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Принят',
+        //         'order' => 5,
+        //         'document_type_id' => 9,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        // ]);
 
-            [
-                'name' => 'На проверке',
-                'order' => 3,
-                'document_type_id' => 10,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Возврат на доработку',
-                'order' => 4,
-                'document_type_id' => 10,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Принят',
-                'order' => 5,
-                'document_type_id' => 10,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        // DB::table('stages')->insert([
+        //     [
+        //         'name' => 'Черновик',
+        //         'order' => 1,
+        //         'document_type_id' => 10,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Отправлено на рассмотрение',
+        //         'order' => 2,
+        //         'document_type_id' => 10,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
 
-        DB::table('stages')->insert([
-            [
-                'name' => 'Черновик',
-                'order' => 1,
-                'document_type_id' => 11,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Отправлено на рассмотрение',
-                'order' => 2,
-                'document_type_id' => 11,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+        //     [
+        //         'name' => 'На проверке',
+        //         'order' => 3,
+        //         'document_type_id' => 10,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Возврат на доработку',
+        //         'order' => 4,
+        //         'document_type_id' => 10,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Принят',
+        //         'order' => 5,
+        //         'document_type_id' => 10,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        // ]);
 
-            [
-                'name' => 'На проверке',
-                'order' => 3,
-                'document_type_id' => 11,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Возврат на доработку',
-                'order' => 4,
-                'document_type_id' => 11,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Принят',
-                'order' => 5,
-                'document_type_id' => 11,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        // DB::table('stages')->insert([
+        //     [
+        //         'name' => 'Черновик',
+        //         'order' => 1,
+        //         'document_type_id' => 11,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Отправлено на рассмотрение',
+        //         'order' => 2,
+        //         'document_type_id' => 11,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+
+        //     [
+        //         'name' => 'На проверке',
+        //         'order' => 3,
+        //         'document_type_id' => 11,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Возврат на доработку',
+        //         'order' => 4,
+        //         'document_type_id' => 11,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Принят',
+        //         'order' => 5,
+        //         'document_type_id' => 11,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        // ]);
 
         // Выводим информацию о количестве добавленных записей
         $this->command->info('Document types seeded: ' . count($documentTypes) . ' records');

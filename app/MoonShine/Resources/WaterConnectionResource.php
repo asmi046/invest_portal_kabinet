@@ -12,19 +12,19 @@ use MoonShine\UI\Fields\Email;
 use MoonShine\UI\Fields\Phone;
 use App\Models\WaterConnection;
 use MoonShine\UI\Fields\Number;
+use MoonShine\UI\Fields\Select;
 use MoonShine\UI\Components\Tabs;
 use MoonShine\UI\Fields\Switcher;
 use MoonShine\UI\Fields\Textarea;
 use MoonShine\Laravel\Enums\Action;
+use App\MoonShine\Fields\StateFields;
 use MoonShine\UI\Components\Tabs\Tab;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\UI\Components\Layout\Box;
+use App\MoonShine\Fields\RelationFields;
 use MoonShine\Contracts\UI\FieldContract;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Laravel\Resources\ModelResource;
-use MoonShine\Laravel\Fields\Relationships\HasOne;
-use MoonShine\Laravel\Fields\Relationships\HasMany;
-use MoonShine\Laravel\Fields\Relationships\MorphMany;
 
 
 /**
@@ -40,7 +40,7 @@ class WaterConnectionResource extends ModelResource
 
     protected function activeActions(): ListOf
     {
-        return parent::activeActions()->except(Action::VIEW);
+        return parent::activeActions()->except(Action::VIEW, Action::DELETE, Action::CREATE);
     }
 
     /**
@@ -52,8 +52,10 @@ class WaterConnectionResource extends ModelResource
             ID::make()->sortable(),
             Text::make('Заявитель', 'applicant_name'),
             Text::make('Объект', 'object_name'),
+            Text::make('Статус', 'state'),
         ];
     }
+
 
     /**
      * @return list<ComponentContract|FieldContract>
@@ -63,10 +65,15 @@ class WaterConnectionResource extends ModelResource
         return [
             Tabs::make([
                 Tab::make('Основные данные', [
-                    Text::make('Тип документа', 'document_type'),
-                    Switcher::make('Проверен', 'validated'),
-                    Switcher::make('Можно редактировать', 'editable'),
-                    Text::make('Статус документа', 'state'),
+
+                    Select::make('Тип документа', 'document_type')
+                        ->options([
+                            10 => 'Заявление на техническое присоединение к объектам водоснабжения и водоотведения',
+                        ])
+                    ->default(10)
+                    ->disabled(),
+                    ...StateFields::make(),
+
                     Text::make('Поставщик услуг', 'supplier_org'),
                 ]),
                 Tab::make('Данные заявителя', [
@@ -93,13 +100,8 @@ class WaterConnectionResource extends ModelResource
                     Number::make('Нагрузка на пожарные нужды на водоотведение, л/сек', 'payload_fire_ot')->step(0.01),
                 ]),
             ]),
-            HasMany::make("Вложения", "attachment", resource: AttachmentResource::class),
-            MorphMany::make(
-                'Подпись (Госключ)',
-                'goskeyRegistries',
-                resource: GoskeyRegistryResource::class
-            ),
-            HasOne::make("Подпись (плагин)", "signature", resource: SignedDocumentResource::class)
+
+            ...RelationFields::make(),
         ];
     }
 
@@ -150,6 +152,7 @@ class WaterConnectionResource extends ModelResource
             Text::make('Объект', 'object_name'),
             Text::make('Заявитель', 'applicant_name'),
             Phone::make('Телефон', 'phone'),
+            Text::make('Статус', 'state'),
         ];
     }
 }
