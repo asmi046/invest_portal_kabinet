@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
 
                 [
                     'id' => 2,
-                    'name' => "Просмотр показателей",
+                    'name' => "Модератор портала",
                 ],
         );
 
@@ -143,6 +143,48 @@ class UserSeeder extends Seeder
                     'moonshine_user_id' => $userID,
                     'created_at' => now(),
                     'updated_at' => now(),
+                ],
+                [
+                    'document_type_id' => 5,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                [
+                    'document_type_id' => 6,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                [
+                    'document_type_id' => 7,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                [
+                    'document_type_id' => 8,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                [
+                    'document_type_id' => 9,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                [
+                    'document_type_id' => 10,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                [
+                    'document_type_id' => 11,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ]
             ]
 
@@ -159,13 +201,39 @@ class UserSeeder extends Seeder
             ]
         );
 
-        DB::table('document_type_moonshine_user')->insert( [
+         DB::table('document_type_moonshine_user')->insert( [
                 [
                     'document_type_id' => 1,
                     'moonshine_user_id' => $userID,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ],
+
+                [
+                    'document_type_id' => 5,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                [
+                    'document_type_id' => 6,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+
+                [
+                    'document_type_id' => 10,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                [
+                    'document_type_id' => 11,
+                    'moonshine_user_id' => $userID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
             ]
 
         );

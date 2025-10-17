@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 use MoonShine\UI\Components\Layout\Box;
 use App\MoonShine\Fields\RelationFields;
 use MoonShine\Contracts\UI\FieldContract;
+use App\MoonShine\Traits\FiltersByUserRole;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Laravel\Resources\ModelResource;
 use App\MoonShine\Resources\AttachmentResource;
@@ -38,6 +39,8 @@ use MoonShine\Laravel\Fields\Relationships\MorphMany;
  */
 class LandLeaseApplicationResource extends ModelResource
 {
+    use FiltersByUserRole;
+
     protected string $model = LandLeaseApplication::class;
 
     protected string $title = 'Заявление на приобретение земельного участка, находящегося в государственной собственности';

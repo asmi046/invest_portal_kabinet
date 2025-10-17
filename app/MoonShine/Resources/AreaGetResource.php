@@ -15,6 +15,7 @@ use MoonShine\Handlers\ExportHandler;
 use MoonShine\Handlers\ImportHandler;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\ActionButtons\ActionButton;
+use App\MoonShine\Traits\FiltersByUserRole;
 use MoonShine\Laravel\Resources\ModelResource;
 use App\MoonShine\Pages\AreaGet\AreaGetFormPage;
 use App\MoonShine\Pages\AreaGet\AreaGetIndexPage;
@@ -25,6 +26,8 @@ use App\MoonShine\Pages\AreaGet\AreaGetDetailPage;
  */
 class AreaGetResource extends ModelResource
 {
+    use FiltersByUserRole;
+
     protected string $model = AreaGet::class;
 
     protected string $title = 'Заявления на предоставление земельного участка';

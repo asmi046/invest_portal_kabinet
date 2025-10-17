@@ -25,6 +25,7 @@ use MoonShine\UI\Components\Layout\Box;
 use App\MoonShine\Fields\RelationFields;
 use MoonShine\Contracts\UI\FieldContract;
 use MoonShine\UI\Components\ActionButton;
+use App\MoonShine\Traits\FiltersByUserRole;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Laravel\Resources\ModelResource;
 use App\MoonShine\Resources\AttachmentResource;
@@ -39,6 +40,8 @@ use MoonShine\Laravel\Fields\Relationships\MorphMany;
  */
 class LandAuctionApplicationResource extends ModelResource
 {
+    use FiltersByUserRole;
+
     protected string $model = LandAuctionApplication::class;
 
     protected string $title = 'Заявление о проведении аукциона по продаже земельного участка';

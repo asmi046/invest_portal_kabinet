@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
-use MoonShine\UI\Fields\ID;
-use MoonShine\Support\ListOf;
 
+use MoonShine\UI\Fields\ID;
+
+use MoonShine\Support\ListOf;
 use MoonShine\UI\Fields\Text;
 use MoonShine\UI\Fields\Email;
 use MoonShine\UI\Fields\Phone;
@@ -23,8 +24,10 @@ use Illuminate\Database\Eloquent\Model;
 use MoonShine\UI\Components\Layout\Box;
 use App\MoonShine\Fields\RelationFields;
 use MoonShine\Contracts\UI\FieldContract;
+use App\MoonShine\Traits\FiltersByUserRole;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Laravel\Resources\ModelResource;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 
 /**
@@ -32,6 +35,9 @@ use MoonShine\Laravel\Resources\ModelResource;
  */
 class WaterConnectionResource extends ModelResource
 {
+
+    use FiltersByUserRole;
+
     protected string $model = WaterConnection::class;
 
     protected string $title = 'Заявление на техническое присоединение к объектам водоснабжения и водоотведения';
@@ -42,6 +48,8 @@ class WaterConnectionResource extends ModelResource
     {
         return parent::activeActions()->except(Action::VIEW, Action::DELETE, Action::CREATE);
     }
+
+
 
     /**
      * @return list<FieldContract>

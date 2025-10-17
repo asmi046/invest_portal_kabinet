@@ -15,6 +15,7 @@ use MoonShine\Laravel\Enums\Action;
 use MoonShine\Handlers\ExportHandler;
 use MoonShine\Handlers\ImportHandler;
 use Illuminate\Database\Eloquent\Model;
+use App\MoonShine\Traits\FiltersByUserRole;
 use MoonShine\Laravel\Resources\ModelResource;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use App\MoonShine\Pages\TechnicalConnects\TechnicalConnectsFormPage;
@@ -26,6 +27,8 @@ use App\MoonShine\Pages\TechnicalConnects\TechnicalConnectsDetailPage;
  */
 class TechnicalConnectsResource extends ModelResource
 {
+    use FiltersByUserRole;
+
     protected string $model = TechnicalConnects::class;
 
     protected string $title = 'Заявления на техническое присоединение';
