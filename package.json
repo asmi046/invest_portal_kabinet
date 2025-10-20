@@ -8,7 +8,7 @@
         "composer_remove": "ssh smirnov_aa@1.8.105.29 \"cd investlk && php composer.phar dumpauto\"",
         "composer_install": "ssh smirnov_aa@1.8.105.29 \"cd investlk && php composer.phar install\"",
         "composer_update": "ssh smirnov_aa@1.8.105.29 \"cd investlk && php composer.phar update\"",
-        "pull_rep": "ssh smirnov_aa@1.8.105.29 \"cd investlk && git pull\"",
+        "pull_rep": "ssh smirnov_aa@1.8.105.29 \"cd investlk && git pull --force\"",
         "marge_rep": "ssh smirnov_aa@1.8.105.29 \"cd investlk && git config pull.rebase false\"",
         "clean_rep": "ssh smirnov_aa@1.8.105.29 \"cd investlk && git clean -f\"",
         "stash": "ssh smirnov_aa@1.8.105.29 \"cd investlk && git stash\"",
