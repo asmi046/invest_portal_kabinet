@@ -67,11 +67,11 @@
 
     <x-form.input type="number" name="prilogenie_list_count" label="Страниц в приложении" :required="true" value="{{ $item->prilogenie_list_count ?? old('prilogenie_list_count') ?? '' }}" />
 
-    <x-edit-form-elements.main-control :format="$format" :item="$item ?? null" doct="area_get" deleteroat="area_get_delete" ></x-edit-form-elements.main-control>
+    <x-form.main-control :format="$format" :item="$item ?? null" doct="area_get" deleteroat="area_get_delete" ></x-form.main-control>
 
 
 
 </form>
 
-<x-edit-form-elements.blocked-control :format="$format" :item="$item ?? null" doct="area_get" printroute="area_get_print" ></x-edit-form-elements.blocked-control>
+<x-form.blocked-control :format="$format" :item="$item ?? null" doct="area_get" printroute="area_get_print" ></x-form.blocked-control>
 
