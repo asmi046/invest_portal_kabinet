@@ -19,7 +19,7 @@
 
     {{-- Начало формы --}}
 
-    <x-form.input name="supplier_org" :required="true" label="Организация в которую подается заявление" :required="false" value="{{ $item->supplier_org ?? old('supplier_org') }}" />
+    <x-form.input name="supplier_org" :required="true" label="Организация в которую подается заявление" value="{{ $item->supplier_org ?? old('supplier_org') }}" />
 
     <h3>Сведения о заявителе</h3>
 
@@ -49,7 +49,7 @@
 
     <div class="columns-box columns-box--two-col">
         <x-form.input name="land_cadastral_number" label="Кадастровый номер земельного участка" :required="true" value="{{ $item->land_cadastral_number ?? old('land_cadastral_number') }}" />
-        <x-form.input name="area" label="Площадь земельного участка (кв.м)" :required="true" type="number" step="0.01" value="{{ $item->area ?? old('area') }}" />
+        <x-form.input-num name="area" label="Площадь земельного участка (кв.м)" step="0.1" :required="true" value="{{ $item->area ?? old('area') }}" />
         <x-form.input name="landmarks" label="Ориентиры земельного участка" :required="false" value="{{ $item->landmarks ?? old('landmarks') }}" />
     </div>
 

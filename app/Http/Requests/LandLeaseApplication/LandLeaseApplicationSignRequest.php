@@ -22,17 +22,25 @@ class LandLeaseApplicationSignRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'supplier_org' => ['required', 'string', 'max:256'],
             'applicant_name' => ['required', 'string', 'max:256'],
             'applicant_ogrn' => ['required', 'string', 'regex:/^\d+$/', 'max:256'],
             'applicant_inn' => ['required', 'string', 'regex:/^\d+$/', 'max:256'],
             'applicant_address' => ['required', 'string', 'max:256'],
+            'person' => ['nullable', 'string', 'max:256'],
+            'person_dover' => ['nullable', 'string', 'max:256'],
             'phone' => ['required', 'string', 'max:20'],
+            'email' => ['nullable', 'string', 'email', 'max:100'],
             'post_address' => ['required', 'string', 'max:500'],
             'land_cadastral_number' => ['required', 'string', 'max:256'],
             'area' => ['required', 'numeric', 'gt:0'],
             'lease_term' => ['required', 'string', 'max:255'],
+            'landmarks' => ['nullable', 'string', 'max:556'],
             'purpose' => ['required', 'string'],
             'basis' => ['required', 'string'],
+            'req_dock' => ['nullable', 'string', 'max:255'],
+            'req_dock_plan' => ['nullable', 'string', 'max:255'],
+            'req_dock_iz' => ['nullable', 'string', 'max:255'],
         ];
     }
 
@@ -44,6 +52,10 @@ class LandLeaseApplicationSignRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'supplier_org.required' => 'Поле "Организация в которую подается заявление" обязательно для заполнения.',
+            'supplier_org.string' => 'Поле "Организация в которую подается заявление" должно быть строкой.',
+            'supplier_org.max' => 'Поле "Организация в которую подается заявление" не должно превышать 256 символов.',
+
             'applicant_name.required' => 'Поле "Наименование заявителя" обязательно для заполнения.',
             'applicant_name.string' => 'Поле "Наименование заявителя" должно быть строкой.',
             'applicant_name.max' => 'Поле "Наименование заявителя" не должно превышать 256 символов.',
@@ -62,9 +74,20 @@ class LandLeaseApplicationSignRequest extends FormRequest
             'applicant_address.string' => 'Поле "Адрес заявителя" должно быть строкой.',
             'applicant_address.max' => 'Поле "Адрес заявителя" не должно превышать 256 символов.',
 
+            'person.string' => 'Поле "ФИО представителя" должно быть строкой.',
+            'person.max' => 'Поле "ФИО представителя" не должно превышать 256 символов.',
+
+            'person_dover.string' => 'Поле "ФИО доверенного лица" должно быть строкой.',
+            'person_dover.max' => 'Поле "ФИО доверенного лица" не должно превышать 256 символов.',
+
             'phone.required' => 'Поле "Телефон" обязательно для заполнения.',
             'phone.string' => 'Поле "Телефон" должно быть строкой.',
             'phone.max' => 'Поле "Телефон" не должно превышать 20 символов.',
+
+            'email.required' => 'Поле "Email" обязательно для заполнения.',
+            'email.string' => 'Поле "Email" должно быть строкой.',
+            'email.email' => 'Поле "Email" должно быть корректным электронным адресом.',
+            'email.max' => 'Поле "Email" не должно превышать 100 символов.',
 
             'post_address.required' => 'Поле "Почтовый адрес" обязательно для заполнения.',
             'post_address.string' => 'Поле "Почтовый адрес" должно быть строкой.',
@@ -82,11 +105,23 @@ class LandLeaseApplicationSignRequest extends FormRequest
             'lease_term.string' => 'Поле "Срок аренды земельного участка" должно быть строкой.',
             'lease_term.max' => 'Поле "Срок аренды земельного участка" не должно превышать 255 символов.',
 
+            'landmarks.string' => 'Поле "Ориентиры земельного участка" должно быть строкой.',
+            'landmarks.max' => 'Поле "Ориентиры земельного участка" не должно превышать 556 символов.',
+
             'purpose.required' => 'Поле "Цель использования земельного участка" обязательно для заполнения.',
             'purpose.string' => 'Поле "Цель использования земельного участка" должно быть строкой.',
 
             'basis.required' => 'Поле "Основание предоставления земельного участка без проведения торгов" обязательно для заполнения.',
             'basis.string' => 'Поле "Основание предоставления земельного участка без проведения торгов" должно быть строкой.',
+
+            'req_dock.string' => 'Поле "Реквизиты решения о предварительном согласовании предоставления земельного участка" должно быть строкой.',
+            'req_dock.max' => 'Поле "Реквизиты решения о предварительном согласовании предоставления земельного участка" не должно превышать 255 символов.',
+
+            'req_dock_plan.string' => 'Поле "Реквизиты решения об утверждении документа территориального планирования и (или) проекта планировки территории" должно быть строкой.',
+            'req_dock_plan.max' => 'Поле "Реквизиты решения об утверждении документа территориального планирования и (или) проекта планировки территории" не должно превышать 255 символов.',
+
+            'req_dock_iz.string' => 'Поле "Реквизиты решения об изъятии земельного участка для государственных или муниципальных нужд" должно быть строкой.',
+            'req_dock_iz.max' => 'Поле "Реквизиты решения об изъятии земельного участка для государственных или муниципальных нужд" не должно превышать 255 символов.',
         ];
     }
 }

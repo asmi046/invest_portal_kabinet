@@ -103,8 +103,8 @@
     <h3>Контакты</h3>
 
     <div class="columns-box columns-box--two-col">
-        <x-form.input name="phone" label="Телефон" :required="false" value="{{ $item->phone ?? old('phone') ?? auth()->user()->phone}}" />
-        <x-form.input name="email" label="Адрес электронной почты" :required="false" value="{{ $item->email ?? old('email') ?? auth()->user()->email }}" />
+        <x-form.input name="phone" label="Телефон" :required="true" value="{{ $item->phone ?? old('phone') ?? auth()->user()->phone}}" />
+        <x-form.input name="email" label="Адрес электронной почты" :required="true" value="{{ $item->email ?? old('email') ?? auth()->user()->email }}" />
     </div>
 
     <h3>Результат рассмотрения настоящего заявления прошу:</h3>

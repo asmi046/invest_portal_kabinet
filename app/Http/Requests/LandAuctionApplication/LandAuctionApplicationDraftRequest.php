@@ -22,8 +22,31 @@ class LandAuctionApplicationDraftRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'applicant_name' => ['required', 'string', 'max:256'],
-            'area' => ['required', 'numeric', 'gt:0'],
+
+
+            // Необязательные поля с валидацией
+            'supplier_org' => ['nullable', 'string', 'max:255'],
+
+            // Данные заявителя
+            'applicant_name' => ['nullable', 'string', 'max:256'],
+            'applicant_ogrn' => ['nullable', 'string', 'max:256', 'regex:/^\d+$/'],
+            'applicant_inn' => ['nullable', 'string', 'max:256', 'regex:/^\d+$/'],
+            'applicant_address' => ['nullable', 'string', 'max:256'],
+
+            // Представитель
+            'person' => ['nullable', 'string', 'max:256'],
+            'person_dover' => ['nullable', 'string', 'max:256'],
+
+            // Контактные данные
+            'phone' => ['nullable', 'string', 'max:20'],
+            'email' => ['nullable', 'email', 'max:100'],
+            'post_address' => ['nullable', 'string', 'max:500'],
+
+            // Данные о земельном участке
+            'land_cadastral_number' => ['nullable', 'string', 'max:256'],
+            'landmarks' => ['nullable', 'string', 'max:556'],
+            'area' => ['numeric', 'min:1', 'max:99999999.99'],
+            'purpose' => ['nullable', 'string'],
 
         ];
     }
@@ -36,15 +59,54 @@ class LandAuctionApplicationDraftRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'applicant_name.required' => 'Поле "Наименование заявителя" обязательно для заполнения.',
-            'applicant_name.string' => 'Поле "Наименование заявителя" должно быть строкой.',
-            'applicant_name.max' => 'Поле "Наименование заявителя" не должно превышать 256 символов.',
+            // Организация
+            'supplier_org.string' => 'Поле "Организация" должно быть строкой.',
+            'supplier_org.max' => 'Поле "Организация" не должно превышать :max символов.',
 
+            // Данные заявителя
+            'applicant_name.string' => 'Поле "Заявитель" должно быть строкой.',
+            'applicant_name.max' => 'Поле "Заявитель" не должно превышать :max символов.',
 
-            'area.required' => 'Поле "Площадь земельного участка" обязательно для заполнения.',
+            'applicant_ogrn.string' => 'Поле "ОГРН / ОГРНИП" должно быть строкой.',
+            'applicant_ogrn.max' => 'Поле "ОГРН / ОГРНИП" не должно превышать :max символов.',
+            'applicant_ogrn.regex' => 'Поле "ОГРН / ОГРНИП" должно содержать только цифры.',
+
+            'applicant_inn.string' => 'Поле "ИНН" должно быть строкой.',
+            'applicant_inn.max' => 'Поле "ИНН" не должно превышать :max символов.',
+            'applicant_inn.regex' => 'Поле "ИНН" должно содержать только цифры.',
+
+            'applicant_address.string' => 'Поле "Адрес заявителя" должно быть строкой.',
+            'applicant_address.max' => 'Поле "Адрес заявителя" не должно превышать :max символов.',
+
+            // Представитель
+            'person.string' => 'Поле "ФИО представителя" должно быть строкой.',
+            'person.max' => 'Поле "ФИО представителя" не должно превышать :max символов.',
+
+            'person_dover.string' => 'Поле "Документ, подтверждающий полномочия представителя" должно быть строкой.',
+            'person_dover.max' => 'Поле "Документ, подтверждающий полномочия представителя" не должно превышать :max символов.',
+
+            // Контактные данные
+            'phone.string' => 'Поле "Телефон" должно быть строкой.',
+            'phone.max' => 'Поле "Телефон" не должно превышать :max символов.',
+
+            'email.email' => 'Поле "Email" должно быть корректным адресом электронной почты.',
+            'email.max' => 'Поле "Email" не должно превышать :max символов.',
+
+            'post_address.string' => 'Поле "Почтовый адрес" должно быть строкой.',
+            'post_address.max' => 'Поле "Почтовый адрес" не должно превышать :max символов.',
+
+            // Данные о земельном участке
+            'land_cadastral_number.string' => 'Поле "Кадастровый номер земельного участка" должно быть строкой.',
+            'land_cadastral_number.max' => 'Поле "Кадастровый номер земельного участка" не должно превышать :max символов.',
+
+            'landmarks.string' => 'Поле "Ориентиры земельного участка" должно быть строкой.',
+            'landmarks.max' => 'Поле "Ориентиры земельного участка" не должно превышать :max символов.',
+
             'area.numeric' => 'Поле "Площадь земельного участка" должно быть числом.',
-            'area.gt' => 'Поле "Площадь земельного участка" должно быть больше нуля.',
+            'area.min' => 'Поле "Площадь земельного участка" должно быть не меньше 0.',
+            'area.max' => 'Поле "Площадь земельного участка" должно быть не больше 99999999.99.',
 
+            'purpose.string' => 'Поле "Цель использования земельного участка" должно быть строкой.',
         ];
     }
 }

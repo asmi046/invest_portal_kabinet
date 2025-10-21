@@ -40,7 +40,7 @@ return new class extends Migration
 
             $table->string('land_cadastral_number', 256)->nullable()->comment('Кадастровый номер земельного участка');
             $table->string('landmarks', 556)->nullable()->comment('Ориентиры земельного участка');
-            $table->decimal('area', 10, 2)->default(0)->comment('Площадь земельного участка (кв.м)');
+            $table->decimal('area', 10, 2)->nullable(0)->comment('Площадь земельного участка (кв.м)');
             $table->text('purpose')->nullable()->comment('Цель использования земельного участка');
             $table->timestamps();
         });
