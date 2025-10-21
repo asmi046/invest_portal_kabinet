@@ -331,7 +331,7 @@
     @endif
 {{-- конец описания формы --}}
 
-    <x-edit-form-elements.main-control :format="$format" :item="$item ?? null" doct="tc" deleteroat="technical_connect_delete" ></x-edit-form-elements.main-control>
+    <x-form.main-control :format="$format" :item="$item ?? null" doct="tc" deleteroat="technical_connect_delete" ></x-form.main-control>
 
 </form>
 
