@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Fields;
 
-use MoonShine\Fields\Field;
 use Closure;
+use MoonShine\UI\Fields\Field;
 
 class MainLnk extends Field
 {
