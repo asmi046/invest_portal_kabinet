@@ -72,9 +72,9 @@
     <h3>Параметры потребления газа</h3>
 
     <div class="columns-box columns-box--two-col">
-        <x-form.input name="gas_flow_total" label="Величина максимального часового расхода газа (мощности)" type="number" step="0.01" :required="true" value="{{ $item->gas_flow_total ?? old('gas_flow_total') }}" />
-        <x-form.input name="gas_flow_new" label="Величина максимального часового расхода газа (мощности) подключаемого газоиспользующего оборудования" type="number" step="0.01" :required="true" value="{{ $item->gas_flow_new ?? old('gas_flow_new') }}" />
-        <x-form.input name="gas_flow_existing" label="Величина максимального часового расхода газа (мощности) подключенного газоиспользующего оборудования" type="number" step="0.01" :required="true" value="{{ $item->gas_flow_existing ?? old('gas_flow_existing') }}" />
+        <x-form.input-num name="gas_flow_total" label="Величина максимального часового расхода газа (мощности)" step="0.1" :required="true" value="{{ $item->gas_flow_total ?? old('gas_flow_total') }}" />
+        <x-form.input-num name="gas_flow_new" label="Величина максимального часового расхода газа (мощности) подключаемого газоиспользующего оборудования" type="number" step="0.1" :required="true" value="{{ $item->gas_flow_new ?? old('gas_flow_new') }}" />
+        <x-form.input-num name="gas_flow_existing" label="Величина максимального часового расхода газа (мощности) подключенного газоиспользующего оборудования" type="number" step="0.1" :required="true" value="{{ $item->gas_flow_existing ?? old('gas_flow_existing') }}" />
         <x-form.input name="planned_date" label="Планируемый срок проектирования, строительства и ввода в эксплуатацию объекта капитального строительства" type="date" :required="true" value="{{ $item->planned_date ?? old('planned_date') }}" />
     </div>
 
@@ -83,9 +83,9 @@
     <div class="columns-box columns-box--two-col">
         <x-form.input name="connection_point" label="Точка подключения" type="number" :required="true" value="{{ $item->connection_point ?? old('connection_point') }}" />
         <x-form.input name="connection_planned_date" label="Планируемый срок проектирования, строительства и ввода в эксплуатацию объекта капитального строительства, в том числе по этапам и очередям (месяц, год)" type="date" :required="true" value="{{ $item->connection_planned_date ?? old('connection_planned_date') }}" />
-        <x-form.input name="connection_flow_total" label="Итоговая величина максимального часового расхода газа" type="number" step="0.01" :required="true" value="{{ $item->connection_flow_total ?? old('connection_flow_total') }}" />
-        <x-form.input name="connection_flow_new" label="Величина максимального расхода газа" type="number" step="0.01" :required="true" value="{{ $item->connection_flow_new ?? old('connection_flow_new') }}" />
-        <x-form.input name="connection_flow_existing" label="Величина максимального часового расхода газа" type="number" step="0.01" :required="true" value="{{ $item->connection_flow_existing ?? old('connection_flow_existing') }}" />
+        <x-form.input-num name="connection_flow_total" label="Итоговая величина максимального часового расхода газа" type="number" step="0.1" :required="true" value="{{ $item->connection_flow_total ?? old('connection_flow_total') }}" />
+        <x-form.input-num name="connection_flow_new" label="Величина максимального расхода газа" type="number" step="0.1" :required="true" value="{{ $item->connection_flow_new ?? old('connection_flow_new') }}" />
+        <x-form.input-num name="connection_flow_existing" label="Величина максимального расхода газа" type="number" step="0.1" :required="true" value="{{ $item->connection_flow_existing ?? old('connection_flow_existing') }}" />
     </div>
 
     @if ($format !== "create" )
