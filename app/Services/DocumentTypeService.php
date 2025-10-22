@@ -57,6 +57,7 @@ class DocumentTypeService
         if(!$item) abort('404');
         $item->update([
             "state" => "На рассмотрении",
+            "editable" => false,
         ]);
     }
 

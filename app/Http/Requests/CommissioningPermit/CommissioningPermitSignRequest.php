@@ -22,18 +22,17 @@ class CommissioningPermitSignRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'document_type' => ['required', 'string', 'max:255'],
             'applicant_type' => ['required', 'string', 'max:256'],
             'send_result_type' => ['required', 'string', 'max:550'],
 
             // Дополнительные правила для необязательных полей
-            'supplier_org' => ['nullable', 'string', 'max:500'],
-            'applicant_name' => ['nullable', 'string', 'max:256'],
-            'applicant_ogrn' => ['nullable', 'string', 'regex:/^\d+$/', 'max:256'],
-            'applicant_inn' => ['nullable', 'string', 'regex:/^\d+$/', 'max:256'],
-            'applicant_passport_data' => ['nullable', 'string', 'max:556'],
-            'object_name' => ['nullable', 'string'],
-            'object_address' => ['nullable', 'string'],
+            'supplier_org' => ['required', 'string', 'max:500'],
+            'applicant_name' => ['required', 'string', 'max:256'],
+            'applicant_ogrn' => ['required', 'string', 'regex:/^\d+$/', 'max:256'],
+            'applicant_inn' => ['required', 'string', 'regex:/^\d+$/', 'max:256'],
+            'applicant_passport_data' => ['required', 'string', 'max:556'],
+            'object_name' => ['required', 'string'],
+            'object_address' => ['required', 'string'],
             'land_cadastral_number' => ['nullable', 'string', 'max:256'],
             'permit_authority' => ['nullable', 'string', 'max:256'],
             'permit_number' => ['nullable', 'string', 'max:256'],
@@ -75,26 +74,34 @@ class CommissioningPermitSignRequest extends FormRequest
             'send_result_type.string' => 'Поле "Вид отправки результата оказания услуги" должно быть строкой',
             'send_result_type.max' => 'Поле "Вид отправки результата оказания услуги" не должно превышать :max символов',
 
+            'supplier_org.required' => 'Поле "Наименование уполномоченного органа" обязательно для заполнения',
             'supplier_org.string' => 'Поле "Наименование уполномоченного органа" должно быть строкой',
             'supplier_org.max' => 'Поле "Наименование уполномоченного органа" не должно превышать :max символов',
 
+            'applicant_name.required' => 'Поле "Наименование заявителя" обязательно для заполнения',
             'applicant_name.string' => 'Поле "Наименование заявителя" должно быть строкой',
             'applicant_name.max' => 'Поле "Наименование заявителя" не должно превышать :max символов',
 
+            'applicant_ogrn.required' => 'Поле "ОГРН заявителя" обязательно для заполнения',
             'applicant_ogrn.string' => 'Поле "ОГРН заявителя" должно быть строкой',
             'applicant_ogrn.regex' => 'Поле "ОГРН заявителя" должно содержать только цифры',
             'applicant_ogrn.max' => 'Поле "ОГРН заявителя" не должно превышать :max символов',
 
+            'applicant_inn.required' => 'Поле "ИНН заявителя" обязательно для заполнения',
             'applicant_inn.string' => 'Поле "ИНН заявителя" должно быть строкой',
             'applicant_inn.regex' => 'Поле "ИНН заявителя" должно содержать только цифры',
             'applicant_inn.max' => 'Поле "ИНН заявителя" не должно превышать :max символов',
 
+            'applicant_passport_data.required' => 'Поле "Паспортные данные" обязательно для заполнения',
             'applicant_passport_data.string' => 'Поле "Паспортные данные" должно быть строкой',
             'applicant_passport_data.max' => 'Поле "Паспортные данные" не должно превышать :max символов',
 
             'object_name.string' => 'Поле "Наименование объекта" должно быть строкой',
+            'object_name.required' => 'Поле "Наименование объекта" обязательно для заполнения',
+
 
             'object_address.string' => 'Поле "Адрес объекта" должно быть строкой',
+            'object_address.required' => 'Поле "Адрес объекта" обязательно для заполнения',
 
             'land_cadastral_number.string' => 'Поле "Кадастровый номер" должно быть строкой',
             'land_cadastral_number.max' => 'Поле "Кадастровый номер" не должно превышать :max символов',

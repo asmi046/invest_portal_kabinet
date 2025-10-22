@@ -19,23 +19,23 @@
 
     {{-- Начало формы --}}
 
-    <x-form.input name="supplier_org" label="Наименование уполномоченного на выдачу разрешений на ввод объекта в эксплуатацию федерального органа исполнительной власти" :required="false" value="{{ $item->supplier_org ?? old('supplier_org') }}" />
+    <x-form.input name="supplier_org" label="Наименование уполномоченного на выдачу разрешений на ввод объекта в эксплуатацию федерального органа исполнительной власти" :required="true" value="{{ $item->supplier_org ?? old('supplier_org') }}" />
 
     <h3>Сведения о застройщике</h3>
-    <x-form.select name="applicant_type" label="Тип заявителя" :required="false" :list="['Физическое лицо','Индивидуальный предприниматель','Юридическое лицо']" :value="$item->applicant_type ?? old('applicant_type') ?? 'Физическое лицо' " />
+    <x-form.select name="applicant_type" label="Тип заявителя" :required="true" :list="['Физическое лицо','Индивидуальный предприниматель','Юридическое лицо']" :value="$item->applicant_type ?? old('applicant_type') ?? 'Физическое лицо' " />
 
     <div class="columns-box columns-box--two-col">
 
-        <x-form.input name="applicant_name" label="Наименование заявителя" :required="false" value="{{ $item->applicant_name ?? old('applicant_name') ?? get_fio_str() }}" />
-        <x-form.input name="applicant_ogrn" label="ОГРН заявителя (если есть)" :required="false" value="{{ $item->applicant_ogrn ?? old('applicant_ogrn') }}" />
-        <x-form.input name="applicant_inn" label="ИНН заявителя" :required="false" value="{{ $item->applicant_inn ?? old('applicant_inn') }}" />
-        <x-form.input name="applicant_passport_data" label="Паспортные данные заявителя (если физическое лицо)" :required="false" value="{{ $item->applicant_passport_data ?? old('applicant_passport_data') }}" />
+        <x-form.input name="applicant_name" label="Наименование заявителя" :required="true" value="{{ $item->applicant_name ?? old('applicant_name') ?? get_fio_str() }}" />
+        <x-form.input name="applicant_ogrn" label="ОГРН заявителя (если есть)" :required="true" value="{{ $item->applicant_ogrn ?? old('applicant_ogrn') }}" />
+        <x-form.input name="applicant_inn" label="ИНН заявителя" :required="true" value="{{ $item->applicant_inn ?? old('applicant_inn') }}" />
+        <x-form.input name="applicant_passport_data" label="Паспортные данные заявителя (если физическое лицо)" :required="true" value="{{ $item->applicant_passport_data ?? old('applicant_passport_data') }}" />
     </div>
 
     <h3>Сведения об объекте</h3>
     <div class="columns-box columns-box--two-col">
-        <x-form.input name="object_name" label="Наименование объекта капитального строительства" :required="false" value="{{ $item->object_name ?? old('object_name') }}" />
-        <x-form.input name="object_address" label="Адрес (местоположение) объекта" :required="false" value="{{ $item->object_address ?? old('object_address') }}" />
+        <x-form.input name="object_name" label="Наименование объекта капитального строительства" :required="true" value="{{ $item->object_name ?? old('object_name') }}" />
+        <x-form.input name="object_address" label="Адрес (местоположение) объекта" :required="true" value="{{ $item->object_address ?? old('object_address') }}" />
     </div>
 
     <h3>Сведения о земельном участке</h3>

@@ -15,6 +15,38 @@ class WaterConnectionSignRequest extends FormRequest
     }
 
     /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            // Организация/заявитель (основные сведения)
+            'supplier_org' => ['required', 'string', 'max:256'],
+            'applicant_name' => ['required', 'string', 'max:256'],
+            'address' => ['required', 'string', 'max:256'],
+            'phone' => ['required', 'string', 'max:20'],
+            'email' => ['required', 'email', 'max:100'],
+
+            // Заявление
+            'object_name' => ['required', 'string', 'max:256'],
+            'object_address' => ['required', 'string', 'max:256'],
+            'object_description' => ['required', 'string'],
+
+            // Нагрузки (все обязательные числовые поля)
+            'payload_all_snab' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'payload_all_ot' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'payload_hoz_snab' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'payload_hoz_ot' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'payload_prom_snab' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'payload_prom_ot' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'payload_fire_snab' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'payload_fire_ot' => [ 'numeric', 'min:0', 'max:99999999.99'],
+        ];
+    }
+
+    /**
      * Получить сообщения об ошибках для определенных правил валидации.
      *
      * @return array
@@ -80,35 +112,5 @@ class WaterConnectionSignRequest extends FormRequest
         ];
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
-    public function rules(): array
-    {
-        return [
-            // Организация/заявитель (основные сведения)
-            'supplier_org' => ['required', 'string', 'max:256'],
-            'applicant_name' => ['required', 'string', 'max:256'],
-            'address' => ['required', 'string', 'max:256'],
-            'phone' => ['required', 'string', 'max:20'],
-            'email' => ['required', 'email', 'max:100'],
 
-            // Заявление
-            'object_name' => ['required', 'string', 'max:256'],
-            'object_address' => ['required', 'string', 'max:256'],
-            'object_description' => ['required', 'string'],
-
-            // Нагрузки (все обязательные числовые поля)
-            'payload_all_snab' => ['required', 'numeric', 'min:0'],
-            'payload_all_ot' => ['required', 'numeric', 'min:0'],
-            'payload_hoz_snab' => ['required', 'numeric', 'min:0'],
-            'payload_hoz_ot' => ['required', 'numeric', 'min:0'],
-            'payload_prom_snab' => ['required', 'numeric', 'min:0'],
-            'payload_prom_ot' => ['required', 'numeric', 'min:0'],
-            'payload_fire_snab' => ['required', 'numeric', 'min:0'],
-            'payload_fire_ot' => ['required', 'numeric', 'min:0'],
-        ];
-    }
 }

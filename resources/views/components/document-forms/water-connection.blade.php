@@ -21,24 +21,24 @@
     <h3>Организация осуществляющая подключение</h3>
 
 
-    <x-form.input name="supplier_org" label="Наименование организации, осуществляющей холодное водоснабжение и (или) водоотведение" :required="false" value="{{ $item->supplier_org ?? old('supplier_org') }}" />
+    <x-form.input name="supplier_org" label="Наименование организации, осуществляющей холодное водоснабжение и (или) водоотведение" :required="true" value="{{ $item->supplier_org ?? old('supplier_org') }}" />
 
     <h3>Информациф о заявителе</h3>
 
     <div class="columns-box columns-box--two-col">
-        <x-form.input name="applicant_name" label="Организация или Ф.И.О. заявителя" :required="false" value="{{ $item->applicant_name ?? old('applicant_name') ?? get_fio_str() }}" />
-        <x-form.input name="address" label="Адрес" :required="false" value="{{ $item->address ?? old('address') }}" />
+        <x-form.input name="applicant_name" label="Организация или Ф.И.О. заявителя" :required="true" value="{{ $item->applicant_name ?? old('applicant_name') ?? get_fio_str() }}" />
+        <x-form.input name="address" label="Адрес" :required="true" value="{{ $item->address ?? old('address') }}" />
 
-        <x-form.input name="phone" label="Телефон" :required="false" value="{{ $item->phone ?? old('phone') ?? auth()->user()->phone}}" />
+        <x-form.input name="phone" label="Телефон" :required="true" value="{{ $item->phone ?? old('phone') ?? auth()->user()->phone}}" />
 
-        <x-form.input name="email" label="Адрес электронной почты" :required="false" value="{{ $item->email ?? old('email') ?? auth()->user()->email }}" />
+        <x-form.input name="email" label="Адрес электронной почты" :required="true" value="{{ $item->email ?? old('email') ?? auth()->user()->email }}" />
     </div>
 
     <h3>Информациф об объекте подключения</h3>
 
     <div class="columns-box columns-box--two-col">
-        <x-form.input name="object_name" label="Наименование объекта капитального строительства" :required="false" value="{{ $item->object_name ?? old('object_name') }}" />
-        <x-form.input name="object_address" label="Адрес объекта" :required="false" value="{{ $item->object_address ?? old('object_address') }}" />
+        <x-form.input name="object_name" label="Наименование объекта капитального строительства" :required="true" value="{{ $item->object_name ?? old('object_name') }}" />
+        <x-form.input name="object_address" label="Адрес объекта" :required="true" value="{{ $item->object_address ?? old('object_address') }}" />
     </div>
     <x-form.textarea name="object_description" label="Краткая характеристика объекта" :required="false" value="{{ $item->object_description ?? old('object_description') }}" />
 
