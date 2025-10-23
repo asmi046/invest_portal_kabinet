@@ -59,7 +59,7 @@
     <h3>Необходимые работы</h3>
 
     <div class="columns-box columns-box--two-col">
-        @dd($item, old('need_any_works'))
+        {{-- @dd($item, old('need_any_works')) --}}
         <x-form.select-key name="need_any_works" label="Необходимость дополнительных работ" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->need_any_works ?? old('need_any_works') ?? 1" />
         <x-form.select-key name="need_design" label="Необходимость проектирования" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->need_design ?? old('need_design') ?? 0" />
         <x-form.select-key name="need_equipment_installation" label="Необходимость установки оборудования" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->need_equipment_installation ?? old('need_equipment_installation') ?? 0" />
