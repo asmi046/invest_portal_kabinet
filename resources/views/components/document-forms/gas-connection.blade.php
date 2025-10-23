@@ -61,12 +61,12 @@
     <div class="columns-box columns-box--two-col">
         {{-- @dd($item, old('need_any_works')) --}}
         <x-form.select-key name="need_any_works" label="Необходимость дополнительных работ" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="($item->need_any_works ?? old('need_any_works') ?? true ) ? 1: 0" />
-        <x-form.select-key name="need_design" label="Необходимость проектирования" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->need_design ?? old('need_design') ?? 0" />
-        <x-form.select-key name="need_equipment_installation" label="Необходимость установки оборудования" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->need_equipment_installation ?? old('need_equipment_installation') ?? 0" />
-        <x-form.select-key name="need_pipeline_construction" label="Необходимость либо реконструкции внутреннего газопровода" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->need_pipeline_construction ?? old('need_pipeline_construction') ?? 0" />
-        <x-form.select-key name="need_meter_installation" label="Необходимость установки прибора учета газа" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->need_meter_installation ?? old('need_meter_installation') ?? 0" />
-        <x-form.select-key name="need_meter_supply" label="Необходимость поставки прибора учета газа" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->need_meter_supply ?? old('need_meter_supply') ?? 0" />
-        <x-form.select-key name="need_equipment_supply" label="Необходимость по поставке газоиспользующего оборудования" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->need_equipment_supply ?? old('need_equipment_supply') ?? 0" />
+        <x-form.select-key name="need_design" label="Необходимость проектирования" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="($item->need_design ?? old('need_design') ?? true ) ? 1: 0" />
+        <x-form.select-key name="need_equipment_installation" label="Необходимость установки оборудования" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="($item->need_equipment_installation ?? old('need_equipment_installation') ?? true ) ? 1: 0" />
+        <x-form.select-key name="need_pipeline_construction" label="Необходимость либо реконструкции внутреннего газопровода" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="($item->need_pipeline_construction ?? old('need_pipeline_construction') ?? true ) ? 1: 0" />
+        <x-form.select-key name="need_meter_installation" label="Необходимость установки прибора учета газа" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="($item->need_meter_installation ?? old('need_meter_installation') ?? true ) ? 1: 0" />
+        <x-form.select-key name="need_meter_supply" label="Необходимость поставки прибора учета газа" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="($item->need_meter_supply ?? old('need_meter_supply') ?? true ) ? 1: 0" />
+        <x-form.select-key name="need_equipment_supply" label="Необходимость по поставке газоиспользующего оборудования" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="($item->need_equipment_supply ?? old('need_equipment_supply') ?? true ) ? 1: 0" />
     </div>
 
     <h3>Параметры потребления газа</h3>
