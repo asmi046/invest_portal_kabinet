@@ -145,17 +145,25 @@ class LandLeaseApplicationResource extends ModelResource
     protected function rules(mixed $item): array
     {
         return [
+            'supplier_org' => ['required', 'string', 'max:256'],
             'applicant_name' => ['required', 'string', 'max:256'],
             'applicant_ogrn' => ['required', 'string', 'regex:/^\d+$/', 'max:256'],
             'applicant_inn' => ['required', 'string', 'regex:/^\d+$/', 'max:256'],
             'applicant_address' => ['required', 'string', 'max:256'],
+            'person' => ['nullable', 'string', 'max:256'],
+            'person_dover' => ['nullable', 'string', 'max:256'],
             'phone' => ['required', 'string', 'max:20'],
+            'email' => ['nullable', 'string', 'email', 'max:100'],
             'post_address' => ['required', 'string', 'max:500'],
             'land_cadastral_number' => ['required', 'string', 'max:256'],
             'area' => ['required', 'numeric', 'gt:0'],
             'lease_term' => ['required', 'string', 'max:255'],
+            'landmarks' => ['nullable', 'string', 'max:556'],
             'purpose' => ['required', 'string'],
             'basis' => ['required', 'string'],
+            'req_dock' => ['nullable', 'string', 'max:255'],
+            'req_dock_plan' => ['nullable', 'string', 'max:255'],
+            'req_dock_iz' => ['nullable', 'string', 'max:255'],
         ];
     }
 }

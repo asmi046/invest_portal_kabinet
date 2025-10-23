@@ -139,15 +139,28 @@ class LandAuctionApplicationResource extends ModelResource
     protected function rules(mixed $item): array
     {
         return [
-            'supplier_org' => ['nullable', 'string', 'max:255'],
+            // Необязательные поля с валидацией
+            'supplier_org' => ['required', 'string', 'max:255'],
+
+            // Данные заявителя
             'applicant_name' => ['required', 'string', 'max:256'],
-            'applicant_ogrn' => ['required', 'string', 'regex:/^\d+$/', 'max:256'],
-            'applicant_inn' => ['required', 'string', 'regex:/^\d+$/', 'max:256'],
+            'applicant_ogrn' => ['required', 'string', 'max:256', 'regex:/^\d+$/'],
+            'applicant_inn' => ['required', 'string', 'max:256', 'regex:/^\d+$/'],
             'applicant_address' => ['required', 'string', 'max:256'],
+
+            // Представитель
+            'person' => ['nullable', 'string', 'max:256'],
+            'person_dover' => ['nullable', 'string', 'max:256'],
+
+            // Контактные данные
             'phone' => ['required', 'string', 'max:20'],
+            'email' => ['nullable', 'email', 'max:100'],
             'post_address' => ['required', 'string', 'max:500'],
+
+            // Данные о земельном участке
             'land_cadastral_number' => ['required', 'string', 'max:256'],
-            'area' => ['required', 'numeric', 'gt:0'],
+            'landmarks' => ['nullable', 'string', 'max:556'],
+            'area' => ['required', 'numeric', 'min:0.1', 'max:99999999.99'],
             'purpose' => ['required', 'string'],
         ];
     }

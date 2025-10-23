@@ -164,23 +164,59 @@ class GasConnectionResource extends ModelResource
     protected function rules(mixed $item): array
     {
         return [
+            // Данные заявителя
             'applicant_name' => ['required', 'string', 'max:256'],
             'applicant_ogrn' => ['required', 'string', 'max:256', 'regex:/^\d+$/'],
             'applicant_ogrn_data' => ['required', 'date'],
             'applicant_address' => ['required', 'string', 'max:256'],
             'applicant_passport_data' => ['required', 'string', 'max:556'],
+            'applicant_connect_variants' => ['nullable', 'string', 'max:556'],
+
+            // Контактные данные
             'phone' => ['required', 'string', 'max:20'],
+            'email' => ['nullable', 'email', 'max:100'],
+
+            // Земельный участок
+            'land_docs' => ['nullable', 'string', 'max:256'],
+
+            // Общие данные
+            'reason' => ['nullable', 'string', 'max:256'],
             'object_name' => ['required', 'string', 'max:500'],
             'object_address' => ['required', 'string', 'max:500'],
-            'gas_flow_total' => ['required', 'numeric', 'gt:0'],
-            'gas_flow_new' => ['required', 'numeric', 'gt:0'],
-            'gas_flow_existing' => ['required', 'numeric', 'gt:0'],
+
+            // Необходимость дополнительных работ (boolean)
+            'need_any_works' => ['nullable', 'boolean'],
+            'need_design' => ['nullable', 'boolean'],
+            'need_equipment_installation' => ['nullable', 'boolean'],
+            'need_pipeline_construction' => ['nullable', 'boolean'],
+            'need_meter_installation' => ['nullable', 'boolean'],
+            'need_meter_supply' => ['nullable', 'boolean'],
+            'need_equipment_supply' => ['nullable', 'boolean'],
+
+            // Параметры потребления газа
+            'gas_flow_total' => ['required', 'numeric', 'min:0.1', 'max:99999999.99'],
+            'gas_flow_new' => ['required', 'numeric', 'min:0.1', 'max:99999999.99'],
+            'gas_flow_existing' => ['required', 'numeric', 'min:0.1', 'max:99999999.99'],
             'planned_date' => ['required', 'date'],
-            'connection_point' => ['required', 'integer'],
+
+            // Точки подключения
+            'connection_point' => ['required', 'integer', 'min:1'],
             'connection_planned_date' => ['required', 'date'],
-            'connection_flow_total' => ['required', 'numeric', 'gt:0'],
-            'connection_flow_new' => ['required', 'numeric', 'gt:0'],
-            'connection_flow_existing' => ['required', 'numeric', 'gt:0'],
+            'connection_flow_total' => ['required', 'numeric', 'min:0.1', 'max:99999999.99'],
+            'connection_flow_new' => ['required', 'numeric', 'min:0.1', 'max:99999999.99'],
+            'connection_flow_existing' => ['required', 'numeric', 'min:0.1', 'max:99999999.99'],
+
+            // Характеристика потребления
+            'consumption_type' => ['nullable', 'string', 'max:256'],
+
+            // Ранее выданные тех. условия
+            'previous_tech_number' => ['nullable', 'string', 'max:256'],
+            'previous_tech_date' => ['nullable', 'date'],
+
+            // Дополнительная информация
+            'additional_info' => ['nullable', 'string'],
+            'notification_method' => ['nullable', 'string', 'max:256'],
+            'attention_details' => ['nullable', 'string'],
         ];
     }
 }

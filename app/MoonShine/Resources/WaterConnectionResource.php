@@ -143,14 +143,14 @@ class WaterConnectionResource extends ModelResource
             'object_description' => ['required', 'string'],
 
             // Нагрузки (все обязательные числовые поля)
-            'payload_all_snab' => ['required', 'numeric', 'min:0'],
-            'payload_all_ot' => ['required', 'numeric', 'min:0'],
-            'payload_hoz_snab' => ['required', 'numeric', 'min:0'],
-            'payload_hoz_ot' => ['required', 'numeric', 'min:0'],
-            'payload_prom_snab' => ['required', 'numeric', 'min:0'],
-            'payload_prom_ot' => ['required', 'numeric', 'min:0'],
-            'payload_fire_snab' => ['required', 'numeric', 'min:0'],
-            'payload_fire_ot' => ['required', 'numeric', 'min:0'],
+            'payload_all_snab' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'payload_all_ot' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'payload_hoz_snab' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'payload_hoz_ot' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'payload_prom_snab' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'payload_prom_ot' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'payload_fire_snab' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'payload_fire_ot' => [ 'numeric', 'min:0', 'max:99999999.99'],
         ];
     }
 

@@ -164,19 +164,17 @@ class CommissioningPermitResource extends ModelResource
     protected function rules(mixed $item): array
     {
         return [
-            'document_type' => ['required', 'string', 'max:255'],
-            'state' => ['required', 'string', 'max:255'],
             'applicant_type' => ['required', 'string', 'max:256'],
             'send_result_type' => ['required', 'string', 'max:550'],
 
             // Дополнительные правила для необязательных полей
-            'supplier_org' => ['nullable', 'string', 'max:500'],
-            'applicant_name' => ['nullable', 'string', 'max:256'],
-            'applicant_ogrn' => ['nullable', 'string', 'regex:/^\d+$/', 'max:256'],
-            'applicant_inn' => ['nullable', 'string', 'regex:/^\d+$/', 'max:256'],
-            'applicant_passport_data' => ['nullable', 'string', 'max:556'],
-            'object_name' => ['nullable', 'string'],
-            'object_address' => ['nullable', 'string'],
+            'supplier_org' => ['required', 'string', 'max:500'],
+            'applicant_name' => ['required', 'string', 'max:256'],
+            'applicant_ogrn' => ['required', 'string', 'regex:/^\d+$/', 'max:256'],
+            'applicant_inn' => ['required', 'string', 'regex:/^\d+$/', 'max:256'],
+            'applicant_passport_data' => ['required', 'string', 'max:556'],
+            'object_name' => ['required', 'string'],
+            'object_address' => ['required', 'string'],
             'land_cadastral_number' => ['nullable', 'string', 'max:256'],
             'permit_authority' => ['nullable', 'string', 'max:256'],
             'permit_number' => ['nullable', 'string', 'max:256'],

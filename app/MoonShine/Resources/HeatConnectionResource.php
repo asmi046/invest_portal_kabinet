@@ -160,52 +160,71 @@ class HeatConnectionResource extends ModelResource
     protected function rules(mixed $item): array
     {
         return [
+            // Организация
             'supplier_org' => ['required', 'string', 'max:500'],
+
+            // Данные заявителя
             'applicant_name' => ['required', 'string', 'max:256'],
             'applicant_address_ur' => ['required', 'string', 'max:256'],
             'applicant_address_post' => ['required', 'string', 'max:256'],
+            'applicant_phone' => ['nullable', 'string', 'max:256'],
+            'applicant_bank_name' => ['nullable', 'string', 'max:256'],
+            'applicant_bank_rs' => ['nullable', 'string', 'max:256'],
+            'applicant_bank_ks' => ['nullable', 'string', 'max:256'],
+            'applicant_bank_bik' => ['nullable', 'string', 'max:256'],
             'applicant_ogrn' => ['required', 'string', 'max:256', 'regex:/^\d+$/'],
-            'applicant_inn_kpp' => ['required', 'string', 'max:256'],
+            'applicant_inn_kpp' => ['required', 'string', 'max:256', 'regex:/^\d+$/'],
+
+            // Объект
             'object_name' => ['required', 'string'],
             'object_address' => ['required', 'string'],
 
-            // Тепловая нагрузка - ВСЕГО
-            'teplovaya_nagruzka_vsego_chasovaya_maksimalnaya' => ['required', 'numeric'],
-            'teplovaya_nagruzka_vsego_chasovaya_minimalnaya' => ['required', 'numeric'],
-            'teplovaya_nagruzka_vsego_srednechasovaya_maksimalnaya' => ['required', 'numeric'],
-            'teplovaya_nagruzka_vsego_srednechasovaya_minimalnaya' => ['required', 'numeric'],
-            'raskhod_teplonositelya_vsego_rashetnyi' => ['required', 'numeric'],
-            'raskhod_teplonositelya_vsego_srednechasovoy' => ['required', 'numeric'],
+            // Тепловая нагрузка - Всего
+            'teplovaya_nagruzka_vsego_chasovaya_maksimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'teplovaya_nagruzka_vsego_chasovaya_minimalnaya' => ['numeric', 'min:0', 'max:99999999.99'],
+            'teplovaya_nagruzka_vsego_srednechasovaya_maksimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'teplovaya_nagruzka_vsego_srednechasovaya_minimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'raskhod_teplonositelya_vsego_rashetnyi' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'raskhod_teplonositelya_vsego_srednechasovoy' => [ 'numeric', 'min:0', 'max:99999999.99'],
 
-            // Тепловая нагрузка - ОТОПЛЕНИЕ
-            'teplovaya_nagruzka_otoplenie_chasovaya_maksimalnaya' => ['required', 'numeric'],
-            'teplovaya_nagruzka_otoplenie_chasovaya_minimalnaya' => ['required', 'numeric'],
-            'teplovaya_nagruzka_otoplenie_srednechasovaya_maksimalnaya' => ['required', 'numeric'],
-            'teplovaya_nagruzka_otoplenie_srednechasovaya_minimalnaya' => ['required', 'numeric'],
-            'raskhod_teplonositelya_otoplenie_rashetnyi' => ['required', 'numeric'],
-            'raskhod_teplonositelya_otoplenie_srednechasovoy' => ['required', 'numeric'],
+            // Тепловая нагрузка - Отопление
+            'teplovaya_nagruzka_otoplenie_chasovaya_maksimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'teplovaya_nagruzka_otoplenie_chasovaya_minimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'teplovaya_nagruzka_otoplenie_srednechasovaya_maksimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'teplovaya_nagruzka_otoplenie_srednechasovaya_minimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'raskhod_teplonositelya_otoplenie_rashetnyi' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'raskhod_teplonositelya_otoplenie_srednechasovoy' => [ 'numeric', 'min:0', 'max:99999999.99'],
 
-            // Тепловая нагрузка - ВЕНТИЛЯЦИЯ
-            'teplovaya_nagruzka_ventilyatsia_chasovaya_maksimalnaya' => ['required', 'numeric'],
-            'teplovaya_nagruzka_ventilyatsia_chasovaya_minimalnaya' => ['required', 'numeric'],
-            'teplovaya_nagruzka_ventilyatsia_srednechasovaya_maksimalnaya' => ['required', 'numeric'],
-            'teplovaya_nagruzka_ventilyatsia_srednechasovaya_minimalnaya' => ['required', 'numeric'],
-            'raskhod_teplonositelya_ventilyatsia_rashetnyi' => ['required', 'numeric'],
-            'raskhod_teplonositelya_ventilyatsia_srednechasovoy' => ['required', 'numeric'],
+            // Тепловая нагрузка - Вентиляция
+            'teplovaya_nagruzka_ventilyatsia_chasovaya_maksimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'teplovaya_nagruzka_ventilyatsia_chasovaya_minimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'teplovaya_nagruzka_ventilyatsia_srednechasovaya_maksimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'teplovaya_nagruzka_ventilyatsia_srednechasovaya_minimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'raskhod_teplonositelya_ventilyatsia_rashetnyi' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'raskhod_teplonositelya_ventilyatsia_srednechasovoy' => [ 'numeric', 'min:0', 'max:99999999.99'],
 
-            // Тепловая нагрузка - ГОРЯЧЕЕ ВОДОСНАБЖЕНИЕ
-            'teplovaya_nagruzka_gorvoda_chasovaya_maksimalnaya' => ['required', 'numeric'],
-            'teplovaya_nagruzka_gorvoda_chasovaya_minimalnaya' => ['required', 'numeric'],
-            'teplovaya_nagruzka_gorvoda_srednechasovaya_maksimalnaya' => ['required', 'numeric'],
-            'teplovaya_nagruzka_gorvoda_srednechasovaya_minimalnaya' => ['required', 'numeric'],
-            'raskhod_teplonositelya_gorvoda_rashetnyi' => ['required', 'numeric'],
-            'raskhod_teplonositelya_gorvoda_srednechasovoy' => ['required', 'numeric'],
+            // Тепловая нагрузка - Горячее водоснабжение
+            'teplovaya_nagruzka_gorvoda_chasovaya_maksimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'teplovaya_nagruzka_gorvoda_chasovaya_minimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'teplovaya_nagruzka_gorvoda_srednechasovaya_maksimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'teplovaya_nagruzka_gorvoda_srednechasovaya_minimalnaya' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'raskhod_teplonositelya_gorvoda_rashetnyi' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'raskhod_teplonositelya_gorvoda_srednechasovoy' => [ 'numeric', 'min:0', 'max:99999999.99'],
 
             // Параметры теплоносителя
-            'heat_pressure' => ['required', 'numeric'],
-            'heat_temperature' => ['required', 'numeric'],
-            'consumption_mode' => ['required', 'string', 'max:20'],
+            'heat_pressure' => [ 'numeric', 'min:0', 'max:99999999.99'],
+            'heat_temperature' => [ 'numeric', 'min:-999.99', 'max:999.99'],
+            'has_meter_control' => ['nullable', 'boolean'],
+            'consumption_mode' => ['nullable', 'string', 'max:20'],
             'reliability_category' => ['required', 'string', 'max:50'],
+            'has_own_source' => ['nullable', 'boolean'],
+            'commissioning_year' => ['nullable', 'integer', 'min:1900', 'max:2100'],
+            'land_usage_info' => ['nullable', 'string', 'max:256'],
+            'construction_limits' => ['nullable', 'string', 'max:256'],
+
+            // Приложения
+            'attachments_list' => ['nullable', 'integer', 'min:0'],
+            'attachments_ekz' => ['nullable', 'integer', 'min:0'],
         ];
     }
 

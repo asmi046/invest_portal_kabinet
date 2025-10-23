@@ -167,9 +167,50 @@ class ConstructionPermitResource extends ModelResource
     protected function rules(mixed $item): array
     {
         return [
-            'document_type' => ['required', 'string', 'max:255'],
-            'state' => ['required', 'string', 'max:255'],
-            'send_result_type' => ['required', 'string', 'max:550'],
+            // Организация
+            'supplier_org' => ['nullable', 'string', 'max:255'],
+
+            // Сведения о физическом лице
+            'applicant_name' => ['required_without_all:applicant_company_name', 'nullable', 'string', 'max:256'],
+            'applicant_passport_data' => ['required_with:applicant_name', 'nullable', 'string', 'max:556'],
+            'applicant_ogrn' => ['required_with:applicant_name', 'nullable', 'string', 'max:256', 'regex:/^\d+$/'],
+            'applicant_inn' => ['required_with:applicant_name', 'nullable', 'string', 'max:256', 'regex:/^\d+$/'],
+
+            // Сведения о юр. лице
+            'applicant_company_name' => ['required_without_all:applicant_name', 'nullable', 'string', 'max:256'],
+            'applicant_company_passport_data' => ['required_with:applicant_company_name', 'nullable', 'string', 'max:556'],
+            'applicant_company_ogrn' => ['required_with:applicant_company_name', 'nullable', 'string', 'max:256', 'regex:/^\d+$/'],
+            'applicant_company_inn' => ['required_with:applicant_company_name', 'nullable', 'string', 'max:256', 'regex:/^\d+$/'],
+
+
+            // Сведения о представителе
+            'applicant_predst_name' => ['nullable', 'string', 'max:256'],
+            'applicant_predst_passport_data' => ['nullable', 'string', 'max:556'],
+            'applicant_predst_ogrn' => ['nullable', 'string', 'max:256', 'regex:/^\d+$/'],
+            'applicant_predst_inn' => ['nullable', 'string', 'max:256', 'regex:/^\d+$/'],
+            'rep_doc_issued_at' => ['nullable', 'date'],
+
+            // Сведения об объекте
+            'object_name' => ['required', 'string'],
+            'object_cadastral_number' => ['required', 'string', 'max:256'],
+
+            // Сведения о земельном участке
+            'land_cadastral_number' => ['required', 'string', 'max:256'],
+            'land_docs' => ['required', 'string'],
+
+            // Строительство объекта на основании документов
+            'doc_name' => ['required', 'string', 'max:556'],
+            'doc_number' => ['nullable', 'string', 'max:256'],
+            'doc_date' => ['nullable', 'date'],
+
+            // Контактные данные
+            'phone' => ['required', 'string', 'max:20'],
+            'email' => ['required', 'email', 'max:100'],
+            'attention_details' => ['nullable', 'string'],
+
+            // Результат предоставления услуги
+            'send_result_type' => ['nullable', 'string', 'max:550'],
+            'send_mfc_adress' => ['nullable', 'string', 'max:550'],
         ];
     }
 }
