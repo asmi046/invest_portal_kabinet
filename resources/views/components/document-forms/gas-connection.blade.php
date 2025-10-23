@@ -60,7 +60,7 @@
 
     <div class="columns-box columns-box--two-col">
 
-        <x-form.select-key name="need_any_works" label="Необходимость дополнительных работ" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->need_any_works ?? old('need_any_works') ?? 0" />
+        <x-form.select-key name="need_any_works" label="Необходимость дополнительных работ" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->need_any_works ?? old('need_any_works') ?? false" />
         <x-form.select-key name="need_design" label="Необходимость проектирования" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->need_design ?? old('need_design') ?? 0" />
         <x-form.select-key name="need_equipment_installation" label="Необходимость установки оборудования" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->need_equipment_installation ?? old('need_equipment_installation') ?? 0" />
         <x-form.select-key name="need_pipeline_construction" label="Необходимость либо реконструкции внутреннего газопровода" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->need_pipeline_construction ?? old('need_pipeline_construction') ?? 0" />
