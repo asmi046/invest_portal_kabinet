@@ -43,7 +43,7 @@ class GasConnectionDraftRequest extends FormRequest
             'object_address' => ['nullable', 'string', 'max:500'],
 
             // Необходимость дополнительных работ (boolean)
-            'need_any_works' => ['nullable', 'boolean'],
+            'need_any_works' => ['sometimes', 'accepted'],
             'need_design' => ['nullable', 'boolean'],
             'need_equipment_installation' => ['nullable', 'boolean'],
             'need_pipeline_construction' => ['nullable', 'boolean'],
