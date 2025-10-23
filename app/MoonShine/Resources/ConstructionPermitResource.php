@@ -178,9 +178,9 @@ class ConstructionPermitResource extends ModelResource
 
             // Сведения о юр. лице
             'applicant_company_name' => ['required_without_all:applicant_name', 'nullable', 'string', 'max:256'],
-            'applicant_company_passport_data' => ['required_without_all:applicant_name', 'nullable', 'string', 'max:556'],
-            'applicant_company_ogrn' => ['required_without_all:applicant_name', 'nullable', 'string', 'max:256', 'regex:/^\d+$/'],
-            'applicant_company_inn' => ['required_without_all:applicant_name', 'nullable', 'string', 'max:256', 'regex:/^\d+$/'],
+            'applicant_company_passport_data' => ['required_without_all:applicant_passport_data', 'nullable', 'string', 'max:556'],
+            'applicant_company_ogrn' => ['required_without_all:applicant_ogrn', 'nullable', 'string', 'max:256', 'regex:/^\d+$/'],
+            'applicant_company_inn' => ['required_without_all:applicant_inn', 'nullable', 'string', 'max:256', 'regex:/^\d+$/'],
 
 
             // Сведения о представителе
