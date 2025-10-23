@@ -102,8 +102,8 @@
     </div>
 
     <div class="columns-box columns-box--two-col">
-        <x-form.select-key name="has_meter_control" label="Наличие узла учета тепловой энергии и теплоносителя" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->has_meter_control ?? old('has_meter_control') ?? 0" />
-        <x-form.select-key name="has_own_source" label="Наличие собственной источника тепловой энергии" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="$item->has_own_source ?? old('has_own_source') ?? 0" />
+        <x-form.select-key name="has_meter_control" label="Наличие узла учета тепловой энергии и теплоносителя" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="($item->has_meter_control ?? old('has_meter_control') ?? true) ? 1 : 0" />
+        <x-form.select-key name="has_own_source" label="Наличие собственной источника тепловой энергии" :required="false" :list="['Нет'=>0,'Да'=>1]" :value="($item->has_own_source ?? old('has_own_source') ?? true) ? 1 : 0" />
     </div>
 
     <h3>Дополнительная информация</h3>
