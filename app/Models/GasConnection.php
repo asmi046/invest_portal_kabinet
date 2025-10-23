@@ -54,7 +54,7 @@ class GasConnection extends Model
     ];
 
     protected $casts = [
-        'need_any_works' => 'boolean',
+        'need_any_works' => 'integer',
         'validated' => 'boolean',
         'editable' => 'boolean',
         'gas_flow_total' => 'decimal:2',
