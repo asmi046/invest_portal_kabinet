@@ -98,8 +98,8 @@ class TechnicalConnectsFormPage extends FormPage
                 ]),
 
                 Tab::make('Проверка и статусы', [
-                    Switcher::make('Проверено АО «Корпорацией развития Курской области»', 'corporation_check')->disabled(fn() => auth()->user()->moonshine_user_role_id == 3),
-                    Switcher::make('Проверено «Россети - Центр» - «Курскэнерго»', 'resource_check'),
+                    // Switcher::make('Проверено АО «Корпорацией развития Курской области»', 'corporation_check')->disabled(fn() => auth()->user()->moonshine_user_role_id == 3),
+                    // Switcher::make('Проверено «Россети - Центр» - «Курскэнерго»', 'resource_check'),
                     Select::make('Статус', 'state')
                     ->options([
                         "Черновик" => "Черновик",
@@ -141,7 +141,7 @@ class TechnicalConnectsFormPage extends FormPage
 
 
 
-                Textarea::make('Описание вложений', 'prilogenie'),
+                // Textarea::make('Описание вложений', 'prilogenie'),
                 ...RelationFields::make(),
         ];
     }
