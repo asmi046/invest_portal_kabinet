@@ -32,7 +32,10 @@ class TechnicalConnectsIndexPage extends IndexPage
                     if ($state === "Отправлен") return 'yellow';
                     if ($state === "В обработке") return 'blue';
                     if ($state === "Предоставлен ответ") return 'green';
+                    return 'gray';
                 })
+
+
         ];
     }
 
