@@ -20,12 +20,12 @@ class TechnicalConnectsIndexPage extends IndexPage
             Text::make("Организация", "organization"),
             Phone::make("Телефон", "phone"),
 
-            Text::make("Мощность прис. устройств", "pover_pris_devices"),
-            Text::make("Устройства", "ustroistvo"),
+            // Text::make("Мощность прис. устройств", "pover_pris_devices"),
+            // Text::make("Устройства", "ustroistvo"),
 
 
-            Preview::make("Проверено корпорацией развитие", "corporation_check")->boolean(),
-            Preview::make("Проверено ресурсной организацией", "resource_check")->boolean(),
+            // Preview::make("Проверено корпорацией развитие", "corporation_check")->boolean(),
+            // Preview::make("Проверено ресурсной организацией", "resource_check")->boolean(),
             Preview::make("Статус", "state")->badge(
                 function ($state, Field $field) {
                     if ($state === "Черновик") return 'gray';
